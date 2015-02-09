@@ -31,8 +31,7 @@ deﬁnes all implementation-deﬁned characteristics and all extensions.
 Some Syntax sections are followed by a Constraints section, which
 further restricts the grammar. After issuing a diagnostic for a
 constraint violation, a conforming implementation may continue program
-execution. In some cases, such continuation behavior is documented (for
-example, what happens when passing too few arguments to a function).
+execution. In some cases, such continuation behavior is documented.
 Making such things constraint violations simply forces the issuance of a
 diagnostic; it does not require that program execution terminate.
 
@@ -50,6 +49,5 @@ Certain features are marked as *deprecated*. While these are normative
 for the current edition of this specification, they are not guaranteed
 to exist in future revisions. Usually, they are old approaches that have
 been superseded by new ones, and use of the old approach is discouraged.
-(Examples of this include the use of braces ({ }) for subscripting, and
-the use of old-style constructor names.)
+(Examples of this include the use of braces ({ }) for subscripting.)
 
