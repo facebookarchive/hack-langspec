@@ -26,7 +26,7 @@ A Hack *program* consists of one or more source files, known formally as
 *inclusion-directive* is defined in §12.1.1; *enum-declaration* is defined in 
 §12.2; *function-deﬁnition* is defined in §15.3; *class-declaration* is 
 defined in §16.2; *interface-declaration* is defined in §17.2; *trait 
-declaration* is defined in §18.2; *namespace-definition* is defined in §20.3;  
+declaration* is defined in §18.2; *namespace-definition* is defined in §20.3;
 *namespace-use-declaration* is defined in §20.4; and *alias-declaration* is 
 defined in §5.21.
 
@@ -35,7 +35,7 @@ A Hack script can be processed in any one of a number of *modes*, of which
 §9.4.2), on the first source line, as shown. This comment may be separated 
 from the preceding &lt;?hh by an arbitrary amount of horizontal white space (§9.4.3), which must not include any *delimited-comments* (§9.4.2). This 
 specification is written from the perspective of strict mode only. A 
-conforming implementation may provide modes other than `strict`, but they are  
+conforming implementation may provide modes other than `strict`, but they are
 outside the scope of this specification.
 
 A script can import another script via script inclusion (§12).
