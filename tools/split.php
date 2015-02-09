@@ -1,4 +1,9 @@
 <?php
+
+if (!array_key_exists(1, $argv)) {
+    exit("Specify markdown file you want to split as argument to split.php\n");
+}
+
 $data = file($argv[1]);
 $filename = null;
 $counter = 0;
@@ -15,7 +20,7 @@ foreach($data as $line) {
             echo $filename, "\n";
             $counter++;
             $split_data[$filename] = '';
-        } 
+        }
         // sub-header
         $refname = trim(ltrim($line, '#'));
         $refname = str_replace(" ", "-", $refname);
@@ -30,7 +35,7 @@ foreach($data as $line) {
                 $filerefs[$filename][$refname] = $orig_refname;
             } else {
                 @$filecounts[$filename][$orig_refname]++;
-                $filerefs[$filename][$refname] = $orig_refname . "-" . $filecounts[$filename][$orig_refname]; 
+                $filerefs[$filename][$refname] = $orig_refname . "-" . $filecounts[$filename][$orig_refname];
             }
         }
         $references[$refname] = $filename;
@@ -39,8 +44,8 @@ foreach($data as $line) {
 }
 
 foreach($split_data as $filename => $contents) {
-    $contents = preg_replace_callback('@\[(.*?)\]\(#(.*?)\)@', function($data) use($references, $filename, $filerefs) { 
-        if(empty($references[$data[2]])) { 
+    $contents = preg_replace_callback('@\[(.*?)\]\(#(.*?)\)@', function($data) use($references, $filename, $filerefs) {
+        if(empty($references[$data[2]])) {
             return $data[0];
         }
         if($references[$data[2]]) {
