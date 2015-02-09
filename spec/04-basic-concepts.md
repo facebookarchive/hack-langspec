@@ -1,63 +1,63 @@
 #Basic Concepts
 ##Program Structure
-A PHP *program* consists of one or more source files, known formally as
+A Hack *program* consists of one or more source files, known formally as
 *scripts*.
 
 <pre>
-<i>script:</i>
-<i> script-section</i>
-<i> script   script-section</i>
+&lt;?hh // strict
+<i>declaration-list<sub>opt</sub></i>
 
-<i>script-section:</i>
-  <i> text<sub>opt</sub></i> &lt;?php <i>statement-list<sub>opt</sub></i> ?&gt;<sub>opt</sub> <i>text<sub>opt</sub></i>
+<i>declaration-list:</i>
+<i>  declaration</i>
+<i>  declaration-list declaration</i>
 
-<i>text:</i>
-  arbitrary text not containing the sequence &lt;?php
+<i>declaration:</i>
+<i>  inclusion-directive</i>
+<i>  enum-declaration</i>
+<i>  function-definition</i>
+<i>  class-declaration</i>
+<i>  interface-declaration</i>
+<i>  trait-declaration</i>
+<i>  namespace-definition</i>
+<i>  namespace-use-declaration</i>
+<i>  alias-declaration</i>
 </pre>
 
-All of the sections in a script are treated as though they belonged to
-one continuous section, except that any intervening text is treated as
-though it were a string literal given to the intrinsic `echo` ([§§](10-expressions.md#echo)). 
+*inclusion-directive* is defined in §12.1.1; *enum-declaration* is defined in 
+§12.2; *function-deﬁnition* is defined in §15.3; *class-declaration* is 
+defined in §16.2; *interface-declaration* is defined in §17.2; *trait 
+declaration* is defined in §18.2; *namespace-definition* is defined in §20.3;  
+*namespace-use-declaration* is defined in §20.4; and *alias-declaration* is 
+defined in §5.21.
 
-A script can import another script via a script inclusion operator ([§§](10-expressions.md#script-inclusion-operators)).
+A Hack script can be processed in any one of a number of *modes*, of which 
+`strict` is one. This mode is specified in a *special single-line-comment* (
+§9.4.2), on the first source line, as shown. This comment may be separated 
+from the preceding &lt;?hh by an arbitrary amount of horizontal white space (§9.4.3), which must not include any *delimited-comments* (§9.4.2). This 
+specification is written from the perspective of strict mode only. A 
+conforming implementation may provide modes other than `strict`, but they are  
+outside the scope of this specification.
 
-*statement-list* is defined in [§§](11-statements.md#compound-statements).
+A script can import another script via script inclusion (§12).
 
 The top level of a script is simply referred to as the *top level*.
 
 ##Program Start-Up
-A program begins execution at the start of a script ([§§](#program-structure)) designated in
-some unspecified manner. This script is called the *start-up script*.
-
-Once a program is executing, it has access to certain environmental
-information ([§§](07-variables.md#predefined-variables)), as follows:
-
--   The number of *command-line arguments*, via the predefined variable
-    `$argc`.
--   A series of one or more command-line arguments as strings, via the
-    predefined variable `$argv`.
--   A series of *environment variable* names and their definitions.
-
-When a top level ([§§](#program-structure)) is the main entry point for a script, it gets
-the global variable environment. When a top level is invoked via
-`include/require` ([§§](10-expressions.md#general-6)), it inherits the variable environment of its caller. Thus,
-when looking at one top level in isolation, it's not
-possible to tell statically whether it will have the global
-variable environment or some local variable environment. It depends on how the
-pseudo-main is invoked and it depends on the runtime state of the program
-when it's invoked.
+Once the start-up function begins execution, it is implementation-defined as 
+to whether it has access to things like command-line arguments and environment 
+variables. [PHP's global variables `$argc` and `$argv` are not available in 
+`strict` mode.]
 
 ##Program Termination
 A program may terminate normally in the following ways:
 
--   Execution reaches the end of the start-up script ([§§](#program-start-up)).
--   A `return` statement ([§§](11-statements.md#the-return-statement)) in the start-up script is executed.
--   The intrinsic `exit` ([§§](10-expressions.md#exitdie)) is called explicitly.
+-   A `return` statement (§11.7.4) in the start-up function is executed.
+-   The intrinsic `exit` (§10.4.2.4) is called explicitly.
 
-The behavior of the first two cases is equivalent to corresponding calls
-to exit.
+The behavior of the first case is equivalent to corresponding calls
+to `exit`.
 
-A program may terminate abnormally under various circumstances, such as
+A program may terminate abnormally under various circumstances, such as 
 the detection of an uncaught exception, or the lack of memory or other
 critical resource. If execution reaches the end of the start-up script
 via a fatal error, or via an uncaught exception and there is no uncaught
@@ -65,13 +65,13 @@ exception handler registered by `set_exception_handler`, that is
 equivalent to `exit(255)`. If execution reaches the end of the start-up
 script via an uncaught exception and an uncaught exception handler was
 registered by `set_exception_handler`, that is equivalent to exit(0). It
-is unspecified whether object destructors ([§§](14-classes.md#destructors)) are run. In all other cases, the
-behavior is unspecified.
+is unspecified whether object destructors (§16.9) are run. In all other cases, 
+the behavior is unspecified.
 
 ##The Memory Model
 ###General
 This subclause and those immediately following it describe the abstract
-memory model used by PHP for storing variables. A conforming
+memory model used by Hack for storing variables. A conforming
 implementation may use whatever approach is desired as long as from any
 testable viewpoint it appears to behave as if it follows the abstract
 model. The abstract model makes no explicit or implied restrictions or
@@ -104,7 +104,7 @@ the new VStore.
 A VStore can be changed to contain different scalar values and handles
 over time. Multiple VStores may simultaneously contain handles that
 point to the same HStore. When a VStore is created it initially contains
-the scalar value NULL unless specified otherwise. In addition to
+the scalar value `null` unless specified otherwise. In addition to
 containing a value, VStores also carry a *type tag* that indicates the
 type ([§§](05-types.md#types)) of the VStore’s value. A VStore’s type tag can be changed over
 time. At any given time a VStore’s type tag may be one of the following:
@@ -162,7 +162,7 @@ and `$y`. This HStore contains two VSlots representing instance
 properties `$x` and `$y`, and each of these VSlots points to a distinct
 VStore which contains an integer value. 
 
-***Implementation Notes:*** php.net’s implementation can be mapped roughly
+***Implementation Notes*** php.net’s implementation can be mapped roughly
 onto the abstract memory model as follows: `zval pointer => VSlot, zval
 => VStore, HashTable => HStore`, and
 `zend_object/zend_object_handlers => HStore`. Note, however, that the
@@ -172,16 +172,7 @@ superficial differences between the two models.
 
 For most operations, the mapping between VSlots and VStores remains the
 same. Only the following program constructs can change a VSlot to point
-to different VStore, all of which are *byRef-aware* operations and all
-of which (except unset) use the & punctuator:
-
--   byRef assignment ([§§](10-expressions.md#byref-assignment))
--   byRef parameter declaration ([§§](13-functions.md#function-definitions))
--   byRef function return ([§§](11-statements.md#the-return-statement), [§§](13-functions.md#function-definitions))
--   byRef value in a foreach statement ([§§](11-statements.md#the-foreach-statement))
--   byRef initializer for an array element ([§§](10-expressions.md#array-creation-operator))
--   byRef variable-use list in an anonymous function ([§§](10-expressions.md#anonymous-function-creation))
--   unset ([§§](10-expressions.md#unset))
+to different VStore: the use of `&` in a `foreach` statement (§11.6.5).
 
 ###Reclamation and Automatic Memory Management
 The Engine is required to manage the lifetimes of VStores and HStores
@@ -190,14 +181,14 @@ using some form of automatic memory management.
 When dealing with VStores and HStores, the Engine is required to implement
 some form of automatic memory management. When a VStore or HStore
 is created, memory is allocated for it, and for an HStore that represents
-an object ([§§](05-types.md#object-types)), its constructor ([§§](14-classes.md#constructors)) is invoked.
+an object (§5.12), its constructor (§16.8) is invoked.
 
 Later, if a VStore or HStore becomes unreachable through any existing
 variable, they become eligible for reclamation to release the memory
 they occupy. The engine may reclaim a VStore or HStore at any time
 between when it becomes eligible for reclamation and when the script
-exits. Before reclaiming an HStore that represents an object ([§§](05-types.md#object-types)),
-the Engine will invoke the object’s destructor ([§§](14-classes.md#constructors)) if one is defined.
+exits. Before reclaiming an HStore that represents an object (§5.12),
+the Engine will invoke the object’s destructor (§16.9) if one is defined.
 
 The Engine must reclaim each VSlot when the storage duration ([§§](#storage-duration)) of its
 corresponding variable ends, when the variable is explicitly unset by the
@@ -219,13 +210,6 @@ reclaimed at different times. Despite the use of the term refcount,
 conforming implementations are not required to use a reference
 counting-based implementation for automatic memory management.
 
-**(dead)**: In some pictures, storage-location boxes are shown as (dead).
-For a VStore or an HStore this indicates that the VStore or HStore is no
-longer reachable through any variable and is eligible for reclamation. For
-a VSlot, this indicates that the VSlot has been reclaimed or, in the case
-of a VSlot contained with an HStore, that the containing HStore has been
-reclaimed or is eligible for reclamation.
-
 ###Assignment
 ####General
 This subclause and those immediately following it describe the abstract
@@ -236,9 +220,11 @@ value assignment of array types to local variables, and ending with
 value assignment with complex left-hand side expressions, and byRef
 assignment with complex expressions on the left- or right-hand side.
 
-Value assignment and byRef assignment are core to the PHP language, and
-many other operations in this specification are described in terms of
-value assignment and byRef assignment.
+Value assignment and byRef assignment are core to HHVM, the Engine which 
+supports the  PHP and Hack languages. Many other operations in the PHP and 
+Hack specification are described in terms of value assignment. On the other 
+hand, byRef assignment is used only by PHP, not by Hack. However, a discussion 
+of such assignment has been retained here for historical reference.
 
 ####Value Assignment of Scalar Types to a Local Variable
 Value assignment is the primary means by which the programmer can create
@@ -291,7 +277,7 @@ VStores. The scalar value or handle produced by the literal or
 expression is written into the VStore of the left hand side, overwriting
 its previous contents.
 
-***Implementation Notes:*** For simplicity, the abstract model’s
+***Implementation Notes*** For simplicity, the abstract model’s
 definition of value assignment never changes the mapping from VSlots to
 VStores. This aspect of the abstract model is superficially different
 from the php.net implementation’s model, which in some cases will set
@@ -351,7 +337,7 @@ example:
 [VSlot $b *]-->[VStore Str 'gh']
 </pre>
 
-***Implementation Notes:*** For simplicity, the abstract model represents
+***Implementation Notes*** For simplicity, the abstract model represents
 a string as a scalar value that can be entirely contained within VStore.
 This aspect of the abstract model is superficially different from the
 php.net implementation’s model, where a zval points to a separate buffer
@@ -363,7 +349,7 @@ the abstract model presented here.
 
 Because a string’s content can be arbitrarily large, copying a string’s
 entire contents for value assignment can be expensive. In practice an
-application written in PHP may rely on value assignment of strings being
+application written in Hack may rely on value assignment of strings being
 relatively inexpensive (in order to deliver acceptable performance), and
 as such it is common for an implementation to use a deferred copy
 mechanism to reduce the cost of value assignment for strings. Deferred
@@ -445,7 +431,7 @@ Before `$a` can take on the handle of the new `Point`, its handle to the
 old `Point` must be removed, which leaves the handles of `$a` and `$b`
 pointing to different Points.
 
-We can remove all these handles using `$a = NULL` and `$b = NULL`:
+We can remove all these handles using `$a = null` and `$b = null`:
 <pre>
 [VSlot $a *]-->[VStore Null]    [HStore Point [VSlot $x *] [VSlot $y *] (dead)]
                                                         |            |
@@ -720,7 +706,7 @@ as follows:
     assignment (`$destination = &$source`).
 
 Note the member-copy assignment `=*` is **not** an operator or language
-construct in the PHP language, but instead it is used internally to
+construct in the Hack language, but instead it is used internally to
 describe behavior for the engine for array copying and other operations
 
 For the particular example above, member-copy assignment exhibits the
@@ -814,7 +800,7 @@ subclause.
 
 Because an array’s contents can be arbitrarily large, eagerly copying an
 array’s entire contents for value assignment can be expensive. In
-practice an application written in PHP may rely on value assignment of
+practice an application written in Hack may rely on value assignment of
 arrays being relatively inexpensive for the common case (in order to deliver
 acceptable performance), and as such it is common for an implementation
 to use a deferred array copy mechanism in order to reduce the cost of
@@ -1011,11 +997,11 @@ For the example above, a conforming implementation could output “2 1”,
 arrays.
 
 For portability, it is generally recommended that programs written in
-PHP should avoid performing value assignment with a right-hand side that
+Hack should avoid performing value assignment with a right-hand side that
 is an array with one or more elements or sub-elements that have an alias
 relationship.
 
-***Implementation Notes:*** For generality and for simplicity, the
+***Implementation Notes*** For generality and for simplicity, the
 abstract model represents deferred array copy mechanisms in a manner
 that is more open-ended and superficially different than the php.net
 implementation’s model, which uses a symmetric deferred copy mechanism
@@ -1046,25 +1032,21 @@ object instance properties. Describe how new array elements and object
 instance properties can be created via byref assignment.]**
 
 ###Argument Passing
-Argument passing is defined in terms of simple assignment ([§§](#value-assignment-of-scalar-types-to-a-local-variable), [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable), [§§](#value-assignment-of-array-types-to-local-variables), and [§§](10-expressions.md#simple-assignment)) or byRef assignment ([§§]), [§§](#byref-assignment-of-non-scalar-types-with-local-variables), and [§§](10-expressions.md#byref-assignment)), depending on how the parameter is declared. 
+Argument passing is defined in terms of simple assignment ([§§](#value-assignment-of-scalar-types-to-a-local-variable), [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable), [§§](#value-assignment-of-array-types-to-local-variables), and §10.20.2). 
 That is, passing an argument to a function having a corresponding
-parameter is like assigning that argument to that parameter. The
-function-call situations involving missing arguments or
-undefined-variable arguments are discussed in ([§§](10-expressions.md#function-call-operator)).
+parameter is like assigning that argument to that parameter.
 
 ###Value Returning
 Returning a value from a function is defined in terms of simple
-assignment ([§§](#value-assignment-of-scalar-types-to-a-local-variable), [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable), [§§](#value-assignment-of-array-types-to-local-variables), and [§§](10-expressions.md#simple-assignment)) or byRef assignment ([§§](#byref-assignment-for-scalar-types-with-local-variables), [§§](#byref-assignment-of-non-scalar-types-with-local-variables), and [§§](10-expressions.md#byref-assignment)) depending on how the
-function is declared.  That is, returning a value from a function to its
+assignment ([§§](#value-assignment-of-scalar-types-to-a-local-variable), [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable), [§§](#value-assignment-of-array-types-to-local-variables), and §10.20.2).  That is, returning a value from a function to its
 caller is like assigning that value to the user of the caller's return
-value. The function-return situations involving a missing return value
-are discussed in ([§§](10-expressions.md#function-call-operator)).
+value.
 
 
 ###Cloning objects
-When an instance is allocated, operator `new` ([§§](10-expressions.md#the-new-operator)) returns a handle
+When an instance is allocated, operator `new` (§10.5.3) returns a handle
 that points to that object. As described in [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable)), value assignment of a handle to an object does not copy the object HStore itself. Instead, it creates a copy of the handle. How then to make a copy of the object itself? Our only access to it is
-via the handle. The PHP language allows us to do this via operator `clone` ([§§](10-expressions.md#the-clone-operator)).
+via the handle. The Hack language allows us to do this via operator `clone` (§10.5.2).
 
 To demonstrate how the `clone` operator works, consider the case in which
 an instance of class `Widget` contains two instance properties: `$p1` has
@@ -1102,7 +1084,7 @@ assignment. Note that the clone operator will not recursively clone
 objects held in `$a`’s instance properties; hence the object copying
 performed by the clone operator is often referred to as a *shallow
 copy*. If a *deep copy* of an object is desired, the programmer must
-achieve this manually by using the method `__clone` ([§§](14-classes.md#method-__clone)) or by
+achieve this manually by using the method `__clone` (§14.10.4) or by
 other means.
 
 ##Scope
@@ -1114,23 +1096,19 @@ The following distinct scopes exist:
 
 -   Script, which means from the point of declaration/first
     initialization through to the end of that script, including any
-    included and required files ([§§](10-expressions.md#general-6)).
+    included scripts (§12).
 -   Function, which means from the point of declaration/first
-    initialization through to the end of that function ([§§](13-functions.md#function-definitions)).
+    initialization through to the end of that function (§15.3).
 -   Class, which means the body of that class and any classes derived
-    from it ([§§](14-classes.md#class-declarations)).
+    from it (§16.2).
 -   Interface, which means the body of that interface, any interfaces
-    derived from it, and any classes that implement it ([§§](15-interfaces.md#interface-declarations)).
+    derived from it, and any classes that implement it (§17.2).
 -   Namespace, which means from the point of declaration/first
-    initialization through to the end of that namespace ([§§](18-namespaces.md#general)).
+    initialization through to the end of that namespace (§20.1).
 
-A variable declared or first initialized inside a function, has function
-scope; otherwise, the variable has script scope. 
+A variable declared or first initialized inside a function has function scope.
 
-Superglobals ([§§](07-variables.md#general)) are always in scope; they never need explicit
-declaration.
-
-Each function has its own function scope. An anonymous function ([§§](13-functions.md#anonymous-functions))
+Each function has its own function scope. An anonymous function (§15.4)
 has its own scope separate from that of any function inside which that
 anonymous function is defined.
 
@@ -1139,17 +1117,14 @@ parameter is declared. For the purposes of scope, a catch-block ([§§](11-state
 is treated like a function body, in which case, the *variable-name* in
 *parameter-declaration-list* is treated like a parameter.
 
-The scope of a *named-label* ([§§](11-statements.md#labeled-statements)) is the body of the function in
-which the label is defined. 
+The scope of a class member `m` (§16.3) declared in, or inherited by, a
+class type `C` is the body of `C`.
 
-The scope of a class member m ([§§](14-classes.md#class-members)) declared in, or inherited by, a
-class type C is the body of C.
+The scope of an interface member `m` (§17.3) declared in, or inherited by,
+an interface type `I` is the body of `I`.
 
-The scope of an interface member m ([§§](14-classes.md#class-members)) declared in, or inherited by,
-an interface type I is the body of I.
-
-When a trait ([§§](16-traits.md#general)) is used by a class or an interface, the trait's
-members ([§§](16-traits.md#trait-members)) take on the scope of a member of that class or
+When a trait (§18.1) is used by a class or an interface, the trait's
+members (§16.3) take on the scope of a member of that class or
 interface.
 
 ##Storage Duration
@@ -1164,59 +1139,49 @@ initialized at its declaration or on its first use, if it has no
 declaration. Its lifetime is delimited by an enclosing scope ([§§](#scope)). The
 automatic variable's lifetime ends at the end of that scope. Automatic
 variables lend themselves to being stored on a stack where they can help
-support argument passing and recursion. Local variables ([§§](07-variables.md#local-variables)), which
-include function parameters ([§§](13-functions.md#function-definitions)), have automatic storage duration.
+support argument passing and recursion. Local variables (§7.2.1), which
+include function parameters (§15.3), have automatic storage duration.
 
 A variable having *static storage duration* comes into being and is
 initialized before its first use, and lives until program shutdown. The
-following kinds of variables have static storage duration: constants
-([§§](07-variables.md#constants)), function statics ([§§](07-variables.md#function-statics)), global variables ([§§](07-variables.md#global-variables)), static
-properties ([§§](07-variables.md#static-properties)), and class and interface constants ([§§](07-variables.md#class-and-interface-constants)).
+following kinds of variables have static storage duration: function statics (§7.2.3), static properties (§7.2.5), and class and interface constants (§7.2.6).
 
 A variable having *allocated storage duration* comes into being based on
-program logic by use of the new operator ([§§](10-expressions.md#the-new-operator)). Ordinarily, once
+program logic by use of the new operator (§10.5.3). Ordinarily, once
 such storage is no longer needed, it is reclaimed automatically by the
 Engine via its garbage-collection process ([§§](#)) and the use of
-destructors ([§§](14-classes.md#destructors)). The following kinds of variables have allocated
-storage duration: array elements ([§§](07-variables.md#array-elements)) and instance properties
-([§§](07-variables.md#instance-properties)).
-
-Although all three storage durations have default ends-of-life, their
-lives can be shortened by calling the intrinsic unset ([§§](10-expressions.md#unset)),
-which destroys any given set of variables.
+destructors (§16.9). The following kinds of variables have allocated
+storage duration: array elements (§7.2.2) and instance properties
+(§7.2.4).
 
 The following example demonstrates the three storage durations:
 
 ```
 class Point { ... }
 
-$av1 = new Point(0, 1);       // auto variable $av1 created and initialized
-static $sv1 = ...;          // static variable $sv1 created and initialized
-
-function doit($p1)
-{
+function doit($p1) {
   $av2 = ...;           // auto variable $av2 created and initialized
-  static $sv2 = ...;        // static variable $sv2 created and initialized
-  if ($p1)
-  {
+  static $sv2 = ...;    // static variable $sv2 created and initialized
+  if ($p1) {
     $av3 = ...;         // auto variable $av3 created and initialized
-    static $sv3 = ...;    // static variable $sv3 created and initialized
+    static $sv3 = ...;  // static variable $sv3 created and initialized
     ...
   }
   global $av1;
   $av1 = new Point(2, 3);   // Point(0,1) is eligible for destruction
   ...
-}                   // $av2 and $av3 are eligible for destruction
+}                       // $av2 and $av3 are eligible for destruction
 
-doit(TRUE);
+function main($p1): void {
+  $av1 = new Point();   // auto variable $av1 created and initialized
+  static $sv1 = ...;    // static variable $sv1 created and initialized
+  doit(true);
 
-// At end of script, $av1, $sv1, $sv2, and $sv3 are eligible for destruction
+// At end of script, $sv1, $sv2, and $sv3 are eligible for destruction
 ```
 
 The comments indicate the beginning and end of lifetimes for each
-variable. In the case of the initial allocated Point variable whose
-handle is stored in `$av1`, its life ends when `$av1` is made to point to
-a different Point.
+variable.
 
 If function `doit` is called multiple times, each time it is called, its
 automatic variables are created and initialized, whereas its static
@@ -1225,8 +1190,7 @@ variables retain their values from previous calls.
 Consider the following recursive function: 
 
 ```
-function factorial($i)
-{
+function factorial(int $i): int {
   if ($i > 1) return $i * factorial($i - 1);
   else if ($i == 1) return $i;
   else return 0;
