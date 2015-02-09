@@ -1,8 +1,0 @@
-*.out
-*.diff
-*.phpt
-*.exp
-*.log
-*.sh
-*.repo
-.DS_Store
