@@ -31,8 +31,8 @@ declaration* is defined in §18.2; *namespace-definition* is defined in §20.3;
 defined in §5.21.
 
 A Hack script can be processed in any one of a number of *modes*, of which 
-`strict` is one. This mode is specified in a *special single-line-comment* (
-§9.4.2), on the first source line, as shown. This comment may be separated 
+`strict` is one. This mode is specified in a *special single-line-comment*
+(§9.4.2), on the first source line, as shown. This comment may be separated 
 from the preceding &lt;?hh by an arbitrary amount of horizontal white space (§9.4.3), which must not include any *delimited-comments* (§9.4.2). This 
 specification is written from the perspective of strict mode only. A 
 conforming implementation may provide modes other than `strict`, but they are
