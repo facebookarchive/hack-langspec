@@ -38,7 +38,7 @@ type.
 that is intended to map to a corresponding argument in a call to that
 function.
 
-**PHP Run-Time Engine** – the machinery that executes a PHP program.
+**Hack Run-Time Engine** – the machinery that executes a Hack program.
 Referred to as *the Engine* throughout this specification.
 
 **value** – precise meaning of the contents of a memory location when
