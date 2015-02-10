@@ -231,6 +231,7 @@ likely to be ill conceived.
   <i>type-specifier</i>
 
 <i>type-specifier</i> is defined in §5.1.
+</pre>
 
 **Constraints**
 
