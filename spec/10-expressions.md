@@ -2283,11 +2283,12 @@ function factorial(int $int): int
 
 <i>lambda-function-signature:</i>
   <i>variable-name</i>
-  (  <i>anonymous-function-parameter-declaration-list<sub>opt</sub>  )  <i>anonymous-function-return<sub>opt</sub></i>
+  (  <i>anonymous-function-parameter-declaration-list<sub>opt</sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>
 
 <i>anonymous-function-body:</i>
   <i>expression</i>
   <i>compound-statement</i>
+</pre>
 
 *conditional-expression* is defined in §10.18; *variable-name* is defined in §9.4.4.2; *anonymous-function-parameter-declaration-list* is defined in §10.4.6; *anonymous-function-return* is defined in §10.4.6; *expression* is defined in §10.21; and *compound-statement* is defined in §11.2.
 
