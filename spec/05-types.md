@@ -229,9 +229,9 @@ likely to be ill conceived.
 
 <i>array-key-type-specifier:</i>
   <i>type-specifier</i>
+</pre>
 
 <i>type-specifier</i> is defined in §5.1.
-</pre>
 
 **Constraints**
 
@@ -589,6 +589,7 @@ parameters. See §14.
   <i>type-specifier</i>
   <i>qualified-name</i>
   <i>shape-specifier</i>
+</pre>
 
 *name* is defined in §9.4.4.2; *qualified-name* is defined in §9.4.4.2;
 *type-specifier* is defined in §5.1; and *shape-specifier* is defined in §5.16.
