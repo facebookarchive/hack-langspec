@@ -124,6 +124,6 @@ Name  |  Purpose
 `assert`  |  Converts the given $value to the enum’s underlying type.
 `assertAll`  |  Converts the given `Traversable` of values to the enum’s underlying type.
 `coerce`  |  Converts the given `$value` to the enum’s underlying type.
-getNames  |  Returns a map-like array of enumeration constant values and their names.
+`getNames`  |  Returns a map-like array of enumeration constant values and their names.
 `getValues`  |  Returns a map-like array of enumeration constant names and their values.
 `isValid`  |  Indicated whether the given `$value` is one of the values in the enum.
