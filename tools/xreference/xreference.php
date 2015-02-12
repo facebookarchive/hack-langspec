@@ -1,6 +1,6 @@
-<?php
+<?hh
 
-function get_section_map($section_map_file) {
+function get_section_map(string $section_map_file): array<string, string> {
   $handle = fopen($section_map_file, "r");
   $section_map = array();
   while (($pair = fgetcsv($handle)) !== false) {
@@ -11,28 +11,41 @@ function get_section_map($section_map_file) {
   return $section_map;
 }
 
-function insert_cross_references($md_file, $section_map, $ref_link_text = NULL,
-                                $update_only = false) {
+function insert_cross_references(string $md_file,
+                                 array<string, string> $section_map,
+                                 string $ref_link_text = NULL,
+                                 bool $update_only = false): void {
   $contents = file($md_file);
   $update = "";
-  $pattern = "/§[\[]?[A-Z0-9.]+[\]]?/";
+  // matches
+  //   §16.2
+  //   [§§]
+  //   §A.1.2
+  $pattern = "/([\[])?§([A-Z0-9\.]+)([\]])?/";
   $matches = array();
   foreach ($contents as $line) {
+    // Get all the matches on this line of text
     if (preg_match_all($pattern, $line, $matches) > 0) {
-      // Get the entire match array. Should be the only one there anyway.
-      $matches = $matches[0];
-      foreach ($matches as $match) {
+      $ref_texts = $matches[2]; // The matches for the characters after §
+      foreach ($ref_texts as $ref_text) {
         // Get rid of any trailing . in case the cross reference is the
         // end of a sentence and the match occurred.
-        $match = rtrim($match, ".");
+        $ref_text = rtrim($ref_text, ".");
         // For each cross reference match we found, replace with
         // markdown link in our map and create a text link to the title
-        $text = $ref_link_text === null ? $match : $ref_link_text;
-        $replace = "[" . $text . "]";
-        if (!$update_only){
-          $replace .= "(#" . $section_map[$match] . ")";
+        $text = $ref_link_text === null ? $ref_text : $ref_link_text;
+        $replace = "";
+        if (!$update_only || ($update_only && empty($matches[0]))) {
+          $replace .= "[";
         }
-        $line = str_replace($match, $replace, $line);
+        $replace .= $text;
+        if (!$update_only || ($update_only && empty($matches[0]))) {
+          $replace .= "]";
+        }
+        if (!$update_only){
+          $replace .= $section_map[$ref_text];
+        }
+        $line = str_replace("§".$ref_text, $replace, $line);
       }
     }
     $update .= $line;
@@ -41,38 +54,69 @@ function insert_cross_references($md_file, $section_map, $ref_link_text = NULL,
 }
 
 
-function map_word_sections_to_markdown_sections($section_map_file, $md_file) {
-  $md_contents = file_get_contents($md_file);
-  $toc_start = strpos($md_contents, "**Table of Contents**");
-  $toc_end = strpos($md_contents, "#Introduction");
-  $md_toc = substr($md_contents, $toc_start, $toc_end);
-  $md_section_pattern = "/\(#([a-z0-9\-_]+)\)/";
+function map_word_sections_to_markdown_sections(string $section_map_file,
+                                                string $toc_file) {
+  $toc_contents = file_get_contents($toc_file);
+  $toc_start = strpos($toc_contents, "**Table of Contents**");
+  $toc_end = strlen($toc_contents);
+  $md_toc = substr($toc_contents, $toc_start, $toc_end);
+
+  // e.g., (01-introduction.md#introduction)
+  $md_section_pattern = "/\([a-z0-9\-_]+\.md#[a-z0-9\-_]+\)/";
+
   $matches = array();
   preg_match_all($md_section_pattern, $md_toc, $matches);
-  // Just want the sub-match only
-  $matches = $matches[1];
+  if (empty($matches[0])) {
+    die("No table of contents found" . PHP_EOL);
+  }
+  // $matches[0] will be an array of the matches we found
+  // Start at 1 because $refs[0] will actually be the ToC md file that
+  // we don't care about linking to.
+  $refs = array_slice($matches[0], 1);
   $sm_contents = file($section_map_file, FILE_IGNORE_NEW_LINES);
   $num_elements = count($sm_contents);
   for ($i = 0; $i < $num_elements; $i++) {
-    if (!strpos($sm_contents[$i], $matches[$i])) {
-      $sm_contents[$i] .= "," . $matches[$i];
+    if (!strpos($sm_contents[$i], $refs[$i])) {
+      $sm_contents[$i] .= "," . $refs[$i];
     }
   }
   file_put_contents($section_map_file, implode(PHP_EOL, $sm_contents));
 }
 
-function main($argv) {
-  $opts = getopt("hm:s:t:u");
+function usage(): string {
+  return "Usage" . PHP_EOL . PHP_EOL
+        . "Make sure you run split.php and toc.php before this!!" . PHP_EOL
+        . "php xreference.php [options]" . PHP_EOL
+        . "-i <table of contents md file>" . PHP_EOL
+        . "-m <input markdown file or directory of files>" . PHP_EOL
+        . "-s <section map file>" . PHP_EOL
+        . "[-t <text used for clickable reference link>" . PHP_EOL
+        . "[-u <update reference link text only; don't change actual link>"
+        . PHP_EOL . PHP_EOL;
+}
+
+function main(array<string> $argv): void {
+  $opts = getopt("hi:m:s:t:u");
   if (array_key_exists("h", $opts)) {
-    die("php xreference.php -m <input markdown file> -s <section map file "
-        . "[-t <text used for clickable reference link ] "
-        . "[-u <update reference link text only; don't change actual link]"
-        . PHP_EOL);
+    die(usage());
   }
-  if (!array_key_exists("m", $opts) && !array_key_exists("s", $opts)) {
-    die("Specify both input markdown file and input section map" . PHP_EOL);
+  if (!array_key_exists("m", $opts) &&
+      !array_key_exists("s", $opts) &&
+      !array_key_exists("i", $opts)) {
+    die("Specify, ToC markdown file, input markdown file and input section map"
+        . PHP_EOL . PHP_EOL . usage());
   }
+  $toc_file = $opts["i"];
   $md_file = $opts["m"];
+
+  $md_files = array();
+
+  // If we are given a directory of md files to cross reference
+  if (is_dir($md_file)) {
+    $md_files = scandir($md_file);
+  } else {
+    $md_files[0] = $md_file;
+  }
   $section_map_file = $opts["s"];
   $ref_link_text = null;
   if (array_key_exists("t", $opts)) {
@@ -82,9 +126,11 @@ function main($argv) {
   if (array_key_exists("u", $opts)) {
     $update_only = true;
   }
-  map_word_sections_to_markdown_sections($section_map_file, $md_file);
+  map_word_sections_to_markdown_sections($section_map_file, $toc_file);
   $section_map = get_section_map($section_map_file);
-  insert_cross_references($md_file, $section_map, $ref_link_text, $update_only);
+  foreach($md_files as $file) {
+    insert_cross_references($file, $section_map, $ref_link_text, $update_only);
+  }
 }
 
 main($argv);

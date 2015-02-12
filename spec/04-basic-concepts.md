@@ -24,22 +24,22 @@ A Hack *program* consists of one or more source files, known formally as
   <i>alias-declaration</i>
 </pre>
 
-*inclusion-directive* is defined in §12.1.1; *enum-declaration* is defined in 
-§12.2; *function-deﬁnition* is defined in §15.3; *class-declaration* is 
-defined in §16.2; *interface-declaration* is defined in §17.2; *trait 
-declaration* is defined in §18.2; *namespace-definition* is defined in §20.3;
-*namespace-use-declaration* is defined in §20.4; and *alias-declaration* is 
-defined in §5.21.
+*inclusion-directive* is defined in [§§](12-script-inclusion.md#general); *enum-declaration* is defined in 
+[§§](12-script-inclusion.md#the-require-directive); *function-definition* is defined in [§§](15-functions.md#function-definitions); *class-declaration* is 
+defined in [§§](16-classes.md#class-declarations); *interface-declaration* is defined in [§§](17-interfaces.md#interface-declarations); *trait 
+declaration* is defined in [§§](18-traits.md#trait-declarations); *namespace-definition* is defined in [§§](20-namespaces.md#defining-namespaces);
+*namespace-use-declaration* is defined in [§§](20-namespaces.md#namespace-use-declarations); and *alias-declaration* is 
+defined in [§§](05-types.md#type-aliases).
 
 A Hack script can be processed in any one of a number of *modes*, of which 
 `strict` is one. This mode is specified in a *special single-line-comment*
-(§9.4.2), on the first source line, as shown. This comment may be separated 
-from the preceding &lt;?hh by an arbitrary amount of horizontal white space (§9.4.3), which must not include any *delimited-comments* (§9.4.2). This 
+([§§](09-lexical-structure.md#comments)), on the first source line, as shown. This comment may be separated 
+from the preceding &lt;?hh by an arbitrary amount of horizontal white space ([§§](09-lexical-structure.md#white-space)), which must not include any *delimited-comments* ([§§](09-lexical-structure.md#comments)). This 
 specification is written from the perspective of strict mode only. A 
 conforming implementation may provide modes other than `strict`, but they are
 outside the scope of this specification.
 
-A script can import another script via script inclusion (§12).
+A script can import another script via script inclusion ([§§](12-script-inclusion.md#script-inclusion-operators)).
 
 The top level of a script is simply referred to as the *top level*.
 
@@ -52,8 +52,8 @@ variables. [PHP's global variables `$argc` and `$argv` are not available in
 ##Program Termination
 A program may terminate normally in the following ways:
 
--   A `return` statement (§11.7.4) in the start-up function is executed.
--   The intrinsic `exit` (§10.4.2.4) is called explicitly.
+-   A `return` statement ([§§](11-statements.md#the-return-statement)) in the start-up function is executed.
+-   The intrinsic `exit` ([§§](10-expressions.md#exit)) is called explicitly.
 
 The behavior of the first case is equivalent to corresponding calls
 to `exit`.
@@ -66,7 +66,7 @@ exception handler registered by `set_exception_handler`, that is
 equivalent to `exit(255)`. If execution reaches the end of the start-up
 script via an uncaught exception and an uncaught exception handler was
 registered by `set_exception_handler`, that is equivalent to exit(0). It
-is unspecified whether object destructors (§16.9) are run. In all other cases, 
+is unspecified whether object destructors ([§§](16-classes.md#destructors)) are run. In all other cases, 
 the behavior is unspecified.
 
 ##The Memory Model
@@ -173,7 +173,7 @@ superficial differences between the two models.
 
 For most operations, the mapping between VSlots and VStores remains the
 same. Only the following program constructs can change a VSlot to point
-to different VStore: the use of `&` in a `foreach` statement (§11.6.5).
+to different VStore: the use of `&` in a `foreach` statement ([§§](11-statements.md#the-foreach-statement)).
 
 ###Reclamation and Automatic Memory Management
 The Engine is required to manage the lifetimes of VStores and HStores
@@ -182,14 +182,14 @@ using some form of automatic memory management.
 When dealing with VStores and HStores, the Engine is required to implement
 some form of automatic memory management. When a VStore or HStore
 is created, memory is allocated for it, and for an HStore that represents
-an object (§5.12), its constructor (§16.8) is invoked.
+an object ([§§](05-types.md#class-types)), its constructor ([§§](16-classes.md#constructors)) is invoked.
 
 Later, if a VStore or HStore becomes unreachable through any existing
 variable, they become eligible for reclamation to release the memory
 they occupy. The engine may reclaim a VStore or HStore at any time
 between when it becomes eligible for reclamation and when the script
-exits. Before reclaiming an HStore that represents an object (§5.12),
-the Engine will invoke the object’s destructor (§16.9) if one is defined.
+exits. Before reclaiming an HStore that represents an object ([§§](05-types.md#class-types)),
+the Engine will invoke the object’s destructor ([§§](16-classes.md#destructors)) if one is defined.
 
 The Engine must reclaim each VSlot when the storage duration ([§§](#storage-duration)) of its
 corresponding variable ends, when the variable is explicitly unset by the
@@ -1033,21 +1033,21 @@ object instance properties. Describe how new array elements and object
 instance properties can be created via byref assignment.]**
 
 ###Argument Passing
-Argument passing is defined in terms of simple assignment ([§§](#value-assignment-of-scalar-types-to-a-local-variable), [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable), [§§](#value-assignment-of-array-types-to-local-variables), and §10.20.2). 
+Argument passing is defined in terms of simple assignment ([§§](#value-assignment-of-scalar-types-to-a-local-variable), [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable), [§§](#value-assignment-of-array-types-to-local-variables), and [§§](10-expressions.md#simple-assignment)). 
 That is, passing an argument to a function having a corresponding
 parameter is like assigning that argument to that parameter.
 
 ###Value Returning
 Returning a value from a function is defined in terms of simple
-assignment ([§§](#value-assignment-of-scalar-types-to-a-local-variable), [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable), [§§](#value-assignment-of-array-types-to-local-variables), and §10.20.2).  That is, returning a value from a function to its
+assignment ([§§](#value-assignment-of-scalar-types-to-a-local-variable), [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable), [§§](#value-assignment-of-array-types-to-local-variables), and [§§](10-expressions.md#simple-assignment)).  That is, returning a value from a function to its
 caller is like assigning that value to the user of the caller's return
 value.
 
 
 ###Cloning objects
-When an instance is allocated, operator `new` (§10.5.3) returns a handle
+When an instance is allocated, operator `new` ([§§](10-expressions.md#the-new-operator)) returns a handle
 that points to that object. As described in [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable)), value assignment of a handle to an object does not copy the object HStore itself. Instead, it creates a copy of the handle. How then to make a copy of the object itself? Our only access to it is
-via the handle. The Hack language allows us to do this via operator `clone` (§10.5.2).
+via the handle. The Hack language allows us to do this via operator `clone` ([§§](10-expressions.md#the-clone-operator)).
 
 To demonstrate how the `clone` operator works, consider the case in which
 an instance of class `Widget` contains two instance properties: `$p1` has
@@ -1085,7 +1085,7 @@ assignment. Note that the clone operator will not recursively clone
 objects held in `$a`’s instance properties; hence the object copying
 performed by the clone operator is often referred to as a *shallow
 copy*. If a *deep copy* of an object is desired, the programmer must
-achieve this manually by using the method `__clone` (§14.10.4) or by
+achieve this manually by using the method `__clone` ([§§](16-classes.md#method-__clone)) or by
 other means.
 
 ##Scope
@@ -1097,19 +1097,19 @@ The following distinct scopes exist:
 
 -   Script, which means from the point of declaration/first
     initialization through to the end of that script, including any
-    included scripts (§12).
+    included scripts ([§§](12-script-inclusion.md#script-inclusion-operators)).
 -   Function, which means from the point of declaration/first
-    initialization through to the end of that function (§15.3).
+    initialization through to the end of that function ([§§](15-functions.md#function-definitions)).
 -   Class, which means the body of that class and any classes derived
-    from it (§16.2).
+    from it ([§§](16-classes.md#class-declarations)).
 -   Interface, which means the body of that interface, any interfaces
-    derived from it, and any classes that implement it (§17.2).
+    derived from it, and any classes that implement it ([§§](17-interfaces.md#interface-declarations)).
 -   Namespace, which means from the point of declaration/first
-    initialization through to the end of that namespace (§20.1).
+    initialization through to the end of that namespace ([§§](20-namespaces.md#general)).
 
 A variable declared or first initialized inside a function has function scope.
 
-Each function has its own function scope. An anonymous function (§15.4)
+Each function has its own function scope. An anonymous function ([§§](15-functions.md#anonymous-functions))
 has its own scope separate from that of any function inside which that
 anonymous function is defined.
 
@@ -1118,14 +1118,14 @@ parameter is declared. For the purposes of scope, a catch-block ([§§](11-state
 is treated like a function body, in which case, the *variable-name* in
 *parameter-declaration-list* is treated like a parameter.
 
-The scope of a class member `m` (§16.3) declared in, or inherited by, a
+The scope of a class member `m` ([§§](16-classes.md#class-members)) declared in, or inherited by, a
 class type `C` is the body of `C`.
 
-The scope of an interface member `m` (§17.3) declared in, or inherited by,
+The scope of an interface member `m` ([§§](17-interfaces.md#interface-members)) declared in, or inherited by,
 an interface type `I` is the body of `I`.
 
-When a trait (§18.1) is used by a class or an interface, the trait's
-members (§16.3) take on the scope of a member of that class or
+When a trait ([§§](18-traits.md#general)) is used by a class or an interface, the trait's
+members ([§§](16-classes.md#class-members)) take on the scope of a member of that class or
 interface.
 
 ##Storage Duration
@@ -1140,20 +1140,20 @@ initialized at its declaration or on its first use, if it has no
 declaration. Its lifetime is delimited by an enclosing scope ([§§](#scope)). The
 automatic variable's lifetime ends at the end of that scope. Automatic
 variables lend themselves to being stored on a stack where they can help
-support argument passing and recursion. Local variables (§7.2.1), which
-include function parameters (§15.3), have automatic storage duration.
+support argument passing and recursion. Local variables ([§§](07-variables.md#local-variables)), which
+include function parameters ([§§](15-functions.md#function-definitions)), have automatic storage duration.
 
 A variable having *static storage duration* comes into being and is
 initialized before its first use, and lives until program shutdown. The
-following kinds of variables have static storage duration: function statics (§7.2.3), static properties (§7.2.5), and class and interface constants (§7.2.6).
+following kinds of variables have static storage duration: function statics ([§§](07-variables.md#function-statics)), static properties ([§§](07-variables.md#static-properties)), and class and interface constants ([§§](07-variables.md#class-and-interface-constants)).
 
 A variable having *allocated storage duration* comes into being based on
-program logic by use of the new operator (§10.5.3). Ordinarily, once
+program logic by use of the new operator ([§§](10-expressions.md#the-new-operator)). Ordinarily, once
 such storage is no longer needed, it is reclaimed automatically by the
 Engine via its garbage-collection process and the use of
-destructors (§16.9). The following kinds of variables have allocated
-storage duration: array elements (§7.2.2) and instance properties
-(§7.2.4).
+destructors ([§§](16-classes.md#destructors)). The following kinds of variables have allocated
+storage duration: array elements ([§§](07-variables.md#array-elements)) and instance properties
+([§§](07-variables.md#instance-properties)).
 
 The following example demonstrates the three storage durations:
 

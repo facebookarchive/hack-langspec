@@ -5,8 +5,13 @@ If we are lucky, this will only need to be run once as we convert from .docx
 to .md.
 
 We first manually grab all of the section numbers from the Word file and
-paste them into a CSV-aware file (like an Excel file). Now we have a
-column of section numbers
+paste them into a CSV-aware file (like an Excel file). 
+
+**BE CAREFUL** to get all the section numbers. The Word ToC normally only
+goes up to 5 levels. But the document itself could have levels more than 
+that; so you may have to do a manual search.
+
+Now we have a column of section numbers.
 
 Then we run xreference.php. This does the following:
 
