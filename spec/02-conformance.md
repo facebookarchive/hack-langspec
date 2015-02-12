@@ -4,19 +4,19 @@ an implementation or on a program; conversely, "must not" is to be
 interpreted as a prohibition.
 
 If a "must" or "must not" requirement that appears outside of a
-constraint is violated, the behavior is undeﬁned. Undeﬁned behavior is
-otherwise indicated in this specification by the words "undeﬁned
-behavior" or by the omission of any explicit deﬁnition of behavior.
+constraint is violated, the behavior is undefined. Undefined behavior is
+otherwise indicated in this specification by the words "undefined
+behavior" or by the omission of any explicit definition of behavior.
 There is no difference in emphasis among these three; they all describe
-"behavior that is undeﬁned".
+"behavior that is undefined".
 
 The word "may" indicates "permission", and is never used to mean
 "might".
 
 A *strictly conforming program* must use only those features of the
 language described in this specification. In particular, it must not
-produce output dependent on any unspeciﬁed, undeﬁned, or
-implementation-deﬁned behavior.
+produce output dependent on any unspecified, undefined, or
+implementation-defined behavior.
 
 A *conforming implementation* must accept any strictly conforming
 program. A conforming implementation may have extensions, provided they
@@ -26,7 +26,7 @@ A *conforming program* is one that is acceptable to a conforming
 implementation.
 
 A conforming implementation must be accompanied by a document that
-deﬁnes all implementation-deﬁned characteristics and all extensions.
+defines all implementation-defined characteristics and all extensions.
 
 Some Syntax sections are followed by a Constraints section, which
 further restricts the grammar. After issuing a diagnostic for a
