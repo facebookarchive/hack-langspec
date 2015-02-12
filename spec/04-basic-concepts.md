@@ -1150,7 +1150,7 @@ following kinds of variables have static storage duration: function statics (§7
 A variable having *allocated storage duration* comes into being based on
 program logic by use of the new operator (§10.5.3). Ordinarily, once
 such storage is no longer needed, it is reclaimed automatically by the
-Engine via its garbage-collection process ([§§](#)) and the use of
+Engine via its garbage-collection process and the use of
 destructors (§16.9). The following kinds of variables have allocated
 storage duration: array elements (§7.2.2) and instance properties
 (§7.2.4).
@@ -1205,7 +1205,7 @@ call. Specifically, each time `factorial` calls itself, a new local
 variable parameter `$i` is created and initialized with the value of the
 argument in the call.
 
-The lifetime of any VStore (§[[4.4.1](#general)](#general)) or HStore (§[[4.4.1](#general)](#general)) can be extended by
+The lifetime of any VStore ([§§](#general)) or HStore ([§§](#general)) can be extended by
 the Engine as long as needed. Conceptually, the lifetime of a VStore ends
 when it is no longer pointed to by any VSlots ([§§](#general)). Conceptually, the
 lifetime of an HStore ends when no VStores have a handle to it.
