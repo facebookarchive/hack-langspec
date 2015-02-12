@@ -28,12 +28,12 @@ In the absence of any namespace definition, the names of subsequent
 classes, interfaces, traits, functions, and constants are in the
 *default namespace*, which has no name, per se.
 
-The namespaces PHP, php, and sub-namespaces beginning with those
-prefixes are reserved for use by PHP.
+The namespaces HH, PHP, php, and sub-namespaces beginning with those
+prefixes are reserved for use by Hack.
 
 ##Name Lookup
 
-When an existing name is used in source code, the Engine must determine
+When an existing name is used in source code, the Engine must decide
 how that name is found with respect to namespace lookup. For this
 purpose, names can have one of the three following forms:
 
@@ -41,7 +41,7 @@ purpose, names can have one of the three following forms:
     prefix, as in the class name `Point` in the following expression:
     `$p = new Point(3,5)`. If the current namespace is `NS1`, the name
     `Point` resolves to `NS1\Point`. If the current namespace is the
-    default namespace ([§§](#general)), the name `Point` resolves to `Point`. In the
+    default namespace (§20.1), the name `Point` resolves to `Point`. In the
     case of an unqualified function or constant name, if that name does
     not exist in the current namespace, a global function or constant by
     that name is used.
@@ -60,10 +60,10 @@ purpose, names can have one of the three following forms:
     `\Graphics\D2\Point` could be used to refer unambiguously to the
     class `Point` in namespace `Graphics`, sub-namespace `D2`.
    
-The names of the standard types (such as `Exception`), constants (such as
+The names of the standard types that come with PHP (such as `Exception`), constants (such as
 `PHP_INT_MAX`), and library functions (such as `is_null`) are defined outside
 any namespace. To refer unambiguously to such names, one can prefix them
-with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`.
+with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`. The names of the standard types that are introduced with Hack (such as `Vector` and `Map`), are treated implicitly as belonging to namespace HH. Such names are resolved through a process known as *auto importation*.
 
 ##Defining Namespaces
 
@@ -75,12 +75,12 @@ with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`.
     namespace  <i>namespace-name<sub>opt</sub>   compound-statement</i>
 </pre>
 
-*namespace-name* is defined in [§§](09-lexical-structure.md#names), and *compound-statement* is
+*namespace-name* is defined in §9.3.4.2, and *compound-statement* is
 defined in [§§](11-statements.md#compound-statements).
 
 **Constraints**
 
-Except for white space and an optional *declare-statement* ([§§](11-statements.md#the-declare-statement)), the
+Except for white space, the
 first occurrence of a *namespace-definition* in a script must be the
 first thing in that script.
 
@@ -95,10 +95,6 @@ use the *compound-statement* form of *namespace-definition*.
 *compound-statement* must not contain a *namespace-definition*.
 
 **Semantics**
-
-Although a namespace may contain any PHP source code, the fact that that
-code is contained in a namespace affects only the declaration and name
-resolution of classes, interfaces, traits, functions, and constants.
 
 Namespace and sub-namespace names are case-insensitive.
 
@@ -159,12 +155,12 @@ namespace NS3\Sub1;
     as  <i>name</i>
 </pre>
 
-*qualified-name* and *name* are defined in [§§](09-lexical-structure.md#names).
+*qualified-name* and *name* are defined in §9.4.4.2.
 
 **Constraints**
 
 A *namespace-use-declaration* must not occur except at the pseudomain
-level or directly in the context of a *namespace-definition* (18.3).
+level.
 
 If the same *qualified-name* is imported multiple times in the same
 scope, each occurrence must have a different alias.
@@ -186,27 +182,22 @@ in *qualified-name* is the implied alias for *qualified-name*.
 **Examples**
 
 ```
-namespace NS1
-{
-	const CON1 = 100;
-	function f() { ... }
-	class C { ... }
-	interface I { ... }
-	trait T { ... }
+namespace NS1 {
+  function f(): void { … }
+  class C { … }
+  interface I { … }
+  trait T { … }
 }
 
-namespace NS2
-{
-	use \NS1\C, \NS1\I, \NS1\T;
-	class D extends C implements I
-	{
-		use T;
-	}
-	$v = \NS1\CON1;	// explicit namespace still needed for constants
-	\NS1\f();		// explicit namespace still needed for functions
+namespace NS2 {
+  use \NS1\C, \NS1\I, \NS1\T;
+  class D extends C implements I {
+    use T;
+  }
+  \NS1\f();     // explicit namespace
 
-	use \NS1\C as C2;	// C2 is an alias for the class name \NS1\C
-	$c2 = new C2;
+  use \NS1\C as C2; // C2 is an alias for the class name \NS1\C
+  $c2 = new C2;
 }
 ```
 
