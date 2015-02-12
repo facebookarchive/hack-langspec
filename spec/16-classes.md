@@ -195,14 +195,11 @@ via method calls.)
 
 A class may contain the following members:
 
--   Constants – the constant values associated with the class (§16.5).
--   Properties – the variables of the class (§16.6).
--   Methods – the computations and actions that can be performed by the
-    class (§16.7, §16.10).
--   Constructor – the actions required to initialize an instance of the
-    class (§16.8)
--   Destructor – the actions to be performed when an instance of the
-    class is no longer needed (§16.9).
+* Constants – the constant values associated with the class (§16.5).
+* Properties – the variables of the class (§16.6).
+* Methods – the computations and actions that can be performed by the class (§16.7, §16.10).
+* Constructor – the actions required to initialize an instance of the class (§16.8)
+* Destructor – the actions to be performed when an instance of the class is no longer needed (§16.9).
 
 A number of names are reserved for methods with special semantics, which
 user-defined versions must follow. These are described in (§16.10).
@@ -359,8 +356,8 @@ $col = Automobile::DEFAULT_COLOR;
     <i>variable-name</i>  <i>property-initializer<sub>opt</sub></i>
 
   <i>property-modifier:</i>
-    <i>visibility-modifier</i>   <i>static-modifier<sub>opt</sub></i>
-    <i>static-modifier</i>   <i>visibility-modifier</i>
+    <i>visibility-modifier</i>  <i>static-modifier<sub>opt</sub></i>
+    <i>static-modifier</i>  <i>visibility-modifier</i>
 
   <i>visibility-modifier:</i>
     public
@@ -371,7 +368,7 @@ $col = Automobile::DEFAULT_COLOR;
     static
 
   <i>property-initializer:</i>
-    =  <i>expression</i>
+    =  <i>expression</i>
 </pre>
 
 *type-specifier* is defined in (§5.1) *variable-name* is described in §9.4.4.2 and *constant-expression* is described
@@ -404,7 +401,7 @@ class Point {
 **Syntax**
 
 <pre>
-  method-declaration:
+  <i>method-declaration:</i>
     <i>method-modifiers</i>  <i>function-deﬁnition</i>
     <i>method-modifiers</i>  <i>function-deﬁnition-header</i>  ;
 

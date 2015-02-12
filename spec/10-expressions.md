@@ -494,14 +494,14 @@ in *field-initializer* need not be compile-time constants.
 **Syntax**
 <pre>
   <i>shape-literal:</i>
-  <i>shape  (  <i>field-initializer-list<sub>opt</sub></i>  )
-<i>field-initializer-list:</i>
-  <i>field-initializer</i>
-  <i>field-initializer-list  </i>  ,  <i>field-initializer</i>
-<i>field-initializer:</i>
-  <i>single-quoted-string-literal</i>  =>  <i>expression</i>
-  <i>integer-literal</i>  =>  <i>expression</i>
-  <i>qualified-name</i>  =>  <i>expression</i>
+    <i>shape  (  <i>field-initializer-list<sub>opt</sub></i>  )
+  <i>field-initializer-list:</i>
+    <i>field-initializer</i>
+    <i>field-initializer-list  </i>  ,  <i>field-initializer</i>
+  <i>field-initializer:</i>
+    <i>single-quoted-string-literal</i>  =>  <i>expression</i>
+    <i>integer-literal</i>  =>  <i>expression</i>
+    <i>qualified-name</i>  =>  <i>expression</i>
 </pre>
 
 *single-quoted-string-literal* is defined in §9.4.4.4.5.1; *integer-literal* 
@@ -545,9 +545,7 @@ shape('id' => null, 'url' => null, 'count' => 0)
 
 <pre>
 <i>anonymous-function-creation-expression:</i>
-async<sub>opt</sub>  function  (  <i>anonymous-function-parameter-declaration-list<sub>opt<sub></i>  )  
-  <i>anonymous-function-return<sub>opt</sub></i>  <i>anonymous-function-use-clause<sub>opt</sub></i>
-   <i>compound-statement</i>
+  async<sub>opt</sub>  function  (  <i>anonymous-function-parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>  <i>anonymous-function-use-clause<sub>opt</sub></i>  <i>compound-statement</i>
 
 <i>anonymous-function-parameter-declaration-list:</i>
   <i>anonymous-function-parameter-declaration</i>
@@ -959,16 +957,9 @@ If *expression* is omitted, a new element is inserted. Its key has type
 inserted**. The type and value of the result is the type and value of
 the new element.
 
--   If the usage context is as the left-hand side of a
-    *simple-assignment-expression* (§10.20.2): The value of the new
-    element is the value of the right-hand side of that
-    *simple-assignment-expression*.
--   If the usage context is as the left-hand side of a
-    *compound-assignment-expression* (§10.20.3): The expression
-    `e1 op= e2` is evaluated as `e1 = null op (e2)`.
--   If the usage context is as the operand of a postfix- or
-    prefix-increment or decrement operator (§10.5.9, §10.6.2): The value
-    of the new element is `null`.
+* If the usage context is as the left-hand side of a *simple-assignment-expression* (§10.20.2): The value of the new element is the value of the right-hand side of that *simple-assignment-expression*.
+* If the usage context is as the left-hand side of a *compound-assignment-expression* (§10.20.3): The expression `e1 op= e2` is evaluated as `e1 = null op (e2)`.
+* If the usage context is as the operand of a postfix- or prefix-increment or decrement operator (§10.5.9, §10.6.2): The value of the new element is `null`.
 
 *postfix-expression designates a string*
 
@@ -1016,50 +1007,16 @@ and value of the second element in that `Pair`.
 
 If *expression* is present,
 
--   If *subscript-expression* is used in a non-lvalue context, the
-    object's method `offsetGet` is called with an argument of
-    *expression*. The type and value of the result is the type and value
-    returned by `offsetGet`.
--   If the usage context is as the left-hand side of a
-    *simple-assignment-expression*: The object's method `offsetSet` is
-    called with a first argument of *expression* and a second argument
-    that is the value of the right-hand side of that
-    *simple-assignment-expression*. The type and value of the result is
-    the type and value of the right-hand side of that
-    *simple-assignment-expression*.
--   If the usage context is as the left-hand side of a
-    *compound-assignment-expression*: The expression `e1 op= e2` is
-    evaluated as `e1 = offsetGet(expression) op (e2)`, which is then
-    processed according to the rules for simple assignment immediately
-    above.
--   If the usage context is as the operand of a postfix- or
-    prefix-increment or decrement operator (§10.5.9), §10.6.2): The
-    object's method `offsetGet` is called with an argument of
-    *expression*. However, this method has no way of knowing if an
-    increment or decrement operator was used, or whether it was a prefix
-    or postfix operator. The type and value of the result is the type
-    and value returned by `offsetGet`.
+* If *subscript-expression* is used in a non-lvalue context, the object's method `offsetGet` is called with an argument of *expression*. The type and value of the result is the type and value returned by `offsetGet`.
+* If the usage context is as the left-hand side of a *simple-assignment-expression*: The object's method `offsetSet` is called with a first argument of *expression* and a second argument that is the value of the right-hand side of that *simple-assignment-expression*. The type and value of the result is the type and value of the right-hand side of that *simple-assignment-expression*.
+* If the usage context is as the left-hand side of a *compound-assignment-expression*: The expression `e1 op= e2` is evaluated as `e1 = offsetGet(expression) op (e2)`, which is then processed according to the rules for simple assignment immediately above.
+* If the usage context is as the operand of a postfix- or prefix-increment or decrement operator (§10.5.9), §10.6.2): The object's method `offsetGet` is called with an argument of *expression*. However, this method has no way of knowing if an increment or decrement operator was used, or whether it was a prefix or postfix operator. The type and value of the result is the type and value returned by `offsetGet`.
 
 If *expression* is omitted, 
 
--   If the usage context is as the left-hand side of a
-    *simple-assignment-expression*: The object's method `offsetSet`
-    ([§§](15-interfaces.md#interface-arrayaccess)) is called with a first argument of `null` and a second
-    argument that is the value of the right-hand side of that
-    *simple-assignment-expression*. The type and value of the result is
-    the type and value of the right-hand side of that
-    *simple-assignment-expression*.
--   If the usage context is as the left-hand side of a
-    *compound-assignment-expression*: The expression `e1 op= e2` is
-    evaluated as `e1 = offsetGet(null) op (e2)`, which is then processed
-    according to the rules for simple assignment immediately above.
--   If the usage context is as the operand of a postfix- or
-    prefix-increment or decrement operator (§10.5.9), §10.6.2): The
-    object's method `offsetGet` is called with an argument of `null`.
-    However, this method has no way of knowing if an increment or
-    decrement operator was used, or whether it was a prefix or postfix
-    operator. The type and value of the result is the type and value
-    returned by `offsetGet`.
+* If the usage context is as the left-hand side of a *simple-assignment-expression*: The object's method `offsetSet` ([§§](15-interfaces.md#interface-arrayaccess)) is called with a first argument of `null` and a second argument that is the value of the right-hand side of that *simple-assignment-expression*. The type and value of the result is the type and value of the right-hand side of that *simple-assignment-expression*.
+* If the usage context is as the left-hand side of a *compound-assignment-expression*: The expression `e1 op= e2` is evaluated as `e1 = offsetGet(null) op (e2)`, which is then processed according to the rules for simple assignment immediately above.
+* If the usage context is as the operand of a postfix- or prefix-increment or decrement operator (§10.5.9), §10.6.2): The object's method `offsetGet` is called with an argument of `null`. However, this method has no way of knowing if an increment or decrement operator was used, or whether it was a prefix or postfix operator. The type and value of the result is the type and value returned by `offsetGet`.
 
 Note: The brace (`{...}`) form of this operator has been deprecated. 
 
@@ -1576,7 +1533,7 @@ $v = ~0b1010101;
 
 <pre>
   <i>error-control-expression:</i>
-    @   <i>expression</i>
+    @  <i>expression</i>
 </pre>
 
 *expression* is defined in §10.21.

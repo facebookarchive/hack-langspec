@@ -4,23 +4,24 @@ A Hack *program* consists of one or more source files, known formally as
 *scripts*.
 
 <pre>
-&lt;?hh // strict
-<i>declaration-list<sub>opt</sub></i>
+<i>script:
+  </i>&lt;?hh // strict
+  <i>declaration-list<sub>opt</sub></i>
 
 <i>declaration-list:</i>
-<i>  declaration</i>
-<i>  declaration-list declaration</i>
+  <i>declaration</i>
+  <i>declaration-list</i> <i>declaration</i>
 
 <i>declaration:</i>
-<i>  inclusion-directive</i>
-<i>  enum-declaration</i>
-<i>  function-definition</i>
-<i>  class-declaration</i>
-<i>  interface-declaration</i>
-<i>  trait-declaration</i>
-<i>  namespace-definition</i>
-<i>  namespace-use-declaration</i>
-<i>  alias-declaration</i>
+  <i>inclusion-directive</i>
+  <i>enum-declaration</i>
+  <i>function-definition</i>
+  <i>class-declaration</i>
+  <i>interface-declaration</i>
+  <i>trait-declaration</i>
+  <i>namespace-definition</i>
+  <i>namespace-use-declaration</i>
+  <i>alias-declaration</i>
 </pre>
 
 *inclusion-directive* is defined in §12.1.1; *enum-declaration* is defined in 

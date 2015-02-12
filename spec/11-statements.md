@@ -28,7 +28,7 @@ and *try-statement* is defined in §11.8.
 
 <pre>
   <i>compound-statement:</i>
-    {   <i>statement-list<sub>opt</sub></i>  }
+    {  <i>statement-list<sub>opt</sub></i>  }
 
   <i>statement-list:</i>
     <i>statement</i>
@@ -95,7 +95,7 @@ See the `switch` statement.
 
 <pre>
    <i>expression-statement:</i>
-     <i>expression<sub>opt</sub></i>  ;
+     <i>expression<sub>opt</sub></i>  ;
 </pre>
 
 *expression* is defined in §10.21.
@@ -775,7 +775,7 @@ throw new MyException;
     <i>catch-clauses   catch-clause</i>
 
   <i>catch-clause:</i>
-    catch  (  <i>parameter-declaration-list</i>  )  <i>compound-statement</i>
+    catch  (  <i>parameter-declaration-list</i>  )  <i>compound-statement</i>
 
   <i>finally-clause:</i>
     finally   <i>compound-statement</i>

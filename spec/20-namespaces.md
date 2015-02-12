@@ -11,9 +11,8 @@ A *namespace* is a container for a set of (typically related)
 definitions of classes, interfaces, traits, functions, and constants.
 Namespaces serve two purposes:
 
--   They help avoid name collisions.
--   They allow certain long names to be accessed via shorter, more
-    convenient and readable, names.
+* They help avoid name collisions.
+* They allow certain long names to be accessed via shorter, more convenient and readable, names.
 
 A namespace may have *sub-namespaces*, where a sub-namespace name shares
 a common prefix with another namespace. For example, the namespace
@@ -37,28 +36,9 @@ When an existing name is used in source code, the Engine must decide
 how that name is found with respect to namespace lookup. For this
 purpose, names can have one of the three following forms:
 
--   Unqualified name: Such names are just simple names without any
-    prefix, as in the class name `Point` in the following expression:
-    `$p = new Point(3,5)`. If the current namespace is `NS1`, the name
-    `Point` resolves to `NS1\Point`. If the current namespace is the
-    default namespace (§20.1), the name `Point` resolves to `Point`. In the
-    case of an unqualified function or constant name, if that name does
-    not exist in the current namespace, a global function or constant by
-    that name is used.
--   Qualified name: Such names have a prefix consisting of a namespace
-    name and/or one or more levels of sub-namespace names, and,
-    possibly, a class, interface, trait, function, or constant name.
-    Such names are relative. For example, `D2\Point` could be used to
-    refer to the class Point in the sub-namespace `D2` of the current
-    namespace. One special case of this is when the first component of
-    the name is the keyword `namespace`. This means "the current
-    namespace".
--   Fully qualified name: Such names begin with a backslash (`\`) and are
-    followed optionally by a namespace name and one or more levels of
-    sub-namespace names, and, finally, a class, interface, trait,
-    function, or constant name. Such names are absolute. For example,
-    `\Graphics\D2\Point` could be used to refer unambiguously to the
-    class `Point` in namespace `Graphics`, sub-namespace `D2`.
+* Unqualified name: Such names are just simple names without any prefix, as in the class name `Point` in the following expression: `$p = new Point(3,5)`. If the current namespace is `NS1`, the name `Point` resolves to `NS1\Point`. If the current namespace is the default namespace (§20.1), the name `Point` resolves to `Point`. In the case of an unqualified function or constant name, if that name does not exist in the current namespace, a global function or constant by that name is used.
+* Qualified name: Such names have a prefix consisting of a namespace name and/or one or more levels of sub-namespace names, and, possibly, a class, interface, trait, function, or constant name. Such names are relative. For example, `D2\Point` could be used to refer to the class Point in the sub-namespace `D2` of the current namespace. One special case of this is when the first component of the name is the keyword `namespace`. This means "the current namespace".
+* Fully qualified name: Such names begin with a backslash (`\`) and are followed optionally by a namespace name and one or more levels of sub-namespace names, and, finally, a class, interface, trait, function, or constant name. Such names are absolute. For example, `\Graphics\D2\Point` could be used to refer unambiguously to the class `Point` in namespace `Graphics`, sub-namespace `D2`.
    
 The names of the standard types that come with PHP (such as `Exception`), constants (such as
 `PHP_INT_MAX`), and library functions (such as `is_null`) are defined outside
@@ -71,8 +51,8 @@ with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`. The
 
 <pre>
   <i>namespace-definition:</i>
-    namespace  <i>namespace-name</i>  ;
-    namespace  <i>namespace-name<sub>opt</sub>   compound-statement</i>
+    namespace  <i>namespace-name</i>  ;
+    namespace  <i>namespace-name<sub>opt</sub>  compound-statement</i>
 </pre>
 
 *namespace-name* is defined in §9.3.4.2, and *compound-statement* is
@@ -142,14 +122,14 @@ namespace NS3\Sub1;
 
 <pre>
   <i>namespace-use-declaration:</i>
-    use  <i>namespace-use-clauses</i>  ;
+    use  <i>namespace-use-clauses</i>  ;
 
   <i>namespace-use-clauses:</i>
     <i>namespace-use-clause</i>
-    <i>namespace-use-clauses</i>  ,  <i>namespace-use-clause</i>
+    <i>namespace-use-clauses</i>  ,  <i>namespace-use-clause</i>
 
   <i>namespace-use-clause:</i>
-    <i>qualified-name   namespace-aliasing-clause<sub>opt</sub></i>
+    <i>qualified-name  namespace-aliasing-clause<sub>opt</sub></i>
 
   <i>namespace-aliasing-clause:</i>
     as  <i>name</i>

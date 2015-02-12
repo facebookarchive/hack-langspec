@@ -111,14 +111,13 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
 
 <pre>
   <i>keyword::</i> one of
-    abstract   and   as   break   callable   case   catch   class   clone   
-    const   continue   declare   default   do   echo   else   elseif   
-    enddeclare   endfor   endforeach   endif   endswitch   endwhile
-    extends   final   finally   for   foreach   function   global
-    goto   if   implements   include   include_once   instanceof
-    insteadof   interface   namespace   new or   print   private
-    protected   public   require   require_once   return static   switch
-    throw   trait   try   use   var   while   xor   yield
+    abstract   arraykey   as   async   break   case   catch   class   clone   
+    const   continue   default   do   echo   else   elseif   
+    enum   
+    extends   final   finally   for   foreach   function   if   implements   instanceof
+    insteadof   interface   mixed   namespace   new   newtype   num   private
+    protected   public   require   require_once   return   shape   static   switch
+    throw   trait   try   tuple   type   use   while   yield
 </pre>
 
 ###Literals
@@ -138,8 +137,8 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
 
 <pre>
   <i>boolean-literal::</i>
-    TRUE (written in any case combination)
-    FALSE (written in any case combination)
+    true
+    false
 </pre>
 
 ####Integer Literals
@@ -268,7 +267,7 @@ octal-digit
     \X  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
 
   <i>heredoc-string-literal::</i>
-    <<<  <i>hd-start-identifier   new-line   hd-char-sequence<sub>opt</sub>  new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
+    &lt;&lt;&lt; <i>hd-start-identifier   new-line   hd-char-sequence<sub>opt</sub>  new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
 
   <i>hd-start-identifier::</i>
     <i>name</i>
@@ -296,24 +295,24 @@ octal-digit
 
 
   <i>nowdoc-string-literal::</i>
-    <<<  '  <i>hd-start-identifier</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>     
+    &lt;&lt;&lt; '  <i>hd-start-identifier</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>     
 </pre>
 
 ####The Null Literal
 
 <pre>
   <i>null-literal::</i>
-    NULL (written in any case combination)
+    null
 </pre>
 
 ###Operators and Punctuators
 
 <pre>
   <i>operator-or-punctuator:: one of</i>
-    [   ]    (   )   {    }   .   ->   ++   --   **   *   +   -   ~   !
-    $   /   % <<   >>   <   >   <=   >=   ==   ===   !=   !==   ^   |
-    &   &&   ||   ?   :   ; =   **=   *=   /=   %=   +=   -=   .=   <<=
-    >>=   &=   ^=   |=   ,
+    [   ]    (   )   {    }   .   -&gt;   ++   --   **   *   +   -   ~   !
+    $   /   %   &lt;&lt;   &gt;&gt;   &lt;   &gt;   &lt;=   &gt;=   ==   ===   !=   !==   ^   |
+    &amp;   &amp;&amp;   ||   ?   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
+    &gt;&gt;=   &amp;=   ^=   |=   ,
 </pre>
 
 ##Syntactic Grammar
@@ -321,32 +320,149 @@ octal-digit
 ###Program Structure
 
 <pre>
-<i>script:</i>
-<i> script-section</i>
-<i> script   script-section</i>
+<i>script:
+  </i>&lt;?hh // strict
+  <i>declaration-list<sub>opt</sub></i>
 
-<i>script-section:</i>
-  <i> text<sub>opt</sub></i> &lt;?php <i>statement-list<sub>opt</sub></i> ?&gt;<sub>opt</sub> <i>text<sub>opt</sub></i>
+<i>declaration-list:</i>
+  <i>declaration</i>
+  <i>declaration-list</i> <i>declaration</i>
 
-<i>text:</i>
-  arbitrary text not containing the sequence &lt;?php
+<i>declaration:</i>
+  <i>inclusion-directive</i>
+  <i>enum-declaration</i>
+  <i>function-definition</i>
+  <i>class-declaration</i>
+  <i>interface-declaration</i>
+  <i>trait-declaration</i>
+  <i>namespace-definition</i>
+  <i>namespace-use-declaration</i>
+  <i>alias-declaration</i>
+</pre>
+
+###Types
+
+####General
+
+<pre>
+<i>type-specifier:</i>
+  bool
+  int
+  float
+  num
+  string
+  arraykey
+  void
+  resource
+  <i>alias-type-specifier</i>
+  <i>vector-like-array-type-specifier</i>
+  <i>map-like-array-type-specifier</i>
+  <i>enum-specifier</i>
+  <i>class-interface-trait-specifier</i>
+  <i>tuple-type-specifier</i>
+  <i>closure-type-specifier</i>
+  <i>nullable-type-specifier</i>
+  <i>generic-type-parameter-name</i>
+
+<i>alias-type-specifier:</i>
+  <i>qualified-name</i>
+
+<i>enum-specifier:</i>
+  <i>qualified-name
+
+<i>class-interface-trait-specifier:</i>
+  <i>qualified-name generic-type-argument-list<sub>opt</sub></i>
+
+<i>type-specifier-list:</i>
+  <i>type-specifier</i>
+  <i>type-specifier-list</i> , <i>type-specifier</i>
+</pre>
+
+####Array Types
+
+<pre>
+<i>vector-like-array-type-specifier:</i>
+  array &lt; <i>array-value-type-specifier</i> &gt;
+
+<i>map-like-array-type-specifier:</i>
+  array &lt; <i>array-value-type-specifier</i> , <i>array-value-type-specifier</i> &gt;
+
+<i>array-value-type-specifier:</i>
+  <i>type-specifier</i>
+
+<i>array-key-type-specifier:</i>
+  <i>type-specifier</i>
+</pre>
+
+####Tuple Types
+
+<pre>
+<i>tuple-type-specifier:</i>
+  ( <i>type-specifier</i>  ,  <i>type-specifier-list</i>  )
+</pre>
+
+####Shape Types
+
+<pre>
+<i>shape-specifier:</i>
+  shape ( <i>field-specifier-list<sub>opt</sub></i> )
+
+<i>field-specifier-list:</i>
+  <i>field-specifier</i>
+  <i>field-specifier-list</i>  ,  <i>field-specifier</i>
+
+<i>field-specifier:</i>
+  <i>single-quoted-string-literal</i>  =>  <i>type-specifier</i>
+  <i>integer-literal</i>  =>  <i>type-specifier</i>
+  <i>qualified-name</i>  =>  <i>type-specifier</i>
+</pre>
+
+####Closure Types
+
+<pre>
+<i>closure-type-specifier:</i>
+( function ( <i>type-specifier-list<sub>opt</sub></i> ) : <i>type-specifier</i> )
+</pre>
+
+####Nullable Types
+
+<pre>
+  <i>nullable-type-specifier:</i>
+  ? <i>type-specifier</i>
+  mixed
+</pre>
+
+####Type Aliases
+
+<pre>
+<i>alias-declaration:</i>
+  type  <i>name</i>  =  <i>type-to-be-aliased</i>  ;
+  newtype  <i>name</i>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-to-be-aliased</i>  ;
+
+<i>type-constraint:</i>
+  as  <i>type-constraint-type</i>
+
+<i>type-constraint-type:</i>
+  <i>type-specifier</i>
+
+<i>type-to-be-aliased:</i>
+  <i>type-specifier</i>
+  <i>qualified-name</i>
+  <i>shape-specifier</i>
 </pre>
 
 ###Variables
 
 <pre>
   <i>function-static-declaration:</i>
-    static <i>name</i>   <i>function-static-initializer<sub>opt</sub></i> ;
-  
+    static <i>static-declarator-list</i>  ;
+  <i>static-declarator-list:</i>
+    <i>static-declarator</i>  
+    <i>static-declarator-list</i>  ,  <i>static-declarator</i> 
+  <i>static-declarator:</i> 
+    <i>variable-name</i>  <i>function-static-initializer<sub>opt</sub></i>
   <i>function-static-initializer:</i>
     = <i>const-expression</i>
-    
-  <i>global-declaration:</i>
-    global <i>variable-name-list</i> ;
-
-  <i>variable-name-list:</i>
-    <i>expression</i>
-    <i>variable-name-list  , expression</i>
 </pre>
     
 ###Expressions
@@ -360,6 +476,9 @@ octal-digit
     <i>literal</i>
     <i>const-expression</i>
     <i>intrinsic</i>
+    <i>collection-literal</i>
+    <i>tuple-literal</i>
+    <i>shape-literal</i>
     <i>anonymous-function-creation-expression</i>
     (  <i>expression</i>  )
     $this
@@ -367,13 +486,9 @@ octal-digit
   <i>intrinsic:</i>
     <i>array-intrinsic</i>
     <i>echo-intrinsic</i>
-    <i>empty-intrinsic</i>
-    <i>eval-intrinsic</i>
     <i>exit-intrinsic</i>
-    <i>isset-intrinsic</i>
+    <i>invariant-intrinsic</i>
     <i>list-intrinsic</i>
-    <i>print-intrinsic</i>
-    <i>unset-intrinsic</i>
 
   <i>array-intrinsic:</i>
     array ( <i>array-initializer<sub>opt</sub></i>  )
@@ -387,55 +502,88 @@ octal-digit
     <i>expression</i>  ,  <i>expression</i>
     <i>expression-list-two-or-more</i>  ,  <i>expression</i>
 
-  <i>empty-intrinsic:</i>
-    empty ( <i>expression</i>  )
-    
-  <i>eval-intrinsic:</i>
-    eval (  <i>expression</i>  )
-
   <i>exit-intrinsic:</i>
     exit  <i>expression<sub>opt</sub></i>
     exit  (  <i>expression<sub>opt</sub></i>  )
-    die   <i>expression<sub>opt</sub></i>
-    die   (   <i>expression<sub>opt</sub></i> )
 
-  <i>isset-intrinsic:</i>
-    isset  (  <i>expression-list-one-or-more</i>  )
-
-  <i>expression-list-one-or-more</i>:
-    <i>expression</i>
-    <i>expression-list-one-or-mor</i>  ,  <i>expression</i>
+  <i>invariant-intrinsic:</i>
+    invariant  (  <i>condition</i>  ,  <i>format</i>  )
+    invariant  (  <i>condition</i>  ,  <i>format</i>  ,  <i>values</i>  )
 
   <i>list-intrinsic:</i>
     list  (  <i>list-expression-list<sub>opt</sub></i>  )
 
   <i>list-expression-list:</i>
-  <i>list-or-variable</i>
-  ,
-  <i>list-expression-list</i>  ,  <i>list-or-variable<sub>opt</sub></i>
+    <i>expression</i>
+    ,
+    <i>list-expression-list</i>  ,  <i>expression<sub>opt</sub></i>
 
-  <i>list-or-variable:</i>
-    <i>list-intrinsic</i>
+  <i>collection-literal:</i>
+    <i>non-key-collection-class-type</i>  {  <i>cl-initializer-list-without-keys<sub>opt</sub></i>  }
+    <i>key-collection-class-type</i>  {  <i>cl-initializer-list-with-keys<sub>opt</sub></i>  }
+    <i>pair-type</i>  {  <i>cl-element-value</i>  ,  <i>cl-element-value</i>  }
+  
+  <i>non-key-collection-class-type:</i>
+    <i>qualified-name</i>
+  
+  <i>key-collection-class-type:</i>
+    <i>qualified-name</i>
+  
+  <i>pair-type:</i>
+    <i>qualified-name</i>
+  
+  <i>cl-initializer-list-without-keys:</i>
+    <i>cl-element-value</i>
+    <i>cl-initializer-list-without-keys</i>  ,  <i>cl-element-value</i>
+  
+  <i>cl-initializer-list-with-keys:</i>
+    <i>cl-element-key</i>  =>  <i>cl-element-value</i>
+    <i>cl-initializer-list-with-keys</i>  ,  <i>cl-element-key</i>  =>  <i>cl-element-value</i>
+  
+  <i>cl-element-key:</i>
+    <i>expression</i>
+  
+  <i>cl-element-value:</i>
     <i>expression</i>
 
-  <i>print-intrinsic:
-    print  <i>expression</i>
-    print  (  <i>expression</i>  )
+  <i>tuple-literal:</i>
+    tuple  (  <i>expression-list-one-or-more</i>  )
+  
+  <i>expression-list-one-or-more:</i>
+    <i>expression</i>
+    <i>expression-list-one-or-more</i>  ,  <i>expression</i>
 
-  <i>unset-intrinsic:</i>
-    unset  (  <i>expression-list-one-or-more</i>  )
-    
+  <i>shape-literal:</i>
+    <i>shape  (  <i>field-initializer-list<sub>opt</sub></i>  )
+
+  <i>field-initializer-list:</i>
+    <i>field-initializer</i>
+    <i>field-initializer-list  </i>  ,  <i>field-initializer</i>
+
+  <i>field-initializer:</i>
+    <i>single-quoted-string-literal</i>  =>  <i>expression</i>
+    <i>integer-literal</i>  =>  <i>expression</i>
+    <i>qualified-name</i>  =>  <i>expression</i>
+
   <i>anonymous-function-creation-expression:</i>
-  function  &<sub>opt</sub> (  <i>parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-use-clause<sub>opt</sub></i>
-      <i>compound-statement</i>
+    async<sub>opt</sub>  function  (  <i>anonymous-function-parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>  <i>anonymous-function-use-clause<sub>opt</sub></i>  <i>compound-statement</i>
+
+  <i>anonymous-function-parameter-declaration-list:</i>
+    <i>anonymous-function-parameter-declaration</i>
+    <i>anonymous-function-parameter-declaration-list  </i>  ,  <i>anonymous-function-parameter-declaration</i>
+
+  <i>anonymous-function-parameter-declaration:</i>
+    <i>attribute-specification<sub>opt</sub>  type-specifier<sub>opt</sub> variable-name  default-argument-specifier<sub>opt</sub></i>
+
+  <i>anonymous-function-return:</i>
+    : <i>type-specifier</i>
 
   <i>anonymous-function-use-clause:</i>
     use  (  <i>use-variable-name-list</i>  )
 
   <i>use-variable-name-list:</i>
-    &<sub>opt</sub>   <i>variable-name</i>
-    <i>use-variable-name-list</i>  ,  &<sub>opt</sub>  <i>variable-name</i>
-                
+    <i>variable-name</i>
+    <i>use-variable-name-list</i>  ,  <i>variable-name</i>             
 </pre>
 
 ####Postfix Operators
@@ -449,6 +597,7 @@ octal-digit
     <i>subscript-expression</i>
     <i>function-call-expression</i>
     <i>member-selection-expression</i>
+    <i>null-safe-member-selection-expression</i>
     <i>postfix-increment-expression</i>
     <i>postfix-decrement-expression</i>
     <i>scope-resolution-expression</i>
@@ -460,12 +609,10 @@ octal-digit
 
   <i>object-creation-expression:</i>
     new  <i>class-type-designator</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
-    new  <i>class-type-designator</i>
 
   <i>class-type-designator:</i>
     static
     <i>qualified-name</i>
-    <i>expression</i>
 
   <i>array-creation-expression:</i>
     array  (  <i>array-initializer<sub>opt</sub></i>  )
@@ -479,8 +626,8 @@ octal-digit
     <i>array-element-initializer  ,  array-initializer-list</i>
 
   <i>array-element-initializer:</i>
-    &<sub>opt</sub>   <i>element-value</i>
-    element-key  =>  &<sub>opt</sub>   <i>element-value</i>
+    <i>element-value</i>
+    element-key  =>  <i>element-value</i>
 
   <i>element-key:</i>
     <i>expression</i>
@@ -506,6 +653,9 @@ octal-digit
     <i>name</i>
     <i>expression</i>
 
+  <i>null-safe-member-selection-expression:</i>
+    <i>postﬁx-expression</i>  ?->  <i>name</i>
+
   <i>postfix-increment-expression:</i>
     <i>unary-expression</i>  ++
 
@@ -513,18 +663,17 @@ octal-digit
     <i>unary-expression</i>  --
 
   <i>scope-resolution-expression:</i>
-    <i>scope-resolution-qualifier</i>  ::  <i>member-selection-designator</i>
+    <i>scope-resolution-qualifier</i>  ::  <i>name</i>
     <i>scope-resolution-qualifier</i>  ::  <i>class</i>
 
   <i>scope-resolution-qualifier:</i>
     <i>qualified-name</i>
-    <i>expression</i>
     self
     parent
     static
    
   <i>exponentiation-expression:</i>
-    <i>expression  **  expression</i>                    
+    <i>expression  **  expression</i>                   
 </pre>
 
 ####Unary Operators
@@ -536,9 +685,8 @@ octal-digit
     <i>prefix-decrement-expression</i>
     <i>unary-op-expression</i>
     <i>error-control-expression</i>
-    <i>shell-command-expression</i>
     <i>cast-expression</i>
-    <i>variable-name-creation-expression</i>
+    <i>await-expression</i>
 
   <i>prefix-increment-expression:</i>
     ++ <i>unary-expression</i>
@@ -553,22 +701,16 @@ octal-digit
     +  -  !  \
 
   <i>error-control-expression:</i>
-    @   <i>expression</i>
-
-  <i>shell-command-expression:</i>
-    `  <i>dq-char-sequence<sub>opt</sub></i>  `
+    @  <i>expression</i>
 
   <i>cast-expression:</i>
-    <i>unary-expression</i>
-    (  <i>cast-type</i>  ) <i>cast-expression</i>
+    (  <i>cast-type</i>  ) <i>unary-expression</i>
 
   <i>cast-type: one of</i>
-    array  binary  bool  boolean  double  int  integer  float  object
-    real  string  unset
+    bool  int  float  string
 
-  <i>variable-name-creation-expression:</i>
-    $   <i>expression</i>
-    $  {  <i>expression</i>  }
+  <i>await-expression:</i>
+    await  <i>expression</i>
                         
 </pre>
 
@@ -584,7 +726,6 @@ octal-digit
 
   <i>instanceof-type-designator:</i>
     <i>qualified-name</i>
-    <i>expression</i>
 </pre>
 
 ####Multiplicative Operators
@@ -592,9 +733,9 @@ octal-digit
 <pre>
   <i>multiplicative-expression:</i>
     <i>instanceof-expression</i>
-    <i>multiplicative-expression</i>  *  <i>multiplicative-expression</i>
-    <i>multiplicative-expression</i>  /  <i>multiplicative-expression</i>
-    <i>multiplicative-expression</i>  %  <i>multiplicative-expression</i>
+    <i>multiplicative-expression</i>  *  <i>instanceof-expression</i>
+    <i>multiplicative-expression</i>  /  <i>instanceof-expression</i>
+    <i>multiplicative-expression</i>  %  <i>instanceof-expression</i>
 </pre>
 
 ####Additive Operators
@@ -612,8 +753,8 @@ octal-digit
 <pre>
   <i>shift-expression:</i>
     <i>additive-expression</i>
-    <i>shift-expression</i>  <<  <i>additive-expression</i>
-    <i>shift-expression</i>  >>  <i>additive-expression</i>
+    <i>shift-expression</i>  &lt;&lt;  <i>additive-expression</i>
+    <i>shift-expression</i>  &gt;&gt;  <i>additive-expression</i>
 </pre>
 
 ####Relational Operators
@@ -621,10 +762,10 @@ octal-digit
 <pre>
   <i>relational-expression:</i>
     <i>shift-expression</i>
-    <i>relational-expression</i>  <   <i>shift-expression</i>
-    <i>relational-expression</i>  >   <i>shift-expression</i>
-    <i>relational-expression</i>  <=  <i>shift-expression</i>
-    <i>relational-expression</i>  >=  <i>shift-expression</i>
+    <i>relational-expression</i>  &lt;   <i>shift-expression</i>
+    <i>relational-expression</i>  &gt;   <i>shift-expression</i>
+    <i>relational-expression</i>  &lt;=  <i>shift-expression</i>
+    <i>relational-expression</i>  &gt;=  <i>shift-expression</i>
 </pre>
 
 ####Equality Operators
@@ -634,7 +775,6 @@ octal-digit
     <i>relational-expression</i>
     <i>equality-expression</i>  ==  <i>relational-expression</i>
     <i>equality-expression</i>  !=  <i>relational-expression</i>
-    <i>equality-expression</i>  <>  <i>relational-expression</i>
     <i>equality-expression</i>  ===  <i>relational-expression</i>
     <i>equality-expression</i>  !==  <i>relational-expression</i>
 </pre>
@@ -644,7 +784,7 @@ octal-digit
 <pre>
   <i>bitwise-AND-expression:</i>
     <i>equality-expression</i>
-    <i>bit-wise-AND-expression</i>  &  <i>equality-expression</i>
+    <i>bit-wise-AND-expression</i>  &amp;  <i>equality-expression</i>
 
   <i>bitwise-exc-OR-expression:</i>
     <i>bitwise-AND-expression</i>
@@ -655,33 +795,48 @@ octal-digit
     <i>bitwise-inc-OR-expression</i>  |  <i>bitwise-exc-OR-expression</i>
 </pre>
 
-####Logical Operators (form 1)
+####Logical Operators
 
 <pre>
-  <i>logical-AND-expression-1:</i>
-    <i>bitwise-incl-OR-expression</i>
-    <i>logical-AND-expression-1</i>  &&  <i>bitwise-inc-OR-expression</i>
+  <i>logical-AND-expression:</i>
+    <i>bitwise-inc-OR-expression</i>
+    <i>logical-AND-expression</i>  &amp;&amp;  <i>bitwise-inc-OR-expression</i>
 
-  <i>logical-inc-OR-expression-1:</i>
-    <i>logical-AND-expression-1</i>
-    <i>logical-inc-OR-expression-1</i>  ||  <i>logical-AND-expression-1</i>
+  <i>logical-inc-OR-expression:</i>
+    <i>logical-AND-expression</i>
+    <i>logical-inc-OR-expression</i>  ||  <i>logical-AND-expression</i>
 </pre>
 
 ####Conditional Operator
 
 <pre>
   <i>conditional-expression:</i>
-    <i>logical-inc-OR-expression-1</i>
-    <i>logical-inc-OR-expression-1</i>  ?  <i>expression<sub>opt</sub></i>  :  <i>conditional-expression</i>
+    <i>logical-inc-OR-expression</i>
+    <i>logical-inc-OR-expression</i>  ?  <i>expression<sub>opt</sub></i>  :  <i>conditional-expression</i>
+</pre>
+
+####Lambda Expressions
+
+<pre>
+<i>lambda-expression:</i>
+  <i>conditional-expression</i>
+  async<sub>opt</sub>  <i>lambda-function-signature</i>  ==>  <i>anonymous-function-body</i>
+
+<i>lambda-function-signature:</i>
+  <i>variable-name</i>
+  (  <i>anonymous-function-parameter-declaration-list<sub>opt</sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>
+
+<i>anonymous-function-body:</i>
+  <i>expression</i>
+  <i>compound-statement</i>
 </pre>
 
 ####Assignment Operators
 
 <pre>
   <i>assignment-expression:</i>
-    <i>conditional-expression</i>
+    <i>lambda-expression</i>
     <i>simple-assignment-expression</i>
-    <i>byref-assignment-expression</i>
     <i>compound-assignment-expression</i>
 
   <i>simple-assignment-expression:</i>
@@ -694,63 +849,15 @@ octal-digit
     <i>unary-expression   compound-assignment-operator   assignment-expression</i>
 
   <i>compound-assignment-operator: one of</i>
-    **=  *=  /=  %=  +=  -=  .=  <<=  >>=  &=  ^=  |=    
+    **=  *=  /=  %=  +=  -=  .=  &lt;&lt;=  >>=  &amp;=  ^=  |=
 </pre>
-
-####Logical Operators (form 2)
-
-<pre>
-  <i>logical-AND-expression-2:</i>
-    <i>assignment-expression</i>
-    <i>logical-AND-expression-2</i>  and  <i>assignment-expression</i>
-
-  <i>logical-exc-OR-expression:</i>
-    <i>logical-AND-expression-2</i>
-    <i>logical-exc-OR-expression</i>  xor  <i>logical-AND-expression-2</i>
-
-  <i>logical-inc-OR-expression-2:</i>
-    <i>logical-exc-OR-expression</i>
-    <i>logical-inc-OR-expression-2</i>  or  <i>logical-exc-OR-expression</i>
-    
-</pre>
-
 
 ####yield Operator
 
 <pre>
-  <i>yield-expression:</i>
-    <i>logical-inc-OR-expression-2</i>
-    yield  <i>array-element-initializer</i>
-</pre>
-
-####Script Inclusion Operators
-
-<pre>
   <i>expression:</i>
-    <i>yield-expression</i>
-    <i>include-expression</i>
-    <i>include-once-expression</i>
-    <i>require-expression</i>
-    <i>require-once-expression</i>
-
-  <i>include-expression:</i>
-    include  (  <i>include-filename</i>  )
-    include  <i>include-filename</i>
-
-  <i>include-filename:</i>
-    <i>expression</i>
-    
-  <i>include-once-expression:</i>
-    include_once  (  <i>include-filename</i>  )
-    include_once  <i>include-filename</i>
-    
-  <i>require-expression:</i>
-    require  (  <i>include-filename</i>  )
-    require  <i>include-filename</i>
-    
-  <i>require-once-expression:</i>
-    require_once  (  <i>include-filename</i>  )
-    require_once  <i>include-filename</i>
+    <i>assignment-expression</i>
+    yield  <i>array-element-initializer</i>
 </pre>
 
 ####Constant Expressions
@@ -758,6 +865,9 @@ octal-digit
 <pre>
   <i>constant-expression:</i>
     <i>array-creation-expression</i>
+    <i>collection-literal</i>
+    <i>tuple-literal</i>
+    <i>shape-literal</i>
     <i>const-expression</i>
 
   <i>const-expression:</i>
@@ -769,31 +879,22 @@ octal-digit
 ####General
 
 <pre>
-
   <i>statement:</i>
+    <i>function-static-declaration</i>
     <i>compound-statement</i>
-	<i>labeled-statement</i>
+    <i>labeled-statement</i>
     <i>expression-statement</i>
     <i>selection-statement</i>
     <i>iteration-statement</i>
     <i>jump-statement</i>
-    <i>declare-statement</i>
-    <i>const-declaration</i>
-    <i>function-deﬁnition</i>
-    <i>class-declaration</i>
-    <i>interface-declaration</i>
-    <i>trait-declaration</i>
-    <i>namespace-definition</i>
-    <i>namespace-use-declaration</i>
-    <i>global-declaration</i>
-    <i>function-static-declaration</i>
+    <i>try-statement</i>
 </pre>
 
 ####Compound Statements
 
 <pre>
   <i>compound-statement:</i>
-    {   <i>statement-list<sub>opt</sub></i>  }
+    {  <i>statement-list<sub>opt</sub></i>  }
 
   <i>statement-list:</i>
     <i>statement</i>
@@ -804,62 +905,41 @@ octal-digit
 
 <pre>
   <i>labeled-statement:</i>
-    <i>named-label</i>
     <i>case-label</i>
     <i>default-label</i>
 
-  <i>named-label:</i>
-    <i>name</i>  :  <i>statement</i>
-
   <i>case-label:</i>
-    <i>case   expression   case-default-label-terminator   statement</i>
+    case   <i>expression</i>  :  <i>statement</i>
 
   <i>default-label:</i>
-    <i>default  case-default-label-terminator   statement</i>
-
-  <i>case-default-label-terminator:</i>
-    :
-    ;
+    default  :  <i>statement</i>
 </pre>
 
 ####Expression Statements
 
 <pre>
    <i>expression-statement:</i>
-     <i>expression<sub>opt</sub></i>  ;
+     <i>expression<sub>opt</sub></i>  ;
 
   <i>selection-statement:</i>
     <i>if-statement</i>
     <i>switch-statement</i>
     
   <i>if-statement:</i>
-    if   (   <i>expression</i>   )   <i>statement   elseif-clauses-1opt   else-clause-1opt</i>
-    if   (   <i>expression   )   :   <i>statement-list   elseif-clauses-2opt   else-clause-2opt</i>   endif   ;
+    if   (   <i>expression</i>   )   <i>statement   elseif-clauses-opt   else-clause-opt</i>
 
-  <i>elseif-clauses-1:</i>
-    <i>elseif-clause-1</i>
-    <i>elseif-clauses-1   elseif-clause-1</i>
+  <i>elseif-clauses:</i>
+    <i>elseif-clause</i>
+    <i>elseif-clauses   elseif-clause</i>
 
-  <i>elseif-clause-1:</i>
+  <i>elseif-clause:</i>
     elseif   (   <i>expression</i>   )   <i>statement</i>
  
-  <i>else-clause-1:</i>
+  <i>else-clause:</i>
     else   <i>statement</i>
 
-  <i>elseif-clauses-2:</i>
-    <i>elseif-clause-2</i>
-    <i>elseif-clauses-2   elseif-clause-2</i>
-
-  <i>elseif-clause-2:</i>
-    elseif   (   <i>expression</i>   )   :   <i>statement-list</i>
-  
-  <i>else-clause-2:</i>
-    else   :   <i>statement-list</i>
-
   <i>switch-statement:</i>
-    switch  (  <i>expression</i>  )  <i>compound-statement</i>
-    switch  (  <i>expression</i>  )  :   <i>statement-list</i>  endswitch;
-        
+    switch  (  <i>expression</i>  )  <i>compound-statement</i>     
 </pre>
 
 ####Iteration Statements
@@ -873,15 +953,12 @@ octal-digit
 
   <i>while-statement:</i>
     while  (  <i>expression</i>  )  <i>statement</i>
-    while  (  <i>expression</i>  )  :   <i>statement-list</i>  endwhile ;
     
   <i>do-statement:</i>
     do  <i>statement</i>  while  (  <i>expression</i>  )  ;
 
-
   <i>for-statement:</i>
     for   (   <i>for-initializeropt</i>   ;   <i>for-controlopt</i>   ;   <i>for-end-of-loopopt</i>   )   <i>statement</i>
-    for   (   <i>for-initializeropt</i>   ;   <i>for-controlopt</i>   ;   <i>for-end-of-loopopt</i>   )   :   <i>statement-list</i>   endfor   ;
 
   <i>for-initializer:</i>
     <i>for-expression-group</i>
@@ -898,7 +975,6 @@ octal-digit
 
   <i>foreach-statement:</i>
     foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )   statement
-    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>   foreach-value</i>  )  :   <i>statement-list</i>  endforeach  ;
 
   <i>foreach-collection-name</i>:
     <i>expression</i>
@@ -907,7 +983,7 @@ octal-digit
     <i>expression</i>  =>
 
   <i>foreach-value:<i>
-    &<sub>opt</sub>   <i>expression</i>
+    &amp;<sub>opt</sub>  <i>expression</i>
     <i>list-intrinsic</i>
             
 </pre>
@@ -916,26 +992,19 @@ octal-digit
 
 <pre>
   <i>jump-statement:</i>
-    <i>goto-statement</i>
     <i>continue-statement</i>
     <i>break-statement</i>
     <i>return-statement</i>
     <i>throw-statement</i>
-
-  <i>goto-statement:</i>
-    goto  <i>name</i>  ;
     
   <i>continue-statement:</i>
-    continue   <i>breakout-level<sub>opt</sub></i>  ;
+    continue  ;
 
-  <i>breakout-level:</i>
-    <i>integer-literal</i>
-    
   <i>break-statement:</i>
-    break  <i>breakout-level<sub>opt</sub></i>  ;
+    break  ;
     
   <i>return-statement:</i>
-    return  <i>expression<sub>opt</sub></i>  ;
+    return  <i>expression<sub>opt</sub></i>  ;
     
   <i>throw-statement:</i>
     throw  <i>expression</i>  ;
@@ -954,29 +1023,88 @@ octal-digit
     <i>catch-clauses   catch-clause</i>
 
   <i>catch-clause:</i>
-    catch  (  <i>parameter-declaration-list</i>  )  <i>compound-statement</i>
+    catch  (  <i>parameter-declaration-list</i>  )  <i>compound-statement</i>
 
   <i>finally-clause:</i>
     finally   <i>compound-statement</i>
 </pre>
 
-####The declare Statement
+###Script Inclusion
 
 <pre>
-  <i>declare-statement:</i>
-    declare  (  <i>declare-directive</i>  )  <i>statement</i>
-    declare  (  <i>declare-directive</i>  )  :  <i>statement-list</i>  enddeclare  ;
-    declare  (  <i>declare-directive</i>  )  ;
+  <i>inclusion-directive:</i>
+    <i>require-multiple-directive</i>
+    <i>require-once-expression</i>
+  
+  <i>require-multiple-directive:</i>
+    require  (  <i>include-filename</i>  )
+    require  <i>include-filename</i>
 
-  <i>declare-directive:</i>
-    ticks  =  <i>declare-tick-count</i>
-    encoding  =  <i>declare-character-encoding</i>
+  <i>include-filename:</i>
+    <i>expression</i>  
 
-  <i>declare-tick-count</i>
-    <i>expression</i>
+  <i>require-once-directive:</i>
+    require_once  (  <i>include-filename</i>  )
+    require_once  <i>include-filename</i>
+</pre>  
 
-  <i>declare-character-encoding:</i>
-    <i>expression</i>
+###Enums
+
+<pre>
+  <i>enum-declaration:</i>
+    enum  <i>name</i>  <i>enum-base</i>  <i>enum-constraint-clause<sub>opt</sub>  {  <i>enumerator-list<sub>opt</sub></i>  }
+  
+  <i>enum-base:</i>
+    :  int
+    :  string
+  
+  <i>enum-constraint-clause:</i>
+    as  <i>type-specifier</i>
+  
+  <i>enumerator-list:</i>
+    <i>enumerator</i>
+    <i>enumerator-list</i>  ;  <i>enumerator</i>
+  
+  <i>enumerator:</i>
+    <i>enumerator-constant</i>  =  <i>constant-expression</i>
+  
+  <i>enumerator-constant:</i>
+    <i>name</i>
+</pre>
+
+###Generic Types, Methods and Functions
+
+<pre>
+  <i>generic-type-parameter-list:</i>
+    *lt;*  <i>generic-type-parameters</i>  &gt;
+  
+  <i>generic-type-parameters:</i>
+    <i>generic-type-parameter</i>
+    <i>generic-type-parameters</i>  ,  <i>generic-type-parameter</i>
+  
+  <i>generic-type-parameter:</i>
+    <i>generic-type-parameter-variance<sub>opt</sub></i>  <i>generic-type-parameter-name</i>  <i>generic-type-constraint<sub>opt</sub></i>
+  
+  <i>generic-type-parameter-name:</i>
+    <i>name</i>
+  
+  <i>generic-type-parameter-variance:</i>
+    +
+    -
+  
+  <i>generic-type-constraint:</i>
+    as  <i>type-specifier</i>
+
+  <i>generic-type-argument-list:</i>
+    &lt;  <i>generic-type-arguments</i>  &gt;
+  
+  <i>generic-type-arguments:</i>
+    <i>generic-type-argument</i>
+    <i>generic-type-arguments</i>  ,  <i>generic-type-argument</i>
+  
+  <i>generic-type-argument:</i>
+    <i>type-specifier</i>
+    <i>name</i>
 </pre>
 
 ###Functions
@@ -986,40 +1114,44 @@ octal-digit
     <i>function-deﬁnition-header   compound-statement</i>
 
   <i>function-deﬁnition-header:</i>
-    function  &<sub>opt</sub>   <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )
+    <i>attribute-specification<sub>opt</sub></i>  async<sub>opt</sub>  function <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  (  <i>parameter-list<sub>opt</sub></i>  ) :  <i>return-type</i>
+
+  <i>parameter-list:</i>
+    ...
+    <i>parameter-declaration-list</i>
+    <i>parameter-declaration-list</i>  ,  ...
 
   <i>parameter-declaration-list:</i>
     <i>parameter-declaration</i>
     <i>parameter-declaration-list</i>  ,  <i>parameter-declaration</i>
 
   <i>parameter-declaration:</i>
-    <i>type-hint<sub>opt</sub></i>  &<sub>opt</sub>   <i>variable-name   default-argument-specifier<sub>opt</sub></i>
-
-  <i>type-hint:</i>
-    array
-    callable
-    <i>qualified-name</i>
+    <i>attribute-specification<sub>opt</sub>  <i>type-specifier</i>  <i>variable-name  default-argument-specifier<sub>opt</sub></i>
 
   <i>default-argument-specifier:</i>
     =  <i>const-expression</i>
+
+  <i>return type:</i>
+    <i>type-specifier</i>
+    this
 </pre>
 
 ###Classes
 
 <pre>
   <i>class-declaration:</i>
-    <i>class-modifier<sub>opt</sub></i>  class  <i>name   class-base   clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   <i>trait-use-clauses<sub>opt</sub>   class-member-declarations<sub>opt</sub></i> }
+    <i>attribute-specification<sub>opt</sub></i>  <i>class-modifier<sub>opt</sub></i>  class  <i>name  generic-type-parameter-list<sub>opt</sub>  class-base  clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>  {  <i>trait-use-clauses<sub>opt</sub>  class-member-declarations<sub>opt</sub></i>  }
 
   <i>class-modifier:</i>
     abstract
     final
 
   <i>class-base-clause:</i>
-    extends  <i>qualified-name</i>
+    extends  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
 
   <i>class-interface-clause:</i>
-    implements  <i>qualified-name</i>
-    <i>class-interface-clause</i>  ,  <i>qualified-name</i>
+    implements  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
+    <i>class-interface-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
 
   <i>class-member-declarations:</i>
     <i>class-member-declaration</i>
@@ -1033,15 +1165,28 @@ octal-digit
      <i>destructor-declaration</i>
      
   <i>const-declaration:</i>
-    const  <i>name</i>  =  <i>const-expression</i>   ;
+    const  <i>type-specifier<sub>opt</sub></i>  <i>constant-declarator-list</i>  ;
+  
+  <i>constant-declarator-list:</i>
+    <i>constant-declarator</i>
+    <i>constant-declarator-list</i>  ,  <i>constant-declarator</i>
+  
+  <i>constant-declarator:</i>
+    <i>name</i>  =  <i>const-expression</i>
     
   <i>property-declaration:</i>
-    <i>property-modifier   name   property-initializer<sub>opt</sub></i>  ;
+    <i>property-modifier</i>  <i>type-specifier</i>  <i>property-declarator-list</i>  ;
+
+  <i>property-declarator-list:</i>
+    <i>property-declarator</i>
+    <i>property-declarator-list</i>  ,  <i>property-declarator</i>
+
+  <i>property-declarator:</i>
+    <i>variable-name</i>  <i>property-initializer<sub>opt</sub></i>
 
   <i>property-modifier:</i>
-    var
-    <i>visibility-modifier   static-modifier<sub>opt</sub></i>
-    <i>static-modifier   visibility-modifier<sub>opt</sub></i>
+    <i>visibility-modifier</i>  <i>static-modifier<sub>opt</sub></i>
+    <i>static-modifier</i>  <i>visibility-modifier</i>
 
   <i>visibility-modifier:</i>
     public
@@ -1052,15 +1197,15 @@ octal-digit
     static
 
   <i>property-initializer:</i>
-    =  <i>constant-expression</i>
-    
-  method-declaration:
-    <i>method-modifiers<sub>opt</sub>   function-deﬁnition</i>
-    <i>method-modifiers   function-deﬁnition-header</i>  ;
+    =  <i>expression</i>
+
+  <i>method-declaration:</i>
+    <i>method-modifiers</i>  <i>function-deﬁnition</i>
+    <i>method-modifiers</i>  <i>function-deﬁnition-header</i>  ;
 
   <i>method-modifiers:</i>
     <i>method-modifier</i>
-    <i>method-modifiers   method-modifier</i>
+    <i>method-modifiers</i>  <i>method-modifier</i>
 
   <i>method-modifier:</i>
     <i>visibility-modifier</i>
@@ -1068,12 +1213,18 @@ octal-digit
     abstract
     final
 
-  <i>constructor-deﬁnition:</i>
-    <i>visibility-modifier</i>  function &<sub>opt</sub>   __construct  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
-    <i>visibility-modifier</i>  function &<sub>opt</sub>    <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement </i>    <b>[Deprecated form]</b>
+  <i>constructor-declaration:</i>
+    <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __construct  (  <i>constructor-parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
+  
+  <i>constructor-parameter-declaration-list:</i>
+    <i>constructor-parameter-declaration</i>
+    <i>constructor-parameter-declaration-list</i>  ,  <i>constructor-parameter-declaration</i>
+  
+  <i>constructor-parameter-declaration:</i>
+    <i>visibility-modifier<sub>opt</sub></i>  <i>type-specifier</i>  <i>variable-name</i>  <i>default-argument-specifier<sub>opt</sub></i>
 
-  <i>destructor-deﬁnition:</i>
-    <i>visibility-modifier</i>  function  &<sub>opt</sub>  __destruct  ( ) <i>compound-statement</i>
+  <i>destructor-declaration:</i>
+    <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __destruct  ( )  <i>compound-statement</i>
     
 </pre>
 
@@ -1081,17 +1232,18 @@ octal-digit
 
 <pre>
   <i>interface-declaration:</i>
-    interface   <i>name   interface-base-clause<sub>opt</sub></i> {  <i>interface-member-declarations<sub>opt</sub></i>  }
+    <i>attribute-specification<sub>opt</sub></i>  interface  <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  <i>interface-base-clause<sub>opt</sub></i> {  <i>interface-member-declarations<sub>opt</sub></i>  }
 
   <i>interface-base-clause:</i>
-    extends   <i>qualified-name</i>
-    <i>interface-base-clause</i>  ,  <i>qualified-name</i>
+    extends  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
+    <i>interface-base-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
 
   <i>interface-member-declarations:</i>
     <i>interface-member-declaration</i>
     <i>interface-member-declarations   interface-member-declaration</i>
-
+  
   <i>interface-member-declaration:</i>
+    <i>requires-extends-clause</i>
     <i>const-declaration</i>
     <i>method-declaration</i>
 </pre>
@@ -1100,68 +1252,82 @@ octal-digit
 
 <pre>
   <i>trait-declaration:</i>
-    trait   <i>name</i>   {   <i>trait-use-clauses<sub>opt</sub>   trait-member-declarations<sub>opt</sub></i>   }
+   <i>attribute-specification<sub>opt</sub></i>  trait  <i>name</i>  <i>generic-type-paramater-list<sub>opt</sub></i>  {  <i>trait-use-clauses<sub>opt</sub>  trait-member-declarations<sub>opt</sub></i>  }
 
   <i>trait-use-clauses:</i>
     <i>trait-use-clause</i>
-    <i>trait-use-clauses   trait-use-clause</i>
+    <i>trait-use-clauses</i>  <i>trait-use-clause</i>
 
   <i>trait-use-clause:</i>
-    use   <i>trait-name-list   trait-use-terminator</i>
+    use  <i>trait-name-list</i>  ;
 
   <i>trait-name-list:</i>
-    <i>qualified-name</i>
-    <i>trait-name-list</i>   ,   <i>qualified-name</i>
-
-  <i>trait-use-terminator:</i>
-    ;
-    {   <i>trait-select-and-alias-clauses<sub>opt</sub></i>   }
-
-  <i>trait-select-and-alias-clauses:</i>
-    <i>trait-select-and-alias-clause</i>
-    <i>trait-select-and-alias-clauses   trait-select-and-alias-clause</i>
-
-  <i>trait-select-and-alias-clause:</i>
-    <i>trait-select-insteadof-clause</i>
-    <i>trait-alias-as-clause</i>
-
-  <i>trait-select-insteadof-clause:</i>
-    <i>name</i>   insteadof   <i>name</i>
-
-  trait-alias-as-clause:
-    <i>name</i>   as   <i>visibility-modifier<sub>opt</sub>   name</i>
-    <i>name</i>   as   <i>visibility-modifier   name<sub>opt</sub></i>
+    <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
+    <i>trait-name-list</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
 
   <i>trait-member-declarations:</i>
     <i>trait-member-declaration</i>
     <i>trait-member-declarations   trait-member-declaration</i>
 
   <i>trait-member-declaration:</i>
+    <i>require-extends-clause</i>
+    <i>require-implements-clause</i>
     <i>property-declaration</i>
     <i>method-declaration</i>
     <i>constructor-declaration</i>
     <i>destructor-declaration</i>
-    
-</pre>    
+
+  <i>requires-extends-clause:</i>
+    require  extends  <i>qualified-name</i>
+  
+  <i>require-implements-clause:</i>
+    require  implements  <i>qualified-name</i>
+</pre>
 
 ###Namespaces
 
 <pre>
   <i>namespace-definition:</i>
-    namespace  <i>namespace-name</i>  ;
-    namespace  <i>namespace-name<sub>opt</sub>   compound-statement</i>
+    namespace  <i>namespace-name</i>  ;
+    namespace  <i>namespace-name<sub>opt</sub>  compound-statement</i>
 
   <i>namespace-use-declaration:</i>
-    use  <i>namespace-use-clauses</i>  ;
+    use  <i>namespace-use-clauses</i>  ;
 
   <i>namespace-use-clauses:</i>
     <i>namespace-use-clause</i>
-    <i>namespace-use-clauses</i>  ,  <i>namespace-use-clause</i>
+    <i>namespace-use-clauses</i>  ,  <i>namespace-use-clause</i>
 
   <i>namespace-use-clause:</i>
-    <i>qualified-name   namespace-aliasing-clause<sub>opt</sub></i>
+    <i>qualified-name  namespace-aliasing-clause<sub>opt</sub></i>
 
   <i>namespace-aliasing-clause:</i>
     as  <i>name</i>
 </pre>
 
+###Attributes
+<pre>
+
+<i>attribute-specification:</i>
+&lt;&lt;  <i>attribute-list</i>  &gt;&gt;
+
+<i>attribute-list:</i>
+  <i>attribute</i>
+  <i>attribute-list</i>  ,  <i>attribute</i>
+
+<i>attribute:</i>
+  <i>attribute-name</i>  <i>attribute-value-list<sub>opt</sub></i>
+
+<i>attribute-name:</i>
+  <i>name</i>
+
+<i>attribute-value-list:</i>
+  (  <i>attribute-values<sub>opt</sub></i>  )
+
+<i>attribute-values</i>
+  <i>attribute-value</i>
+  <i>attribute-values</i>  ,  <i>attribute-value</i>
+
+<i>attribute-value:</i>
+  <i>expression</i>
+</pre>
