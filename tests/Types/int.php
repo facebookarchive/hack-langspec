@@ -25,4 +25,4 @@ function main(): void {
   var_dump(PHP_INT_MAX/2 + PHP_INT_MAX);	// converts to float
 }
 
-//main();
+require_once "../main.php";

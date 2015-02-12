@@ -66,4 +66,4 @@ function main(): void {
   test(null);	// the expressions in the method argument list DO GET CALLED ANYWAY
 }
 
-//main();
+require_once "../../main.php";

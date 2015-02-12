@@ -31,4 +31,4 @@ function main(): void {
   }
 }
 
-//main();
+require_once "../../main.php";

@@ -203,4 +203,4 @@ function main(): void {
   echo "pr_C1_void: "; var_dump($c2->pr_C1_void);
 }
 
-//main();
+require_once "../main.php";

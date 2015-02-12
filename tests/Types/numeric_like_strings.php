@@ -100,4 +100,4 @@ function main(): void {
 //  var_dump($s4--);
 }
 
-//main();
+require_once "../main.php";

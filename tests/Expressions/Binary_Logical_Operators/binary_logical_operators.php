@@ -40,4 +40,4 @@ function main(): void {
   var_dump($v);
 }
 
-//main();
+require_once "../../main.php";

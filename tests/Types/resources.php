@@ -45,5 +45,5 @@ function main(): void {
   var_dump($c);
 }
 
-//main();
+require_once "../main.php";
 

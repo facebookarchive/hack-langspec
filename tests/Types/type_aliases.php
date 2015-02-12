@@ -144,4 +144,4 @@ function main(): void {
 //  C_bool::fb(true, true, true);	// 3rd arg incompatible
 }
 
-//main();
+require_once "../main.php";

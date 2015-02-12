@@ -66,4 +66,4 @@ function main(): void {
   var_dump(\NS_MyCollectionClasses\MyQueue::MAX_NUMBER_ITEMS);
 }
 
-//main();
+require_once "../main.php";

@@ -87,4 +87,4 @@ function main(): void {
   echo "\$str contains >$str<\n";
 }
 
-//main();
+require_once "../main.php";

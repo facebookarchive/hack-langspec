@@ -108,4 +108,4 @@ function main(): void {
 //  $c2b = new C2b<int>();
 }
 
-//main();
+require_once "../main.php";

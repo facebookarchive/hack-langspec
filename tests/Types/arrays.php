@@ -349,4 +349,4 @@ class C5 {
   }
 }
 
-//main();
+require_once "../main.php";

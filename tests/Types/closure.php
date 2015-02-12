@@ -31,4 +31,4 @@ function main(): void {
   var_dump($result);
 }
 
-//main();
+require_once "../main.php";

@@ -40,4 +40,4 @@ function main(): void {
   echo "\n----------\n";
 }
 
-//main();
+require_once "../../main.php";

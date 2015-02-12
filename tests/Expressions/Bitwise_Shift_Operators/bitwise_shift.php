@@ -48,4 +48,4 @@ function main(): void {
 //  $v = "123" >> 2;	// ...
 }
 
-//main();
+require_once "../../main.php";

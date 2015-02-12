@@ -117,4 +117,4 @@ function main(): void {
 //  fL1();	// see what happens when a default argument value is used
 }
 
-//main();
+require_once "../main.php";

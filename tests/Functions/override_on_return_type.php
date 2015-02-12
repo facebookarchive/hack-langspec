@@ -71,4 +71,4 @@ function main(): void {
   $d->f10();
 }
 
-//main();
+require_once "../main.php";

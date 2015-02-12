@@ -50,4 +50,4 @@ function main(): void {
   \NS3\Sub1\f5();
 }
 
-//main();
+require_once "../main.php";

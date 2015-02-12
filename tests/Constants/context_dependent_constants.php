@@ -103,4 +103,4 @@ function main(): void {
   $datePlus1->xx();
 }
 
-//main();
+require_once "../main.php";

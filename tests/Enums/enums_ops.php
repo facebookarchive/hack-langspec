@@ -103,4 +103,4 @@ function opsOnEnums(
 */
 }
 
-//main();
+require_once "../main.php";

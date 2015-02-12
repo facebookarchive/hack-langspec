@@ -43,4 +43,4 @@ function main(): void {
   $funcTable[$i++]($i, ++$i, $i, $i = 12, --$i); // calls fy(2,3,3,12,11)
 }
 
-//main();
+require_once "../../main.php";

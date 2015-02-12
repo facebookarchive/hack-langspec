@@ -54,4 +54,4 @@ function main(): void {
 //  echo "maxVal('red', 'green') = " . maxVal('red', 'green') . "\n";
 }
 
-//main();
+require_once "../main.php";

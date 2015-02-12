@@ -100,4 +100,4 @@ It is incompatible with a nullable type
 //*/
 }
 
-//main();
+require_once "../../main.php";

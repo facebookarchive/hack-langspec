@@ -79,4 +79,4 @@ function main(): void {
   var_dump($c1);
 }
 
-//main();
+require_once "../main.php";

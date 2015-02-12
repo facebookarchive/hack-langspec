@@ -18,4 +18,4 @@ function main(): void {
   f5(fun('\NS_callable_typehint\hello'));
 }
 
-//main();
+require_once "../main.php";

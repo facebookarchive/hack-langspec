@@ -132,4 +132,4 @@ function main(): void {
   echo "---------------- end -------------------\n";
 }
 
-//main();
+require_once "../main.php";

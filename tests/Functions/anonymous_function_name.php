@@ -31,4 +31,4 @@ function main(): void {
   $c->f();
 }
 
-//main();
+require_once "../main.php";

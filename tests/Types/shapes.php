@@ -74,4 +74,4 @@ ID
   echo "Origin is $str\n";
 }
 
-//main();
+require_once "../main.php";

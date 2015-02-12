@@ -73,4 +73,4 @@ function main(): void {
 //  $v = PHP_ZTS;
 }
 
-//main();
+require_once "../main.php";

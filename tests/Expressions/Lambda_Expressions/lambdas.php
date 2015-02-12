@@ -153,4 +153,4 @@ function main(): void {
   var_dump($doubler2(5.6));
 }
 
-//main();
+require_once "../../main.php";

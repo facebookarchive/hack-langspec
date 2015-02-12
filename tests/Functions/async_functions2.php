@@ -7,7 +7,7 @@ async function f(): Awaitable<int> {
   echo 'Inside ' . __FUNCTION__ . "\n";
 
   // ...
- 
+
   echo "Enter await\n";
   $r1 = await g();	// $r1 = int($r1); that is, the int is unwrapped from the Awaitable object
   echo "Exit await; \$r1 = ";
@@ -26,10 +26,10 @@ async function g(): Awaitable<int> {
   return $r2;		// int($r2) is wrapped by an Awaitable object, which is returned
 }
 
-function main (): void {
+function main(): void {
   $v = f();		// $v = object(HH\StaticWaitHandle)#1 (0)
   echo "\$v = ";
   var_dump($v);
 }
 
-main();
+require_once "../main.php";

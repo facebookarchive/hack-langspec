@@ -22,4 +22,4 @@ function main(): void {
   g(array(new Cat(), new Cat(), new Animal()));	// arrays are covariant
 }
 
-//main();
+require_once "../main.php";

@@ -53,4 +53,4 @@ class Cx {
   }
 }
 
-//main();
+require_once "../main.php";

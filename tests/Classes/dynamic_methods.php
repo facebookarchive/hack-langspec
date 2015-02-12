@@ -30,4 +30,4 @@ function main(): void {
   Widget::__callStatic('[]{}', []);
 }
 
-//main();
+require_once "../main.php";

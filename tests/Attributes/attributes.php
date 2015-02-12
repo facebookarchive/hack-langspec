@@ -249,4 +249,4 @@ function main(): void {
   var_dump($attr6);
 }
 
-//main();
+require_once "../main.php";

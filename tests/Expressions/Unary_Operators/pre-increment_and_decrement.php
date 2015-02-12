@@ -90,4 +90,4 @@ function main(): void {
   $c->prop1 = 5; var_dump(++$c->prop1); var_dump(--$c->prop1); var_dump(--$c->prop1);
 }
 
-//main();
+require_once "../../main.php";

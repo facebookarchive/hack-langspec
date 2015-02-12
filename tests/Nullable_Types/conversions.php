@@ -685,5 +685,5 @@ function main(): void {
   $c1 = new C1();
 }
 
-//main();
+require_once "../main.php";
 

@@ -74,4 +74,4 @@ function main(): void {
   var_dump($obj);
 }
 
-//main();
+require_once "../main.php";

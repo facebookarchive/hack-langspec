@@ -32,4 +32,4 @@ namespace {
   }
 }
 
-//main();
+require_once "../main.php";

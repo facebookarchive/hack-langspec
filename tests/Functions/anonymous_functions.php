@@ -282,4 +282,4 @@ function main(): void {
   $v(10.5);
 }
 
-//main();
+require_once "../main.php";

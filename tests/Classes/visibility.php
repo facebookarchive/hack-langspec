@@ -109,4 +109,4 @@ function main(): void {
   var_dump($c->prop2);	// accesses public instance method
 }
 
-//main();
+require_once "../main.php";

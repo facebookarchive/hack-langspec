@@ -8,4 +8,4 @@ function main(): void {
   \NS18\f();
 }
 
-//main();
+require_once "../main.php";

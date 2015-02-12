@@ -140,7 +140,7 @@ function main(): void {
   echo "\$p2: $p2\n";
 }
 
-//main();
+require_once "../main.php";
 
 
 /*

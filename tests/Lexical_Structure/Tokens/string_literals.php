@@ -150,4 +150,4 @@ zzz"."<\n";
 ///*/
 }
 
-//main();
+require_once "../../main.php";

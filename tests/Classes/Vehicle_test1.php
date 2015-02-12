@@ -10,4 +10,4 @@ function main(): void {
   echo "\$pj's maximum altitude: " . $pj->getMaxAltitude() . "\n";
 }
 
-//main();
+require_once "../main.php";

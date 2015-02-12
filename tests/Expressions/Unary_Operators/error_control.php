@@ -7,4 +7,4 @@ function main(): void {
   $infile = @fopen("NoSuchFile.txt", 'r');
 }
 
-//main();
+require_once "../../main.php";

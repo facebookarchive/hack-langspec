@@ -27,4 +27,4 @@ function main(): void {
   echo $p . "\n";
 }
 
-//main();
+require_once "../main.php";

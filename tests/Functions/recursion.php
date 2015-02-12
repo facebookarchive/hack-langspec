@@ -15,4 +15,4 @@ function factorial(int $int): int {
   return ($int > 1) ? $int * factorial($int - 1) : $int;
 }
 
-//main();
+require_once "../main.php";

@@ -42,5 +42,5 @@ enum F: string as mixed {	// Okay
 function main(): void {
 }
 
-//main();
+require_once "../main.php";
 

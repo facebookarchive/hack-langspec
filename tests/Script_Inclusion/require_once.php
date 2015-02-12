@@ -21,4 +21,4 @@ function main(): void {
   print_r(get_required_files());
 }
 
-//main();
+require_once "../main.php";

@@ -115,4 +115,4 @@ function main(): void {
 //  print_r(get_defined_constants());
 }
 
-//main();
+require_once "../main.php";

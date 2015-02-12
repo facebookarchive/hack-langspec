@@ -20,4 +20,4 @@ function main(): void {
   doit(10, 20, 3.45, null);
 }
 
-//main();
+require_once "../main.php";

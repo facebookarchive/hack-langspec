@@ -25,7 +25,7 @@ class C {
   }
 }
 
-function main (): void {
+function main(): void {
   $c = new C();
   $val = $c->getProp();
 
@@ -44,4 +44,4 @@ function main (): void {
   }
 }
 
-//main();
+require_once "../main.php";
