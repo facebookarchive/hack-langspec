@@ -20,29 +20,17 @@ or by explicit code source code in the script.
 
 Exception handling involves the use of the following keywords:
 
--   `try` ([§§](11-statements.md#the-try-statement)), which allows a *try-block* of code containing one or
-    more possible exception generations, to be tried
--   `catch` ([§§](11-statements.md#the-try-statement)), which defines a handler for a specific type of
-    exception thrown from the corresponding try-block or from some
-    function it calls
--   `finally` ([§§](11-statements.md#the-try-statement)), which allows the *finally-block* of a try-block to
-    be executed (to perform some cleanup, for example), whether or not
-    an exception occurred within that try-block
--   `throw` ([§§](11-statements.md#the-throw-statement)), which generates an exception of a given type, from
-    a place called a *throw point*
+* `try` ([§§](11-statements.md#the-try-statement)), which allows a *try-block* of code containing one or more possible exception generations, to be tried
+* `catch` ([§§](11-statements.md#the-try-statement)), which defines a handler for a specific type of exception thrown from the corresponding try-block or from some function it calls
+* `finally` ([§§](11-statements.md#the-try-statement)), which allows the *finally-block* of a try-block to be executed (to perform some cleanup, for example), whether or not an exception occurred within that try-block
+* `throw` (§11.7.5), which generates an exception of a given type, from a place called a *throw point*
 
-When an exception is thrown, an *exception object* of type `Exception`
-([§§](#class-exception)), or of a subclass of that type, is created and made available to
+When an exception is thrown, an *exception object* of type `\Exception`
+(§19.2), or of a subclass of that type, is created and made available to
 the first catch-handler that can catch it. Among other things, the
 exception object contains an *exception message* and an *exception
-code*, both of which can be used by a handler to determine how to handle
+code*, both of which can be used by a handler to decide how to handle
 the situation.
-
-Prior to the addition of exception handling to PHP, exception-like
-conditions were handled using Error Reporting (§xx). Now, errors can be
-translated to exceptions via the class
-[`ErrorException`](http://www.php.net/manual/en/class.errorexception.php)
-(which is not part of this specification).
 
 ##Class `Exception`
 
@@ -50,61 +38,57 @@ Class `Exception` is the base class of all exception types. This class is
 defined, as follows:
 
 ```
-Class Exception
-{
-	private   $string;
-	private   $trace;
-	private   $previous;
+Class Exception {
+  protected string $message = 'Unknown exception';
+  protected int $code = 0;
+  protected string $file;
+  protected int $line;
+  protected ?Exception $previous = null;
 
-	protected $message = 'Unknown exception';
-	protected $code = 0;
-	protected $file;
-	protected $line;
+  public function __construct(string $message = "", int $code = 0,
+    ?Exception $previous = null);
 
-	public function __construct($message = "", $code = 0,
- 								Exception $previous = NULL);
+  final private function __clone(): void;
 
-	final private function __clone();
-
-	final public  function getMessage();
-	final public  function getCode();
-	final public  function getFile();
-	final public  function getLine();
-	final public  function getTrace();
-	final public  function getPrevious();
-	final public  function getTraceAsString();
-	public function __toString();
+  final public function getMessage(): string;
+  final public function getCode(): int;
+  final public function getFile(): string;
+  final public function getLine(): int;
+  final public function getTrace(): array<mixed>;
+  final public function getPrevious(): ?Exception;
+  final public function getTraceAsString(): string;
+  public function __toString(): string;
 }
 ```
 
-For information about exception trace-back, see [§§](#tracing-exceptions). For information
-about nested exceptions, see [§§](#tracing-exceptions). 
+For information about exception trace-back, see §19.3. For information
+about nested exceptions, see §19.3. 
 
 The class members are defined below:
 
 Name	| Purpose
 ----    | -------
-`$code`	| `int`; the exception code (as provided by the constructor)
-`$file`	| `string`; the name of the script where the exception was generated
-`$line`	| `int`; the source line number in the script where the exception was generated
-`$message`	| `string`; the exception message (as provided by the constructor)
-`$previous`	| The previous exception in the chain, if this is a nested exception; otherwise, `NULL`
+`$code`	| The exception code (as provided by the constructor)
+`$file`	| The name of the script where the exception was generated
+`$line`	| The source line number in the script where the exception was generated
+`$message`	| The exception message (as provided by the constructor)
+`$previous`	| The previous exception in the chain, if this is a nested exception; otherwise, `null`
 `$string`	| Work area for `__toString`
 `$trace`	| Work area for function-call tracing
-`__construct`	| Takes three (optional) arguments – `string`: the exception message (defaults to ""), `int`: the exception code (defaults to 0), and `Exception`: the previous exception in the chain (defaults to `NULL`)
+`__construct`	| Takes three (optional) arguments – `string`: the exception message (defaults to ""), `int`: the exception code (defaults to 0), and `\Exception`: the previous exception in the chain (defaults to `null`)
 `__clone`	| Present to inhibit the cloning of exception objects
-`__toString`	| `string`; retrieves a string representation of the exception in some unspecified format
-`getCode`	| `mixed`; retrieves the exception code (as set by the constructor). For an exception of type Exception, the returned value has type int; for subclasses of `Exception`, it may have some other type.
-`getFile`	| `string`; retrieves the name of the script where the exception was generated
-`getLine`	| `int`; retrieves the source line number in the script where the exception was generated
-`getMessage`	| `string`; retrieves the exception message
-`getPrevious`	| `Exception`; retrieves the previous exception (as set by the constructor), if one exists; otherwise, `NULL`
-`getTrace`	| `array`; retrieves the function stack trace information as an array (see [§§](#tracing-exceptions))
-`getTraceAsString`	| `string`; retrieves the function stack trace information formatted as a single string in some unspecified format
+`__toString`	| Retrieves a string representation of the exception in some unspecified format
+`getCode`	| Retrieves the exception code (as set by the constructor).
+`getFile`	| Retrieves the name of the script where the exception was generated
+`getLine`	| Retrieves the source line number in the script where the exception was generated
+`getMessage`	| Retrieves the exception message
+`getPrevious`	| Retrieves the previous exception (as set by the constructor), if one exists; otherwise, `null`
+`getTrace`	| Retrieves the function stack trace information (see §19.3)
+`getTraceAsString`	| Retrieves the function stack trace information formatted as a single string in some unspecified format
 
 ##Tracing Exceptions
 
-When an exception is caught, the `get*` functions in class `Exception`
+When an exception is caught, the `get*` functions in class `\Exception`
 provide useful information. If one or more nested function calls were
 involved to get to the place where the exception was generated, a record
 of those calls is also retained, and made available by getTrace, through
@@ -164,15 +148,15 @@ See also, library functions `debug_backtrace` (§xx) and
 
 ##User-Defined Exception Classes
 
-An exception class is defined simply by having it extend class `Exception`
-([§§](#class-exception)). However, as that class's `__clone` method is declared `final`
-([§§](14-classes.md#methods)), exception objects cannot be cloned.
+An exception class is defined simply by having it extend class `\Exception`
+(§19.2). However, as that class's `__clone` method is declared `final`
+(§16.7), exception objects cannot be cloned.
 
 When an exception class is defined, typically, its constructors call the
 parent class' constructor as their first operation to ensure the
 base-class part of the new object is initialized appropriately. They
 often also provide an augmented implementation of
-[`__toString()`](http://www.php.net/manual/en/language.oop5.magic.php)
-([§§](14-classes.md#method-__tostring)).
+[`__toString()`](http://docs.hhvm.com/manual/en/language.oop5.magic.php)
+(§16.10.6).
 
 
