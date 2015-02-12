@@ -60,4 +60,4 @@ function main(): void {
   var_dump($v);
 }
 
-require_once "../main.php";
+//main();

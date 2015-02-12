@@ -7,5 +7,5 @@ function main(): void {
   var_dump($a);
 }
 
-require_once "../../main.php";
+//main();
 

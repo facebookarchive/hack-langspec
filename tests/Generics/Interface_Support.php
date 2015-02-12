@@ -2,7 +2,7 @@
 
 namespace NS_test;
 
-function main(): void
+function main (): void
 {
   echo "------- Container -------\n\n";
 
@@ -81,4 +81,4 @@ function main(): void
      "A is" : "A is **NOT**") . " a KeyedTraversable\n";
 }
 
-require_once "../main.php";
+//main();

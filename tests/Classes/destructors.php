@@ -36,4 +36,4 @@ function main(): void {
   $d4 = new D4();
 }
 
-require_once "../main.php";
+//main();

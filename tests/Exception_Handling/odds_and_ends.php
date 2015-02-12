@@ -57,4 +57,4 @@ function main(): void {
   echo "\$o->prop = " . $o->prop . "\n";
 }
 
-require_once "../main.php";
+//main();

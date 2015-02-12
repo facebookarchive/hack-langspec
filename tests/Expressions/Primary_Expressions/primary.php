@@ -17,4 +17,4 @@ function main(): void {
   var_dump(($z[0])[2]);		// redundant grouping parens
 }
 
-require_once "../../main.php";
+//main();

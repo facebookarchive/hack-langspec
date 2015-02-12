@@ -23,8 +23,8 @@ function f(int $p1 = -1): void {
   var_dump($v);
 }
 
-function main(): void {
+function main (): void {
   f();
 }
 
-require_once "../main.php";
+//main();

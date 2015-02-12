@@ -48,4 +48,4 @@ function main(): void {
 //*/
 }
 
-require_once "../../main.php";
+//main();

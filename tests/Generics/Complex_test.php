@@ -41,4 +41,4 @@ function main(): void {
   var_dump($c5, $c6, \NS_Complex\Complex::add($c5, $c6), \NS_Complex\Complex::subtract($c5, $c6));
 }
 
-require_once "../main.php";
+//main();

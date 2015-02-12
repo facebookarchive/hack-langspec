@@ -115,4 +115,4 @@ function main(): void {
 //  var_dump($e11 instanceof $iName);
 }
 
-require_once "../../main.php";
+//main();

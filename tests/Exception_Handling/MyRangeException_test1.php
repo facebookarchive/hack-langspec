@@ -13,4 +13,4 @@ function main(): void {
   echo "\$re = >$re<\n";
 }
 
-require_once "../main.php";
+//main();

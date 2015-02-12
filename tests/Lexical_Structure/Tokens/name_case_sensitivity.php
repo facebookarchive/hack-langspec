@@ -29,4 +29,4 @@ newtype NT1 = int;
 function main(): void {
 }
 
-require_once "../../main.php";
+//main();

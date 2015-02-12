@@ -68,4 +68,4 @@ function main(): void {
   print_r($v);
 }
 
-require_once "../main.php";
+//main();

@@ -22,4 +22,4 @@ function main(): void {
   f(new C(new Cat()));
 }
 
-require_once "../main.php";
+//main();

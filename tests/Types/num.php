@@ -40,8 +40,8 @@ class C {
   }
 }
 
-function main(): void {
+function main (): void {
   $c = new C();
 }
 
-require_once "../main.php";
+//main();

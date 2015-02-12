@@ -12,4 +12,4 @@ function main(): void {
   \NS_MathLibrary\MathLibrary::tan(2.34);
 }
 
-require_once "../main.php";
+//main();

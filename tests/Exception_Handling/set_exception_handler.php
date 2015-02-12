@@ -69,4 +69,4 @@ function main(): void {
   echo "Beyond the call to f()\n";	// never gets here; script terminates after my handler ends
 }
 
-require_once "../main.php";
+//main();

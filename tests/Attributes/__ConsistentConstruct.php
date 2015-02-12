@@ -103,4 +103,4 @@ echo "\n============== top-level function f1 =====================\n\n";
   var_dump($attr2);
 }
 
-require_once "../main.php";
+//main();

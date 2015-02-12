@@ -60,4 +60,4 @@ function main(): \NS_Stack\Stack<num> {
 }
 
 //main2(new \NS_Stack\Stack(), new \NS_Stack\Stack());
-require_once "../main.php";
+//main();

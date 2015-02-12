@@ -30,4 +30,4 @@ function main(): void {
   echo "end of script\n";
 }
 
-require_once "../../main.php";
+//main();

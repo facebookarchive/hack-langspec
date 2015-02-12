@@ -83,4 +83,4 @@ function main(): void {
   var_dump($dest);
 }
 
-require_once "../main.php";
+//main();

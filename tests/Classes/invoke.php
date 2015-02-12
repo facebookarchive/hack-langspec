@@ -14,4 +14,4 @@ function main(): void {
 //  $c();
 }
 
-require_once "../main.php";
+//main();

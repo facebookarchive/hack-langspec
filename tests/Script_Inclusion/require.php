@@ -23,4 +23,4 @@ function main(): void {
   print_r(get_included_files());
 }
 
-require_once "../main.php";
+//main();

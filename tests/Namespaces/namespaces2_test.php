@@ -10,4 +10,4 @@ function main(): void {
   \NS20\f30();
 }
 
-require_once "../main.php";
+//main();

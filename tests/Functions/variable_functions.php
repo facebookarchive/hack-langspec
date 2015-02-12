@@ -19,4 +19,4 @@ function main(): void {
   $v();
 }
 
-require_once "../main.php";
+//main();

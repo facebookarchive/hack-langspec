@@ -45,4 +45,4 @@ function main(): void {
   echo "is_null(resource): " . (is_null($infile) ? "True" : "False") . "\n";
 }
 
-require_once "../main.php";
+//main();

@@ -66,4 +66,4 @@ function main(): void {
   var_dump($c4a <  $c4b);	// bool(false)
 }
 
-require_once "../../main.php";
+//main();

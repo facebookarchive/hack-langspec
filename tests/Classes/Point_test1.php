@@ -136,4 +136,4 @@ function main(): void {
   echo "\n==================== end ===================\n\n";
 }
 
-require_once "../main.php";
+//main();

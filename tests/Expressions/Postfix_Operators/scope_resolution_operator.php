@@ -231,4 +231,4 @@ function main(): void {
   \var_dump(W2::class);
 }
 
-require_once "../../main.php";
+//main();

@@ -47,4 +47,4 @@ function main(): void {
 //  cf2();		// Ok
 }
 
-require_once "../main.php";
+//main();

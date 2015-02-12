@@ -75,4 +75,4 @@ function main(): void {
   var_dump($attr2);
 }
 
-require_once "../main.php";
+//main();

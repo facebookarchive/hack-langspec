@@ -100,4 +100,4 @@ function main(): void {
   echo "---------------- end -------------------\n";
 }
 
-require_once "../main.php";
+//main();

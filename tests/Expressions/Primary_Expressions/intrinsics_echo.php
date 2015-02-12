@@ -27,4 +27,4 @@ function main(): void {
   echo "$v3\n";
 }
 
-require_once "../../main.php";
+//main();

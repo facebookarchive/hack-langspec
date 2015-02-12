@@ -35,4 +35,4 @@ function main(): void {
   doit(11);
 }
 
-require_once "../../main.php";
+//main();

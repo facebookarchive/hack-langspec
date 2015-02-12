@@ -11,4 +11,4 @@ function main(): void {
   while ($i <= 10);
 }
 
-require_once "../../main.php";
+//main();

@@ -68,4 +68,4 @@ function main(): void {
   incdecrev($IntMax);
 }
 
-require_once "../../main.php";
+//main();

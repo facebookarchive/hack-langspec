@@ -31,4 +31,4 @@ that runs for several whole lines */
   var_dump($k);
 }
 
-require_once "../main.php";
+//main();

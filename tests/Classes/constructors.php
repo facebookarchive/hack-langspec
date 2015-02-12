@@ -130,4 +130,4 @@ function main(): void {
   echo $c2->p6 . "\n";	// can access public member; good
 }
 
-require_once "../main.php";
+//main();

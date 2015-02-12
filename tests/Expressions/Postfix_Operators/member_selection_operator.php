@@ -73,4 +73,4 @@ function main(): void {
   $k->prop->f();
 }
 
-require_once "../../main.php";
+//main();

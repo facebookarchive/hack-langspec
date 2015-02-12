@@ -29,4 +29,4 @@ function main(): void {
   var_dump($c);
 }
 
-require_once "../main.php";
+//main();

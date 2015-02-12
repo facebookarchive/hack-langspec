@@ -50,8 +50,8 @@ class E extends C implements J, K {
   use T;
 }
 
-function main(): void
+function main (): void
 {
 }
 
-require_once "../main.php";
+//main();

@@ -82,4 +82,4 @@ function main(): void {
   var_dump($obj4);
 }
 
-require_once "../main.php";
+//main();

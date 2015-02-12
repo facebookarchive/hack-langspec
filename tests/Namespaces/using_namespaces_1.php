@@ -30,4 +30,4 @@ function main(): void {
 //  echo "\$c2 = $c2\n";
 }
 
-require_once "../main.php";
+//main();

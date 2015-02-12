@@ -17,4 +17,4 @@ function main(): void {
   var_dump($x);
 }
 
-require_once "../../main.php";
+//main();

@@ -11,5 +11,5 @@ function main(): void {
 //	$c1 = new $name();
 }
 
-require_once "../../main.php";
+//main();
 
