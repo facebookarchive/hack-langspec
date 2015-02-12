@@ -114,6 +114,19 @@ function main(array<string> $argv): void {
   // If we are given a directory of md files to cross reference
   if (is_dir($md_file)) {
     $md_files = scandir($md_file);
+    // Keep only .md files
+    $md_files = array_filter($md_files, function($val) {
+                                          if (strpos($val, ".md") !== false) {
+                                            return $val;
+                                          }
+                                        });
+    // scandir only returns a list of the files with no path info
+    // so add the path info in $md_file via a callback to array_map
+    $md_files = array_map(function($val) use ($md_file) {
+                            return $md_file . $val;
+                          },
+                          scandir($md_file));
+
   } else {
     $md_files[0] = $md_file;
   }
@@ -129,7 +142,8 @@ function main(array<string> $argv): void {
   map_word_sections_to_markdown_sections($section_map_file, $toc_file);
   $section_map = get_section_map($section_map_file);
   foreach($md_files as $file) {
-    insert_cross_references($file, $section_map, $ref_link_text, $update_only);
+    insert_cross_references($file, $section_map, $ref_link_text,
+                            $update_only);
   }
 }
 

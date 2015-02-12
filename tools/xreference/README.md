@@ -23,8 +23,22 @@ location to that in the ToC.
 2. Then it uses our final CSV mapping to replace the Word section numbers
 with the numbers and GitHub anchor links.
 
-§11.7.5 => §11_7_5(#the-return-statement)
+`§11.7.5 => §11_7_5(#the-return-statement)`
 
 3. Optionally, the numbers text can be changed to a constant character string
 
-§11.7.5 => §§(#the-return-statement)
+`§11.7.5 => §§(#the-return-statement)`
+
+
+Here is an example on how to run it:
+
+```
+hhvm xreference.php -i ../../spec/00-specification-for-hack.md -m ../../spec/ -s section_map.csv -t §§
+```
+
+
+**NOTE** if you run this tool and see HHVM Notices like:
+
+> Notice: Undefined index: 10.17.2 in hack-langspec/tools/xreference/xreference.php on line 46
+
+That means the your markdown has in it a reference that doesn't exist in the section map, so something is wrong in one of those two files.

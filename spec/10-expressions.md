@@ -2312,8 +2312,8 @@ $fn2 = $fn1(10); $res = $fn2(7);  // result is 17
 </pre>
 
 *lambda-expression* is defined in §10.19;
-*simple-assignment-expression* is defined in §10.17.2; and
-*compound-assignment-expression* is defined in §10.17.4.
+*simple-assignment-expression* is defined in §10.20.2; and
+*compound-assignment-expression* is defined in §10.20.3.
 
 **Constraints**
 

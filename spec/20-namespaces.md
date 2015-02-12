@@ -55,7 +55,7 @@ with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`. The
     namespace  <i>namespace-name<sub>opt</sub>  compound-statement</i>
 </pre>
 
-*namespace-name* is defined in §9.3.4.2, and *compound-statement* is
+*namespace-name* is defined in §9.4.4.2, and *compound-statement* is
 defined in [§§](11-statements.md#compound-statements).
 
 **Constraints**

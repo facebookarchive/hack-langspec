@@ -183,7 +183,7 @@ class MyList implements MyCollection {
 *const-declaration* is defined in §16.5; *property-declaration* is
 defined in §16.6; *method-declaration* is defined in §16.7;
 *constructor-declaration* is defined in §16.8; and
-*destructor-declaration* is defined in §14.9.
+*destructor-declaration* is defined in §16.9.
 
 **Semantics**
 
