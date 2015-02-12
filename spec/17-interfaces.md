@@ -27,7 +27,7 @@ inherits all members from its *base interface(s)*.
     <i>interface-base-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
 </pre>
 
-*attribute-specification* is defined in §21.2; *name* and *qualified-name* are defined in §9.4.4.2; *generic-type-parameter-list* is defined in §14.2; and *interface-member-declarations* is defined in §17.3.
+*attribute-specification* is defined in [§§](21-attributes.md#attribute-specification); *name* and *qualified-name* are defined in [§§](09-lexical-structure.md#names); *generic-type-parameter-list* is defined in [§§](14-generic-types-methods-and-functions.md#type-parameters); and *interface-member-declarations* is defined in [§§](17-interfaces.md#interface-members).
 
 **Constraints**
 
@@ -87,8 +87,8 @@ processCollection(new MyQueue(…));
     <i>method-declaration</i>
 </pre>
 
-*requires-extends-clause* is defined in §18.3; *const-declaration* is defined in §16.5 and *method-declaration* is
-defined in §16.7.
+*requires-extends-clause* is defined in [§§](18-traits.md#trait-members); *const-declaration* is defined in [§§](16-classes.md#constants) and *method-declaration* is
+defined in [§§](16-classes.md#methods).
 
 **Constraints**
 
@@ -103,14 +103,14 @@ interfaces.
 An interface may contain the following members:
 
 * *require-extends-clauses* each of which requires the class implementing this interface to directly or indirectly extend the class type designated by *qualified-name*.
-* Constants – the constant values associated with the interface (§17.4).
-* Methods – placeholders for the computations and actions that can be performed by implementers of the interface (§17.5).
+* Constants – the constant values associated with the interface ([§§](17-interfaces.md#constants)).
+* Methods – placeholders for the computations and actions that can be performed by implementers of the interface ([§§](17-interfaces.md#methods)).
 
 ##Constants
 
 **Semantics**
 
-An interface constant is just like a class constant (§16.5), except that
+An interface constant is just like a class constant ([§§](16-classes.md#constants)), except that
 an interface constant cannot be overridden by a class that implements it
 nor by an interface that extends it.
 
@@ -132,7 +132,7 @@ Methods declared in an interface must not be declared `abstract`.
 
 **Semantics:**
 
-An interface method is just like an abstract method (§16.7).
+An interface method is just like an abstract method ([§§](16-classes.md#methods)).
 
 **Examples:**
 
@@ -171,7 +171,7 @@ Name	|   Purpose
 
 ###Interface `Awaitable`
 
-This interface supports asynchronous functions (§15.5) and await (§10.6.6). It is defined, as follows:
+This interface supports asynchronous functions ([§§](15-functions.md#asynchronous-functions)) and await ([§§](10-expressions.md#await-operator)). It is defined, as follows:
 
 ```
 interface Awaitable<T> {

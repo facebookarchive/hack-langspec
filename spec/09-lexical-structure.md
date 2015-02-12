@@ -92,19 +92,19 @@ script. Each script must conform to this production.
     <i>token</i>
 </pre>
 
-*comment* is defined in §9.4.2; *white-space* is defined in §9.4.3, and
-*token* is defined in §9.4.4.1.
+*comment* is defined in [§§](09-lexical-structure.md#comments); *white-space* is defined in [§§](09-lexical-structure.md#white-space), and
+*token* is defined in [§§](09-lexical-structure.md#general-1).
 
 **Semantics:**
 
 The basic elements of a script are comments, white space, and tokens.
 
 The lexical processing of a script involves the reduction of that script
-into a sequence of tokens (§9.4.4) that becomes the input to the
-syntactic analysis. Tokens can be separated by white space (§9.4.3) and
-delimited comments (§9.4.2).
+into a sequence of tokens ([§§](09-lexical-structure.md#tokens)) that becomes the input to the
+syntactic analysis. Tokens can be separated by white space ([§§](09-lexical-structure.md#white-space)) and
+delimited comments ([§§](09-lexical-structure.md#comments)).
 
-Apart from the exception noted in §9.3, lexical processing always results in the creation of the longest
+Apart from the exception noted in [§§](09-lexical-structure.md#grammar-ambiguities), lexical processing always results in the creation of the longest
 possible lexical element. (For example, `$a+++++$b` must be parsed as
 `$a++ ++ +$b`, which syntactically is invalid.)
 
@@ -151,15 +151,15 @@ in an embedded script, the trailing new line can be omitted. (Note: this
 allows for uses like `<?hh ... // ... ?>`.)
 
 A delimited comment can occur in any place in a script in which white
-space (§9.4.3) can occur. (For example;
+space ([§§](09-lexical-structure.md#white-space)) can occur. (For example;
 `/*...*/$c/*...*/=/*...*/567/*...*/;/*...*/` is parsed as `$c=567;`, and
 `$k = $i+++/*...*/++$j;` is parsed as `$k = $i+++ ++$j;`.)
 
 A number of single-line, so-called special comments are recognized by a 
 compiler; they are:
 
-* `// FALLTHROUGH` (§11.5.3)
-* `// strict (§4.1)`
+* `// FALLTHROUGH` ([§§](11-statements.md#the-switch-statement))
+* `// strict ([§§](04-basic-concepts.md#program-structure))`
 
 where horizontal white space is permitted between the `//` and the start of 
 the comment text.
@@ -187,7 +187,7 @@ new-line, space, and horizontal tab.
     Horizontal-tab character (U+0009)
 </pre>
 
-*new-line* is defined in §9.4.2.
+*new-line* is defined in [§§](09-lexical-structure.md#comments).
 
 **Semantics**
 
@@ -211,9 +211,9 @@ There are several kinds of source *token*s:
     <i>operator-or-punctuator</i>
 </pre>
 
-*variable-name* and *name* are defined in §9.4.4.2; *keyword* is defined
-in §9.4.4.3; *literal* is defined in §9.4.4.4.1; and
-*operator-or-punctuator* is defined in §9.4.4.5.
+*variable-name* and *name* are defined in [§§](09-lexical-structure.md#names); *keyword* is defined
+in [§§](09-lexical-structure.md#keywords); *literal* is defined in [§§](09-lexical-structure.md#general-2); and
+*operator-or-punctuator* is defined in [§§](09-lexical-structure.md#operators-and-punctuators).
 
 ####Names
 
@@ -253,21 +253,21 @@ in §9.4.4.3; *literal* is defined in §9.4.4.4.1; and
     N   O   P   Q   R   S   T   U   V   W   X   Y   Z
 </pre>
 
-*digit* is defined in §9.4.4.4.3
+*digit* is defined in [§§](09-lexical-structure.md#integer-literals)
 
 **Semantics:**
 
 Names are used to identify the following: constants ([§§](06-constants.md#general)), variables
-([§§](07-variables.md#general)), labels ([§§](11-statements.md#labeled-statements)), enumerated types (§13.2), functions (§15.3), classes (§16.2), class
-members (§16.3), interfaces (§17.2), traits (§18.1), type aliases (§5.21) namespaces (§20.1),
-and names in heredoc (§9.4.4.4.5.3) and nowdoc comments (§9.4.4.4.5.4); and attributes (§21).
+([§§](07-variables.md#general)), labels ([§§](11-statements.md#labeled-statements)), enumerated types ([§§](13-enums.md#enum-declarations)), functions ([§§](15-functions.md#function-definitions)), classes ([§§](16-classes.md#class-declarations)), class
+members ([§§](16-classes.md#class-members)), interfaces ([§§](17-interfaces.md#interface-declarations)), traits ([§§](18-traits.md#general)), type aliases ([§§](05-types.md#type-aliases)) namespaces ([§§](20-namespaces.md#general)),
+and names in heredoc ([§§](09-lexical-structure.md#heredoc-string-literals)) and nowdoc comments ([§§](09-lexical-structure.md#nowdoc-string-literals)); and attributes ([§§](21-attributes.md#attributes)).
 
 A *name* begins with an underscore (_), *name-nondigit*, or extended
 name character in the range U+007f– ** U+00ff. Subsequent characters can
 also include *digit*s. A *variable name* is a name with a leading
 dollar ($).
 
-Unless stated otherwise (§14.2, §15.2, §16.2, §18.3),
+Unless stated otherwise ([§§](14-generic-types-methods-and-functions.md#type-parameters), [§§](15-functions.md#function-calls), [§§](16-classes.md#class-declarations), [§§](18-traits.md#trait-members)),
 names are case-sensitive, and every character in a name is significant.
 
 Function and method names beginning with two underscores (__) are
@@ -311,7 +311,7 @@ Keywords are case-sensitive.
 
 Note: Strictly speaking, `false`, `null`, and `true` are not keywords; 
 however, they do have predefined meanings, and can be thought of as keywords.
-Likewise for the names of the intrinsics (§10.4.2.1).
+Likewise for the names of the intrinsics ([§§](10-expressions.md#general-2)).
 
 ####Literals
 
@@ -330,10 +330,10 @@ The source code representation of a value is called a *literal*.
     <i>null-literal</i>
 </pre>
 
-*boolean-literal* is defined in §9.4.4.4.2; *integer-literal* is defined
-in §9.4.4.4.3; *floating-literal* is defined in §9.4.4.4.4;
-*string-literal* is defined in §9.4.4.4.5; and *null-literal* is defined
-in §9.4.4.4.6.
+*boolean-literal* is defined in [§§](09-lexical-structure.md#boolean-literals); *integer-literal* is defined
+in [§§](09-lexical-structure.md#integer-literals); *floating-literal* is defined in [§§](09-lexical-structure.md#floating-point-literals);
+*string-literal* is defined in [§§](09-lexical-structure.md#string-literals); and *null-literal* is defined
+in [§§](09-lexical-structure.md#the-null-literal).
 
 #####Boolean Literals
 
@@ -464,7 +464,7 @@ $count = 10      // decimal 10
     <i>digit-sequence   digit</i>
 </pre>
 
-*digit* is defined in §9.4.4.4.3.
+*digit* is defined in [§§](09-lexical-structure.md#integer-literals).
 
 **Constraints**
 
@@ -494,10 +494,10 @@ $values = array(1.23, 3e12, 543.678E-23);
     <i>heredoc-string-literal</i>
     <i>nowdoc-string-literal</i>
 </pre>
-*single-quoted-string-literal* is defined in §9.4.4.4.5.1;
-*double-quoted-string-literal* is defined in §9.4.4.4.5.2;
-*heredoc-string-literal* is defined in §9.4.4.4.5.3; and
-*nowdoc-string-literal* is defined in §9.4.4.4.5.4.
+*single-quoted-string-literal* is defined in [§§](09-lexical-structure.md#single-quoted-string-literals);
+*double-quoted-string-literal* is defined in [§§](09-lexical-structure.md#double-quoted-string-literals);
+*heredoc-string-literal* is defined in [§§](09-lexical-structure.md#heredoc-string-literals); and
+*nowdoc-string-literal* is defined in [§§](09-lexical-structure.md#nowdoc-string-literals).
 
 Note: By conventional standards, calling *heredoc-string-literal*s (§)
 and *nowdoc-string-literal*s ([§§](#nowdoc-string-literals)) literals is a stretch, as
@@ -583,7 +583,7 @@ octal-digit
     \X  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
 </pre>
 
-*octal-digit* and *hexadecimal-digit* are defined in §9.4.4.4.3.
+*octal-digit* and *hexadecimal-digit* are defined in [§§](09-lexical-structure.md#integer-literals).
 
 **Semantics**
 
@@ -707,9 +707,9 @@ octal-digit
     \\   \$   \e   \f   \n   \r   \t   \v
 </pre>
 
-*name* is defined in §9.4.4.2; *new-line* is defined in §9.4.2; and
+*name* is defined in [§§](09-lexical-structure.md#names); *new-line* is defined in [§§](09-lexical-structure.md#comments); and
 *dq-octal-escape-sequence* and *dq-hexadecimal-escape-sequence* are
-defined in §9.4.4.4.5.2.
+defined in [§§](09-lexical-structure.md#double-quoted-string-literals).
 
 **Constraints**
 
@@ -729,7 +729,7 @@ character. Certain other (and sometimes non-printable) characters can
 also be expressed as escape sequences.
 
 A heredoc literal supports variable substitution as defined for
-double-quoted string literals (§9.4.4.4.5.2).
+double-quoted string literals ([§§](09-lexical-structure.md#double-quoted-string-literals)).
 
 A heredoc string literal is a c-constant ([§§](06-constants.md#general)) if it does not contain
 any variable substitution.
@@ -757,17 +757,17 @@ Some more text<
 </pre>
 
 *hd-start-identifier*, *hd-char-sequence*, and *hd-end-identifier* are
-defined in §9.4.4.4.5.3; and *new-line* is defined in §9.4.2.
+defined in [§§](09-lexical-structure.md#heredoc-string-literals); and *new-line* is defined in [§§](09-lexical-structure.md#comments).
 
 **Constraints**
 
 No white space is permitted between the start identifier and its
-enclosing single quotes ('). See also §9.4.4.4.5.3.
+enclosing single quotes ('). See also [§§](09-lexical-structure.md#heredoc-string-literals).
 
 **Semantics**
 
 A nowdoc string literal looks like a heredoc string literal
-(§9.4.4.4.5.3) except that in the former the start identifier name is
+([§§](09-lexical-structure.md#heredoc-string-literals)) except that in the former the start identifier name is
 enclosed in single quotes ('). The two forms of string literal have the
 same semantics and constraints except that a nowdoc string literal is
 not subject to variable substitution.

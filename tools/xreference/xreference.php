@@ -125,7 +125,7 @@ function main(array<string> $argv): void {
     $md_files = array_map(function($val) use ($md_file) {
                             return $md_file . $val;
                           },
-                          scandir($md_file));
+                          $md_files);
 
   } else {
     $md_files[0] = $md_file;

@@ -10,8 +10,8 @@
     <i>require-once-expression</i>
 </pre>
 
-*require-multiple-directive* is described in §12.2; and
-*require-once-expression* is described in §12.3.
+*require-multiple-directive* is described in [§§](12-script-inclusion.md#the-require-directive); and
+*require-once-expression* is described in [§§](12-script-inclusion.md#the-require_once-directive).
 
 **Semantics:**
 
@@ -53,11 +53,11 @@ configuration directive
   <i>expression</i>
 </pre>
 
-*expression* is defined in §10.21.
+*expression* is defined in [§§](10-expressions.md#yield-operator).
 
 **Constraints**
 
-*expression* must be a string that designates a file that exists, is accessible, and whose format is suitable for inclusion (that is, starts with a Hack start-tag (§4.1)).
+*expression* must be a string that designates a file that exists, is accessible, and whose format is suitable for inclusion (that is, starts with a Hack start-tag ([§§](04-basic-concepts.md#program-structure))).
 
 **Semantics:**
 
@@ -85,11 +85,11 @@ require ('Circle.php');
     require_once  <i>include-filename</i>
 </pre>
 
-*include-filename* is defined in §12.2.   
+*include-filename* is defined in [§§](12-script-inclusion.md#the-require-directive).   
 
 **Semantics:**
 
-This operator is identical to operator `require` (§12.2) except that in
+This operator is identical to operator `require` ([§§](12-script-inclusion.md#the-require-directive)) except that in
 the case of `require_once`, the include file is included once only during
 program execution.
 

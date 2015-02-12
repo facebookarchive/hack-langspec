@@ -16,11 +16,11 @@
     <i>try-statement</i>
 </pre>
 
-*function-static-declaration* is defined in §7.2.3; *compound-statement* is defined in [§§](#compound-statements); *labeled-statement* is defined
+*function-static-declaration* is defined in [§§](07-variables.md#function-statics); *compound-statement* is defined in [§§](#compound-statements); *labeled-statement* is defined
 in [§§](#labeled-statements); *expression-statement* is defined in [§§](#expression-statements);
 *selection-statement* is defined in [§§](#general-1); *iteration-statement* is
 defined in [§§](#general-2); *jump-statement* is defined in [§§](#general-3);
-and *try-statement* is defined in §11.8.
+and *try-statement* is defined in [§§](11-statements.md#the-try-statement).
 
 ##Compound Statements
 
@@ -78,7 +78,7 @@ while (condition)
 </pre>
 
 *statement* is defined in [§§](#general); and
-*expression* is defined in §10.21.
+*expression* is defined in [§§](10-expressions.md#yield-operator).
 
 **Constraints**
 
@@ -98,7 +98,7 @@ See the `switch` statement.
      <i>expression<sub>opt</sub></i>  ;
 </pre>
 
-*expression* is defined in §10.21.
+*expression* is defined in [§§](10-expressions.md#yield-operator).
 
 **Semantics**
 
@@ -159,7 +159,7 @@ selects among a set of statements.
     else   <i>statement</i>
 </pre>
 
-*expression* is defined in §10.21; and *statement* is defined in [§§](#general).
+*expression* is defined in [§§](10-expressions.md#yield-operator); and *statement* is defined in [§§](#general).
 
 **Constraints**
 
@@ -213,7 +213,7 @@ if (1) {
     switch  (  <i>expression</i>  )  <i>compound-statement</i>
 </pre>
 
-*expression* is defined in [§10.21; and *compound-statement* is defined in [§§](#compound-statements).
+*expression* is defined in [[§§](10-expressions.md#yield-operator); and *compound-statement* is defined in [§§](#compound-statements).
 
 **Constraints**
 
@@ -243,13 +243,13 @@ controlling expression, the first in lexical order is consider the
 match.
 
 An arbitrary number of statements can be associated with any case or
-default label. In the absence of a `break` statement (§11.7.3) at the end
+default label. In the absence of a `break` statement ([§§](11-statements.md#the-break-statement)) at the end
 of a set of such statements, control drops through into any following
 case or default label. Thus, if all cases and the default end in break
 and there are no duplicate-valued case labels, the order of case and
 default labels is insignificant.
 
-In no break *statement* is seen for a case or default before a subsequent case label, default label, or the switch-terminating `}` is encountered, an implementation might issue a warning. However, such a warning can be suppressed by placing a source line containing the special comment `// FALLTHROUGH` (§9.4.2), at the end of that case or default statement group.
+In no break *statement* is seen for a case or default before a subsequent case label, default label, or the switch-terminating `}` is encountered, an implementation might issue a warning. However, such a warning can be suppressed by placing a source line containing the special comment `// FALLTHROUGH` ([§§](09-lexical-structure.md#comments)), at the end of that case or default statement group.
 
 Case-label values can be runtime expressions, and the types of sibling
 case-label values need not be the same.
@@ -333,7 +333,7 @@ is defined in [§§](#the-foreach-statement).
     while  (  <i>expression</i>  )  <i>statement</i>
 </pre>
 
-*expresion* is defined in §10.21; and *statement* is defined in [§§](#general).
+*expresion* is defined in [§§](10-expressions.md#yield-operator); and *statement* is defined in [§§](#general).
 
 **Constraints**
 
@@ -374,7 +374,7 @@ while (true) {
     do  <i>statement</i>  while  (  <i>expression</i>  )  ;
 </pre>
 
-*statement* is defined in [§§](#general) and *expresion* is defined in §10.21.
+*statement* is defined in [§§](#general) and *expresion* is defined in [§§](10-expressions.md#yield-operator).
 
  (Note: There is no `:/enddo` alternate syntax.)
 
@@ -424,7 +424,7 @@ while ($i <= 10);
 </pre>
 
 *statement* is defined in [§§](#general)
-and *expression* is defined in §10.21.
+and *expression* is defined in [§§](10-expressions.md#yield-operator).
 
 Note: Unlike C/C++, Hack does not support a comma operator, per se.
 However, the syntax for the `for` statement has been extended from that of
@@ -508,7 +508,7 @@ for ($a = 100, $i = 1; ++$i, $i <= 10; ++$i, $a -= 10) {
 </pre>
 
 *statement* is defined in [§§](#general); *list-intrinsic* is defined in
-§10.4.2.6; and *expression* is defined in §10.21.
+[§§](10-expressions.md#list); and *expression* is defined in [§§](10-expressions.md#yield-operator).
 
 **Constraints**
 
@@ -652,16 +652,16 @@ for (;;) {
     return  <i>expression<sub>opt</sub></i>  ;
 </pre>
 
-*expression* is defined in §10.21. 
+*expression* is defined in [§§](10-expressions.md#yield-operator). 
 
 **Constraints**
 
 The *expression* in a *return-statement* in a generator function
 ([§§](10-expressions.md#yield-operator)) must be the literal `null`.
 
-A `return` statement must not occur in a finally-block (§11.8).
+A `return` statement must not occur in a finally-block ([§§](11-statements.md#the-try-statement)).
 
-For a non-async function, the type of *expression* (or any implicitly returned `null`) must be assignment-compatible with the return type of the enclosing function (§15.3). For an async function, the type of *expression* must be a subtype of the parameter type of the `Awaitable` *return*-type for the enclosing function.
+For a non-async function, the type of *expression* (or any implicitly returned `null`) must be assignment-compatible with the return type of the enclosing function ([§§](15-functions.md#function-definitions)). For an async function, the type of *expression* must be a subtype of the parameter type of the `Awaitable` *return*-type for the enclosing function.
 
 **Semantics**
 
@@ -731,11 +731,11 @@ enclosing function, `$a` need not actually be incremented.
     throw  <i>expression</i>  ;
 </pre>
 
-*expression* is defined in §10.21. 
+*expression* is defined in [§§](10-expressions.md#yield-operator). 
 
 **Constraints**
 
-The type of *expression* must be \Exception (§19.2) or a subclass of that
+The type of *expression* must be \Exception ([§§](19-exception-handling.md#class-exception)) or a subclass of that
 class.
 
 *expression* must be such that an alias to it can be created. 
@@ -744,7 +744,7 @@ class.
 
 A `throw` statement throws an exception immediately and unconditionally.
 Control never reaches the statement immediately following the throw. See
-§19.1 and [§§](#the-try-statement) for more details of throwing and catching exceptions,
+[§§](19-exception-handling.md#general) and [§§](#the-try-statement) for more details of throwing and catching exceptions,
 and how uncaught exceptions are dealt with.
 
 Rather than handle an exception, a catch-block may (re-)throw the same
@@ -782,12 +782,12 @@ throw new MyException;
 </pre>
 
 *compound-statement* is defined in [§§](#compound-statements) and
-*parameter-declaration-list* is defined in §15.3.
+*parameter-declaration-list* is defined in [§§](15-functions.md#function-definitions).
 
 **Constraints**
 
 In a *catch-clause*, *parameter-declaration-list* must contain only one
-parameter, and its type must be `\Exception` (§19.2) or a type derived from
+parameter, and its type must be `\Exception` ([§§](19-exception-handling.md#class-exception)) or a type derived from
 that class.
 
 **Semantics**

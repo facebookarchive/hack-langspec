@@ -23,10 +23,10 @@ Exception handling involves the use of the following keywords:
 * `try` ([§§](11-statements.md#the-try-statement)), which allows a *try-block* of code containing one or more possible exception generations, to be tried
 * `catch` ([§§](11-statements.md#the-try-statement)), which defines a handler for a specific type of exception thrown from the corresponding try-block or from some function it calls
 * `finally` ([§§](11-statements.md#the-try-statement)), which allows the *finally-block* of a try-block to be executed (to perform some cleanup, for example), whether or not an exception occurred within that try-block
-* `throw` (§11.7.5), which generates an exception of a given type, from a place called a *throw point*
+* `throw` ([§§](11-statements.md#the-throw-statement)), which generates an exception of a given type, from a place called a *throw point*
 
 When an exception is thrown, an *exception object* of type `\Exception`
-(§19.2), or of a subclass of that type, is created and made available to
+([§§](19-exception-handling.md#class-exception)), or of a subclass of that type, is created and made available to
 the first catch-handler that can catch it. Among other things, the
 exception object contains an *exception message* and an *exception
 code*, both of which can be used by a handler to decide how to handle
@@ -61,8 +61,8 @@ Class Exception {
 }
 ```
 
-For information about exception trace-back, see §19.3. For information
-about nested exceptions, see §19.3. 
+For information about exception trace-back, see [§§](19-exception-handling.md#tracing-exceptions). For information
+about nested exceptions, see [§§](19-exception-handling.md#tracing-exceptions). 
 
 The class members are defined below:
 
@@ -83,7 +83,7 @@ Name	| Purpose
 `getLine`	| Retrieves the source line number in the script where the exception was generated
 `getMessage`	| Retrieves the exception message
 `getPrevious`	| Retrieves the previous exception (as set by the constructor), if one exists; otherwise, `null`
-`getTrace`	| Retrieves the function stack trace information (see §19.3)
+`getTrace`	| Retrieves the function stack trace information (see [§§](19-exception-handling.md#tracing-exceptions))
 `getTraceAsString`	| Retrieves the function stack trace information formatted as a single string in some unspecified format
 
 ##Tracing Exceptions
@@ -149,14 +149,14 @@ See also, library functions `debug_backtrace` (§xx) and
 ##User-Defined Exception Classes
 
 An exception class is defined simply by having it extend class `\Exception`
-(§19.2). However, as that class's `__clone` method is declared `final`
-(§16.7), exception objects cannot be cloned.
+([§§](19-exception-handling.md#class-exception)). However, as that class's `__clone` method is declared `final`
+([§§](16-classes.md#methods)), exception objects cannot be cloned.
 
 When an exception class is defined, typically, its constructors call the
 parent class' constructor as their first operation to ensure the
 base-class part of the new object is initialized appropriately. They
 often also provide an augmented implementation of
 [`__toString()`](http://docs.hhvm.com/manual/en/language.oop5.magic.php)
-(§16.10.6).
+([§§](16-classes.md#method-__tostring)).
 
 

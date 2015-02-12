@@ -2,8 +2,8 @@
 
 ##General
 
-Hack's class model allows single inheritance only (§16.1) with contracts
-being enforced separately via interfaces (§17.1). A *trait* can provide
+Hack's class model allows single inheritance only ([§§](16-classes.md#general)) with contracts
+being enforced separately via interfaces ([§§](17-interfaces.md#general)). A *trait* can provide
 both implementation and contracts. Specifically, a class can inherit
 from a base class while getting implementation from one or more traits.
 At the same time, that class can implement contracts from one or more
@@ -15,7 +15,7 @@ state information that can be reused.
 Traits are designed to support classes; a trait cannot be instantiated
 directly.
 
-The members of a trait each have visibility (§16.1), which applies once
+The members of a trait each have visibility ([§§](16-classes.md#general)), which applies once
 they are used by a given class. The class that uses a trait can change
 the visibility of any of that trait's members, by either widening or
 narrowing that visibility. For example, a private trait member can be
@@ -58,8 +58,8 @@ that trait is used.
     <i>trait-name-list</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
 </pre>
 
-*attribute-specification* is defined in §21.2; *name* is defined in §9.4.4.2; *generic-type-parameter-list* is defined in
-§14.2; and *trait-member-declarations* is defined in §18.3.
+*attribute-specification* is defined in [§§](21-attributes.md#attribute-specification); *name* is defined in [§§](09-lexical-structure.md#names); *generic-type-parameter-list* is defined in
+[§§](14-generic-types-methods-and-functions.md#type-parameters); and *trait-member-declarations* is defined in [§§](18-traits.md#trait-members).
 
 **Constraints**
 
@@ -114,9 +114,9 @@ trait T4 {
     require  implements  <i>qualified-name</i>
 </pre>
 
-*property-declaration* is defined in §16.6; *method-declaration* is
-defined in §16.7; *constructor-declaration* is defined in §16.8; and
-*destructor-declaration* is defined in §16.9; and *qualified-name* is defined in §9.4.4.2.
+*property-declaration* is defined in [§§](16-classes.md#properties); *method-declaration* is
+defined in [§§](16-classes.md#methods); *constructor-declaration* is defined in [§§](16-classes.md#constructors); and
+*destructor-declaration* is defined in [§§](16-classes.md#destructors); and *qualified-name* is defined in [§§](09-lexical-structure.md#names).
 
 **Constraints**
 
@@ -134,10 +134,10 @@ A trait may contain the following members:
 
 * *require-extends-clauses* each of which requires the class using this trait to directly or indirectly extend the class type designated by *qualified-name*.
 * *require-implements-clauses* each of which requires the class using this trait to directly or indirectly implement the interface type designated by *qualified-name*.
-* Properties – the variables made available to the class in which the trait is used (§16.6).
-* Methods – the computations and actions that can be performed by the class in which the trait is used (§16.7, §16.10).
-* Constructor – the actions required to initialize an instance of the class in which the trait is used (§16.8)
-* Destructor – the actions to be performed when an instance of the class in which the trait is used is no longer needed (§16.9).
+* Properties – the variables made available to the class in which the trait is used ([§§](16-classes.md#properties)).
+* Methods – the computations and actions that can be performed by the class in which the trait is used ([§§](16-classes.md#methods), [§§](16-classes.md#methods-with-special-semantics)).
+* Constructor – the actions required to initialize an instance of the class in which the trait is used ([§§](16-classes.md#constructors))
+* Destructor – the actions to be performed when an instance of the class in which the trait is used is no longer needed ([§§](16-classes.md#destructors)).
 
 **Examples**
 

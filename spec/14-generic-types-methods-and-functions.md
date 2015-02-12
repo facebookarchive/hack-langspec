@@ -60,7 +60,7 @@ function maxVal<T>(T $p1, T $p2): T {
 
 The function returns the larger of the two arguments passed to it. In the case of the call `maxVal(10, 20)`, given that the type of both arguments is `int`, that is inferred as the type corresponding to the type parameter `T`, and an `int` value is returned. In the case of the call `maxVal(15.6, -20.78)`, `T` is inferred as `float`, while in `maxVal('red', 'green')`, `T` is inferred as `string`.
 
-Type parameters are discussed further in §14.2, and type arguments are discussed further in §14.4.
+Type parameters are discussed further in [§§](14-generic-types-methods-and-functions.md#type-parameters), and type arguments are discussed further in [§§](14-generic-types-methods-and-functions.md#type-arguments).
 
 ##Type Parameters
 
@@ -82,7 +82,7 @@ Type parameters are discussed further in §14.2, and type arguments are discusse
   as  <i>type-specifier</i>
 </pre>
 
-*name* is defined in §9.4.4.2 and *type-specifier* is described in §5.1.
+*name* is defined in [§§](09-lexical-structure.md#names) and *type-specifier* is described in [§§](05-types.md#general).
 
 **Constraints**
 
@@ -92,18 +92,18 @@ All *name*s must begin with the letter T.
 
 A *name* used in a *generic-type-parameter* of a method must not be the same as that used in a *generic-type-parameter* for an enclosing class, interface, or trait.
 
-*generic-type-parameter-variance* must not be present in a *function-definition* (§15.3). 
+*generic-type-parameter-variance* must not be present in a *function-definition* ([§§](15-functions.md#function-definitions)). 
 
 
 **Semantics**
 
 A type parameter is a placeholder for a type that is supplied when the generic type is instantiated or the generic method or function is invoked.
 
-A type parameter is a compile-time construct. At run-time, each type parameter is matched to a run-time type that was specified by a type argument. Therefore, a type declared with a type parameter will, at run-time, be a closed generic type (§14.5), and execution involving a type parameter uses the actual type that was supplied as the type argument for that type parameter.
+A type parameter is a compile-time construct. At run-time, each type parameter is matched to a run-time type that was specified by a type argument. Therefore, a type declared with a type parameter will, at run-time, be a closed generic type ([§§](14-generic-types-methods-and-functions.md#open-and-closed-generic-types)), and execution involving a type parameter uses the actual type that was supplied as the type argument for that type parameter.
 
 The *name* of a type parameter is visible from its point of definition through the end of the type, method, or function declaration on which it is defined. However, the *name* does not conflict with a *name* of the same spelling used in non-type contexts (such as the names of a class constant, an attribute, a method, an enum constant, or a namespace).
 
-Generic type constraints are discussed in §14.3.
+Generic type constraints are discussed in [§§](14-generic-types-methods-and-functions.md#type-constraints).
 
 *generic-type-parameter-variance* indicates the variance for that parameter: `+` for covariance, `- `for contravariance. If *generic-type-parameter-variance* is omitted, covariance is assumed.
 
@@ -136,7 +136,7 @@ function maxValue<T>(T $p1, T $p2): T { … }
 
 ##Type Constraints
 
-A *generic-type-constraint* (§14.2) indicates a requirement that a type must fulfill in order to be accepted as a type argument for a given type parameter. (For example, it might have to be a given class type or a subtype of that class type, or it might have to implement a given interface.)
+A *generic-type-constraint* ([§§](14-generic-types-methods-and-functions.md#type-parameters)) indicates a requirement that a type must fulfill in order to be accepted as a type argument for a given type parameter. (For example, it might have to be a given class type or a subtype of that class type, or it might have to implement a given interface.)
 
 Consider the following example in which class `Complex` has one type parameter, `T`, and that has a constraint:
 
@@ -189,15 +189,15 @@ echo "\$c3 + \$c4 = " . Complex::add($c3, $c4) . "\n";
   <i>name</i>
 </pre>
 
-*name* is defined in §9.4.4.2 and *type-specifier* is described in §5.1.
+*name* is defined in [§§](09-lexical-structure.md#names) and *type-specifier* is described in [§§](05-types.md#general).
 
 **Constraints**
 
-Each *generic-type-argument* must satisfy any constraint on the corresponding type parameter (§14.2).
+Each *generic-type-argument* must satisfy any constraint on the corresponding type parameter ([§§](14-generic-types-methods-and-functions.md#type-parameters)).
 
 **Semantics**
 
-A *generic-type-argument* can be a *type-specifier* or a *name* that is a *type-parameter*. Either way, at runtime, it is used in place of the corresponding type parameter. A *generic-type-argument* can either be open or closed (§14.5).
+A *generic-type-argument* can be a *type-specifier* or a *name* that is a *type-parameter*. Either way, at runtime, it is used in place of the corresponding type parameter. A *generic-type-argument* can either be open or closed ([§§](14-generic-types-methods-and-functions.md#open-and-closed-generic-types)).
 
 **Examples**
 
@@ -215,7 +215,7 @@ In this case, the type specifiers `ConstVector<mixed>`, `KeyedIterator<int, mixe
 
 ##Open and Closed Generic Types
 
-A type parameter is introduced in the corresponding type, method, or function declaration. All other uses of that type parameter occur in *type-specifiers* (§5.1) for the declaration of properties, function parameters, and function returns. Each such use can be classified as follows: An *open generic type* is a type that contains one or more type parameters; a *closed generic type* is a type that is not an open generic type.
+A type parameter is introduced in the corresponding type, method, or function declaration. All other uses of that type parameter occur in *type-specifiers* ([§§](05-types.md#general)) for the declaration of properties, function parameters, and function returns. Each such use can be classified as follows: An *open generic type* is a type that contains one or more type parameters; a *closed generic type* is a type that is not an open generic type.
 
 At run-time, all of the code within a generic type, method, or function declaration is executed in the context of the closed generic type that was created by applying type arguments to that generic declaration. Each type parameter within the generic type, method, or function is associated to a particular run-time type. The run-time processing of all statements and expressions always occurs with closed generic types, and open generic types occur only during compile-time processing.
 
@@ -248,9 +248,9 @@ the type specifiers `Traversable<Tu>`, `Tu`, and `Vector<Pair<mixed, Tu>>` are a
 
 ##Type Inferencing Revisited
 
-See §5.24 for an introduction to type inferencing.
+See [§§](05-types.md#type-inferencing) for an introduction to type inferencing.
 
-The examples in this section use the generic class `Stack` defined in §14.1.
+The examples in this section use the generic class `Stack` defined in [§§](14-generic-types-methods-and-functions.md#general).
 
 Some languages require the type arguments associated with a generic class to be specified at instantiation time, using syntax something like new `Stack<int>()` to create a `Stack` of `int`. However, that is **not** permitted in Hack. As such, what is being allocated here is a stack of unknown type. When method `push` is called with an int argument, the compiler infers that the stack can hold values of that type. Then when `push` is called with a `float` argument, the compiler infers that the stack can also hold values of that type. Values of yet other types can also be pushed.
 
@@ -278,6 +278,6 @@ function f2(): void {
 
 When the `Stack` is passed to function process, the `Stack`'s type is fixed as `Stack<int>`, and the subsequent attempt to push on a `float` is rejected.
 
-Note that a similar situation occurs with objects created from collection literals (§10.4.3) having no initial values, as in `Vector {}` and `Map {}`.
+Note that a similar situation occurs with objects created from collection literals ([§§](10-expressions.md#collection-literals)) having no initial values, as in `Vector {}` and `Map {}`.
 
 

@@ -18,7 +18,7 @@ $attrHelp = $rc->getAttribute('Help');
 
 The method `getAttribute` returns an array containing the values corresponding to an attribute, in lexical order of their specification. As the `Help` attribute on class `Widget` has only one value, a string, array element 0 is the string containing that string, in this case, a URL at which the corresponding help information can be found.
 
-A number of predefined attributes (§21.3) affect the way in which source code is compiled.
+A number of predefined attributes ([§§](21-attributes.md#predefined-attributes)) affect the way in which source code is compiled.
 
 ##Attribute Specification
 
@@ -42,13 +42,13 @@ A number of predefined attributes (§21.3) affect the way in which source code i
   <i>expression</i>
 </pre>
 
-*name* is defined in §9.4.4.2; and *expression* is defined in §10.21.
+*name* is defined in [§§](09-lexical-structure.md#names); and *expression* is defined in [§§](10-expressions.md#yield-operator).
 
 **Constraints**
 
 The *name*s in an *attribute-list* must be distinct.
 
-The *expression*s in an *attribute-list* must be *constant-expressions* (§10.22).
+The *expression*s in an *attribute-list* must be *constant-expressions* ([§§](10-expressions.md#constant-expressions)).
 
 **Semantics**
 
@@ -73,15 +73,15 @@ class C {
 ###General
 
 The following attributes are recognized by the compiler:
-* `__ConsistentConstruct` (§21.3.2)
-* `__Memoize` (§21.3.3)
-* `__Override` (§21.3.4)
+* `__ConsistentConstruct` ([§§](21-attributes.md#attribute-__consistentconstruct))
+* `__Memoize` ([§§](21-attributes.md#attribute-__memoize))
+* `__Override` ([§§](21-attributes.md#attribute-__override))
 
 ###Attribute `__ConsistentConstruct`
 
 This attribute can be applied to classes; it has no attribute values.
 
-When a method is overridden in a derived class, it must have exactly the same number, type, and order of parameters as that in the base class (§16.1). However, that is not the case for constructors (§16.8). Having a family of constructors with different signatures can cause a problem, however, especially when using `new static` (§10.5.3).
+When a method is overridden in a derived class, it must have exactly the same number, type, and order of parameters as that in the base class ([§§](16-classes.md#general)). However, that is not the case for constructors ([§§](16-classes.md#constructors)). Having a family of constructors with different signatures can cause a problem, however, especially when using `new static` ([§§](10-expressions.md#the-new-operator)).
 
 Consider the following example:
 
@@ -105,7 +105,7 @@ class Derived extends Base {
 $v2 = Derived::make();
 ```
 
-When `make` is called on a `Derived` object, `new static` results in `Derived`'s constructor being called knowing only the parameter list of `Base`'s constructor. As such, `Derived`'s constructor must either have the exact same signature as `Base`'s constructor, or the same plus an ellipses (§15.3) indicating a trailing variable-argument list.
+When `make` is called on a `Derived` object, `new static` results in `Derived`'s constructor being called knowing only the parameter list of `Base`'s constructor. As such, `Derived`'s constructor must either have the exact same signature as `Base`'s constructor, or the same plus an ellipses ([§§](15-functions.md#function-definitions)) indicating a trailing variable-argument list.
 
 ###Attribute `__Memoize`
 

@@ -3,32 +3,32 @@
 ##General
 
 A class is a type that may contain zero or more explicitly declared
-*members*, which can be any combination of *class constants* (§16.5);
-data members, called *properties* (§16.6); and function members, called
-*methods* (§16.7). (The ability to add methods to an
-instance at runtime is described in §16.4.) An object (often called an
+*members*, which can be any combination of *class constants* ([§§](16-classes.md#constants));
+data members, called *properties* ([§§](16-classes.md#properties)); and function members, called
+*methods* ([§§](16-classes.md#methods)). (The ability to add methods to an
+instance at runtime is described in [§§](16-classes.md#dynamic-methods).) An object (often called an
 *instance*) of a class type is created (i.e., *instantiated*) via the
-new operator (§10.5.3). 
+new operator ([§§](10-expressions.md#the-new-operator)). 
 
-Hack supports inheritance (§16.2), a means by which a *derived class* can
+Hack supports inheritance ([§§](16-classes.md#class-declarations)), a means by which a *derived class* can
 *extend* and specialize a single *base class*. However, unlike numerous
 other languages, classes in Hack are **not** all derived from a common
-ancestor. An *abstract* class (§16.2) is a base type intended for
+ancestor. An *abstract* class ([§§](16-classes.md#class-declarations)) is a base type intended for
 derivation, but which cannot be instantiated directly. A *concrete*
-class is a class that is not abstract. A *final* class (§16.2) is one
+class is a class that is not abstract. A *final* class ([§§](16-classes.md#class-declarations)) is one
 from which other classes cannot be derived.
 
-A class may *implement* one or more *interfaces* (§16.2, §17.1), each of
+A class may *implement* one or more *interfaces* ([§§](16-classes.md#class-declarations), [§§](17-interfaces.md#general)), each of
 which defines a contract.
 
-A class can *use* one or more traits (§18.1), which allows a class to
+A class can *use* one or more traits ([§§](18-traits.md#general)), which allows a class to
 have some of the benefits of multiple inheritance.
 
-A *constructor* (§16.8) is a special method that is used to initialize
+A *constructor* ([§§](16-classes.md#constructors)) is a special method that is used to initialize
 an instance immediately after it has been created. A *destructor*
-(§16.9) is a special method that is used to free resources when an
+([§§](16-classes.md#destructors)) is a special method that is used to free resources when an
 instance is no longer needed. Other special methods exist; they are
-described in (§16.10).
+described in ([§§](16-classes.md#methods-with-special-semantics)).
 
 The members of a class each have a default or explicitly declared
 *visibility*, which decides what source code can access them. A
@@ -42,7 +42,7 @@ that method's name, and its parameter types.
 
 Methods and properties from a base class can be *overridden* in a
 derived class by redeclaring them with the same signature defined in the
-base class. However, overriden constructors are exempt from this requirement (§16.8).
+base class. However, overriden constructors are exempt from this requirement ([§§](16-classes.md#constructors)).
 
 When an instance is allocated, new returns a handle that points to that
 object. As such, assignment of a handle does not copy the object itself.
@@ -68,8 +68,8 @@ object. As such, assignment of a handle does not copy the object itself.
     <i>class-interface-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
 </pre>
 
-*attribute-specification* is defined in §21.2; *name* is defined in §9.4.4.2; *generic-type-parameter-list* is defined in §14.2; qualified-name* is defined in §9.4.4.2; *class-member-declarations* is
-defined in §16.3; and *trait-use-clauses* is defined in §18.2.
+*attribute-specification* is defined in [§§](21-attributes.md#attribute-specification); *name* is defined in [§§](09-lexical-structure.md#names); *generic-type-parameter-list* is defined in [§§](14-generic-types-methods-and-functions.md#type-parameters); qualified-name* is defined in [§§](09-lexical-structure.md#names); *class-member-declarations* is
+defined in [§§](16-classes.md#class-members); and *trait-use-clauses* is defined in [§§](18-traits.md#trait-declarations).
 
 **Constraints**
 
@@ -85,7 +85,7 @@ have the modifier `abstract` must itself have an `abstract`
 not be `parent`, `self`, or `static`.
 
 A concrete class must implement each of the methods from all the
-interfaces (§17.1) specified in *class-interface-clause*, using the
+interfaces ([§§](17-interfaces.md#general)) specified in *class-interface-clause*, using the
 exact same signature as defined in each interface.
 
 *qualified-name* in *class-interface-clause* must name an interface
@@ -114,8 +114,8 @@ inherits all the members from the base class.
 The optional *class-interface-clause* specifies the one or more
 interfaces that are implemented by the class being defined.
 
-A class can use one or more traits via a *trait-use-clauses*; see §18.1
-and §18.2.
+A class can use one or more traits via a *trait-use-clauses*; see [§§](18-traits.md#general)
+and [§§](18-traits.md#trait-declarations).
 
 **Examples**
 
@@ -180,47 +180,47 @@ class MyList implements MyCollection {
      <i>destructor-declaration</i>
 </pre>
 
-*const-declaration* is defined in §16.5; *property-declaration* is
-defined in §16.6; *method-declaration* is defined in §16.7;
-*constructor-declaration* is defined in §16.8; and
-*destructor-declaration* is defined in §16.9.
+*const-declaration* is defined in [§§](16-classes.md#constants); *property-declaration* is
+defined in [§§](16-classes.md#properties); *method-declaration* is defined in [§§](16-classes.md#methods);
+*constructor-declaration* is defined in [§§](16-classes.md#constructors); and
+*destructor-declaration* is defined in [§§](16-classes.md#destructors).
 
 **Semantics**
 
 The members of a class are those specified by its
 *class-member-declaration*s, and the members inherited from its base
-class. (A class may also contain dynamic members, as described in §16.4.
+class. (A class may also contain dynamic members, as described in [§§](16-classes.md#dynamic-methods).
 However, as these have no compile-time names, they can only be accessed
 via method calls.)
 
 A class may contain the following members:
 
-* Constants – the constant values associated with the class (§16.5).
-* Properties – the variables of the class (§16.6).
-* Methods – the computations and actions that can be performed by the class (§16.7, §16.10).
-* Constructor – the actions required to initialize an instance of the class (§16.8)
-* Destructor – the actions to be performed when an instance of the class is no longer needed (§16.9).
+* Constants – the constant values associated with the class ([§§](16-classes.md#constants)).
+* Properties – the variables of the class ([§§](16-classes.md#properties)).
+* Methods – the computations and actions that can be performed by the class ([§§](16-classes.md#methods), [§§](16-classes.md#methods-with-special-semantics)).
+* Constructor – the actions required to initialize an instance of the class ([§§](16-classes.md#constructors))
+* Destructor – the actions to be performed when an instance of the class is no longer needed ([§§](16-classes.md#destructors)).
 
 A number of names are reserved for methods with special semantics, which
-user-defined versions must follow. These are described in (§16.10).
+user-defined versions must follow. These are described in ([§§](16-classes.md#methods-with-special-semantics)).
 
 Methods and properties can either be *static* or *instance* members. A
 static member is declared using `static`. An instance member is one that
 is not static. The name of a static method or property can never be used
 on its own; it must always be used as the right-hand operand of the
-scope resolution operator (§10.5.10). The name of an instance method or
+scope resolution operator ([§§](10-expressions.md#scope-resolution-operator)). The name of an instance method or
 property can never be used on its own; it must always be used as the
-right-hand operand of the member selection operator (§10.5.7).
+right-hand operand of the member selection operator ([§§](10-expressions.md#member-selection-operator)).
 
 Each instance of a class contains its own, unique set of instance
 properties of that class. An instance member is accessed via the
-`->` operator (§10.5.7). In contrast, a static property designates
+`->` operator ([§§](10-expressions.md#member-selection-operator)). In contrast, a static property designates
 exactly one VSlot for its class, which does not belong to any instance,
 per se. A static property exists whether or not any instances of that
-class exist. A static member is accessed via the `::` operator (§10.5.10).
+class exist. A static member is accessed via the `::` operator ([§§](10-expressions.md#scope-resolution-operator)).
 
 When any instance method operates on a given instance of a class, within
-that method that object can be accessed via `$this` (§10.4.1). As a
+that method that object can be accessed via `$this` ([§§](10-expressions.md#general-1)). As a
 static method does not operate on a specific instance, it has no `$this`.
 
 **Examples**
@@ -266,7 +266,7 @@ With a dynamic method, no method is really added to the
 instance or the class. However, the illusion of doing that is achieved
 by allowing a call to an instance or static method, but one which is not
 declared in that instance's class, to be accepted, intercepted by a
-method called `__call` (§16.10.2) or `__callStatic` (§16.10.3), and
+method called `__call` ([§§](16-classes.md#method-__call)) or `__callStatic` ([§§](16-classes.md#method-__callstatic)), and
 dealt with under program control. 
 
 Consider the following code fragment, in which class Widget has neither
@@ -305,13 +305,13 @@ Widget::__callStatic('sMethod', array(null, 1.234))
     <i>name</i>  =  <i>const-expression</i>
 </pre>
 
-*type-specifier* is defined in §5.1; *name* is defined in §9.4.4.2. *const-expression* is defined in §10.22.
+*type-specifier* is defined in [§§](05-types.md#general); *name* is defined in [§§](09-lexical-structure.md#names). *const-expression* is defined in [§§](10-expressions.md#constant-expressions).
 
 **Constraints**
 
 A *const-declaration* must be
-a *class constant* (inside a *class-definition*; §16.3) or be an
-*interface constant* (inside an *interface-definition;* §17.3).
+a *class constant* (inside a *class-definition*; [§§](16-classes.md#class-members)) or be an
+*interface constant* (inside an *interface-definition;* [§§](17-interfaces.md#interface-members)).
 
 A class constant must not have an explicit visibility specifier ([§§](#general)).
 
@@ -371,14 +371,14 @@ $col = Automobile::DEFAULT_COLOR;
     =  <i>expression</i>
 </pre>
 
-*type-specifier* is defined in (§5.1) *variable-name* is described in §9.4.4.2 and *constant-expression* is described
-in §10.21.
+*type-specifier* is defined in ([§§](05-types.md#general)) *variable-name* is described in [§§](09-lexical-structure.md#names) and *constant-expression* is described
+in [§§](10-expressions.md#yield-operator).
 
 **Semantics**
 
 A *property-declaration* defines an instance or static property called *variable-name*.
 
-The visibility modifiers are described in §16.1. The `static` modifier is described in §16.3.
+The visibility modifiers are described in [§§](16-classes.md#general). The `static` modifier is described in [§§](16-classes.md#class-members).
 
 The *property-initializer*s for instance properties are applied prior to
 the class's constructor being called. 
@@ -416,9 +416,9 @@ class Point {
     final
 </pre>
 
-*visibility-modifier* is described in §16.1; *static-modifier* is
-described in §16.3; and *function-deﬁnition* and
-*function-deﬁnition-header* are defined in §15.3.
+*visibility-modifier* is described in [§§](16-classes.md#general); *static-modifier* is
+described in [§§](16-classes.md#class-members); and *function-deﬁnition* and
+*function-deﬁnition-header* are defined in [§§](15-functions.md#function-definitions).
 
 **Constraints**
 
@@ -453,7 +453,7 @@ derived class.
 
 **Examples**
 
-See §16.3 for examples of instance and static methods. See §16.2 for
+See [§§](16-classes.md#class-members) for examples of instance and static methods. See [§§](16-classes.md#class-declarations) for
 examples of abstract methods and their subsequent definitions.
 
 ##Constructors
@@ -470,8 +470,8 @@ examples of abstract methods and their subsequent definitions.
     <i>visibility-modifier<sub>opt</sub></i>  <i>type-specifier</i>  <i>variable-name</i>  <i>default-argument-specifier<sub>opt</sub></i>
 </pre>
 
-*attribute-specification* is defined in §21.2; *visibility-modifier* is described in §16.6;
-*compound-statement* is described in §11.2; *type-specifier* is described in §5.1; *variable-name* is described in §9.4.4.2; and *default-argument-specifier* is described in §14.3.
+*attribute-specification* is defined in [§§](21-attributes.md#attribute-specification); *visibility-modifier* is described in [§§](16-classes.md#properties);
+*compound-statement* is described in [§§](11-statements.md#compound-statements); *type-specifier* is described in [§§](05-types.md#general); *variable-name* is described in [§§](09-lexical-structure.md#names); and *default-argument-specifier* is described in [§§](14-generic-types-methods-and-functions.md#type-constraints).
 
 **Constraints**
 
@@ -485,7 +485,7 @@ The *variable-name* in a *constructor-parameter-declaration* containing a *visib
 
 **Semantics**
 
-A constructor is a specially named instance method (§16.7) that is used
+A constructor is a specially named instance method ([§§](16-classes.md#methods)) that is used
 to initialize an instance immediately after it has been created. Any
 instance properties of nullable type not explicitly initialized by a constructor take on
 the value `null`.
@@ -494,7 +494,7 @@ Constructors can be overridden in a derived class by redeclaring them.
 However, an overriding constructor need not have the same signature as
 defined in the base class. 
 
-Constructors are called by *object-creation-expression*s (§10.5.3)
+Constructors are called by *object-creation-expression*s ([§§](10-expressions.md#the-new-operator))
 and from within other constructors.
 
 If classes in a derived-class hierarchy have constructors, it is the
@@ -544,7 +544,7 @@ class MyRangeException extends Exception {
     <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __destruct  ( )  <i>compound-statement</i>
 </pre>
 
-*attribute-specification* is defined in §21.2; *visibility-modifier* is described in §16.1 and *compound-statement* is
+*attribute-specification* is defined in [§§](21-attributes.md#attribute-specification); *visibility-modifier* is described in [§§](16-classes.md#general) and *compound-statement* is
 described in [§§](11-statements.md#compound-statements).
 
 **Constraints**
@@ -555,7 +555,7 @@ than that being overridden in the base class.
 
 **Semantics**
 
-A destructor is a special-named instance method (§16.7) that is used to
+A destructor is a special-named instance method ([§§](16-classes.md#methods)) that is used to
 free resources when an instance is no longer needed. The destructors for
 instances of all classes are called automatically once there are no
 handles pointing to those instances or in some unspecified order during
@@ -590,14 +590,14 @@ signature, and semantics:
 
 Method Name	| Description | Reference
 ------------|-------------|----------
-`__call` | Calls a dynamic method in the context of an instance-method call | §16.10.2
-`__callStatic` | Calls a dynamic method in the context of a static-method call | §16.10.3
-__clone |Typically used to make a deep copy ([§§](#)) of an object | §16.10.4
-`__construct` | A constructor | §16.8
-`__destruct` | A destructor | §16.9
-`__sleep` | Executed before serialization (§16.11) of an instance of this class | §16.10.5
-`__toString` | Returns a string representation of the instance on which it is called | §16.10.6
-`__wakeup` | Executed after unserialization (§16.11) of an instance of this class | §16.10.7
+`__call` | Calls a dynamic method in the context of an instance-method call | [§§](16-classes.md#method-__call)
+`__callStatic` | Calls a dynamic method in the context of a static-method call | [§§](16-classes.md#method-__callstatic)
+__clone |Typically used to make a deep copy ([§§](#)) of an object | [§§](16-classes.md#method-__clone)
+`__construct` | A constructor | [§§](16-classes.md#constructors)
+`__destruct` | A destructor | [§§](16-classes.md#destructors)
+`__sleep` | Executed before serialization ([§§](16-classes.md#serialization)) of an instance of this class | [§§](16-classes.md#method-__sleep)
+`__toString` | Returns a string representation of the instance on which it is called | [§§](16-classes.md#method-__tostring)
+`__wakeup` | Executed after unserialization ([§§](16-classes.md#serialization)) of an instance of this class | [§§](16-classes.md#method-__wakeup)
 
 ###Method `__call`
 
@@ -611,13 +611,13 @@ __clone |Typically used to make a deep copy ([§§](#)) of an object | §16.10.4
 
 **Semantics**
 
-This instance method is called to invoke the dynamic method (§16.4)
+This instance method is called to invoke the dynamic method ([§§](16-classes.md#dynamic-methods))
 designated by `$name` using the arguments specified by the elements of
 the array designated by `$arguments`. It can return any value deemed
 appropriate.
 
 Typically, `__call` is called implicitly, when the `->` operator
-(§10.5.7) is used to call an instance method that is not visible.
+([§§](10-expressions.md#member-selection-operator)) is used to call an instance method that is not visible.
 
 While a method-name source token has a prescribed syntax, there are no
 restrictions on the spelling of the dynamic method name designated by
@@ -649,13 +649,13 @@ $obj->iMethod(10, true, "abc"); // $obj->__call('iMethod', array(…))
 
 **Semantics**
 
-This static method is called to invoke the dynamic method (§16.4)
+This static method is called to invoke the dynamic method ([§§](16-classes.md#dynamic-methods))
 designated by `$name` using the arguments specified by the elements of
 the array designated by `$arguments`. It can return any value deemed
 appropriate.
 
 Typically, `__callStatic` is called implicitly, when the `::` operator
-(§10.5.10) is used to call a static method that is not visible. Now while
+([§§](10-expressions.md#scope-resolution-operator)) is used to call a static method that is not visible. Now while
 `__callStatic` can be called explicitly, the two scenarios do not
 necessarily produce the same result. Consider the expression `C::m(...)`,
 where `C` is a class and `m` is a static-method name. If `m` is the name of a
@@ -703,8 +703,8 @@ Widget::sMethod(null, 1.234); // Widget::__callStatic('sMethod', array(…))
 
 **Semantics**
 
-This instance method is called by the `clone` operator (§10.5.2),
-(typically) to make a deep copy (§4.4.6) of the current class component of the instance on which it is
+This instance method is called by the `clone` operator ([§§](10-expressions.md#the-clone-operator)),
+(typically) to make a deep copy ([§§](04-basic-concepts.md#cloning-objects)) of the current class component of the instance on which it is
 called. (Method `__clone` cannot be called directly by the program.) 
 
 Consider a class `Employee`, from which is derived a class `Manager`. Let us
@@ -775,8 +775,8 @@ public  function  __sleep  ( )  :  array&lt;string&gt;  <i>compound-statement</
 
 **Semantics**
 
-The instance methods `__sleep` and `__wakeup` (§16.10.7) support
-serialization (§16.11).
+The instance methods `__sleep` and `__wakeup` ([§§](16-classes.md#method-__wakeup)) support
+serialization ([§§](16-classes.md#serialization)).
 
 If a class has a `__sleep` method, the library function `serialize` (§xx)
 calls that method to find out which visible instance properties it
@@ -804,7 +804,7 @@ In the absence of methods `__sleep` and `__wakeup`, instances of derived
 classes can be serialized and unserialized. However, it is not possible
 to perform customize serialization using those methods for such
 instances. For that, a class must implement the interface `Serializable`
-(§17.6.5).
+([§§](17-interfaces.md#interface-iteratoraggregate)).
 
 **Examples**
 
@@ -896,8 +896,8 @@ public  function  __wakeup  ( )  : void  <i>compound-statement</i>
 
 **Semantics**
 
-The instance methods `__sleep` (§16.10.5) and `__wakeup` support
-serialization (§16.11).
+The instance methods `__sleep` ([§§](16-classes.md#method-__sleep)) and `__wakeup` support
+serialization ([§§](16-classes.md#serialization)).
 
 When the library function `unserialize` (§xx) is called on the string
 representation of an object, as created by the library function
@@ -916,7 +916,7 @@ by `__wakeup` when that `Point` is unserialized. This means that
 
 **Examples**
 
-See §16.10.5.
+See [§§](16-classes.md#method-__sleep).
 
 ##Serialization
 
@@ -934,8 +934,8 @@ wants to customize these processes, they can do so in one of two,
 mutually exclusive ways. The first approach is to define methods called
 `__sleep` and `__awake`, and have them get control before serialization
 and after serialization, respectively. For information on this approach,
-see §16.10.5 and §16.10.7. The second approach involves implementing
-the interface `Serializable` (§17.6.5) by defining two methods, `serialize`
+see [§§](16-classes.md#method-__sleep) and [§§](16-classes.md#method-__wakeup). The second approach involves implementing
+the interface `Serializable` ([§§](17-interfaces.md#interface-iteratoraggregate)) by defining two methods, `serialize`
 and `unserialize`.
 
 Consider a `Point` class that not only contains x- and y-coordinates, it
@@ -1087,14 +1087,14 @@ The class members are defined below:
 
 Name | Purpose
 ---- | -------
-`current` | An implementation of the instance method `Iterator::current `(§17.6.2).
-`key` | An implementation of the instance method `Iterator::key` (§17.6.2).
-next | An implementation of the instance method Iterator::next (§17.6.2).
-`rewind` | An implementation of the instance method `Iterator::rewind` (§17.6.2).
+`current` | An implementation of the instance method `Iterator::current `([§§](17-interfaces.md#interface-awaitable)).
+`key` | An implementation of the instance method `Iterator::key` ([§§](17-interfaces.md#interface-awaitable)).
+next | An implementation of the instance method Iterator::next ([§§](17-interfaces.md#interface-awaitable)).
+`rewind` | An implementation of the instance method `Iterator::rewind` ([§§](17-interfaces.md#interface-awaitable)).
 `send` | This instance method sends the value designated by `$value` to the generator as the result of the current [`yield`](http://us2.php.net/manual/en/ language.generators.syntax.php#control-structures.yield) expression, and resumes execution of the generator. `$value` is the return value of the [`yield`](http://us2.php.net/manual/en/language.generators.syntax.php#control-structures.yield) expression the generator is currently at. If the generator is not at a [`yield`](http://us2.php.net/manual/en/language.generators.syntax.php#control-structures.yield) expression when this method is called, it will first be let to advance to the first [`yield`](http://us2.php.net/manual/en/language.generators.syntax.php#control-structures.yield) expression before sending the value. This method returns the yielded value.
 `throw` | This instance method throws an exception into the generator and resumes execution of the generator. The behavior is as if the current [`yield`](http://us2.php.net/manual/en/language.generators.syntax.php#control-structures.yield) expression was replaced with throw `$exception`. If the generator is already closed when this method is invoked, the exception will be thrown in the caller's context instead. This method returns the yielded value.
-`valid` |  An implementation of the instance method `Iterator::valid` (§17.6.2).
-`__wakeup` | An implementation of the special instance method `__wakeup` (§16.10.7). As a generator can't be serialized, this method throws an exception of an unspecified type. It returns no value.
+`valid` |  An implementation of the instance method `Iterator::valid` ([§§](17-interfaces.md#interface-awaitable)).
+`__wakeup` | An implementation of the special instance method `__wakeup` ([§§](16-classes.md#method-__wakeup)). As a generator can't be serialized, this method throws an exception of an unspecified type. It returns no value.
 
 ###Class `__PHP_Incomplete_Class`
 

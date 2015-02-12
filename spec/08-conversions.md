@@ -4,7 +4,7 @@
 
 Some operators implicitly convert automatically the values of operands
 from one type to another. Explicit conversion is performed using the
-cast operator (§10.6.5).
+cast operator ([§§](10-expressions.md#cast-operator)).
 
 If an expression is converted to its own type, the type and value of the
 result are the same as the type and value of the expression.
@@ -87,7 +87,7 @@ If the source type is `int`, if the precision can be preserved the result
 value is the closest approximation to the source value; otherwise, the
 result is undefined.
 
-If the source is a numeric string or leading-numeric string (§5.6)
+If the source is a numeric string or leading-numeric string ([§§](05-types.md#the-string-type))
 having integer format, the string's integer value is treated as
 described above for a conversion from `int`. If the source is a numeric
 string or leading-numeric string having floating-point format, the
@@ -128,7 +128,7 @@ by the library function `sprintf` (§xx)).
 If the source value is `null`, the result value is an empty string.
 
 If the source is an object, then if that object's class has a
-`__toString` method (§16.10.6), the result value is the string returned
+`__toString` method ([§§](16-classes.md#method-__tostring)), the result value is the string returned
 by that method; otherwise, the conversion is invalid.
 
 If the source is a resource, the result value is an
@@ -166,11 +166,11 @@ There are no other implicit or explicit conversions.
 
 ##Converting to Resource Type
 
-The predefined resource-like constants (§5.13) `STDIN`, `STDOUT`, and 
+The predefined resource-like constants ([§§](05-types.md#interface-types)) `STDIN`, `STDOUT`, and 
 `STDERR`, can be converted implicitly to resource. No other non-resource type 
 can be so converted. No explicit conversions exist.
 
 ##Converting to Mixed Type
 
-Any type can be converted implicitly to mixed (§5.19). No explicit conversions
+Any type can be converted implicitly to mixed ([§§](05-types.md#nullable-types)). No explicit conversions
 exist.

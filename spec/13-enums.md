@@ -24,13 +24,13 @@ An *enumeration* consists of a set of zero or more named, constant values called
   <i>name</i>
 </pre>
 
-*name* is defined in §9.4.4.2; *type-specifier* is defined in §5.1; and *constant-expression* is defined in §10.22.
+*name* is defined in [§§](09-lexical-structure.md#names); *type-specifier* is defined in [§§](05-types.md#general); and *constant-expression* is defined in [§§](10-expressions.md#constant-expressions).
 
 **Constraints**
 
 The underlying type designated by *enum-base* must be able to represent all the values of the enumerators defined in the *enumerator-list*.
 
-If *enum-constraint-clause* is present, *enum-base* must be a subtype (§5.22) of *type-specifier*.
+If *enum-constraint-clause* is present, *enum-base* must be a subtype ([§§](05-types.md#supertypes-and-subtypes)) of *type-specifier*.
 
 Each *constant-expression* must have type `int` or `string`.
 
