@@ -18,11 +18,11 @@ function main(): void {
       if (preg_match($fixme_pattern, $test_contents) === 1) {
         continue;
       }
-      $fmain_pattern = "/function[ ]*main[ ]*\(\)/";
+      $fmain_pattern = "/function[ ]*main[ ]*\([\$\\A-Za-z0-9:\. ]*\)/";
       if (preg_match($fmain_pattern, $test_contents) === 1) {
+        $main_call_pattern = "/(\/\/)?[ ]*main[ ]*\(([\$\\A-Za-z0-9:\. ]*)\);/";
         $fixme_str = "/* HH_FIXME[1002] call to main in strict*/" . PHP_EOL
-                   . "main();";
-        $main_call_pattern = "/(\/\/)?[ ]*main\(\);/";
+                   . "main($2);"; // $2 is any parameters in $main_call_pattern
         if (preg_match($main_call_pattern, $test_contents) === 1) {
           $test_contents = preg_replace($main_call_pattern, $fixme_str,
                                         $test_contents);

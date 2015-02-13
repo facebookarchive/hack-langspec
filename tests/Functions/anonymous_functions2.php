@@ -28,5 +28,7 @@ function main(num $p1): void
 //  var_dump($doubler3($p1));
 }
 
-//main(10);
-//main(1.3);
+/* HH_FIXME[1002] call to main in strict*/
+main(10);
+/* HH_FIXME[1002] call to main in strict*/
+main(1.3);

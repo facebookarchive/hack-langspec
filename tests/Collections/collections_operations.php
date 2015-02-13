@@ -352,4 +352,5 @@ function main(int $idx): void {
   var_dump($s2);
 }
 
-//main(100);
+/* HH_FIXME[1002] call to main in strict*/
+main(100);

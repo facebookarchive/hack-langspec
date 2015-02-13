@@ -35,6 +35,8 @@ function main(E5 $p4): void {
 }
 */
 
-//main(E5::Ready);
-//main(E5::Started);
+/* HH_FIXME[1002] call to main in strict*/
+main(E5::Ready);
+/* HH_FIXME[1002] call to main in strict*/
+main(E5::Started);
 
