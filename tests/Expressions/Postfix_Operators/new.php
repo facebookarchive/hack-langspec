@@ -11,5 +11,6 @@ function main(): void {
 //	$c1 = new $name();
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();
 

@@ -12,4 +12,5 @@ function main(): void {
   \NS_MathLibrary\MathLibrary::tan(2.34);
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

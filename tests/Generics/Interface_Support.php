@@ -81,4 +81,5 @@ function main (): void
      "A is" : "A is **NOT**") . " a KeyedTraversable\n";
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

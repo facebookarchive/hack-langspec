@@ -117,4 +117,5 @@ function main(): void {
 //  fL1();	// see what happens when a default argument value is used
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

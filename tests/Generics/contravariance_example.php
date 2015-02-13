@@ -22,4 +22,5 @@ function main(): void {
   f(new C(new Cat()));
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

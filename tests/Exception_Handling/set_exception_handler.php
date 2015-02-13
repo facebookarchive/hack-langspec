@@ -69,4 +69,5 @@ function main(): void {
   echo "Beyond the call to f()\n";	// never gets here; script terminates after my handler ends
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

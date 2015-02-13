@@ -31,4 +31,5 @@ that runs for several whole lines */
   var_dump($k);
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

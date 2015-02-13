@@ -18,4 +18,5 @@ function main(): void {
   f5(fun('\NS_callable_typehint\hello'));
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

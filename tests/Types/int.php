@@ -25,4 +25,5 @@ function main(): void {
   var_dump(PHP_INT_MAX/2 + PHP_INT_MAX);	// converts to float
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

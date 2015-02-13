@@ -153,4 +153,5 @@ function main(): void {
   var_dump($doubler2(5.6));
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

@@ -66,4 +66,5 @@ function main(): void {
   var_dump($c4a <  $c4b);	// bool(false)
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

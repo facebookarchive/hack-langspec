@@ -8,4 +8,5 @@ function main(): void {
   \NS18\f();
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

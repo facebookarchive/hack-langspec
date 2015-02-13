@@ -19,4 +19,5 @@ function main(): void {
   $v();
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

@@ -15,4 +15,5 @@ function factorial(int $int): int {
   return ($int > 1) ? $int * factorial($int - 1) : $int;
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

@@ -90,4 +90,5 @@ function main(): void {
   $c->prop1 = 5; var_dump(++$c->prop1); var_dump(--$c->prop1); var_dump(--$c->prop1);
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

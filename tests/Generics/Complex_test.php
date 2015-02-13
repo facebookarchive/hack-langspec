@@ -41,4 +41,5 @@ function main(): void {
   var_dump($c5, $c6, \NS_Complex\Complex::add($c5, $c6), \NS_Complex\Complex::subtract($c5, $c6));
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

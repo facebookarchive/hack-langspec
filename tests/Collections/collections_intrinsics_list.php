@@ -68,4 +68,5 @@ function main(): void {
   print_r($v);
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

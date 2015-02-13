@@ -47,4 +47,5 @@ function main(): void {
 //  cf2();		// Ok
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

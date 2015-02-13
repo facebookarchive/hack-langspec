@@ -54,4 +54,5 @@ function main(): void {
 //  echo "maxVal('red', 'green') = " . maxVal('red', 'green') . "\n";
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

@@ -44,4 +44,5 @@ function main (): void {
   $c = new C();
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

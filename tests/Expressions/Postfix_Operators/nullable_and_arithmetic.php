@@ -100,4 +100,5 @@ It is incompatible with a nullable type
 //*/
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

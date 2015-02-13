@@ -17,4 +17,5 @@ function main(): void {
   var_dump(($z[0])[2]);		// redundant grouping parens
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

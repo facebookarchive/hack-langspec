@@ -36,4 +36,5 @@ function main(): void {
   $d4 = new D4();
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

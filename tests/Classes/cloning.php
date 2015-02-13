@@ -82,4 +82,5 @@ function main(): void {
   var_dump($obj4);
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

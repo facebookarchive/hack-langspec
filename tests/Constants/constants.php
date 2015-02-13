@@ -115,4 +115,5 @@ function main(): void {
 //  print_r(get_defined_constants());
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

@@ -60,4 +60,5 @@ function main(): \NS_Stack\Stack<num> {
 }
 
 //main2(new \NS_Stack\Stack(), new \NS_Stack\Stack());
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

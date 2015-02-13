@@ -71,4 +71,5 @@ function main(): void {
   $d->f10();
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

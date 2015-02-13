@@ -11,4 +11,5 @@ function main(): void {
   while ($i <= 10);
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

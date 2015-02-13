@@ -130,4 +130,5 @@ function main(): void {
   echo $c2->p6 . "\n";	// can access public member; good
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

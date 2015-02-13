@@ -10,4 +10,5 @@ function main(): void {
   echo "\$pj's maximum altitude: " . $pj->getMaxAltitude() . "\n";
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

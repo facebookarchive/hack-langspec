@@ -43,4 +43,5 @@ function main(): void {
   $funcTable[$i++]($i, ++$i, $i, $i = 12, --$i); // calls fy(2,3,3,12,11)
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

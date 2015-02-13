@@ -27,4 +27,5 @@ function main(): void {
   echo "$v3\n";
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

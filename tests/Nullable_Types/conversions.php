@@ -685,5 +685,6 @@ function main(): void {
   $c1 = new C1();
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();
 

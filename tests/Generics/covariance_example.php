@@ -22,4 +22,5 @@ function main(): void {
   g(array(new Cat(), new Cat(), new Animal()));	// arrays are covariant
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

@@ -66,4 +66,5 @@ function main(): void {
   var_dump(\NS_MyCollectionClasses\MyQueue::MAX_NUMBER_ITEMS);
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

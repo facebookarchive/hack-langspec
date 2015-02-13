@@ -31,4 +31,5 @@ function main(): void {
   var_dump($result);
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

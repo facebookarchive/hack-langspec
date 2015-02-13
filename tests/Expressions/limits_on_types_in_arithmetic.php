@@ -20,4 +20,5 @@ function main(): void {
   doit(10, 20, 3.45, null);
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

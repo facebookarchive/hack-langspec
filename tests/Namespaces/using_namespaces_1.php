@@ -30,4 +30,5 @@ function main(): void {
 //  echo "\$c2 = $c2\n";
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

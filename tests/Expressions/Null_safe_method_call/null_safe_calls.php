@@ -66,4 +66,5 @@ function main(): void {
   test(null);	// the expressions in the method argument list DO GET CALLED ANYWAY
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

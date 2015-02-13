@@ -50,4 +50,5 @@ function main(): void {
   \NS3\Sub1\f5();
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

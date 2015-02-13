@@ -109,4 +109,5 @@ function main(): void {
   var_dump($c->prop2);	// accesses public instance method
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

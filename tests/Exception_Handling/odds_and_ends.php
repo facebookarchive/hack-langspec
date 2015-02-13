@@ -57,4 +57,5 @@ function main(): void {
   echo "\$o->prop = " . $o->prop . "\n";
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

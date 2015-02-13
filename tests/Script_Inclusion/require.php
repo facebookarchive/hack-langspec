@@ -23,4 +23,5 @@ function main(): void {
   print_r(get_included_files());
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

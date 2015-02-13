@@ -231,4 +231,5 @@ function main(): void {
   \var_dump(W2::class);
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

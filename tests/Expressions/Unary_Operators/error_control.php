@@ -7,4 +7,5 @@ function main(): void {
   $infile = @fopen("NoSuchFile.txt", 'r');
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

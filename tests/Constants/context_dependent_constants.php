@@ -103,4 +103,5 @@ function main(): void {
   $datePlus1->xx();
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

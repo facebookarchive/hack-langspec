@@ -203,4 +203,5 @@ function main(): void {
   echo "pr_C1_void: "; var_dump($c2->pr_C1_void);
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

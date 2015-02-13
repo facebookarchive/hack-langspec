@@ -45,4 +45,5 @@ function main(): void {
   echo "is_null(resource): " . (is_null($infile) ? "True" : "False") . "\n";
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

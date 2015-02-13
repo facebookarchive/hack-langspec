@@ -59,4 +59,5 @@ function main(): void {
   f3(123, 3.14, 'Hello');	// $p1 is 123, $p2 is 3.14, $p3 is Hello
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

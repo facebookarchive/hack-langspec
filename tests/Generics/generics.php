@@ -108,4 +108,5 @@ function main(): void {
 //  $c2b = new C2b<int>();
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();

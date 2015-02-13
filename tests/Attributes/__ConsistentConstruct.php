@@ -103,4 +103,5 @@ echo "\n============== top-level function f1 =====================\n\n";
   var_dump($attr2);
 }
 
-//main();
+/* HH_FIXME[1002] call to main in strict*/
+main();
