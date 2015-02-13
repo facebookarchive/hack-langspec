@@ -7,10 +7,9 @@ domain worldwide under the CC0 Public Domain Dedication located at
 <http://creativecommons.org/publicdomain/zero/1.0/>. This specification
 is distributed without any warranty.
 
-(Initially written in 2014 by Facebook, Inc., February 2015)
+(Initially written by Facebook, Inc., February 2015)
 
 **Table of Contents**
-- [Specification for PHP](00-specification-for-php.md#specification-for-php)
 - [Introduction](01-introduction.md#introduction)
 - [Conformance](02-conformance.md#conformance)
 - [Terms and Definitions](03-terms-and-definitions.md#terms-and-definitions)
