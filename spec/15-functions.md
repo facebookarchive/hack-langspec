@@ -12,7 +12,7 @@ Any function containing `yield` ([§§](10-expressions.md#yield-operator)) is a 
 
 ##Function Calls
 
-A function is called via the function-call operator `()` (10.5.6).
+A function is called via the function-call operator `()` (10.5.6).
 
 ##Function Definitions
 
@@ -20,25 +20,25 @@ A function is called via the function-call operator `()` (10.5.6).
 
 <pre>
   <i>function-deﬁnition:</i>
-    <i>function-deﬁnition-header   compound-statement</i>
+    <i>function-deﬁnition-header  compound-statement</i>
 
   <i>function-deﬁnition-header:</i>
-    <i>attribute-specification<sub>opt</sub></i>  async<sub>opt</sub>  function <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  (  <i>parameter-list<sub>opt</sub></i>  ) :  <i>return-type</i>
+    <i>attribute-specification<sub>opt</sub></i>  async<sub>opt</sub>  function <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  (  <i>parameter-list<sub>opt</sub></i>  ) :  <i>return-type</i>
 
   <i>parameter-list:</i>
     ...
     <i>parameter-declaration-list</i>
-    <i>parameter-declaration-list</i>  ,  ...
+    <i>parameter-declaration-list</i>  ,  ...
 
   <i>parameter-declaration-list:</i>
     <i>parameter-declaration</i>
-    <i>parameter-declaration-list</i>  ,  <i>parameter-declaration</i>
+    <i>parameter-declaration-list</i>  ,  <i>parameter-declaration</i>
 
   <i>parameter-declaration:</i>
-    <i>attribute-specification<sub>opt</sub>  <i>type-specifier</i>  <i>variable-name  default-argument-specifier<sub>opt</sub></i>
+    <i>attribute-specification<sub>opt</sub></i>  <i>type-specifier</i>  <i>variable-name  default-argument-specifier<sub>opt</sub></i>
 
   <i>default-argument-specifier:</i>
-    =  <i>const-expression</i>
+    =  <i>const-expression</i>
 
   <i>return type:</i>
     <i>type-specifier</i>

@@ -67,7 +67,7 @@ Type parameters are discussed further in [§§](14-generic-types-methods-and-fun
 **Syntax**
 <pre>
 <i>generic-type-parameter-list:</i>
-  *lt;*  <i>generic-type-parameters</i>  &gt;
+  &lt;  <i>generic-type-parameters</i>  &gt;
 <i>generic-type-parameters:</i>
   <i>generic-type-parameter</i>
   <i>generic-type-parameters</i>  ,  <i>generic-type-parameter</i>

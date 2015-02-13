@@ -25,7 +25,7 @@ A number of predefined attributes ([§§](21-attributes.md#predefined-attributes
 **Syntax**
 <pre>
 <i>attribute-specification:</i>
-&lt;&lt;  <i>attribute-list</i>  &gt;&gt;
+  &lt;&lt;  <i>attribute-list</i>  &gt;&gt;
 <i>attribute-list:</i>
   <i>attribute</i>
   <i>attribute-list</i>  ,  <i>attribute</i>

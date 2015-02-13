@@ -26,8 +26,8 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
     <i>delimited-comment</i>
     
   <i>single-line-comment::</i>
-    //   <i>input-characters<sub>opt</sub></i>
-      #    <i>input-characters<sub>opt</sub></i>
+    //  <i>input-characters<sub>opt</sub></i>
+    #  <i>input-characters<sub>opt</sub></i>
 
   <i>input-characters::</i>
     <i>input-character</i>
@@ -111,13 +111,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
 
 <pre>
   <i>keyword::</i> one of
-    abstract   arraykey   as   async   break   case   catch   class   clone   
-    const   continue   default   do   echo   else   elseif   
-    enum   
-    extends   final   finally   for   foreach   function   if   implements   instanceof
-    insteadof   interface   mixed   namespace   new   newtype   num   private
-    protected   public   require   require_once   return   shape   static   switch
-    throw   trait   try   tuple   type   use   while   yield
+    abstract  arraykey  as  async  break  case  catch  class  clone  const  continue  default  do  echo  else  elseif  enum  extends  final  finally  for  foreach  function  if  implements  instanceof  insteadof  interface  mixed  namespace  new  newtype  num  private  protected  public  require  require_once  return  shape  static  switch  throw  trait  try  tuple  type  use  while  yield
 </pre>
 
 ###Literals
@@ -152,24 +146,24 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
 
     <i>decimal-literal::</i>
       <i>nonzero-digit</i>
-      <i>decimal-literal   digit</i>
+      <i>decimal-literal   digit</i>
 
     <i>octal-literal::</i>
       0
-      <i>octal-literal   octal-digit</i>
+      <i>octal-literal   octal-digit</i>
 
     <i>hexadecimal-literal::</i>
-      <i>hexadecimal-preﬁx   hexadecimal-digit</i>
-      <i>hexadecimal-literal   hexadecimal-digit</i>
+      <i>hexadecimal-prefix   hexadecimal-digit</i>
+      <i>hexadecimal-literal   hexadecimal-digit</i>
 
-    <i>hexadecimal-preﬁx:: one of</i>
+    <i>hexadecimal-prefix:: one of</i>
       0x  0X
 
     <i>binary-literal::</i>
-      <i>binary-preﬁx   binary-digit</i>
-      <i>binary-literal   binary-digit</i>
+      <i>binary-prefix   binary-digit</i>
+      <i>binary-literal   binary-digit</i>
 
-    <i>binary-preﬁx:: one of</i>
+    <i>binary-prefix:: one of</i>
       0b  0B
 
     <i>digit:: one of</i>
@@ -194,23 +188,23 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
 
 <pre>
   <i>ﬂoating-literal::</i>
-    <i>fractional-literal   exponent-part<sub>opt</sub></i>
-    <i>digit-sequence   exponent-part</i>
+    <i>fractional-literal   exponent-part<sub>opt</sub></i>
+    <i>digit-sequence   exponent-part</i>
 
   <i>fractional-literal::</i>
     <i>digit-sequence<sub>opt</sub></i> . <i>digit-sequence</i>
     <i>digit-sequence</i> .
 
   <i>exponent-part::</i>
-    e  <i>sign<sub>opt</sub>   digit-sequence</i>
-    E  <i>sign<sub>opt</sub>   digit-sequence</i>
+    e  <i>sign<sub>opt</sub>   digit-sequence</i>
+    E  <i>sign<sub>opt</sub>   digit-sequence</i>
 
   <i>sign:: one of</i>
     +  -
 
   <i>digit-sequence::</i>
     <i>digit</i>
-    <i>digit-sequence   digit</i>
+    <i>digit-sequence   digit</i>
 </pre>
 
 ####String Literals
@@ -223,30 +217,30 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
     <i>nowdoc-string-literal</i>
 
   <i>single-quoted-string-literal::</i>
-    b<i><sub>opt</sub></i>  ' <i>sq-char-sequence<sub>opt</sub></i>  '
+    b<i><sub>opt</sub></i>  ' <i>sq-char-sequence<sub>opt</sub></i>  '
 
   <i>sq-char-sequence::</i>
     <i>sq-char</i>
-    <i>sq-char-sequence   sq-char</i>
+    <i>sq-char-sequence   sq-char</i>
 
   <i>sq-char::</i>
     <i>sq-escape-sequence</i>
-    \<i><sub>opt</sub></i>   any member of the source character set except single-quote (') or backslash (\)
+    \<i><sub>opt</sub></i>   any member of the source character set except single-quote (') or backslash (\)
 
   <i>sq-escape-sequence:: one of</i>
     \'  \\
 
   <i>double-quoted-string-literal::</i>
-    b<i><sub>opt</sub></i>  " <i>dq-char-sequence<sub>opt</sub></i>  "
+    b<i><sub>opt</sub></i>  " <i>dq-char-sequence<sub>opt</sub></i>  "
 
   <i>dq-char-sequence::</i>
     <i>dq-char</i>
-    <i>dq-char-sequence   dq-char</i>
+    <i>dq-char-sequence   dq-char</i>
 
   <i>dq-char::</i>
     <i>dq-escape-sequence</i>
-    any member of the source character set except double-quote (") or backslash (\)
-    \  any member of the source character set except "\$efnrtvxX or
+    any member of the source character set except double-quote (") or backslash (\)
+    \  any member of the source character set except "\$efnrtvxX or
 octal-digit
 
   <i>dq-escape-sequence::</i>
@@ -263,11 +257,11 @@ octal-digit
     \   <i>octal-digit   octal-digit   octal-digit</i>
 
   <i>dq-hexadecimal-escape-sequence::</i>
-    \x  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
-    \X  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
+    \x  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
+    \X  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
 
   <i>heredoc-string-literal::</i>
-    &lt;&lt;&lt; <i>hd-start-identifier   new-line   hd-char-sequence<sub>opt</sub>  new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
+    &lt;&lt;&lt; <i>hd-start-identifier   new-line   hd-char-sequence<sub>opt</sub>  new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
 
   <i>hd-start-identifier::</i>
     <i>name</i>
@@ -277,11 +271,11 @@ octal-digit
 
   <i>hd-char-sequence::</i>
     <i>hd-char</i>
-    <i>hd-char-sequence   hd-char</i>
+    <i>hd-char-sequence   hd-char</i>
 
   <i>hd-char::</i>
     <i>hd-escape-sequence</i>
-    any member of the source character set except backslash (\)
+    any member of the source character set except backslash (\)
     \  any member of the source character set except \$efnrtvxX or
 octal-digit
 
@@ -295,7 +289,7 @@ octal-digit
 
 
   <i>nowdoc-string-literal::</i>
-    &lt;&lt;&lt; '  <i>hd-start-identifier</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>     
+    &lt;&lt;&lt; '  <i>hd-start-identifier</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>     
 </pre>
 
 ####The Null Literal
@@ -480,7 +474,7 @@ octal-digit
     <i>tuple-literal</i>
     <i>shape-literal</i>
     <i>anonymous-function-creation-expression</i>
-    (  <i>expression</i>  )
+    (  <i>expression</i>  )
     $this
 
   <i>intrinsic:</i>
@@ -491,7 +485,7 @@ octal-digit
     <i>list-intrinsic</i>
 
   <i>array-intrinsic:</i>
-    array ( <i>array-initializer<sub>opt</sub></i>  )
+    array ( <i>array-initializer<sub>opt</sub></i>  )
 
   <i>echo-intrinsic:</i>
     echo  <i>expression</i>
@@ -499,19 +493,19 @@ octal-digit
     echo  <i>expression-list-two-or-more</i>
 
   <i>expression-list-two-or-more:</i>
-    <i>expression</i>  ,  <i>expression</i>
-    <i>expression-list-two-or-more</i>  ,  <i>expression</i>
+    <i>expression</i>  ,  <i>expression</i>
+    <i>expression-list-two-or-more</i>  ,  <i>expression</i>
 
   <i>exit-intrinsic:</i>
     exit  <i>expression<sub>opt</sub></i>
     exit  (  <i>expression<sub>opt</sub></i>  )
 
   <i>invariant-intrinsic:</i>
-    invariant  (  <i>condition</i>  ,  <i>format</i>  )
-    invariant  (  <i>condition</i>  ,  <i>format</i>  ,  <i>values</i>  )
+    invariant  (  <i>condition</i>  ,  <i>format</i>  )
+    invariant  (  <i>condition</i>  ,  <i>format</i>  ,  <i>values</i>  )
 
   <i>list-intrinsic:</i>
-    list  (  <i>list-expression-list<sub>opt</sub></i>  )
+    list  (  <i>list-expression-list<sub>opt</sub></i>  )
 
   <i>list-expression-list:</i>
     <i>expression</i>
@@ -554,11 +548,11 @@ octal-digit
     <i>expression-list-one-or-more</i>  ,  <i>expression</i>
 
   <i>shape-literal:</i>
-    <i>shape  (  <i>field-initializer-list<sub>opt</sub></i>  )
+    <i>shape</i>  (  <i>field-initializer-list<sub>opt</sub></i>  )
 
   <i>field-initializer-list:</i>
     <i>field-initializer</i>
-    <i>field-initializer-list  </i>  ,  <i>field-initializer</i>
+    <i>field-initializer-list</i>  ,  <i>field-initializer</i>
 
   <i>field-initializer:</i>
     <i>single-quoted-string-literal</i>  =>  <i>expression</i>
@@ -566,11 +560,11 @@ octal-digit
     <i>qualified-name</i>  =>  <i>expression</i>
 
   <i>anonymous-function-creation-expression:</i>
-    async<sub>opt</sub>  function  (  <i>anonymous-function-parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>  <i>anonymous-function-use-clause<sub>opt</sub></i>  <i>compound-statement</i>
+    async<sub>opt</sub>  function  (  <i>anonymous-function-parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>  <i>anonymous-function-use-clause<sub>opt</sub></i>  <i>compound-statement</i>
 
   <i>anonymous-function-parameter-declaration-list:</i>
     <i>anonymous-function-parameter-declaration</i>
-    <i>anonymous-function-parameter-declaration-list  </i>  ,  <i>anonymous-function-parameter-declaration</i>
+    <i>anonymous-function-parameter-declaration-list</i>  ,  <i>anonymous-function-parameter-declaration</i>
 
   <i>anonymous-function-parameter-declaration:</i>
     <i>attribute-specification<sub>opt</sub>  type-specifier<sub>opt</sub> variable-name  default-argument-specifier<sub>opt</sub></i>
@@ -579,17 +573,17 @@ octal-digit
     : <i>type-specifier</i>
 
   <i>anonymous-function-use-clause:</i>
-    use  (  <i>use-variable-name-list</i>  )
+    use  (  <i>use-variable-name-list</i>  )
 
   <i>use-variable-name-list:</i>
     <i>variable-name</i>
-    <i>use-variable-name-list</i>  ,  <i>variable-name</i>             
+    <i>use-variable-name-list</i>  ,  <i>variable-name</i>             
 </pre>
 
 ####Postfix Operators
 
 <pre>
-  <i>postﬁx-expression:</i>
+  <i>postfix-expression:</i>
     <i>primary-expression</i>
     <i>clone-expression</i>
     <i>object-creation-expression</i>
@@ -608,26 +602,26 @@ octal-digit
     clone  <i>expression</i>
 
   <i>object-creation-expression:</i>
-    new  <i>class-type-designator</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
+    new  <i>class-type-designator</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>class-type-designator:</i>
     static
     <i>qualified-name</i>
 
   <i>array-creation-expression:</i>
-    array  (  <i>array-initializer<sub>opt</sub></i>  )
+    array  (  <i>array-initializer<sub>opt</sub></i>  )
     [ <i>array-initializer<sub>opt</sub></i> ]
 
   <i>array-initializer:</i>
-    <i>array-initializer-list</i>  ,<sub>opt</sub>
+    <i>array-initializer-list</i>  ,<sub>opt</sub>
 
   <i>array-initializer-list:</i>
     <i>array-element-initializer</i>
-    <i>array-element-initializer  ,  array-initializer-list</i>
+    <i>array-element-initializer  ,  array-initializer-list</i>
 
   <i>array-element-initializer:</i>
     <i>element-value</i>
-    element-key  =>  <i>element-value</i>
+    element-key  =>  <i>element-value</i>
 
   <i>element-key:</i>
     <i>expression</i>
@@ -636,35 +630,35 @@ octal-digit
     <i>expression</i>
 
   <i>subscript-expression:</i>
-    <i>postﬁx-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
-    <i>postﬁx-expression</i>  {  <i>expression<sub>opt</sub></i>  }   <b>[Deprecated form]</b>
+    <i>postfix-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
+    <i>postfix-expression</i>  {  <i>expression<sub>opt</sub></i>  }   <b>[Deprecated form]</b>
 
   <i>function-call-expression:</i>
-    <i>postﬁx-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
+    <i>postfix-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>argument-expression-list:</i>
     <i>assignment-expression</i>
-    <i>argument-expression-list</i>  ,  <i>assignment-expression</i>
+    <i>argument-expression-list</i>  ,  <i>assignment-expression</i>
 
   <i>member-selection-expression:</i>
-    <i>postﬁx-expression</i>  ->  <i>member-selection-designator</i>
+    <i>postfix-expression</i>  ->  <i>member-selection-designator</i>
 
   <i>member-selection-designator:</i>
     <i>name</i>
     <i>expression</i>
 
   <i>null-safe-member-selection-expression:</i>
-    <i>postﬁx-expression</i>  ?->  <i>name</i>
+    <i>postfix-expression</i>  ?->  <i>name</i>
 
   <i>postfix-increment-expression:</i>
     <i>unary-expression</i>  ++
 
   <i>postfix-decrement-expression:</i>
-    <i>unary-expression</i>  --
+    <i>unary-expression</i>  --
 
   <i>scope-resolution-expression:</i>
-    <i>scope-resolution-qualifier</i>  ::  <i>name</i>
-    <i>scope-resolution-qualifier</i>  ::  <i>class</i>
+    <i>scope-resolution-qualifier</i>  ::  <i>name</i>
+    <i>scope-resolution-qualifier</i>  ::  <i>class</i>
 
   <i>scope-resolution-qualifier:</i>
     <i>qualified-name</i>
@@ -673,7 +667,7 @@ octal-digit
     static
    
   <i>exponentiation-expression:</i>
-    <i>expression  **  expression</i>                   
+    <i>expression  **  expression</i>                   
 </pre>
 
 ####Unary Operators
@@ -704,7 +698,7 @@ octal-digit
     @  <i>expression</i>
 
   <i>cast-expression:</i>
-    (  <i>cast-type</i>  ) <i>unary-expression</i>
+    (  <i>cast-type</i>  ) <i>unary-expression</i>
 
   <i>cast-type: one of</i>
     bool  int  float  string
@@ -719,7 +713,7 @@ octal-digit
 <pre>
   <i>instanceof-expression:</i>
     <i>unary-expression</i>
-    <i>instanceof-subject</i>  instanceof   <i>instanceof-type-designator</i>
+    <i>instanceof-subject</i>  instanceof   <i>instanceof-type-designator</i>
 
   <i>instanceof-subject:</i>
     <i>expression</i>
@@ -733,9 +727,9 @@ octal-digit
 <pre>
   <i>multiplicative-expression:</i>
     <i>instanceof-expression</i>
-    <i>multiplicative-expression</i>  *  <i>instanceof-expression</i>
-    <i>multiplicative-expression</i>  /  <i>instanceof-expression</i>
-    <i>multiplicative-expression</i>  %  <i>instanceof-expression</i>
+    <i>multiplicative-expression</i>  *  <i>instanceof-expression</i>
+    <i>multiplicative-expression</i>  /  <i>instanceof-expression</i>
+    <i>multiplicative-expression</i>  %  <i>instanceof-expression</i>
 </pre>
 
 ####Additive Operators
@@ -743,9 +737,9 @@ octal-digit
 <pre>
   <i>additive-expression:</i>
     <i>multiplicative-expression</i>
-    <i>additive-expression</i>  +  <i>multiplicative-expression</i>
-    <i>additive-expression</i>  -  <i>multiplicative-expression</i>
-    <i>additive-expression</i>  .  <i>multiplicative-expression</i>
+    <i>additive-expression</i>  +  <i>multiplicative-expression</i>
+    <i>additive-expression</i>  -  <i>multiplicative-expression</i>
+    <i>additive-expression</i>  .  <i>multiplicative-expression</i>
 </pre>
 
 ####Bitwise Shift Operators
@@ -753,8 +747,8 @@ octal-digit
 <pre>
   <i>shift-expression:</i>
     <i>additive-expression</i>
-    <i>shift-expression</i>  &lt;&lt;  <i>additive-expression</i>
-    <i>shift-expression</i>  &gt;&gt;  <i>additive-expression</i>
+    <i>shift-expression</i>  &lt;&lt;  <i>additive-expression</i>
+    <i>shift-expression</i>  &gt;&gt;  <i>additive-expression</i>
 </pre>
 
 ####Relational Operators
@@ -762,10 +756,10 @@ octal-digit
 <pre>
   <i>relational-expression:</i>
     <i>shift-expression</i>
-    <i>relational-expression</i>  &lt;   <i>shift-expression</i>
-    <i>relational-expression</i>  &gt;   <i>shift-expression</i>
-    <i>relational-expression</i>  &lt;=  <i>shift-expression</i>
-    <i>relational-expression</i>  &gt;=  <i>shift-expression</i>
+    <i>relational-expression</i>  &lt;   <i>shift-expression</i>
+    <i>relational-expression</i>  &gt;   <i>shift-expression</i>
+    <i>relational-expression</i>  &lt;=  <i>shift-expression</i>
+    <i>relational-expression</i>  &gt;=  <i>shift-expression</i>
 </pre>
 
 ####Equality Operators
@@ -773,10 +767,10 @@ octal-digit
 <pre>
   <i>equality-expression:</i>
     <i>relational-expression</i>
-    <i>equality-expression</i>  ==  <i>relational-expression</i>
-    <i>equality-expression</i>  !=  <i>relational-expression</i>
-    <i>equality-expression</i>  ===  <i>relational-expression</i>
-    <i>equality-expression</i>  !==  <i>relational-expression</i>
+    <i>equality-expression</i>  ==  <i>relational-expression</i>
+    <i>equality-expression</i>  !=  <i>relational-expression</i>
+    <i>equality-expression</i>  ===  <i>relational-expression</i>
+    <i>equality-expression</i>  !==  <i>relational-expression</i>
 </pre>
 
 ####Bitwise Logical Operators
@@ -784,15 +778,15 @@ octal-digit
 <pre>
   <i>bitwise-AND-expression:</i>
     <i>equality-expression</i>
-    <i>bit-wise-AND-expression</i>  &amp;  <i>equality-expression</i>
+    <i>bit-wise-AND-expression</i>  &amp;  <i>equality-expression</i>
 
   <i>bitwise-exc-OR-expression:</i>
     <i>bitwise-AND-expression</i>
-    <i>bitwise-exc-OR-expression</i>  ^   <i>bitwise-AND-expression</i>
+    <i>bitwise-exc-OR-expression</i>  ^   <i>bitwise-AND-expression</i>
     
   <i>bitwise-inc-OR-expression:</i>
     <i>bitwise-exc-OR-expression</i>
-    <i>bitwise-inc-OR-expression</i>  |  <i>bitwise-exc-OR-expression</i>
+    <i>bitwise-inc-OR-expression</i>  |  <i>bitwise-exc-OR-expression</i>
 </pre>
 
 ####Logical Operators
@@ -800,7 +794,7 @@ octal-digit
 <pre>
   <i>logical-AND-expression:</i>
     <i>bitwise-inc-OR-expression</i>
-    <i>logical-AND-expression</i>  &amp;&amp;  <i>bitwise-inc-OR-expression</i>
+    <i>logical-AND-expression</i>  &amp;&amp;  <i>bitwise-inc-OR-expression</i>
 
   <i>logical-inc-OR-expression:</i>
     <i>logical-AND-expression</i>
@@ -812,7 +806,7 @@ octal-digit
 <pre>
   <i>conditional-expression:</i>
     <i>logical-inc-OR-expression</i>
-    <i>logical-inc-OR-expression</i>  ?  <i>expression<sub>opt</sub></i>  :  <i>conditional-expression</i>
+    <i>logical-inc-OR-expression</i>  ?  <i>expression<sub>opt</sub></i>  :  <i>conditional-expression</i>
 </pre>
 
 ####Lambda Expressions
@@ -840,13 +834,13 @@ octal-digit
     <i>compound-assignment-expression</i>
 
   <i>simple-assignment-expression:</i>
-    <i>unary-expression</i>  =  <i>assignment-expression</i>
+    <i>unary-expression</i>  =  <i>assignment-expression</i>
     
   <i>byref-assignment-expression:</i>
-    <i>unary-expression</i>  =  &  <i>assignment-expression</i>
+    <i>unary-expression</i>  =  &  <i>assignment-expression</i>
     
   <i>compound-assignment-expression:</i>
-    <i>unary-expression   compound-assignment-operator   assignment-expression</i>
+    <i>unary-expression   compound-assignment-operator   assignment-expression</i>
 
   <i>compound-assignment-operator: one of</i>
     **=  *=  /=  %=  +=  -=  .=  &lt;&lt;=  >>=  &amp;=  ^=  |=
@@ -857,7 +851,7 @@ octal-digit
 <pre>
   <i>expression:</i>
     <i>assignment-expression</i>
-    yield  <i>array-element-initializer</i>
+    yield  <i>array-element-initializer</i>
 </pre>
 
 ####Constant Expressions
@@ -898,7 +892,7 @@ octal-digit
 
   <i>statement-list:</i>
     <i>statement</i>
-    <i>statement-list   statement</i>
+    <i>statement-list   statement</i>
 </pre>
 
 ####Labeled Statements
@@ -939,7 +933,7 @@ octal-digit
     else   <i>statement</i>
 
   <i>switch-statement:</i>
-    switch  (  <i>expression</i>  )  <i>compound-statement</i>     
+    switch  (  <i>expression</i>  )  <i>compound-statement</i>     
 </pre>
 
 ####Iteration Statements
@@ -952,10 +946,10 @@ octal-digit
     <i>foreach-statement</i>
 
   <i>while-statement:</i>
-    while  (  <i>expression</i>  )  <i>statement</i>
+    while  (  <i>expression</i>  )  <i>statement</i>
     
   <i>do-statement:</i>
-    do  <i>statement</i>  while  (  <i>expression</i>  )  ;
+    do  <i>statement</i>  while  (  <i>expression</i>  )  ;
 
   <i>for-statement:</i>
     for   (   <i>for-initializeropt</i>   ;   <i>for-controlopt</i>   ;   <i>for-end-of-loopopt</i>   )   <i>statement</i>
@@ -974,13 +968,13 @@ octal-digit
     <i>for-expression-group</i>   ,   <i>expression</i>
 
   <i>foreach-statement:</i>
-    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )   statement
+    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )   statement
 
   <i>foreach-collection-name</i>:
     <i>expression</i>
 
   <i>foreach-key:</i>
-    <i>expression</i>  =>
+    <i>expression</i>  =>
 
   <i>foreach-value:<i>
     &amp;<sub>opt</sub>  <i>expression</i>
@@ -1007,23 +1001,23 @@ octal-digit
     return  <i>expression<sub>opt</sub></i>  ;
     
   <i>throw-statement:</i>
-    throw  <i>expression</i>  ;
+    throw  <i>expression</i>  ;
 </pre>
 
 ####The try Statement
 
 <pre>
   <i>try-statement:</i>
-    try  <i>compound-statement   catch-clauses</i>
-    try  <i>compound-statement   finally-clause</i>
-    try  <i>compound-statement   catch-clauses   finally-clause</i>
+    try  <i>compound-statement   catch-clauses</i>
+    try  <i>compound-statement   finally-clause</i>
+    try  <i>compound-statement   catch-clauses   finally-clause</i>
 
   <i>catch-clauses:</i>
     <i>catch-clause</i>
-    <i>catch-clauses   catch-clause</i>
+    <i>catch-clauses   catch-clause</i>
 
   <i>catch-clause:</i>
-    catch  (  <i>parameter-declaration-list</i>  )  <i>compound-statement</i>
+    catch  (  <i>parameter-declaration-list</i>  )  <i>compound-statement</i>
 
   <i>finally-clause:</i>
     finally   <i>compound-statement</i>
@@ -1052,7 +1046,7 @@ octal-digit
 
 <pre>
   <i>enum-declaration:</i>
-    enum  <i>name</i>  <i>enum-base</i>  <i>enum-constraint-clause<sub>opt</sub>  {  <i>enumerator-list<sub>opt</sub></i>  }
+  enum  <i>name</i>  <i>enum-base</i>  <i>enum-constraint-clause<sub>opt</sub></i>  {  <i>enumerator-list<sub>opt</sub></i>  }
   
   <i>enum-base:</i>
     :  int
@@ -1076,7 +1070,7 @@ octal-digit
 
 <pre>
   <i>generic-type-parameter-list:</i>
-    *lt;*  <i>generic-type-parameters</i>  &gt;
+    &lt;  <i>generic-type-parameters</i>  &gt;
   
   <i>generic-type-parameters:</i>
     <i>generic-type-parameter</i>
@@ -1110,26 +1104,26 @@ octal-digit
 ###Functions
 
 <pre>
-  <i>function-deﬁnition:</i>
-    <i>function-deﬁnition-header   compound-statement</i>
+  <i>function-definition:</i>
+    <i>function-definition-header  compound-statement</i>
 
-  <i>function-deﬁnition-header:</i>
-    <i>attribute-specification<sub>opt</sub></i>  async<sub>opt</sub>  function <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  (  <i>parameter-list<sub>opt</sub></i>  ) :  <i>return-type</i>
+  <i>function-definition-header:</i>
+    <i>attribute-specification<sub>opt</sub></i>  async<sub>opt</sub>  function <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  (  <i>parameter-list<sub>opt</sub></i>  ) :  <i>return-type</i>
 
   <i>parameter-list:</i>
     ...
     <i>parameter-declaration-list</i>
-    <i>parameter-declaration-list</i>  ,  ...
+    <i>parameter-declaration-list</i>  ,  ...
 
   <i>parameter-declaration-list:</i>
     <i>parameter-declaration</i>
-    <i>parameter-declaration-list</i>  ,  <i>parameter-declaration</i>
+    <i>parameter-declaration-list</i>  ,  <i>parameter-declaration</i>
 
   <i>parameter-declaration:</i>
-    <i>attribute-specification<sub>opt</sub>  <i>type-specifier</i>  <i>variable-name  default-argument-specifier<sub>opt</sub></i>
+    <i>attribute-specification<sub>opt</sub></i>  <i>type-specifier</i>  <i>variable-name  default-argument-specifier<sub>opt</sub></i>
 
   <i>default-argument-specifier:</i>
-    =  <i>const-expression</i>
+    =  <i>const-expression</i>
 
   <i>return type:</i>
     <i>type-specifier</i>
@@ -1140,7 +1134,7 @@ octal-digit
 
 <pre>
   <i>class-declaration:</i>
-    <i>attribute-specification<sub>opt</sub></i>  <i>class-modifier<sub>opt</sub></i>  class  <i>name  generic-type-parameter-list<sub>opt</sub>  class-base  clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>  {  <i>trait-use-clauses<sub>opt</sub>  class-member-declarations<sub>opt</sub></i>  }
+    <i>attribute-specification<sub>opt</sub></i>  <i>class-modifier<sub>opt</sub></i>  class  <i>name  generic-type-parameter-list<sub>opt</sub>  class-base  clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>  {  <i>trait-use-clauses<sub>opt</sub>  class-member-declarations<sub>opt</sub></i>  }
 
   <i>class-modifier:</i>
     abstract
@@ -1151,11 +1145,11 @@ octal-digit
 
   <i>class-interface-clause:</i>
     implements  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
-    <i>class-interface-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
+    <i>class-interface-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
 
   <i>class-member-declarations:</i>
     <i>class-member-declaration</i>
-    <i>class-member-declarations   class-member-declaration</i>
+    <i>class-member-declarations   class-member-declaration</i>
 
    <i>class-member-declaration:</i>
      <i>const-declaration</i>
@@ -1175,7 +1169,7 @@ octal-digit
     <i>name</i>  =  <i>const-expression</i>
     
   <i>property-declaration:</i>
-    <i>property-modifier</i>  <i>type-specifier</i>  <i>property-declarator-list</i>  ;
+    <i>property-modifier</i>  <i>type-specifier</i>  <i>property-declarator-list</i>  ;
 
   <i>property-declarator-list:</i>
     <i>property-declarator</i>
@@ -1200,8 +1194,8 @@ octal-digit
     =  <i>expression</i>
 
   <i>method-declaration:</i>
-    <i>method-modifiers</i>  <i>function-deﬁnition</i>
-    <i>method-modifiers</i>  <i>function-deﬁnition-header</i>  ;
+    <i>method-modifiers</i>  <i>function-definition</i>
+    <i>method-modifiers</i>  <i>function-definition-header</i>  ;
 
   <i>method-modifiers:</i>
     <i>method-modifier</i>
@@ -1214,7 +1208,7 @@ octal-digit
     final
 
   <i>constructor-declaration:</i>
-    <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __construct  (  <i>constructor-parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
+    <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __construct  (  <i>constructor-parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
   
   <i>constructor-parameter-declaration-list:</i>
     <i>constructor-parameter-declaration</i>
@@ -1224,7 +1218,7 @@ octal-digit
     <i>visibility-modifier<sub>opt</sub></i>  <i>type-specifier</i>  <i>variable-name</i>  <i>default-argument-specifier<sub>opt</sub></i>
 
   <i>destructor-declaration:</i>
-    <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __destruct  ( )  <i>compound-statement</i>
+    <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __destruct  ( )  <i>compound-statement</i>
     
 </pre>
 
@@ -1232,7 +1226,7 @@ octal-digit
 
 <pre>
   <i>interface-declaration:</i>
-    <i>attribute-specification<sub>opt</sub></i>  interface  <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  <i>interface-base-clause<sub>opt</sub></i> {  <i>interface-member-declarations<sub>opt</sub></i>  }
+    <i>attribute-specification<sub>opt</sub></i>  interface  <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  <i>interface-base-clause<sub>opt</sub></i> {  <i>interface-member-declarations<sub>opt</sub></i>  }
 
   <i>interface-base-clause:</i>
     extends  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
@@ -1240,7 +1234,7 @@ octal-digit
 
   <i>interface-member-declarations:</i>
     <i>interface-member-declaration</i>
-    <i>interface-member-declarations   interface-member-declaration</i>
+    <i>interface-member-declarations   interface-member-declaration</i>
   
   <i>interface-member-declaration:</i>
     <i>requires-extends-clause</i>
@@ -1267,7 +1261,7 @@ octal-digit
 
   <i>trait-member-declarations:</i>
     <i>trait-member-declaration</i>
-    <i>trait-member-declarations   trait-member-declaration</i>
+    <i>trait-member-declarations   trait-member-declaration</i>
 
   <i>trait-member-declaration:</i>
     <i>require-extends-clause</i>
@@ -1309,7 +1303,7 @@ octal-digit
 <pre>
 
 <i>attribute-specification:</i>
-&lt;&lt;  <i>attribute-list</i>  &gt;&gt;
+  &lt;&lt;  <i>attribute-list</i>  &gt;&gt;
 
 <i>attribute-list:</i>
   <i>attribute</i>

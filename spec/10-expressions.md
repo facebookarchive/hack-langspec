@@ -545,11 +545,11 @@ shape('id' => null, 'url' => null, 'count' => 0)
 
 <pre>
 <i>anonymous-function-creation-expression:</i>
-  async<sub>opt</sub>  function  (  <i>anonymous-function-parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>  <i>anonymous-function-use-clause<sub>opt</sub></i>  <i>compound-statement</i>
+  async<sub>opt</sub>  function  (  <i>anonymous-function-parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>  <i>anonymous-function-use-clause<sub>opt</sub></i>  <i>compound-statement</i>
 
 <i>anonymous-function-parameter-declaration-list:</i>
   <i>anonymous-function-parameter-declaration</i>
-  <i>anonymous-function-parameter-declaration-list  </i>  ,  <i>anonymous-function-parameter-declaration</i>
+  <i>anonymous-function-parameter-declaration-list  </i>  ,  <i>anonymous-function-parameter-declaration</i>
 
 <i>anonymous-function-parameter-declaration:</i>
   <i>attribute-specification<sub>opt</sub>  type-specifier<sub>opt</sub> variable-name  default-argument-specifier<sub>opt</sub></i>

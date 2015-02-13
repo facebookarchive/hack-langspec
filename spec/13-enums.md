@@ -9,7 +9,7 @@ An *enumeration* consists of a set of zero or more named, constant values called
 **Syntax**
 <pre>
 <i>enum-declaration:</i>
-  enum  <i>name</i>  <i>enum-base</i>  <i>enum-constraint-clause<sub>opt</sub>  {  <i>enumerator-list<sub>opt</sub></i>  }
+  enum  <i>name</i>  <i>enum-base</i>  <i>enum-constraint-clause<sub>opt</sub></i>  {  <i>enumerator-list<sub>opt</sub></i>  }
 <i>enum-base:</i>
   :  int
   :  string
