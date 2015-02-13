@@ -1,0 +1,6 @@
+Inside NS_test\f
+Enter await
+Inside NS_test\g
+Exit await; $r1 = int(10)
+$v = object(HH\StaticWaitHandle)#1 (0) {
+}

@@ -1,0 +1,15 @@
+int(3)
+int(1)
+object(NS_Point\Point)#1 (0) {
+}
+object(NS_Point\Point)#2 (0) {
+}
+object(NS_Circle\Circle)#3 (0) {
+}
+Array
+(
+    [0] => %s/tests/Script_Inclusion/require_once.php
+    [1] => %s/tests/Script_Inclusion/Positions.php
+    [2] => %s/tests/Script_Inclusion/Point.php
+    [3] => %s/tests/Script_Inclusion/Circle.php
+)
