@@ -163,13 +163,13 @@ and `$y`. This HStore contains two VSlots representing instance
 properties `$x` and `$y`, and each of these VSlots points to a distinct
 VStore which contains an integer value. 
 
-***Implementation Notes*** php.net’s implementation can be mapped roughly
+***Implementation Notes*** A concrete implementation of Hack may be mapped roughly
 onto the abstract memory model as follows: `zval pointer => VSlot, zval
 => VStore, HashTable => HStore`, and
 `zend_object/zend_object_handlers => HStore`. Note, however, that the
-abstract memory model is not intended to exactly match the php.net
-implementation’s model, and for generality and simplicity there are some
-superficial differences between the two models.
+abstract memory model is not intended to exactly match any specific
+implementation’s model, and for generality and simplicity there may be some
+superficial differences between the described model and an implementation's model.
 
 For most operations, the mapping between VSlots and VStores remains the
 same. Only the following program constructs can change a VSlot to point

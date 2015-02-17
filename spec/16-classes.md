@@ -425,7 +425,7 @@ described in [§§](16-classes.md#class-members); and *function-deﬁnition* and
 When defining a concrete class that inherits from an abstract class, the
 definition of each abstract method inherited by the derived class must
 have the same or a
-less-restricted [visibility](http://www.php.net/manual/en/language.oop5.visibility.php)
+less-restricted [visibility](http://docs.hhvm.com/manual/en/language.oop5.visibility.php)
 than in the corresponding abstract declaration. Furthermore, the
 signature of a method definition must match that of its abstract
 declaration.
@@ -476,7 +476,7 @@ examples of abstract methods and their subsequent definitions.
 **Constraints**
 
 An overriding constructor in a derived class must have the same or a
-less-restricted [visibility](http://www.php.net/manual/en/language.oop5.visibility.php)
+less-restricted [visibility](http://docs.hhvm.com/manual/en/language.oop5.visibility.php)
 than that being overridden in the base class.
 
 The *variable-name* in a *constructor-parameter-declaration* containing a *visibility-modifier* must not be the same as an explicitly declared property in this class.
