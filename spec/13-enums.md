@@ -81,7 +81,7 @@ function processStatus(ControlStatus $cs): void {
     break;
   }
 }
-```
+```Hack
 
 This example defines `ControlStatus` to be an enumerated type with an underlying type of `int`. The enumerated type has the four named enumeration constants `Stopped`, `Stopping`, `Starting`, and `Started`. Each enumeration constant is initialized with the integer constant value, as shown. When called, the function `processStatus` is passed an enum having one of the four possible enumeration constant values.
 

@@ -37,7 +37,7 @@ the situation.
 Class `Exception` is the base class of all exception types. This class is
 defined, as follows:
 
-```
+```Hack
 Class Exception {
   protected string $message = 'Unknown exception';
   protected int $code = 0;

@@ -73,7 +73,7 @@ all files included or required.
 ```php
 require 'Point.php';
 require ('Circle.php');
-```
+```Hack
 
 ##The `require_once` Directive
 
