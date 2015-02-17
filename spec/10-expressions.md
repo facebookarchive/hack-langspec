@@ -212,7 +212,7 @@ For value substitution in string literals, see [§§](09-lexical-structure.md#do
 
 **Examples**
 
-```
+```Hack
 $v1 = true;
 $v2 = 123;
 echo  '>>' . $v1 . '|' . $v2 . "<<\n";    // outputs ">>1|123<<"
