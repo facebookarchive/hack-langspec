@@ -1018,9 +1018,64 @@ The subclauses above thus far have described the mechanics of value assignment
 to a local variable. This subclause describes how value assignment works
 when general modifiable lvalue expressions are used on the left hand side.
 
-**[TODO: Add description and examples here involving array elements and object
-instance properties. Describe how new array elements and object instance
-properties can be created via value assignment.]**
+For example, assuming `Point` definition as in previous sections and further 
+assuming all instance properties are public, this code:
+
+```
+$a = new Point(1, 3);
+$b = 123;
+$a->x = $b;
+```
+
+will result in:
+<pre>
+[VSlot $a *]-->[VStore object *]-->[HStore Point [VSlot $x *] [VSlot $y *]]
+                                                           |            |
+                                                           V            V
+                                                  [VStore int 123] [VStore int 3]
+[VSlot $b *]-->[VStore int 123]
+</pre>
+
+If needed, new VSlots are created as part of the containing VStore, for example:
+
+```
+$a = new Point(1, 3);
+$b = 123;
+$a->z = $b;
+```
+
+will result in:
+<pre>
+[VSlot $a *]-->[VStore object *]-->[HStore Point [VSlot $x *] [VSlot $y *] [VSlot $z *]]
+                                                           |            |            |
+                                                           V            V            V
+                                                  [VStore int 1] [VStore int 3] [VStore int 123]
+[VSlot $b *]-->[VStore int 123]
+</pre>
+
+The same holds for array elements:
+```
+$a = array('hello', 'world');
+$b = 'hack';
+$a[1] = $b;
+$a[2] = 'World!';
+```
+
+will result in:
+<pre>
+[VSlot $a *]-->[VStore array *]-->[HStore Array [VSlot 0 *]  [VSlot 1 *]  [VSlot 2 *]]
+                                                         |            |            |
+                                                         V            V            V
+                                    [VStore string 'hello'] [VStore string 'hack'] [VStore string 'World!']
+[VSlot $b *]-->[VStore string 'hack']
+</pre>
+
+where the third VSlot with index 2 was created by the assignment.
+
+Note that any array element and instance property, including a designation of non-existing ones,
+is considered a modifiable lvalue, and the VSlot will be created by the engine and added
+to the appropriate HStore automatically. Static class properties are considered modifiable lvalues too,
+though new ones would not be created automatically. 
 
 ####General ByRef Assignment
 The subclauses above thus far have described the mechanics of byref assignment
@@ -1028,9 +1083,22 @@ with local variables. This subclause describes how byref assignment works when
 general modifiable lvalue expressions are used on the left hand side and/or
 the right hand side.
 
-**[TODO: Add description and examples here involving array elements and
-object instance properties. Describe how new array elements and object
-instance properties can be created via byref assignment.]**
+For example:
+
+```
+$a = new Point(1, 3);
+$b = 123;
+$a->z =& $b;
+```
+
+will result in:
+<pre>
+[VSlot $a *]-->[VStore object *]-->[HStore Point [VSlot $x *] [VSlot $y *] [VSlot $z *]]
+                                                           |            |            |
+                                                           V            V            |
+                                                  [VStore int 1] [VStore int 3]      |
+[VSlot $b *]---------------->[VStore int 123]&lt;---------------------------------------+
+</pre>
 
 ###Argument Passing
 Argument passing is defined in terms of simple assignment ([§§](#value-assignment-of-scalar-types-to-a-local-variable), [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable), [§§](#value-assignment-of-array-types-to-local-variables), and [§§](10-expressions.md#simple-assignment)). 
