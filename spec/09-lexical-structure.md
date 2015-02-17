@@ -159,7 +159,7 @@ A number of single-line, so-called special comments are recognized by a
 compiler; they are:
 
 * `// FALLTHROUGH` ([§§](11-statements.md#the-switch-statement))
-* `// strict ([§§](04-basic-concepts.md#program-structure))`
+* `// strict` ([§§](04-basic-concepts.md#program-structure))
 
 where horizontal white space is permitted between the `//` and the start of 
 the comment text.
