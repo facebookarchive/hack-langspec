@@ -2351,7 +2351,7 @@ If *unary-expression* is a *subscript-expression* whose *postfix-expression* des
 
 If *assignment-expression* designates an expression having value type,
 see [§§](04-basic-concepts.md#value-assignment-of-scalar-types-to-a-local-variable). If *assignment-expression*
-designates an expression having handle type, see [§§](04-basic-concepts.md#byref-assignment-for-scalar-types-with-local-variables). If
+designates an expression having a handle, see [§§](04-basic-concepts.md#byref-assignment-for-scalar-types-with-local-variables). If
 *assignment-expression* designates an expression having array type, see
 [§§](04-basic-concepts.md#value-assignment-of-array-types-to-local-variables).
 

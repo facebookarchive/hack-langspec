@@ -17,14 +17,16 @@ indicates if a given value is an int, a float, or a numeric string ([§§](05-ty
 
 The scalar types are *value types*. That is, a variable of scalar type
 behaves as though it contains its own value. On the
-other hand, the non-scalar types are *handle types*. A variable of
+other hand, the non-scalar types are *handles*. A variable of
 non-scalar type contains information—in a *handle*—that leads to the
-value. The differences between value and handle types become apparent
+value. The differences between value types and handles become apparent
 when it comes to understanding the semantics of assignment, and passing
 arguments to, and returning values from, functions ([§§](04-basic-concepts.md#the-memory-model)). That said,
 array types really are a hybrid; on the one hand, an array may contain
 an arbitrary number of elements separate from the array variable itself,
 yet on the other hand, certain array operations do have value semantics.
+
+**Note**: One could differentiate value types and handles in the same way that pass-by-value and pass-by-reference types are distinguished.
 
 Variables are not declared to have a particular type. Instead, a
 variable's type is decided at runtime by the context in which it is
