@@ -275,7 +275,7 @@ reserved by the Hack language.
 
 **Examples**
 
-```Hack
+```
 const int MAX_VALUE = 100;
 public function getData(): array<string> { ... }
 class Point { ... }
@@ -352,7 +352,7 @@ represent the Boolean values True and False, respectively.
 
 **Examples**
 
-```Hack
+```
 $done = false;
 computeValues($table, true);
 ```
@@ -431,7 +431,7 @@ notations are considered to have non-negative values.
 
 **Examples**
 
-```Hack
+```
 $count = 10      // decimal 10
 
 0b101010 >> 4    // binary 101010 and decimal 4
@@ -479,7 +479,7 @@ point values for infinity and Not-a-Number, respectively.
 
 **Examples**
 
-```Hack
+```
 $values = array(1.23, 3e12, 543.678E-23);
 ```
 
@@ -541,7 +541,7 @@ A single-quoted string literal is a c-constant ([§§](06-constants.md#general))
 
 **Examples**
 
-```Hack
+```
 'This text is taken verbatim'
 
 'Can embed a single quote (\') and a backslash (\\) like this'
@@ -658,7 +658,7 @@ contain any variable substitution.
 
 **Examples**
 
-```Hack
+```
 $x = 123;
 echo ">\$x.$x"."<"; // → >$x.123<
 // -----------------------------------------
@@ -736,7 +736,7 @@ any variable substitution.
 
 **Examples**
 
-```Hack
+```
 $v = 123;
 $s = <<<    ID
 S'o'me "\"t e\txt; \$v = $v"
@@ -776,7 +776,7 @@ A nowdoc string literal is a c-constant ([§§](06-constants.md#general)).
 
 **Examples**
 
-```Hack
+```
 $v = 123;
 $s = <<<    'ID'
 S'o'me "\"t e\txt; \$v = $v"

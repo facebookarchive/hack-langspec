@@ -46,7 +46,7 @@ variable is a modifiable lvalue.
 
 **Examples**
 
-```Hack
+```
 function doit(bool $p1): void {  // assigned the value true when called
   $count = 10;
     ...
@@ -91,7 +91,7 @@ array's name. An array element has allocated storage duration ([§§](04-basic-c
 
 **Examples**
 
-```Hack
+```
 $colors = ["red", "white", "blue"]; // create array with 3 elements
 $colors[] = "green";                // insert a new element
 ```
@@ -131,7 +131,7 @@ is called, a new alias is created.
 
 **Examples**
 
-```Hack
+```
 function f(): void {
   static $fs = 1;
   echo "\$fs = $fs\n";

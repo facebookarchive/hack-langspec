@@ -50,7 +50,7 @@ derived interface inherits all the members from the base interfaces.
 
 **Examples**
 
-```Hack
+```
 interface MyCollection<T> {
   const MAX_NUMBER_ITEMS = 1000;
   public function put(T $item): void;
@@ -116,7 +116,7 @@ nor by an interface that extends it.
 
 **Examples:**
 
-```Hack
+```
 interface MyCollection<T> {
   const MAX_NUMBER_ITEMS = 1000;
   public function put(T $item): void;
@@ -136,7 +136,7 @@ An interface method is just like an abstract method ([§§](16-classes.md#method
 
 **Examples:**
 
-```Hack
+```
 interface MyCollection<T> {
   const MAX_NUMBER_ITEMS = 1000;
   public function put(T $item): void;
@@ -152,7 +152,7 @@ This interface allows an instance of an implementing class to be
 accessed using array-like notation. This interface is defined, as
 follows:
 
-```Hack
+```
 interface ArrayAccess<string, T> {
   public function offsetExists(string $offset): bool;
   public function offsetGet(string $offset): T;
@@ -173,7 +173,7 @@ Name	|   Purpose
 
 This interface supports asynchronous functions ([§§](15-functions.md#asynchronous-functions)) and await ([§§](10-expressions.md#await-operator)). It is defined, as follows:
 
-```Hack
+```
 interface Awaitable<T> {
   public function getWaitHandle(): WaitHandle<T>;
 }
@@ -189,7 +189,7 @@ getWaitHandle | This instance method returns the wait handle associated with thi
 
 This interface is a marker for the predefined types `Vector`, `ImmVector`, `Map`, `ImmMap`, `Set`, `ImmSet`, and `Pair` and all array types. This interface is defined, as follows:
 
-```Hack
+```
 interface Container<Tv> extends Traversable<Tv> {
 }
 ```
@@ -201,7 +201,7 @@ This interface has no members.
 This interface allows instances of an implementing class to be treated
 as a collection. This interface is defined, as follows:
 
-```Hack
+```
 interface Iterator<Tv> extends Traversable<Tv> {
   public function current(): Tv;
   public function next(): void;
@@ -224,7 +224,7 @@ Name | Purpose
 This interface allows the creation of an external iterator. This
 interface is defined, as follows:
 
-```Hack
+```
 interface IteratorAggregate<Tv> extends Traversable<Tv> {
   public function getIterator(): Iterator<Tv>;
 }
@@ -239,7 +239,7 @@ Name    |   Purpose
 
 This interface is a marker for the predefined types `Vector`, `ImmVector`, `Map`, `ImmMap`, and `Pair` and all array types. This interface is defined, as follows:
 
-```Hack
+```
 interface KeyedContainer<Tk, Tv> extends Container<Tv>, 
   KeyedTraversable<Tk, Tv> {
 }
@@ -251,7 +251,7 @@ This interface has no members.
 
 This interface detects if a class is traversable using `foreach`. This interface is defined, as follows:
 
-```Hack
+```
 KeyedTraversable<Tk, Tv> extends Traversable<Tv> {
 }
 ```
@@ -265,7 +265,7 @@ This interface has no members.
 This interface provides support for custom serialization. It is defined,
 as follows:
 
-```Hack
+```
 interface Serializable {
   public function serialize(): string;
   public function unserialize (string $serialized): void;
@@ -283,7 +283,7 @@ Name |	Purpose
 
 This interface requires an implementing class to provide a conversion to string representation. It is defined, as follows:
 
-```Hack
+```
 interface Stringish {
   public function __toString(): string;
 }
@@ -296,7 +296,7 @@ The interface members are defined below:
 This interface is intended as the base interface for all traversable
 classes. This interface is defined, as follows:
 
-```Hack
+```
 Traversable<Tv>
 {
 }

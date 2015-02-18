@@ -25,7 +25,7 @@ string.
 
 **Examples**
 
-```Hack
+```
 class C {
   const float MAX_HEIGHT = 10.5;            // define two (case-insensitive) c
   constants

@@ -32,7 +32,7 @@ class Stack<T> {
     }
   }
 }
-```Hack
+```
 
 As shown, the type parameter `T` is used in the declaration of the instance property `$stack`, as the parameter type of the instance method `push`, and as the return type of the instance method `pop`. Note that although `push` and `pop` use the type parameter, they are not themselves generic methods. 
 
@@ -56,7 +56,7 @@ Here is an example of a generic function, `maxVal`, having one type parameter, `
 function maxVal<T>(T $p1, T $p2): T {
   return $p1 > $p2 ? $p1 : $p2;
 }
-```Hack
+```
 
 The function returns the larger of the two arguments passed to it. In the case of the call `maxVal(10, 20)`, given that the type of both arguments is `int`, that is inferred as the type corresponding to the type parameter `T`, and an `int` value is returned. In the case of the call `maxVal(15.6, -20.78)`, `T` is inferred as `float`, while in `maxVal('red', 'green')`, `T` is inferred as `string`.
 
@@ -126,7 +126,7 @@ final class Map<Tk, Tv> implements MutableMap<Tk, Tv> {
   …
   public function zip<Tu>(Traversable<Tu> $iter): Map<Tk, Pair<Tv, Tu>> { … }
 }
-```Hack
+```
 
 In the following case, function `maxValue` has one type parameter, `T`.
 
@@ -159,7 +159,7 @@ class Complex<T as num> {
     …
   }
 }
-```Hack
+```
 
 Without the `num` constraint, a number of errors are reported, including the following: 
 * The `return` statement in method add performs arithmetic on a value of unknown type `T`, yet arithmetic isn't defined for all possible type arguments.
@@ -209,7 +209,7 @@ final class Pair<Tv1, Tv2> implements ConstVector<mixed> {
   public function toMap(): Map<int, mixed> { … }
   public function zip<Tu>(Traversable<Tu> $iter): Vector<Pair<mixed, Tu>> {…}
 }
-```Hack
+```
 
 In this case, the type specifiers `ConstVector<mixed>`, `KeyedIterator<int, mixed>`, `Vector<int>`, `Map<int, mixed>`, `Traversable<Tu>`, `Vector<Pair<mixed, Tu>>`, and `Tu`, and are type arguments.
 
@@ -242,7 +242,7 @@ final class Pair<Tv1, Tv2> implements ConstVector<mixed> {
   public function toMap(): Map<int, mixed> { … }
   public function zip<Tu>(Traversable<Tu> $iter): Vector<Pair<mixed, Tu>> {…}
 }
-```Hack
+```
 
 the type specifiers `Traversable<Tu>`, `Tu`, and `Vector<Pair<mixed, Tu>>` are all open generic types, while the type specifiers `ConstVector<mixed>`, `KeyedIterator<int, mixed>`, `Vector<int>`, and `Map<int, mixed>` are all closed generic types.
 

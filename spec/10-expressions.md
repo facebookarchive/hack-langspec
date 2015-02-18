@@ -220,7 +220,7 @@ echo  '>>' , $v1 , '|' , $v2 , "<<\n";    // outputs ">>1|123<<"
 echo ('>>' . $v1 . '|' . $v2 . "<<\n");   // outputs ">>1|123<<"
 $v3 = "qqq{$v2}zzz";
 echo "$v3\n"; 
-```Hack
+```
 
 ####exit
 
@@ -262,7 +262,7 @@ status code is made available to the execution environment. If
 exit ("Closing down");
 exit (1);
 exit;
-```Hack
+```
 
 ####invariant
 
@@ -305,7 +305,7 @@ invariant(!is_null($p), "Value can't be null");
 // -----------------------------------------
 $max = 100;
 invariant(!is_null($p) && $p <= $max, "Value %d must be <= %d", $p, $max);
-```Hack
+```
 
 ####list
 
@@ -368,7 +368,7 @@ $v = list($a[0], $a[2], $a[4]) = array(50, 5100, 567);
   // $a[0] is 50, $a[2] is 5100, $a[4] is 567
 list($min, $max, ) = array(10, 1100, 167);
   // $min is 10, $max is 1100
-```Hack
+```
 
 ###Collection Literals
 
@@ -448,7 +448,7 @@ ImmVector {5, $x, 15}                           // size 3; 5, ?, 15
 Map {'x' => -1, 'a' => -4, 'x' => 5, 'a' => 12} // size 2; 'x'/5, 'a'/12
 ImmSet {1, 1, 1, 5, 10, 1, 'red', 1}            // size 4; 1, 5, 10, 'red'
 Pair {55, new C()}
-```Hack
+```
 
 ###Tuple Literals
 
@@ -484,7 +484,7 @@ literal, a *tuple-type-specifier* ([§§](05-types.md#tuple-types)) must contain
 return tuple(true, array(99, 88, 77), 10.5);
 $t1 = tuple(10, true, 2.3, 'abc', null, $p1, Vector {$p2 + 3, 12}, new C());
 $t2 = tuple(100, tuple('abc', false));
-```Hack
+```
 
 ###Shape Literals
 
@@ -537,7 +537,7 @@ A *shape-literal* creates a shape ([§§](05-types.md#shape-types)) with fields 
 shape()
 shape('x' => $prevX, 'y' => getY())
 shape('id' => null, 'url' => null, 'count' => 0)
-```Hack
+```
 
 ###Anonymous Function-Creation
 
@@ -627,7 +627,7 @@ function compute(array<int> $values): void {
   $callback();
   …
 }
-```Hack
+```
 
 ##Postfix Operators
 
@@ -711,7 +711,7 @@ class Manager extends Employee
 }
 $obj1 = new Manager("Smith", 23);
 $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
-```Hack
+```
 
 ###The `new` Operator
 
@@ -777,7 +777,7 @@ class Point
 }
 $p1 = new Point();     // create Point(0, 0)
 $p1 = new Point(12);   // create Point(12, 0)
-```Hack
+```
 
 ###Array Creation Operator
 
@@ -871,7 +871,7 @@ $v = array(10, $c, null, array(false, null, $c));
 $v = array(2 => true, 0 => 123, 1 => 34.5, -1 => "red");
 foreach($v as $e) { … } // iterates over keys 2, 0, 1, -1
 for ($i = -1; $i <= 2; ++$i) { … $v[$i] } // retrieves via keys -1, 0, 1, 2
-```Hack
+```
 
 ###Subscript Operator
 
@@ -1052,7 +1052,7 @@ $m1[] = Pair {'red', 123};    // replaces existing element's value with 123
 // -----------------------------------------
 $p1 = Pair {55, 'auto'};
 echo "\$p1[0] = " . $p1[0] . "\n";  // outputs '$p1[0] = 55'
-```Hack
+```
 
 ###Function Call Operator
 
@@ -1194,7 +1194,7 @@ class Point {
 }
 $p1 = new Point();
 $p1->move(3, 9);  // calls public instance method move by name
-```Hack
+```
 
 ###Null-Safe Member-Selection Operator
 
@@ -1253,7 +1253,7 @@ increment or decrement takes place.
 ```
 $i = 10; $j = $i-- + 100;   // old value of $i (10) is added to 100
 $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
-```Hack
+```
 
 ###Scope-Resolution Operator
 
@@ -1313,7 +1313,7 @@ $b1 = new Base();
 $b1->b(); // as $b1 is an instance of Base, Base::b() calls Base::f()
 $d1 = new Derived();
 $d1->b(); // as $d1 is an instance of Derived, Base::b() calls Derived::f()
-```Hack
+```
 
 The value of the form of *scope-resolution-expression* ending in `::class`
 is a string containing the fully qualified name of the current class,
@@ -1365,7 +1365,7 @@ class Point {
   }
   …
 }
-```Hack
+```
 
 ###Exponentiation Operator
 
@@ -1395,7 +1395,7 @@ values and the result can be represented as an `int`, the result has type
 2**3;   // int with value 8
 2**3.0;   // float with value 8.0
 "2.0"**"3"; // float with value 8.0
-```Hack
+```
 
 ##Unary Operators
 
@@ -1471,7 +1471,7 @@ operand's value.
 ```
 $i = 10; $j = --$i + 100;   // new value of $i (9) is added to 100
 $a = array(100, 200); $v = ++$a[1]; // new value of $ia[1] (201) is assigned
-```Hack
+```
 
 ###Unary Arithmetic Operators
 
@@ -1525,7 +1525,7 @@ if ($v1 > -5) ...
 $t = true;
 if (!$t) ...
 $v = ~0b1010101;
-```Hack
+```
 
 ###Error Control Operator
 
@@ -1552,7 +1552,7 @@ still called.
 
 ```
 $infile = @fopen("NoSuchFile.txt", 'r');
-```Hack
+```
 
 On open failure, the value returned by `fopen` is `false`, which is
 sufficient to know to handle the error. There is no need to have any
@@ -1599,7 +1599,7 @@ Note that *cast-type* cannot be a generic type parameter ([§§](14-generic-type
 
 ```
 (int)(10/3)          // results in the int 3 rather than the float 3.333...
-```Hack
+```
 
 ###Await Operator
 
@@ -1646,7 +1646,7 @@ function main (): void {
   $v = f();
   …
 }
-```Hack
+```
 
 Function `main` calls async function `f`, which in turn awaits on async function `g`. When `g` terminates normally, the `int` value returned is automatically wrapped in an object of type `Awaitable<int>`. Back in function `f`, that object is unwrapped, and the `int` it contained is extracted and assigned to local variable `$r1`. When `f` terminates normally, the `int` value returned is automatically wrapped in an object of type `Awaitable<int>`. Back in function `main`, that object is assigned to local variable `$v`.
 
@@ -1703,7 +1703,7 @@ interface I2 { … }
 class E1 implements I1, I2 { … }
 $e1 = new E1();
 $e1 instanceof I1     // true
-```Hack
+```
 
 ##Multiplicative Operators
 
@@ -1761,7 +1761,7 @@ These operators associate left-to-right.
 100 / 100 → int with value 1
 100 / 123 → float with value 0.8130081300813
 123 % 100 → int with value 23
-```Hack
+```
 
 ##Additive Operators
 
@@ -1825,7 +1825,7 @@ array('red' => 12, 'green' => 7) + array('blue' => 3) → array('red' => 12, 'gr
 INF . "2e+5" → string with value "INF2e+5"
 true . null → string with value "1"
 10 + 5 . 12 . 100 - 50 → int with value 1512050; ((((10 + 5).12).100)-50)
-```Hack
+```
 
 ##Bitwise Shift Operators
 
@@ -1870,7 +1870,7 @@ These operators associate left-to-right.
 -1000 << 2      // FFFFFC18 is shifted left 5 places
 123 >> 128      // adjusted shift count = 0
 123 << 33   // For a 32-bit int, adjusted shift count = 1; otherwise, 33
-```Hack
+```
 
 ##Relational Operators
 
@@ -1924,7 +1924,7 @@ These operators associate left-to-right.
 'X123' <= 'X4'  → true; is doing a string comparison
 // -----------------------------------------
 [100] < [10,20,30] → result has value true (LHS array is shorter)
-```Hack
+```
 
 **Notes**
 
@@ -2021,7 +2021,7 @@ true !== 100  // result has value true
 [10,20] === [10,20.0] // result has value false
 ["red"=>0,"green"=>0] === ["red"=>0,"green"=>0] // result has value true
 ["red"=>0,"green"=>0] === ["green"=>0,"red"=>0] // result has value false
-```Hack
+```
 
 **Notes**
 
@@ -2056,7 +2056,7 @@ This operator associates left-to-right.
 0b101111 & 0b101          // 0b101
 $lLetter = 0x73;          // letter 's'
 $uLetter = $lLetter & ~0x20;  // clear the 6th bit to make letter 'S'
-```Hack
+```
 
 ##Bitwise Exclusive OR Operator
 
@@ -2089,7 +2089,7 @@ $v1 = 1234; $v2 = -987; // swap two integers having different values
 $v1 = $v1 ^ $v2;
 $v2 = $v1 ^ $v2;
 $v1 = $v1 ^ $v2;    // $v1 is now -987, and $v2 is now 1234
-```Hack
+```
 
 ##Bitwise Inclusive OR Operator
 
@@ -2120,7 +2120,7 @@ This operator associates left-to-right.
 0b101111 | 0b101      // 0b101111
 $uLetter = 0x41;      // letter 'A'
 $lLetter = $upCaseLetter | 0x20;  // set the 6th bit to make letter 'a'
-```Hack
+```
 
 ##Logical AND Operator
 
@@ -2151,7 +2151,7 @@ This operator associates left-to-right.
 
 ```
 if ($month > 1 && $month <= 12) ...
-```Hack
+```
 
 ##Logical Inclusive OR Operator
 
@@ -2182,7 +2182,7 @@ This operator associates left-to-right.
 
 ```
 if ($month < 1 || $month > 12) ...
-```Hack
+```
 
 ##Conditional Operator
 
@@ -2228,7 +2228,7 @@ function factorial(int $int): int
 {
   return ($int > 1) ? $int * factorial($int - 1) : $int;
 }
-```Hack
+```
 
 ##Lambda Expressions
 
@@ -2266,7 +2266,7 @@ A lambda expression is an anonymous function implemented using an operator. In m
 ```
 $doublerl = ($p) ==> $p * 2;
 $doubler2 = function ($p) { return $p * 2; };
-```Hack
+```
 
 Lambda expressions automatically capture any variables appearing in their body that also appear in the enclosing lexical function scopes transitively (i.e., nested lambda expressions can refer to variables from several levels out, with intermediate lambda expressions capturing that variable so it can be forwarded to the inner lambda expression). Variables are only captured when they are statically visible as names in the enclosing scope; i.e., the capture list is computed statically, not based on dynamically defined names in the scope. A lambda expression's captured variables are captured with the same by-value semantics that are used for variables in an *anonymous-function-use-clause* of an *anonymous-function-creation-expression* ([§§](10-expressions.md#anonymous-function-creation)).
 
@@ -2296,7 +2296,7 @@ $dump_map = ($name, $x) ==> {
 // -----------------------------------------
 $fn1 = $x ==> $y ==> $x + $y;
 $fn2 = $fn1(10); $res = $fn2(7);  // result is 17
-```Hack
+```
 
 ##Assignment Operators
 
@@ -2391,7 +2391,7 @@ $s["zz"] = "Q"; // warning; defaults to [0], and "Q" is stored there
 // -----------------------------------------
 class C { … }
 $a = new C();   // make $a point to the allocated object  
-```Hack
+```
 
 ###Compound Assignment
 
@@ -2428,7 +2428,7 @@ $v .= 123.45  // $v = "25123.45"
 $a = [100, 200, 300];
 $i = 1;
 $a[$i++] += 50; // $a[1] = 250, $i → 2
-```Hack
+```
 
 
 ##`yield` Operator
