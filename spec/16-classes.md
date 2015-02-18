@@ -119,7 +119,7 @@ and [§§](18-traits.md#trait-declarations).
 
 **Examples**
 
-```
+```Hack
 abstract class Vehicle {
   public abstract function getMaxSpeed(): int;
   …
@@ -225,7 +225,7 @@ static method does not operate on a specific instance, it has no `$this`.
 
 **Examples**
 
-```
+```Hack
 class Point {
   private static int $pointCount = 0;     // static property
 
@@ -273,7 +273,7 @@ Consider the following code fragment, in which class Widget has neither
 an instance method called `iMethod` nor a static method called `sMethod`,
 but that class has made provision to deal with dynamic methods:
 
-```
+```Hack
 $obj = new Widget();
 $obj->iMethod(10, true, "abc");
 Widget::sMethod(null, 1.234);
@@ -281,13 +281,13 @@ Widget::sMethod(null, 1.234);
 
 The call to `iMethod` is treated as if it were
 
-```
+```Hack
 $obj->__call('iMethod', array(10, true, "abc"))
 ```
 
 and the call to `sMethod` is treated as if it were
 
-```
+```Hack
 Widget::__callStatic('sMethod', array(null, 1.234))
 ```
 
@@ -332,7 +332,7 @@ Note: Although the grammar allows a class constant to have any type, there is no
 
 **Examples:**
 
-```
+```Hack
 class Automobile {
   const DEFAULT_COLOR = "white";
   …
@@ -387,7 +387,7 @@ All properties of non-nullable type must be initialized explicitly either by a *
 
 **Examples**
 
-```
+```Hack
 class Point {
   private static int $pointCount = 0; // static property with initializer
   private float $x;         // instance property
@@ -512,7 +512,7 @@ When a *constructor-parameter-declaration* contains a *visibility-modifier*, a p
 
 **Examples**
 
-```
+```Hack
 class Point {
   private static int $pointCount = 0;
   public function __construct(private float $x = 0.0, private float $y = 0.0) {
@@ -625,7 +625,7 @@ restrictions on the spelling of the dynamic method name designated by
 
 **Examples**
 
-```
+```Hack
 class Widget {
   public function __call(string $name, array<mixed> $arguments): mixed {
     // using the method name and argument list, redirect/process
@@ -679,7 +679,7 @@ restrictions on the spelling of the dynamic method name designated by
 
 **Examples**
 
-```
+```Hack
 class Widget {
   public static function __callStatic(string $name, 
     array<mixed> $arguments): mixed {
@@ -732,7 +732,7 @@ method to emulate what happens in a corresponding constructor. (See the
 
 **Examples**
 
-```
+```Hack
 class Employee {
   …
   public function __clone(): void {
@@ -808,7 +808,7 @@ instances. For that, a class must implement the interface `Serializable`
 
 **Examples**
 
-```
+```Hack
 class Point {
   private static int $nextId = 1;
   private float $x;
@@ -859,7 +859,7 @@ including `echo`, when an object-to-string conversion is needed.
 
 **Examples**
 
-```
+```Hack
 class Point {
   private float $x;
   private float $y;
@@ -950,7 +950,7 @@ extends `Point` by adding a `color` property. The following code shows how
 these classes need be defined in order for both `Points` and `ColoredPoints`
 to be serialized and unserialized:
 
-```
+```Hack
 class Point implements Serializable { // note the interface
   private static int $nextId = 1;
   private float $x;
@@ -975,7 +975,7 @@ instance properties to be serialized. The insertion order of the array
 is the order in which the properties are serialized in the resulting
 string. The array is returned.
 
-```
+```Hack
   public function unserialize(string $data): void {
     $data = unserialize($data);
     $this->x = $data['x'];
@@ -991,7 +991,7 @@ without any constructor being called, the `unserialize` method must
 perform the tasks ordinarily done by a constructor. In this case, that
 involves assigning the new object a unique id.
 
-```
+```Hack
 $p = new Point(2, 5);
 $s = serialize($p);
 ```
@@ -1003,7 +1003,7 @@ cooperating program. The program that reads or receives that serialized
 string can convert its contents back into the corresponding variable(s),
 as follows:
 
-```
+```Hack
 $v = unserialize($s);
 ```
 
@@ -1012,7 +1012,7 @@ The call to the library function `unserialize` calls the custom
 `Point(2,5)`.
 
 
-```
+```Hack
 class ColoredPoint extends Point implements Serializable {
   const RED = 1;
   const BLUE = 2;
@@ -1042,7 +1042,7 @@ element, an arbitrary key name is used, and its value is the serialized
 version of the base Point within the current `ColoredPoint` object. The
 order of the elements is up to the programmer.
 
-```
+```Hack
   public function unserialize(string $data): void {
     $data = unserialize($data);
     $this->color = $data['color'];
@@ -1055,7 +1055,7 @@ As `ColoredPoint` has a base class, it unserializes its own instance
 properties before calling the base class's custom method, so it can
 unserialize the `Point` properties.
 
-```
+```Hack
 $cp = new ColoredPoint(9, 8, ColoredPoint::BLUE);
 $s = serialize($cp);
 ...
@@ -1071,7 +1071,7 @@ instantiated directly. It is defined, as follows:
 
 class Generator implements Iterator
 
-```
+```Hack
 class Generator implements Iterator {
   public function current(): mixed;
   public function key(): mixed;
@@ -1105,7 +1105,7 @@ encodes an instance of a class for which there is no definition in
 scope. Consider the following class, which supports a two-dimensional
 Cartesian point:
 
-```
+```Hack
 class Point {
   private float $x;
   private float $y;
@@ -1119,14 +1119,14 @@ Let us assume that the serialized string is stored in a database from
 where it is retrieved by a separate program. That program contains the
 following code, but does not contain a definition of the class Point:
 
-```
+```Hack
 $v = unserialize($s);
 ```
 
 Instead of returning a point, `Point(2, 5`), an instance of
 `__PHP_Incomplete_Class` results, with the following contents:
 
-```
+```Hack
 __PHP_Incomplete_Class {
    __PHP_Incomplete_Class_Name => "Point"
   x:Point:private => 2

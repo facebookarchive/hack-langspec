@@ -52,7 +52,7 @@ A *constant-expression* can refer to the *name*s of other *enumeration-constants
 
 **Examples**
 
-```php
+```Hack
 enum BitFlags: int as int {
   F1 = 1;
   F2 = BitFlags::F1 << 1;
@@ -85,7 +85,7 @@ function processStatus(ControlStatus $cs): void {
 
 This example defines `ControlStatus` to be an enumerated type with an underlying type of `int`. The enumerated type has the four named enumeration constants `Stopped`, `Stopping`, `Starting`, and `Started`. Each enumeration constant is initialized with the integer constant value, as shown. When called, the function `processStatus` is passed an enum having one of the four possible enumeration constant values.
 
-```php
+```Hack
 enum Permission: string {
   Read = 'R';
   Write = 'W';
@@ -104,7 +104,7 @@ enum Colors: int {
 
 All enumerated types behave as if they contained the following family of public, static methods.
 
-```php
+```Hack
 public static function assert(mixed $value): XXX
 public static function assertAll(Traversable<mixed> $values): Container<XXX>
 public static function coerce(mixed $value): ?XXX

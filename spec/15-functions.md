@@ -83,7 +83,7 @@ A method having a *return-type* of `this` allows that method to return an object
 
 **Examples**
 
-```php
+```Hack
 function square(num $v): num {
   return $v * $v;
 }

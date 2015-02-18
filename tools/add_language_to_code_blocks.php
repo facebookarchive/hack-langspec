@@ -26,8 +26,11 @@ function main(array<string> $argv): void {
                                        RecursiveDirectoryIterator::SKIP_DOTS);
   $it = new RecursiveIteratorIterator($di);
 
-  $code_block_pattern = "/(```)(\n.*?```\n)/s"; // /s matches newline for .
-  $fix = "$1" . $argv[1] . "$2";
+  $code_block_pattern = "/(```)(php)?(\n.*?```\n)/s"; // /s matches newline for .
+  // $1 = ```
+  // $2 = php  ... match on php in case we used that before Hack was supported
+  // $3 = \n.*?```\n
+  $fix = "$1" . $argv[1] . "$3";
 
   foreach($it as $spec_file) {
     if ($spec_file->isFile() && $spec_file->getExtension() === "md" &&

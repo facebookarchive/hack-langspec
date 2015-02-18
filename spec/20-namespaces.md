@@ -93,7 +93,7 @@ runs until the end of the script, or until the lexically next
 **Examples**
 
 Script1.php:
-```
+```Hack
 namespace NS1;
 ...				// __NAMESPACE__ is "NS1"
 namespace NS3\Sub1;
@@ -101,7 +101,7 @@ namespace NS3\Sub1;
 ```
 
 Script2.php:
-```
+```Hack
 namespace NS1
 {
 ...				// __NAMESPACE__ is "NS1"
@@ -161,7 +161,7 @@ in *qualified-name* is the implied alias for *qualified-name*.
 
 **Examples**
 
-```
+```Hack
 namespace NS1 {
   function f(): void { … }
   class C { … }

@@ -81,7 +81,7 @@ of trait names.
 
 **Examples**
 
-```
+```Hack
 trait T1 { public function compute( … ) : … { … } }
 trait T2 { public function compute( … ) : … { … } }
 trait T1 { public function sort( … ) : … { … } }
@@ -141,7 +141,7 @@ A trait may contain the following members:
 
 **Examples**
 
-```
+```Hack
 trait T {
   private int $prop1 = 1000;
   protected static int $prop2;

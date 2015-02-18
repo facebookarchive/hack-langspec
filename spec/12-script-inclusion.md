@@ -70,7 +70,7 @@ all files included or required.
 
 **Exmaples**
 
-```php
+```Hack
 require 'Point.php';
 require ('Circle.php');
 ```
@@ -95,7 +95,7 @@ program execution.
 
 **Examples**
 
-```php
+```Hack
 // Point.php
 <?hh …
 class Point { … }

@@ -298,7 +298,7 @@ Numerous other library functions are available to create and/or manipulate
 arrays.
 
 **Examples**
-```
+```Hack
 private array<string> $colorsVect;
 private array<int, string> $colorsMap;
 private array<num> $measurements = array(10, 25.55);
@@ -367,7 +367,7 @@ return a value of type *T* directly instead.
 
 **Examples**
 
-```
+```Hack
 function f1((int, string) $p): void { … }
 // -----------------------------------------
 function f2(): (bool, array<int>, float) {
@@ -435,7 +435,7 @@ Consider the case in which we wish a type to represent a point in
 two-dimensional space. This can be implemented as a shape containing a pair of
 integers, using the following *shape-specifier*:
 
-```
+```Hack
 shape('x' => int, 'y' => int)
 ```
 
@@ -447,7 +447,7 @@ be described in this clause. A *shape-specifier* can only be used as a
 *type-to-be-aliased* in an *alias-declaration* ([§§](05-types.md#type-aliases)). For example, the
 following use is not permitted:
 
-```
+```Hack
 function f1(shape('x' => int, 'y' => int) $p1): void { … }
 ```
 
@@ -455,7 +455,7 @@ To use a shape type, we must first create an alias — such as the name `Point`
 below — for that *shape-specifier*. Once that is done, the alias name can be
 used in any context in which a *type-specifier* can occur. For example:
 
-```
+```Hack
 type Point = shape('x' => int, 'y' => int);
 function f2(Point $p1): void {}
 private Point $origin;
@@ -488,7 +488,7 @@ a function to be turned into a closure.
 
 **Examples**
 
-```
+```Hack
 private (function (): void) $prop;
 public function setProcess1((function (int): tuple(int, int)) $val): void { … }
 public function getProcess2(): (function (): ?array<int>) { … }
@@ -555,7 +555,7 @@ there is no type `?mixed`.)
 See the discussion of type side effects ([§§](05-types.md#type-side-effects)).
 
 **Examples**
-```
+```Hack
 private ?bool $pr_nbool;
 private mixed $pr_mixed;
 private array<?int> $a_nint = array(3, null);   // array of nullable int
@@ -627,7 +627,7 @@ An alias created using `newtype` is an *opaque type alias*. In the absence of
 a *type-constraint*, each opaque alias type is distinct from its 
 underlying type and from any other types aliasing it or its underlying type. Only source code in the file that contains the definition of the opaque type alias is allowed access to the underlying implementation. As such, opaque type aliasing is an abstraction mechanism. Consider the following file, which contains an opaque alias definition:
 
-```
+```Hack
 newtype Point = (int, int);
 
 function create_point(int $x, int $y): Point {
@@ -663,7 +663,7 @@ Note: A shape type can only be used via an alias to it ([§§](05-types.md#shape
 
 **Examples**
 
-```
+```Hack
 type Counter = int;
 newtype NameList = array<string>;
 // -----------------------------------------
@@ -734,7 +734,7 @@ using what is called a *type side effect* (which is not to be confused with a
 
 Consider the following function:
 
-```
+```Hack
 function F_n_int(?int $p1): void {
   $x = $p1 % 3;         // rejected; % not defined for ?int
   if (is_int($p1)) {    // type side effect occurs; $p1 has type int
@@ -751,7 +751,7 @@ statement, the type of the expression `$p1` is `?int`.
 
 Consider the following code:
 
-```
+```Hack
   if (is_null($p1)) {   // type side effect occurs; $p1 has type null
     $x = $p1 % 3;         // rejected; % not defined for null
   } else {              // type side effect occurs; $p1 has type int
@@ -765,7 +765,7 @@ occurs with the `else`.
 
 Similarly, we can write the following:
 
-```
+```Hack
   if (!is_null($p1)) {// type side effect occurs; $p1 has type int
     $x = $p1 % 3;   // accepted; % defined for int
   }
@@ -778,7 +778,7 @@ Similarly, we can write the following:
 
 Consider the following example that contains non-trivial selection criteria:
 
-```
+```Hack
 function F_n_num(?num $p1): void {
   if (is_int($p1) || is_float($p1)) {
     $x = $p1**2;    // rejected
@@ -793,7 +793,7 @@ using multiple criteria directly.
 The following example shows type side effects in the context of a nullable 
 class type that involves inheritance:
 
-```
+```Hack
 function F_Button(Button $p1): void {}
 function F_CustomButton(CustomButton $p1): void {}
 function F_n_class_hier(?Button $p1): void {
@@ -818,7 +818,7 @@ Thus far, all the examples use the value of an expression that designates a
 parameter (which is a local variable). Consider the following case, which
 involves a property instead:
 
-```
+```Hack
 class C {
   private ?int $p1 = 8;     // holds an int, but type is ?int
   public function m(): void {
@@ -849,7 +849,7 @@ The process of type inferencing does not cross function boundaries.
 
 Here's an example involving a local variable: 
 
-```
+```Hack
 function f(): void {
   $v = 'acb';       // $v has type string
   …
@@ -867,7 +867,7 @@ function statics is inferred in the same manner, as are function parameters.
 
 For example:
 
-```
+```Hack
 function g(int $p1 = -1): void
 {
   // on entry to the function, $p1 has the declared type int
@@ -883,7 +883,7 @@ As a parameter, `$p1` is required to have a declared type, in this case,
 In the case of a class constant, if the type is omitted, it is inferred from
 the initializer:
 
-```
+```Hack
 class C {
   const C1 = 10;            // type int inferred from initializer
   const string C2 = "red";  // type string declared
@@ -892,7 +892,7 @@ class C {
 
 Let's consider types in anonymous functions:
 
-```
+```Hack
 $doubler = (function ($p) { return $p * 2; });
 $doubler(3);
 $doubler(4.2);
@@ -917,7 +917,7 @@ Whether an `int` or `float` value is passed, it matters not, as when either is m
 
 We can add partial explicit type information; the following all result in the same behavior:
 
-```
+```Hack
 $doubler = (function (int $p) { return $p * 2; });
 $doubler = (function ($p = 0) { return $p * 2; });
 $doubler = (function ($p): int { return $p * 2; });

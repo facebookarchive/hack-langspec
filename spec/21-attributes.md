@@ -6,7 +6,7 @@ Programmers can invent a new kind of declarative information, called an *attribu
 
 Consider the following example:
 
-```
+```Hack
 <<Help("http://www.MyOnlineDocs.com/Widget.html")>>
 class Widget {
   …
@@ -60,7 +60,7 @@ Omitting *attribute-value-list* is equivalent to specifying it without *attribut
 
 **Examples**
 
-```
+```Hack
 <<A1(123), A2>>
 class C {
   <<A3(true, 100)>> public function __construct() { … }
@@ -85,7 +85,7 @@ When a method is overridden in a derived class, it must have exactly the same nu
 
 Consider the following example:
 
-```
+```Hack
 <<__ConsistentConstruct>>
 class Base {
   public function __construct() { … }
@@ -115,7 +115,7 @@ The presence of this attribute causes the designated method to cache automatical
 
 Consider the following example:
 
-```
+```Hack
 class Item {
   <<__Memoize>>
   public static function getNameFromProductCode(int $productCode): string {
@@ -140,7 +140,7 @@ The presence of this attribute indicates that the designated method is intended 
 
 Consider the following example:
 
-```
+```Hack
 class Button {
   public function draw(): void { /* … */ }
 }

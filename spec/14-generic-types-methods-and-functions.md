@@ -8,7 +8,7 @@ Generics allow programmers to write a class or method with the ability to be par
 
 Consider the following example in which `Stack` is a generic class having one type parameter, `T`:
 
-```php
+```Hack
 class StackUnderflowException extends Exception {}
 
 class Stack<T> {
@@ -36,7 +36,7 @@ class Stack<T> {
 
 As shown, the type parameter `T` is used in the declaration of the instance property `$stack`, as the parameter type of the instance method `push`, and as the return type of the instance method `pop`. Note that although `push` and `pop` use the type parameter, they are not themselves generic methods. 
 
-```php
+```Hack
 function useIntStack(Stack<int> $stInt): void {
   $stInt->push(10);
   $stInt->push(20);
@@ -52,7 +52,7 @@ The *arity* of a generic type or method is the number of type parameters declare
 
 Here is an example of a generic function, `maxVal`, having one type parameter, `T`:
 
-```php
+```Hack
 function maxVal<T>(T $p1, T $p2): T {
   return $p1 > $p2 ? $p1 : $p2;
 }
@@ -112,7 +112,7 @@ Generic type constraints are discussed in [§§](14-generic-types-methods-and-fu
 
 In the following case, class `Vector` has one type parameter, `Tv`. Method `map` also has one type parameter, `Tu`.
 
-```php
+```Hack
 final class Vector<Tv> implements MutableVector<Tv> {
   …
   public function map<Tu>((function(Tv): Tu) $callback): Vector<Tu> { … }
@@ -121,7 +121,7 @@ final class Vector<Tv> implements MutableVector<Tv> {
 
 In the following case, class `Map` has two type parameters, `Tk` and `Tv`. Method `zip` has one, `Tu`.
 
-```php
+```Hack
 final class Map<Tk, Tv> implements MutableMap<Tk, Tv> {
   …
   public function zip<Tu>(Traversable<Tu> $iter): Map<Tk, Pair<Tv, Tu>> { … }
@@ -130,7 +130,7 @@ final class Map<Tk, Tv> implements MutableMap<Tk, Tv> {
 
 In the following case, function `maxValue` has one type parameter, `T`.
 
-```php
+```Hack
 function maxValue<T>(T $p1, T $p2): T { … }
 ```
 
@@ -140,7 +140,7 @@ A *generic-type-constraint* ([§§](14-generic-types-methods-and-functions.md#ty
 
 Consider the following example in which class `Complex` has one type parameter, `T`, and that has a constraint:
 
-```php
+```Hack
 class Complex<T as num> {
   private T $real;
   private T $imag;
@@ -168,7 +168,7 @@ Without the `num` constraint, a number of errors are reported, including the fol
 
 The following code creates `float` and `int` instances, respectively, of class `Complex`:
 
-```php
+```Hack
 $c1 = new Complex(10.5, 5.67);
 echo "\$c1 + \$c2 = " . Complex::add($c1, $c2) . "\n";
 $c3 = new Complex(5, 6);
@@ -201,7 +201,7 @@ A *generic-type-argument* can be a *type-specifier* or a *name* that is a *type-
 
 **Examples**
 
-```php
+```Hack
 final class Pair<Tv1, Tv2> implements ConstVector<mixed> {
   …
   public function getIterator(): KeyedIterator<int, mixed> { … }
@@ -223,7 +223,7 @@ Each closed generic type, method, or function has its own set of static variable
 
 Consider the following:
 
-```php
+```Hack
 final class Vector<Tv> implements MutableVector<Tv> {
   …
   public function zip<Tu>(Traversable<Tu> $it): Vector<Pair<Tv, Tu>> { … }
@@ -234,7 +234,7 @@ The type parameter `Tv` is introduced in the declaration of the generic type `Ve
 
 In the following case:
 
-```php
+```Hack
 final class Pair<Tv1, Tv2> implements ConstVector<mixed> {
   …
   public function getIterator(): KeyedIterator<int, mixed> { … }
@@ -256,7 +256,7 @@ Some languages require the type arguments associated with a generic class to be 
 
 In the following example, the type of the `Stack` designated by `$st` is not fixed (i.e., established) until that `Stack` is made available outside of its creating function, in this case, when the creating function returns to its caller:
 
-```php
+```Hack
 function f1(): Stack<num> {
   $st = new Stack();
   $st->push(100);       // allows ints to be pushed
@@ -267,7 +267,7 @@ function f1(): Stack<num> {
 
 Now consider the following example:
 
-```php
+```Hack
 function f2(): void {
   $st = new Stack();
   $st->push(100);
