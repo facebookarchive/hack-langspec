@@ -40,7 +40,7 @@ A *constant-expression* must not refer directly or indirectly to the *name* of i
 
 **Semantics**
 
-An *enum-declaration* defines an enumerated type by the name *name*. Enumerated type names are case-insensitive.
+An *enum-declaration* defines an enumerated type by the name *name*. Enumerated type names are case-preserved ([§§](03-terms-and-definitions.md). 
 
 The *name*s in an *enumerator-list* are declared as constants. Multiple *enumeration-constants* declared in the same *enum-declaration* may have the same *constant-expression* value. Different enumerated types can have *enumeration-constants* with the same *name*. When used, each *name* is qualified by prepending its parent enumerated type *name* and "`::`", in that order.
 

@@ -16,6 +16,8 @@ construct or data.
 **behavior, unspecified** – behavior for which this specification
 provides no requirements.
 
+**case-preserved** – a construct which is case-insensitive upon declaration, but case-sensitive upon subsequent usage.
+
 **constraint** – restriction, either syntactic or semantic, on how
 language elements can be used.
 

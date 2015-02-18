@@ -73,7 +73,7 @@ A generic trait and a non-generic trait in the same scope cannot have the same n
 A *trait-declaration* defines a named set of members, which are made
 available to any class that uses that trait.
 
-Trait names are case-insensitive.
+Trait names are case-preserved ([§§](03-terms-and-definitions.md).
 
 A *trait-declaration* may also use other traits. This is done via one or
 more *trait-use-clause*s, each of which contains a comma-separated list

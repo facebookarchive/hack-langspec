@@ -76,7 +76,7 @@ use the *compound-statement* form of *namespace-definition*.
 
 **Semantics**
 
-Namespace and sub-namespace names are case-insensitive.
+Namespace and sub-namespace names are case-preserved ([§§](03-terms-and-definitions.md).
 
 The pre-defined constant `__NAMESPACE__` ([§§](06-constants.md#context-dependent-constants)) contains the name of
 the current namespace.

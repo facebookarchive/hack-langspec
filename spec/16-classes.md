@@ -96,7 +96,7 @@ A generic class and a non-generic class in the same scope cannot have the same *
 **Semantics**
 
 A *class-declaration* defines a class type by the name *name*. Class
-names are case-insensitive.
+names are case-preserved ([§§](03-terms-and-definitions.md).
 
 The `abstract` modifier declares a class usable only as a base class; the
 class cannot be instantiated directly. An abstract class may contain one
