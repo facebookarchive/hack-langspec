@@ -219,7 +219,7 @@ A type parameter is introduced in the corresponding type, method, or function de
 
 At run-time, all of the code within a generic type, method, or function declaration is executed in the context of the closed generic type that was created by applying type arguments to that generic declaration. Each type parameter within the generic type, method, or function is associated to a particular run-time type. The run-time processing of all statements and expressions always occurs with closed generic types, and open generic types occur only during compile-time processing.
 
-Each closed generic type, method, or function has its own set of static variables, which are not shared with any other closed generic types, methods, or functions. Since an open generic type does not exist at run-time, there are no static variables associated with an open generic type. Two closed generic types are the same type if they are created from the same generic type declaration, and their corresponding type arguments have the same type.
+Two closed generic types are the same type if they are created from the same generic type declaration, and their corresponding type arguments have the same type.
 
 Consider the following:
 
@@ -245,6 +245,23 @@ final class Pair<Tv1, Tv2> implements ConstVector<mixed> {
 ```
 
 the type specifiers `Traversable<Tu>`, `Tu`, and `Vector<Pair<mixed, Tu>>` are all open generic types, while the type specifiers `ConstVector<mixed>`, `KeyedIterator<int, mixed>`, `Vector<int>`, and `Map<int, mixed>` are all closed generic types.
+
+Static properties specified in a generic type are properties of an open generic type. Type arguments of a static are not associated with a particular run-time type, and thus it is an error to have a static property within a generic type.
+
+Consider the following case:
+
+```Hack
+final class Foo<T> {
+  public static T $x;
+}
+
+function main(): void {
+  $i = new Foo(4);
+  $s = new Foo("Hi");
+}
+```
+
+Since the static `$x` is part of the open generic type, there is no way to bind `$x` to a particular type (in this case an `int` or `string`).
 
 ##Type Inferencing Revisited
 
