@@ -492,7 +492,7 @@ a function to be turned into a closure.
 
 ```Hack
 private (function (): void) $prop;
-public function setProcess1((function (int): tuple(int, int)) $val): void { … }
+public function setProcess1((function (int): (int, int)) $val): void { … }
 public function getProcess2(): (function (): ?array<int>) { … }
 // -----------------------------------------
 function doit(int $iValue, (function (int): int) $process): int {
