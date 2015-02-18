@@ -252,7 +252,7 @@ See [§§](05-types.md#type-inferencing) for an introduction to type inferencing
 
 The examples in this section use the generic class `Stack` defined in [§§](14-generic-types-methods-and-functions.md#general).
 
-Some languages require the type arguments associated with a generic class to be specified at instantiation time, using syntax something like new `Stack<int>()` to create a `Stack` of `int`. However, that is **not** permitted in Hack. As such, what is being allocated here is a stack of unknown type. When method `push` is called with an int argument, the compiler infers that the stack can hold values of that type. Then when `push` is called with a `float` argument, the compiler infers that the stack can also hold values of that type. Values of yet other types can also be pushed.
+Some languages require the type arguments associated with a generic class to be specified at instantiation time, using syntax something like new `Stack<int>()` to create a `Stack` of `int`. However, that is **not** permitted in Hack. As such, what is being allocated here is a stack of unknown type. When method `push` is called with an int argument, the implementation infers that the stack can hold values of that type. Then when `push` is called with a `float` argument, the implementation infers that the stack can also hold values of that type. Values of yet other types can also be pushed.
 
 In the following example, the type of the `Stack` designated by `$st` is not fixed (i.e., established) until that `Stack` is made available outside of its creating function, in this case, when the creating function returns to its caller:
 

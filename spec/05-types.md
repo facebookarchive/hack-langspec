@@ -787,7 +787,7 @@ function F_n_num(?num $p1): void {
 }
 ```
 
-A compiler is **not** required to produce the correct type side effect when 
+An implementation is **not** required to produce the correct type side effect when 
 using multiple criteria directly.
 
 The following example shows type side effects in the context of a nullable 
@@ -834,13 +834,13 @@ class C {
 
 Inside the true path of the `if` statement, even though we know that 
 `$this->p1` is an `int` to begin with, once any method in this class is
-called, the compiler must assume that method could have caused a type side
+called, the implementation must assume that method could have caused a type side
 effect on anything currently in scope. As a result, the second attempt to left
 shift is rejected.
 
 ###Type Inferencing
 
-While certain kinds of variables must have their type declared explicitly, others can have their type inferred by having the compiler perform static analysis of the context in which those variables are used. Specifically,
+While certain kinds of variables must have their type declared explicitly, others can have their type inferred by having the implementation perform static analysis of the context in which those variables are used. Specifically,
 * Types **must be declared** for properties ([§§](16-classes.md#properties)) and for the parameters and the return type of a named function ([§§](15-functions.md#function-definitions)).
 * Types **must be inferred** for local variables ([§§](07-variables.md#local-variables)), which includes function statics ([§§](07-variables.md#function-statics)) and parameters.
 * Types **can be declared or inferred** for constants ([§§](16-classes.md#constants)) and for the parameters and return type of an unnamed function ([§§](15-functions.md#anonymous-functions)).

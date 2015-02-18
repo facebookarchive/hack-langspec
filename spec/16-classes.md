@@ -508,7 +508,7 @@ than once. A call to a base-class constructor searches for the nearest
 constructor in the class hierarchy. Not every level of the hierarchy
 need have a constructor.
 
-When a *constructor-parameter-declaration* contains a *visibility-modifier*, a property called *variable-name* with visibility *visibility-modifier* is added to the current class. When that constructor is called, the value of the argument for that parameter is assigned to the added property. Note: This feature simply provides a programming shortcut by having the compiler declare and initialize such properties.
+When a *constructor-parameter-declaration* contains a *visibility-modifier*, a property called *variable-name* with visibility *visibility-modifier* is added to the current class. When that constructor is called, the value of the argument for that parameter is assigned to the added property. Note: This feature simply provides a programming shortcut by having the implementation declare and initialize such properties.
 
 **Examples**
 

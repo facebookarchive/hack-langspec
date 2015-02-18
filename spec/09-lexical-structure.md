@@ -156,7 +156,7 @@ space ([§§](09-lexical-structure.md#white-space)) can occur. (For example;
 `$k = $i+++/*...*/++$j;` is parsed as `$k = $i+++ ++$j;`.)
 
 A number of single-line, so-called special comments are recognized by a 
-compiler; they are:
+conforming implementation; they are:
 
 * `// FALLTHROUGH` ([§§](11-statements.md#the-switch-statement))
 * `// strict` ([§§](04-basic-concepts.md#program-structure))

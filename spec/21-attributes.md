@@ -72,7 +72,7 @@ class C {
 
 ###General
 
-The following attributes are recognized by the compiler:
+The following attributes are recognized by a conforming implementation:
 * `__ConsistentConstruct` ([§§](21-attributes.md#attribute-__consistentconstruct))
 * `__Memoize` ([§§](21-attributes.md#attribute-__memoize))
 * `__Override` ([§§](21-attributes.md#attribute-__override))

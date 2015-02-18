@@ -3,7 +3,7 @@ This specification is intended to provide a complete and concise
 definition of the syntax and semantics of the Hack language, suitable for
 use by the following:
 
--   Implementers of a Hack compiler
+-   Developers of a Hack implementation
 -   Implementers of a test suite for the Hack language
 -   Programmers writing Hack code
 
