@@ -265,7 +265,6 @@ Each element in an array must have a type that is the exact type indicated by
 an array of `num` can contain a mixture of `int` elements and `float` elements.
 
 An array element can have any type (which allows for arrays of arrays).
-However, Hack does not support multidimensional arrays.
 
 An array is represented as an ordered map in which each entry is a key/value
 pair that represents an element. Duplicate keys are not permitted. The order
