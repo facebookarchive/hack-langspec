@@ -333,7 +333,7 @@ is defined in [§§](#the-foreach-statement).
     while  (  <i>expression</i>  )  <i>statement</i>
 </pre>
 
-*expresion* is defined in [§§](10-expressions.md#yield-operator); and *statement* is defined in [§§](#general).
+*expression* is defined in [§§](10-expressions.md#yield-operator); and *statement* is defined in [§§](#general).
 
 **Constraints**
 

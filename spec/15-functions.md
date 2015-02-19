@@ -19,10 +19,10 @@ A function is called via the function-call operator `()` (10.5.6).
 **Syntax**
 
 <pre>
-  <i>function-deﬁnition:</i>
-    <i>function-deﬁnition-header  compound-statement</i>
+  <i>function-definition:</i>
+    <i>function-definition-header  compound-statement</i>
 
-  <i>function-deﬁnition-header:</i>
+  <i>function-definition-header:</i>
     <i>attribute-specification<sub>opt</sub></i>  async<sub>opt</sub>  function <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  (  <i>parameter-list<sub>opt</sub></i>  ) :  <i>return-type</i>
 
   <i>parameter-list:</i>

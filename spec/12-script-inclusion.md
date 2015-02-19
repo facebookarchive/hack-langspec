@@ -68,7 +68,7 @@ Variables defined in an included file take on scope of the source line on which 
 The library function `get_included_files` (§xx) provides the names of
 all files included or required.
 
-**Exmaples**
+**Examples**
 
 ```Hack
 require 'Point.php';

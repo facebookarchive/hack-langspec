@@ -298,7 +298,7 @@ To illustrate the semantics of value assignment further, consider `++$b`:
 Now consider `$a = 99`:
 
 <pre>
-[VSlot $a *]-->[VStore Int 99 (123 was overwriten)]
+[VSlot $a *]-->[VStore Int 99 (123 was overwritten)]
 
 [VSlot $b *]-->[VStore Int 124]
 </pre>
@@ -1010,7 +1010,7 @@ where a single zval contains the sole pointer to a given Hashtable and
 deferred array copies are represented as multiple slots pointing to the
 same single zval that holds the array. Despite this superficial
 difference, php.net’s implementation produces behavior that is
-compatiable with the abstract model’s definition of deferred array copy
+compatible with the abstract model’s definition of deferred array copy
 mechanisms.
 
 ####General Value Assignment
