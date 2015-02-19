@@ -27,8 +27,7 @@ string.
 
 ```Hack
 class C {
-  const float MAX_HEIGHT = 10.5;            // define two (case-insensitive) c
-  constants
+  const float MAX_HEIGHT = 10.5;            // define two (case-insensitive) c-constants
   const float UPPER_LIMIT = MAX_HEIGHT;
 }
 define('COEFFICIENT_1', 2.345, true); // define a case-insensitive d-constant
