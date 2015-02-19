@@ -264,7 +264,7 @@ All members except `const` must have a visibility modifier; there is no defaulti
 Hack requires parameter and return-type type specifiers.
 
 ###Predefined Interfaces
-The interfaces `ArrayAccess`, It`erator, `IteratorAggregate`, and `Traversable` are now generic interfaces.
+The interfaces `ArrayAccess`, `Iterator`, `IteratorAggregate`, and `Traversable` are now generic interfaces.
 
 ##Traits
 
