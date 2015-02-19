@@ -44,7 +44,7 @@ function.
 Referred to as *the Engine* throughout this specification.
 
 **value** – precise meaning of the contents of a memory location when
-interpreted as having a speciﬁc type.
+interpreted as having a specific type.
 
 Other terms are defined throughout this specification, as needed, with
 the first usage being typeset *like this*.

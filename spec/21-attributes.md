@@ -150,7 +150,7 @@ class CustomButton extends Button {
 }
 ```
 
-If a subsequent refactoring of class `Button` results in the removal of method draw, the presence of the attribute in class `CustomButtom` will cause the dependence to be reported.
+If a subsequent refactoring of class `Button` results in the removal of method draw, the presence of the attribute in class `CustomButton` will cause the dependence to be reported.
 
 When `__Override` is applied to a method in a trait, the check for whether the overridden method exists takes place when a class uses that trait.
 

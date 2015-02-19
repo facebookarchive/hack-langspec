@@ -377,17 +377,17 @@ computeValues($table, true);
       <i>octal-literal   octal-digit</i>
 
     <i>hexadecimal-literal::</i>
-      <i>hexadecimal-preﬁx   hexadecimal-digit</i>
+      <i>hexadecimal-prefix   hexadecimal-digit</i>
       <i>hexadecimal-literal   hexadecimal-digit</i>
 
-    <i>hexadecimal-preﬁx:: one of</i>
+    <i>hexadecimal-prefix:: one of</i>
       0x  0X
 
     <i>binary-literal::</i>
-      <i>binary-preﬁx   binary-digit</i>
+      <i>binary-prefix   binary-digit</i>
       <i>binary-literal   binary-digit</i>
 
-    <i>binary-preﬁx:: one of</i>
+    <i>binary-prefix:: one of</i>
       0b  0B
 
     <i>digit:: one of</i>
@@ -815,7 +815,7 @@ A *null-literal* has the null type.
 **Semantics**
 
 Operators and punctuators are symbols that have independent syntactic
-and semantic signiﬁcance. *Operators* are used in expressions to
+and semantic significance. *Operators* are used in expressions to
 describe operations involving one or more *operands*, and that yield a
 resulting value, produce a side effect, or some combination thereof.
 *Punctuators* are used for grouping and separating.

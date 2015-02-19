@@ -566,7 +566,7 @@ shape('id' => null, 'url' => null, 'count' => 0)
 </pre>
 
 *compound-statement* is defined in [§§](11-statements.md#compound-statements); 
-*attribute-specifcation* is defined in [§§](20-namespaces.md#name-lookup); *type-specifier* is described in 
+*attribute-specification* is defined in [§§](20-namespaces.md#name-lookup); *type-specifier* is described in
 [§§](05-types.md#general); *variable-name* is defined in [§§](09-lexical-structure.md#names); and *default-argument-specifier* is defined in [§§](15-functions.md#function-definitions).
 
 **Constraints**
@@ -636,7 +636,7 @@ function compute(array<int> $values): void {
 **Syntax**
 
 <pre>
-  <i>postﬁx-expression:</i>
+  <i>postfix-expression:</i>
     <i>primary-expression</i>
     <i>clone-expression</i>
     <i>object-creation-expression</i>
@@ -658,7 +658,7 @@ defined in [§§](10-expressions.md#the-clone-operator); *object-creation-expres
 *null-safe-member-selection-expression* is defined in [§§](10-expressions.md#null-safe-member-selection-operator);
 *postfix-increment-expression* and *postfix-decrement-expression* are
 defined in [§§](10-expressions.md#postfix-increment-and-decrement-operators); *scope-resolution-expression* is defined in [§§](10-expressions.md#scope-resolution-operator);
-and *exponetiation-expression* is defined in [§§](10-expressions.md#exponentiation-operator).
+and *exponentiation-expression* is defined in [§§](10-expressions.md#exponentiation-operator).
 
 **Semantics**
 
@@ -879,11 +879,11 @@ for ($i = -1; $i <= 2; ++$i) { … $v[$i] } // retrieves via keys -1, 0, 1, 2
 
 <pre>
   <i>subscript-expression:</i>
-    <i>postﬁx-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
-    <i>postﬁx-expression</i>  {  <i>expression<sub>opt</sub></i>  }   <b>[Deprecated form]</b>
+    <i>postfix-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
+    <i>postfix-expression</i>  {  <i>expression<sub>opt</sub></i>  }   <b>[Deprecated form]</b>
 </pre>
 
-*postﬁx-expression* is defined in [§§](10-expressions.md#general-3); and *expression* is defined
+*postfix-expression* is defined in [§§](10-expressions.md#general-3); and *expression* is defined
 in [§§](10-expressions.md#yield-operator).
 
 **Constraints**
@@ -901,11 +901,11 @@ being designated must exist.
 When *postfix-expression* designates a vector-like array, *expression* must 
 have type `int`.
 
-When *postﬁx-expression* designates a map-like array, elements cannot be appended using empty `[]`.
+When *postfix-expression* designates a map-like array, elements cannot be appended using empty `[]`.
 
-When *postﬁx-expression* designates a tuple, *expression* must be a constant.
+When *postfix-expression* designates a tuple, *expression* must be a constant.
 
-When *postﬁx-expression* designates a shape, *expression* must be a 
+When *postfix-expression* designates a shape, *expression* must be a
 *single-quoted-string-literal* ([§§](09-lexical-structure.md#single-quoted-string-literals)) that specifies a key in that 
 shape's *shape-specifier* ([§§](05-types.md#shape-types)).
 
@@ -1060,14 +1060,14 @@ echo "\$p1[0] = " . $p1[0] . "\n";  // outputs '$p1[0] = 55'
 
 <pre>
   <i>function-call-expression:</i>
-    <i>postﬁx-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
+    <i>postfix-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>argument-expression-list:</i>
     <i>expression</i>
     <i>argument-expression-list</i>  ,  <i>expression</i>
 </pre>
 
-*postﬁx-expression* is defined in [§§](10-expressions.md#general-3); and *expression*
+*postfix-expression* is defined in [§§](10-expressions.md#general-3); and *expression*
 is defined in [§§](10-expressions.md#yield-operator).
 
 
@@ -1089,8 +1089,8 @@ If *postfix-expression* is a *null-safe-member-selection-expression*
 ([§§](10-expressions.md#null-safe-member-selection-operator)), special handling occurs; see later below. 
 
 An expression of the form *function-call-expression* is a *function
-call*. The postﬁx expression designates the *called function*, and
-*argument-expression-list* speciﬁes the arguments to be passed to that
+call*. The postfix expression designates the *called function*, and
+*argument-expression-list* specifies the arguments to be passed to that
 function. Each argument corresponds to a parameter or the optional ellipsis in 
 the called function's definition. An argument can have any type. In a function 
 call, *postfix-expression* is evaluated first, followed by each
@@ -1157,25 +1157,25 @@ $anon();  // call the anonymous function
 
 <pre>
   <i>member-selection-expression:</i>
-    <i>postﬁx-expression</i>  ->  <i>name</i>
+    <i>postfix-expression</i>  ->  <i>name</i>
 </pre>
 
-*postﬁx-expression* is defined in [§§](10-expressions.md#general-3); *name* is defined in
+*postfix-expression* is defined in [§§](10-expressions.md#general-3); *name* is defined in
 [§§](09-lexical-structure.md#names).
 
 **Constraints**
 
-*postﬁx-expression* must designate an object. 
+*postfix-expression* must designate an object. 
 
 *name* must designate an instance property, or an instance
-method of the class designated by *postﬁx-expression*.
+method of the class designated by *postfix-expression*.
 
 **Semantics**
 
 A *member-selection-expression* designates an instance property or an
 instance method of the object designated by
-*postﬁx-expression*. For a property, the value is that of the property,
-and is a modifiable lvalue if *postﬁx-expression* is a modifiable
+*postfix-expression*. For a property, the value is that of the property,
+and is a modifiable lvalue if *postfix-expression* is a modifiable
 lvalue.
 
 **Examples**
@@ -1201,17 +1201,17 @@ $p1->move(3, 9);  // calls public instance method move by name
 **Syntax**
 <pre>
 <i>null-safe-member-selection-expression:</i>
-  <i>postﬁx-expression</i>  ?->  <i>name</i>
+  <i>postfix-expression</i>  ?->  <i>name</i>
 </pre>
 
-*postﬁx-expression* is defined in [§§](10-expressions.md#general-3); and *name* is defined in [§§](09-lexical-structure.md#names).
+*postfix-expression* is defined in [§§](10-expressions.md#general-3); and *name* is defined in [§§](09-lexical-structure.md#names).
 
 **Constraints**
 
-*postﬁx-expression* must designate an object.
+*postfix-expression* must designate an object.
 
 *name* must be the name of an instance method of the class designated by 
-*postﬁx-expression*.
+*postfix-expression*.
 
 *null-safe-member-selection-expression* must be used as the 
 *postfix-expression* of a *function-call-expression* ([§§](10-expressions.md#function-call-operator)).
@@ -1219,7 +1219,7 @@ $p1->move(3, 9);  // calls public instance method move by name
 **Semantics**
 
 A *null-safe-member-selection-expression* designates an instance method of the 
-object designated by *postﬁx-expression*. 
+object designated by *postfix-expression*.
 
 See [§§](10-expressions.md#function-call-operator) for more information.
 
@@ -1508,7 +1508,7 @@ value of the result is implementation-defined ([§§](05-types.md#the-integer-ty
 
 For a unary `!` operator, the type of the
 result is `bool`. The value of the result is `true` if the value of the
-operand is non-zero (or for a string-based enumaration, a non-empty string); otherwise, the value of the result is `false`. For
+operand is non-zero (or for a string-based enumeration, a non-empty string); otherwise, the value of the result is `false`. For
 the purposes of this operator, `NAN` is considered a non-zero value. The
 expression `!E` is equivalent to `(E == 0)`.
 
@@ -1540,7 +1540,7 @@ $v = ~0b1010101;
 
 **Semantics**
 
-Operator `@` supresses any error messages generated by the evaluation of
+Operator `@` suppresses any error messages generated by the evaluation of
 *expression*.
 
 If a custom error-handler has been established using the library
@@ -2317,7 +2317,7 @@ $fn2 = $fn1(10); $res = $fn2(7);  // result is 17
 
 **Constraints**
 
-The left-hand operand of an assignment operator must be a modiﬁable
+The left-hand operand of an assignment operator must be a modifiable
 lvalue.
 
 **Semantics**

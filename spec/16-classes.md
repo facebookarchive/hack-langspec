@@ -42,7 +42,7 @@ that method's name, and its parameter types.
 
 Methods and properties from a base class can be *overridden* in a
 derived class by redeclaring them with the same signature defined in the
-base class. However, overriden constructors are exempt from this requirement ([§§](16-classes.md#constructors)).
+base class. However, overridden constructors are exempt from this requirement ([§§](16-classes.md#constructors)).
 
 When an instance is allocated, new returns a handle that points to that
 object. As such, assignment of a handle does not copy the object itself.
@@ -402,8 +402,8 @@ class Point {
 
 <pre>
   <i>method-declaration:</i>
-    <i>method-modifiers</i>  <i>function-deﬁnition</i>
-    <i>method-modifiers</i>  <i>function-deﬁnition-header</i>  ;
+    <i>method-modifiers</i>  <i>function-definition</i>
+    <i>method-modifiers</i>  <i>function-definition-header</i>  ;
 
   <i>method-modifiers:</i>
     <i>method-modifier</i>
@@ -417,8 +417,8 @@ class Point {
 </pre>
 
 *visibility-modifier* is described in [§§](16-classes.md#general); *static-modifier* is
-described in [§§](16-classes.md#class-members); and *function-deﬁnition* and
-*function-deﬁnition-header* are defined in [§§](15-functions.md#function-definitions).
+described in [§§](16-classes.md#class-members); and *function-definition* and
+*function-definition-header* are defined in [§§](15-functions.md#function-definitions).
 
 **Constraints**
 
@@ -430,10 +430,10 @@ than in the corresponding abstract declaration. Furthermore, the
 signature of a method definition must match that of its abstract
 declaration.
 
-The *method-modifiers* preceding a *function-deﬁnition* must not contain
+The *method-modifiers* preceding a *function-definition* must not contain
 the `abstract` modifier.
 
-The *method-modifiers* preceding a *function-deﬁnition-header* must
+The *method-modifiers* preceding a *function-definition-header* must
 contain the `abstract` modifier.
 
 A method must not have the same modifier specified more than once. A

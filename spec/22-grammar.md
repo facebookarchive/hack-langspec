@@ -1246,7 +1246,7 @@ octal-digit
 
 <pre>
   <i>trait-declaration:</i>
-   <i>attribute-specification<sub>opt</sub></i>  trait  <i>name</i>  <i>generic-type-paramater-list<sub>opt</sub></i>  {  <i>trait-use-clauses<sub>opt</sub>  trait-member-declarations<sub>opt</sub></i>  }
+   <i>attribute-specification<sub>opt</sub></i>  trait  <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  {  <i>trait-use-clauses<sub>opt</sub>  trait-member-declarations<sub>opt</sub></i>  }
 
   <i>trait-use-clauses:</i>
     <i>trait-use-clause</i>
