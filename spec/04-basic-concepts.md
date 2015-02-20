@@ -24,18 +24,18 @@ A Hack *program* consists of one or more source files, known formally as
   <i>alias-declaration</i>
 </pre>
 
-*inclusion-directive* is defined in [§§](12-script-inclusion.md#general); *enum-declaration* is defined in 
-[§§](12-script-inclusion.md#the-require-directive); *function-definition* is defined in [§§](15-functions.md#function-definitions); *class-declaration* is 
-defined in [§§](16-classes.md#class-declarations); *interface-declaration* is defined in [§§](17-interfaces.md#interface-declarations); *trait 
+*inclusion-directive* is defined in [§§](12-script-inclusion.md#general); *enum-declaration* is defined in
+[§§](12-script-inclusion.md#the-require-directive); *function-definition* is defined in [§§](15-functions.md#function-definitions); *class-declaration* is
+defined in [§§](16-classes.md#class-declarations); *interface-declaration* is defined in [§§](17-interfaces.md#interface-declarations); *trait
 declaration* is defined in [§§](18-traits.md#trait-declarations); *namespace-definition* is defined in [§§](20-namespaces.md#defining-namespaces);
-*namespace-use-declaration* is defined in [§§](20-namespaces.md#namespace-use-declarations); and *alias-declaration* is 
+*namespace-use-declaration* is defined in [§§](20-namespaces.md#namespace-use-declarations); and *alias-declaration* is
 defined in [§§](05-types.md#type-aliases).
 
-A Hack script can be processed in any one of a number of *modes*, of which 
+A Hack script can be processed in any one of a number of *modes*, of which
 `strict` is one. This mode is specified in a *special single-line-comment*
-([§§](09-lexical-structure.md#comments)), on the first source line, as shown. This comment may be separated 
-from the preceding &lt;?hh by an arbitrary amount of horizontal white space ([§§](09-lexical-structure.md#white-space)), which must not include any *delimited-comments* ([§§](09-lexical-structure.md#comments)). This 
-specification is written from the perspective of strict mode only. A 
+([§§](09-lexical-structure.md#comments)), on the first source line, as shown. This comment may be separated
+from the preceding &lt;?hh by an arbitrary amount of horizontal white space ([§§](09-lexical-structure.md#white-space)), which must not include any *delimited-comments* ([§§](09-lexical-structure.md#comments)). This
+specification is written from the perspective of strict mode only. A
 conforming implementation may provide modes other than `strict`, but they are
 outside the scope of this specification.
 
@@ -44,9 +44,9 @@ A script can import another script via script inclusion ([§§](12-script-inclus
 The top level of a script is simply referred to as the *top level*.
 
 ##Program Start-Up
-Once the start-up function begins execution, it is implementation-defined as 
-to whether it has access to things like command-line arguments and environment 
-variables. [PHP's global variables `$argc` and `$argv` are not available in 
+Once the start-up function begins execution, it is implementation-defined as
+to whether it has access to things like command-line arguments and environment
+variables. [PHP's global variables `$argc` and `$argv` are not available in
 `strict` mode.]
 
 ##Program Termination
@@ -58,7 +58,7 @@ A program may terminate normally in the following ways:
 The behavior of the first case is equivalent to corresponding calls
 to `exit`.
 
-A program may terminate abnormally under various circumstances, such as 
+A program may terminate abnormally under various circumstances, such as
 the detection of an uncaught exception, or the lack of memory or other
 critical resource. If execution reaches the end of the start-up script
 via a fatal error, or via an uncaught exception and there is no uncaught
@@ -66,7 +66,7 @@ exception handler registered by `set_exception_handler`, that is
 equivalent to `exit(255)`. If execution reaches the end of the start-up
 script via an uncaught exception and an uncaught exception handler was
 registered by `set_exception_handler`, that is equivalent to exit(0). It
-is unspecified whether object destructors ([§§](16-classes.md#destructors)) are run. In all other cases, 
+is unspecified whether object destructors ([§§](16-classes.md#destructors)) are run. In all other cases,
 the behavior is unspecified.
 
 ##The Memory Model
@@ -221,10 +221,10 @@ value assignment of array types to local variables, and ending with
 value assignment with complex left-hand side expressions, and byRef
 assignment with complex expressions on the left- or right-hand side.
 
-Value assignment and byRef assignment are core to HHVM, the Engine which 
-supports the  PHP and Hack languages. Many other operations in the PHP and 
-Hack specification are described in terms of value assignment. On the other 
-hand, byRef assignment is used only by PHP, not by Hack. However, a discussion 
+Value assignment and byRef assignment are core to HHVM, the Engine which
+supports the  PHP and Hack languages. Many other operations in the PHP and
+Hack specification are described in terms of value assignment. On the other
+hand, byRef assignment is used only by PHP, not by Hack. However, a discussion
 of such assignment has been retained here for historical reference.
 
 ####Value Assignment of Scalar Types to a Local Variable
@@ -640,7 +640,7 @@ We can remove these aliases using `unset($a, $b)`:
 
 Once all the aliases to the VStores are gone, the VStores can be
 destroyed, in which case, there are no more pointers to the HStore, and
-its destructor ([§§]estructors](#Destructors)) can be run.
+its destructor ([§§](16-classes.md#destructors)) can be run.
 
 ####Value Assignment of Array Types to Local Variables
 The semantics of value assignment of array types is different from value
@@ -1018,7 +1018,7 @@ The subclauses above thus far have described the mechanics of value assignment
 to a local variable. This subclause describes how value assignment works
 when general modifiable lvalue expressions are used on the left hand side.
 
-For example, assuming `Point` definition as in previous sections and further 
+For example, assuming `Point` definition as in previous sections and further
 assuming all instance properties are public, this code:
 
 ```Hack
@@ -1075,7 +1075,7 @@ where the third VSlot with index 2 was created by the assignment.
 Note that any array element and instance property, including a designation of non-existing ones,
 is considered a modifiable lvalue, and the VSlot will be created by the engine and added
 to the appropriate HStore automatically. Static class properties are considered modifiable lvalues too,
-though new ones would not be created automatically. 
+though new ones would not be created automatically.
 
 ####General ByRef Assignment
 The subclauses above thus far have described the mechanics of byref assignment
@@ -1277,6 +1277,3 @@ The lifetime of any VStore ([§§](#general)) or HStore ([§§](#general)) can b
 the Engine as long as needed. Conceptually, the lifetime of a VStore ends
 when it is no longer pointed to by any VSlots ([§§](#general)). Conceptually, the
 lifetime of an HStore ends when no VStores have a handle to it.
-
-
-

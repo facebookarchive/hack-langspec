@@ -64,21 +64,21 @@ The `&` byRef notation is not permitted on the function's return type nor in the
 ####The `new` Operator
 A call to a constructor without any arguments requires the function-call parentheses.
 
-The *class-type-designator *cannot be a string containing a class name; it must be the class name itself.
+The *class-type-designator* cannot be a string containing a class name; it must be the class name itself.
 
 ####Array Creation Operator
 The `&` byRef notation is not permitted.
 
-With the distinction between vector-like arrays and map-like arrays, either all of the initializers must contain keys or none of them can have keys. 
+With the distinction between vector-like arrays and map-like arrays, either all of the initializers must contain keys or none of them can have keys.
 
-####Function call operator 
+####Function call operator
 The caller must pass an argument for each parameter not having a default value.
 
 Each argument passed is type-checked against the corresponding parameter.
 
 Variable functions are not permitted; however, the same thing can be achieved via the library function `fun`.
 
-####Member-Selection Operator   
+####Member-Selection Operator
 The member name must be hard-coded; it cannot be expressed as a string.
 
 This operator cannot be used to access a static method via an instance.
@@ -230,7 +230,7 @@ The deprecated form of constructor name (using the name of the class) is not sup
 Hack requires parameter and return-type type specifiers.
 
 ####Method `__call`
-It works, but it can't be called directly. 
+It works, but it can't be called directly.
 
 ####Method `__get`
 This method does not exist, as dynamic properties are not supported.
