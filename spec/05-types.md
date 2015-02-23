@@ -6,9 +6,9 @@ The meaning of a value is decided by its *type*. Hack's types are
 categorized as *scalar types* and *composite types*. The scalar types
 are Boolean ([§§](#the-boolean-type)), integer ([§§](#the-integer-type)), floating-point ([§§](#the-floating-point-type)), numeric ([§§](05-types.md#the-numeric-type)), string
 ([§§](#the-string-type)), array key ([§§](05-types.md#the-array-key-type)), null ([§§](#the-null-type)), and
-enumerated ([§§](05-types.md#enumerated-types)). The non-scalar types are array ([§§](05-types.md#array-types)), class ([§§](05-types.md#class-types)), 
-interface ([§§](05-types.md#interface-types)), tuple ([§§](05-types.md#tuple-types)), shape ([§§](05-types.md#shape-types)), closure ([§§](05-types.md#closure-types)), resource 
-([§§](05-types.md#resource-types)), and nullable ([§§](05-types.md#nullable-types)). The void type ([§§](05-types.md#the-void-type)) is neither scalar nor 
+enumerated ([§§](05-types.md#enumerated-types)). The non-scalar types are array ([§§](05-types.md#array-types)), class ([§§](05-types.md#class-types)),
+interface ([§§](05-types.md#interface-types)), tuple ([§§](05-types.md#tuple-types)), shape ([§§](05-types.md#shape-types)), closure ([§§](05-types.md#closure-types)), resource
+([§§](05-types.md#resource-types)), and nullable ([§§](05-types.md#nullable-types)). The void type ([§§](05-types.md#the-void-type)) is neither scalar nor
 non-scalar.
 
 The integer, floating-point, and numeric types are known collectively as
@@ -71,9 +71,9 @@ for `null`, use `is_null` (§xx). Useful library functions for interrogating and
   <i>type-specifier-list</i> , <i>type-specifier</i>
 </pre>
 
-*vector-like-array-type-specifier* is defined in [§§](05-types.md#array-types); 
+*vector-like-array-type-specifier* is defined in [§§](05-types.md#array-types);
 *map-like-array-type-specifier* is defined in [§§](05-types.md#array-types); *tuple-type-specifier* is
-defined in [§§](05-types.md#tuple-types); *closure-type-specifier* is defined in [§§](05-types.md#closure-types); 
+defined in [§§](05-types.md#tuple-types); *closure-type-specifier* is defined in [§§](05-types.md#closure-types);
 *nullable-type-specifier* is defined in [§§](05-types.md#nullable-types); *generic-type-parameter-name*
 is defined in [§§](14-generic-types-methods-and-functions.md#type-parameters); *generic-type-argument-list* is defined in [§§](14-generic-types-methods-and-functions.md#type-arguments); and
 *qualified-name* is defined in [§§](09-lexical-structure.md#names).
@@ -237,7 +237,7 @@ likely to be ill conceived.
 
 **Constraints**
 
-This is not currently a syntax constraint, but ... Although 
+This is not currently a syntax constraint, but ... Although
 *array-key-type-specifier* can really be any type, **including** `void`,
 behind the scenes, the key is actually represented as an `int` or `string`,
 so (possibly surprising, or at least, unexpected) conversions occur when other
@@ -425,7 +425,7 @@ construct is sometimes referred to as a "lightweight class".
 
 A *shape-specifier* defines a shape type as having an ordered set of fields
 each of which has a name (indicated by *single-quoted-string-literal*,
-*integer-literal*, or *qualified-name*) and a type (indicated by 
+*integer-literal*, or *qualified-name*) and a type (indicated by
 *type-specifier*). A field in a shape is accessed using its name as the key in
 a *subscript-expression* ([§§](10-expressions.md#subscript-operator)) that operates on a shape of the
 corresponding shape type.
@@ -483,7 +483,7 @@ A *closure* is an object that encapsulates a function with a given argument
 list and return type. The function can then be called through that object by
 using the function-call operator ([§§](10-expressions.md#function-call-operator)).
 
-Note: The library functions `class_meth` (§xx), `fun` (§xx), `inst_meth` 
+Note: The library functions `class_meth` (§xx), `fun` (§xx), `inst_meth`
 (§xx), and `meth_caller` (§xx) allow a string constant containing the name of
 a function to be turned into a closure.
 
@@ -625,7 +625,7 @@ type alias can be defined or which source code can access its underlying
 implementation.
 
 An alias created using `newtype` is an *opaque type alias*. In the absence of
-a *type-constraint*, each opaque alias type is distinct from its 
+a *type-constraint*, each opaque alias type is distinct from its
 underlying type and from any other types aliasing it or its underlying type. Only source code in the file that contains the definition of the opaque type alias is allowed access to the underlying implementation. As such, opaque type aliasing is an abstraction mechanism. Consider the following file, which contains an opaque alias definition:
 
 ```Hack
@@ -656,7 +656,7 @@ on a `Widget`.
 
 The presence of a *type-constraint* allows an opaque type alias to be treated
 as if it had the type specified by *type-constraint-type*, which removes some
-of the alias's opaqueness. Note: Although the presence of a constraint allows
+of the alias' opaqueness. Note: Although the presence of a constraint allows
 the alias type to be converted implicitly to that constraint type, there is no
 conversion in the opposite direction.
 
@@ -686,19 +686,19 @@ type Serialized<T> = string;    // T is not used
 
 ###Supertypes and Subtypes
 
-The set of built-in and user-defined types in Hack can be represented as a 
-directed graph in which each vertex designates a distinct type. Each directed 
-edge connects one vertex with another, with the starting vertex of an edge 
-being a *supertype* of the *subtype* designated by the ending vertex of that edge. 
+The set of built-in and user-defined types in Hack can be represented as a
+directed graph in which each vertex designates a distinct type. Each directed
+edge connects one vertex with another, with the starting vertex of an edge
+being a *supertype* of the *subtype* designated by the ending vertex of that edge.
 
-A supertype can have one or more subtypes, and a subtype can have one or more 
-supertypes. A supertype can be a subtype of some other supertype, and a 
-subtype can be a supertype of some other subtype. If T1 is a supertype of T2, 
-and T2 is, in turn, a supertype of T3, then T1 is a supertype of T3, and T3 is 
+A supertype can have one or more subtypes, and a subtype can have one or more
+supertypes. A supertype can be a subtype of some other supertype, and a
+subtype can be a supertype of some other subtype. If T1 is a supertype of T2,
+and T2 is, in turn, a supertype of T3, then T1 is a supertype of T3, and T3 is
 a subtype of T1.
 
-The relationship between a supertype and any of its subtypes involves the 
-notion of substitutability. Specifically, if T2 is a subtype of T1, program 
+The relationship between a supertype and any of its subtypes involves the
+notion of substitutability. Specifically, if T2 is a subtype of T1, program
 elements designed to operate on T1 can also operate on T2.
 
 For types in Hack, the following rules apply:
@@ -712,7 +712,7 @@ For types in Hack, the following rules apply:
 7.  string is a subtype of `Stringish`.
 8.  The predefined types `Vector`, `ImmVector`, `Map`, `ImmMap`, `Set`, `ImmSet`, and `Pair` and all array types are subtypes of `Container`, `KeyedTraversable`, and `Traversable`.
 9.  The predefined types `Vector`, `ImmVector`, `Map`, `ImmMap`, and `Pair` and all array types are subtypes of `KeyedContainer`.
-10. If A is an alias for a type T created using type, then A is a subtype of T, and T is a subtype of A. 
+10. If A is an alias for a type T created using type, then A is a subtype of T, and T is a subtype of A.
 11. If A is an alias for a type T created using `newtype`, inside the file containing the `newtype` definition, A is a subtype of T, and T is a subtype of A. Outside that file, A and T have no relationship, except that given `newtype` A as C = T, outside the file with the `newtype` definition, A is a subtype of C.
 12. Any class, interface, or trait having a public instance method `__toString` taking no arguments and returning string, is a subtype of `Stringish`.
 13. A class type is a subtype of all its direct and indirect base-class types, including those resulting from *require-extends-clauses* ([§§](17-interfaces.md#interface-members)).
@@ -722,10 +722,10 @@ For types in Hack, the following rules apply:
 ###Type Side Effects
 
 As stated in [§§](05-types.md#supertypes-and-subtypes), a supertype has one or more subtypes, and while any
-operation permitted on a value of some supertype is also permitted on a value 
-of any of its subtypes, the reverse is not true. For example, the type `num` 
-is a supertype of `int` and `float`, and while addition and subtraction are 
-well defined for all three types, bit shifting requires integer operands. As 
+operation permitted on a value of some supertype is also permitted on a value
+of any of its subtypes, the reverse is not true. For example, the type `num`
+is a supertype of `int` and `float`, and while addition and subtraction are
+well defined for all three types, bit shifting requires integer operands. As
 such, a `num` cannot be bit-shifted directly. (Similar situations occur with
 `arraykey` and its subtypes `int` and `string`, with nullable types and their subtypes, and with `mixed` and its subtypes.)
 
@@ -743,10 +743,10 @@ function F_n_int(?int $p1): void {
   }
 ```
 
-On entry, `$p1` contains `null` or some `int`. However, the type of the 
+On entry, `$p1` contains `null` or some `int`. However, the type of the
 expression `$p1` is not known to be `int`, so it is not safe to allow the `%`\
 operator to be applied. When the library function `is_int` is applied to `$p1`
-, a type side effect occurs in which the type of the expression `$p1` is changed to `int` **for the true path of the `if` statement only**. As such, 
+, a type side effect occurs in which the type of the expression `$p1` is changed to `int` **for the true path of the `if` statement only**. As such,
 the `%` operator can be applied. However, once execution flows out of the `if`
 statement, the type of the expression `$p1` is `?int`.
 
@@ -788,10 +788,10 @@ function F_n_num(?num $p1): void {
 }
 ```
 
-An implementation is **not** required to produce the correct type side effect when 
+An implementation is **not** required to produce the correct type side effect when
 using multiple criteria directly.
 
-The following example shows type side effects in the context of a nullable 
+The following example shows type side effects in the context of a nullable
 class type that involves inheritance:
 
 ```Hack
@@ -800,7 +800,7 @@ function F_CustomButton(CustomButton $p1): void {}
 function F_n_class_hier(?Button $p1): void {
   if (!is_null($p1)) {      // type side effect occurs; $p1 has type Button
     F_Button($p1);          // call permitted; argument has type Button
-    F_CustomButton($p1);    // call rejected; not necesarily a CustomButton
+    F_CustomButton($p1);    // call rejected; not necessarily a CustomButton
     if ($p1 instanceof CustomButton) {  // type side effect occurs
       F_CustomButton($p1);  // call permitted; argument has type CustomButton
     }
@@ -810,7 +810,7 @@ function F_n_class_hier(?Button $p1): void {
 
 The following constructs involve type side effects:
 
-* When used as the controlling expression in an `if`, `while`, or `for`statement, the operators `==`, `!=`, `===`, and `!==` ([§§](10-expressions.md#equality-operators)) when used with one operand of `null`, `instanceof` ([§§](10-expressions.md#instanceof-operator)), and simple assignment `=` ([§§](10-expressions.md#simple-assignment)). [Note that if `$x` is an expression of some nullable type, the logical test `if ($x)` is equivalent to `if ($x !== null)`.] 
+* When used as the controlling expression in an `if`, `while`, or `for`statement, the operators `==`, `!=`, `===`, and `!==` ([§§](10-expressions.md#equality-operators)) when used with one operand of `null`, `instanceof` ([§§](10-expressions.md#instanceof-operator)), and simple assignment `=` ([§§](10-expressions.md#simple-assignment)). [Note that if `$x` is an expression of some nullable type, the logical test `if ($x)` is equivalent to `if ($x !== null)`.]
 * The operators `&&`, `||`, and `?:`.
 * The intrinsic `invariant` ([§§](10-expressions.md#invariant)).
 * The library functions `is_array`, `is_bool`, `is_float`, `is_int`, `is_null`, `is_resource`, and `is_string`.
@@ -824,16 +824,16 @@ class C {
   private ?int $p1 = 8;     // holds an int, but type is ?int
   public function m(): void {
     if (is_int($this->p1)) {    // type side effect occurs; $this->p1 is int
-      $x = $this->p1 << 2;      // allowed; type is int 
-      $this->n();           // could involve a type side effect on $p1 
-      $x = $this->p1 << 2;      // disallowed; might no longer be int 
+      $x = $this->p1 << 2;      // allowed; type is int
+      $this->n();           // could involve a type side effect on $p1
+      $x = $this->p1 << 2;      // disallowed; might no longer be int
     }
   }
   public function n(): void { … }
 }
 ```
 
-Inside the true path of the `if` statement, even though we know that 
+Inside the true path of the `if` statement, even though we know that
 `$this->p1` is an `int` to begin with, once any method in this class is
 called, the implementation must assume that method could have caused a type side
 effect on anything currently in scope. As a result, the second attempt to left
@@ -848,7 +848,7 @@ While certain kinds of variables must have their type declared explicitly, other
 
 The process of type inferencing does not cross function boundaries.
 
-Here's an example involving a local variable: 
+Here's an example involving a local variable:
 
 ```Hack
 function f(): void {
@@ -864,7 +864,7 @@ function f(): void {
 
 For each assignment, the type of `$v` is inferred from the type of the
 expression on the right-hand side, as shown in the comments. The type of
-function statics is inferred in the same manner, as are function parameters. 
+function statics is inferred in the same manner, as are function parameters.
 
 For example:
 
@@ -878,7 +878,7 @@ function g(int $p1 = -1): void
 }
 ```
 
-As a parameter, `$p1` is required to have a declared type, in this case, 
+As a parameter, `$p1` is required to have a declared type, in this case,
 `int`. However, when used as an expression, `$p1`'s type can change, as shown.
 
 In the case of a class constant, if the type is omitted, it is inferred from
@@ -899,17 +899,17 @@ $doubler(3);
 $doubler(4.2);
 ```
 
-The type of the parameter `$p` and the function's return type have been 
-omitted. These types are inferred each time the anonymous function is called 
-through the variable `$doubler`. When `3` is passed, as that has type `int`, 
-that is inferred as the type of `$p`. The literal `2` also has type `int`, so 
-the type of the value returned is the type of `$p * 2`, which is `int`, and 
-that becomes the function's return type. When `4.2` is passed, as that has 
-type `float`, that is inferred as the type of `$p`. The literal `2` has type 
+The type of the parameter `$p` and the function's return type have been
+omitted. These types are inferred each time the anonymous function is called
+through the variable `$doubler`. When `3` is passed, as that has type `int`,
+that is inferred as the type of `$p`. The literal `2` also has type `int`, so
+the type of the value returned is the type of `$p * 2`, which is `int`, and
+that becomes the function's return type. When `4.2` is passed, as that has
+type `float`, that is inferred as the type of `$p`. The literal `2` has type
 `int`, so the type of the value returned is the type of `$p * 2`, which is
 `float`, and that becomes the function's return type.
 
-Consider the following, subtly different, version (note the literal 2.0 
+Consider the following, subtly different, version (note the literal 2.0
 instead of 2):
 
 `$doubler = (function ($p) { return $p * 2.0; });`
@@ -924,22 +924,17 @@ $doubler = (function ($p = 0) { return $p * 2; });
 $doubler = (function ($p): int { return $p * 2; });
 ```
 
-In the first case, as `$p` has the declared type `int`, and `int * int` gives 
-`int`, the return type is inferred as `int`. In the second case, as the 
-default value `0` has type `int`, `$p` is inferred to also have that type, and 
-`int * int` gives `int`, so the return type is inferred as `int`. In the third 
-case, as the return type is declared as `int`, and `$p * 2` must have that 
-type, the type of `$p` is inferred as `int`, so that must also be the type of 
+In the first case, as `$p` has the declared type `int`, and `int * int` gives
+`int`, the return type is inferred as `int`. In the second case, as the
+default value `0` has type `int`, `$p` is inferred to also have that type, and
+`int * int` gives `int`, so the return type is inferred as `int`. In the third
+case, as the return type is declared as `int`, and `$p * 2` must have that
+type, the type of `$p` is inferred as `int`, so that must also be the type of
 the parameter.
 
-While all three of these cases allow a call such as `$doubler(3)`, none of 
-them allows a call such as `$doubler(4.2)`. So, the fact that type information 
+While all three of these cases allow a call such as `$doubler(3)`, none of
+them allows a call such as `$doubler(4.2)`. So, the fact that type information
 can be provided explicitly in these cases doesn’t mean it's necessarily a good idea to do so.
 
 Other considerations apply to type inferencing in the context of generic types
 ([§§](14-generic-types-methods-and-functions.md#type-inferencing-revisited)).
-
-
-
-
-
