@@ -306,7 +306,7 @@ octal-digit
     [   ]    (   )   {    }   .   -&gt;   ++   --   **   *   +   -   ~   !
     $   /   %   &lt;&lt;   &gt;&gt;   &lt;   &gt;   &lt;=   &gt;=   ==   ===   !=   !==   ^   |
     &amp;   &amp;&amp;   ||   ?   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
-    &gt;&gt;=   &amp;=   ^=   |=   ,   @
+    &gt;&gt;=   &amp;=   ^=   |=   ,   @   ::   =>   ==>   ?->
 </pre>
 
 ##Syntactic Grammar
