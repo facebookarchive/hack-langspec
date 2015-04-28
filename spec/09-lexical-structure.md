@@ -809,7 +809,7 @@ A *null-literal* has the null type.
     [   ]    (   )   {    }   .   ->   ++   --   **   *   +   -   ~   !
     $   /   %   &lt;&lt;   >>   &lt;   >   &lt;=   >=   ==   ===   !=   !==   ^   |
     &amp;   &amp;&amp;   ||   ?   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
-    >>=   &amp;=   ^=   |=   ,
+    >>=   &amp;=   ^=   |=   ,   @
 </pre>
 
 **Semantics**
