@@ -306,7 +306,7 @@ octal-digit
     [   ]    (   )   {    }   .   -&gt;   ++   --   **   *   +   -   ~   !
     $   /   %   &lt;&lt;   &gt;&gt;   &lt;   &gt;   &lt;=   &gt;=   ==   ===   !=   !==   ^   |
     &amp;   &amp;&amp;   ||   ?   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
-    &gt;&gt;=   &amp;=   ^=   |=   ,
+    &gt;&gt;=   &amp;=   ^=   |=   ,   @   ::   =>   ==>   ?->
 </pre>
 
 ##Syntactic Grammar
@@ -1031,15 +1031,15 @@ octal-digit
     <i>require-once-expression</i>
   
   <i>require-multiple-directive:</i>
-    require  (  <i>include-filename</i>  )
-    require  <i>include-filename</i>
+    require  (  <i>include-filename</i>  )  ;
+    require  <i>include-filename</i>  ;
 
   <i>include-filename:</i>
     <i>expression</i>  
 
   <i>require-once-directive:</i>
-    require_once  (  <i>include-filename</i>  )
-    require_once  <i>include-filename</i>
+    require_once  (  <i>include-filename</i>  )  ;
+    require_once  <i>include-filename</i>  ;
 </pre>  
 
 ###Enums

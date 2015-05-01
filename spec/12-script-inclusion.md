@@ -47,8 +47,8 @@ configuration directive
 
 <pre>
 <i>require-multiple-directive:</i>
-  require  (  <i>include-filename</i>  )
-  require  <i>include-filename</i>
+  require  (  <i>include-filename</i>  )  ;
+  require  <i>include-filename</i>  ;
 <i>include-filename:</i>
   <i>expression</i>
 </pre>
@@ -81,8 +81,8 @@ require ('Circle.php');
 
 <pre>
   <i>require-once-directive:</i>
-    require_once  (  <i>include-filename</i>  )
-    require_once  <i>include-filename</i>
+    require_once  (  <i>include-filename</i>  )  ;
+    require_once  <i>include-filename</i>  ;
 </pre>
 
 *include-filename* is defined in [§§](12-script-inclusion.md#the-require-directive).   
