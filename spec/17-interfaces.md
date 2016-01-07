@@ -20,7 +20,8 @@ inherits all members from its *base interface(s)*.
 
 <pre>
   <i>interface-declaration:</i>
-    <i>attribute-specification<sub>opt</sub></i>  interface  <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  <i>interface-base-clause<sub>opt</sub></i> {  <i>interface-member-declarations<sub>opt</sub></i>  }
+    <i>attribute-specification<sub>opt</sub></i>  interface  <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  <i>interface-base-clause<sub>opt</sub></i> {
+      <i>interface-member-declarations<sub>opt</sub></i>  }
 
   <i>interface-base-clause:</i>
     extends  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
@@ -82,12 +83,12 @@ processCollection(new MyQueue(…));
     <i>interface-member-declaration</i>
     <i>interface-member-declarations   interface-member-declaration</i>
   <i>interface-member-declaration:</i>
-    <i>requires-extends-clause</i>
+    <i>require-extends-clause</i>
     <i>const-declaration</i>
     <i>method-declaration</i>
 </pre>
 
-*requires-extends-clause* is defined in [§§](18-traits.md#trait-members); *const-declaration* is defined in [§§](16-classes.md#constants) and *method-declaration* is
+*require-extends-clause* is defined in [§§](18-traits.md#trait-members); *const-declaration* is defined in [§§](16-classes.md#constants) and *method-declaration* is
 defined in [§§](16-classes.md#methods).
 
 **Constraints**
@@ -105,6 +106,8 @@ An interface may contain the following members:
 * *require-extends-clauses* each of which requires the class implementing this interface to directly or indirectly extend the class type designated by *qualified-name*.
 * Constants – the constant values associated with the interface ([§§](17-interfaces.md#constants)).
 * Methods – placeholders for the computations and actions that can be performed by implementers of the interface ([§§](17-interfaces.md#methods)).
+
+An *interface-member-declarations* may contain multiple *require-extends-clause*s that designate the same class, in which case, the duplicates are redundant. 
 
 ##Constants
 

@@ -1134,7 +1134,8 @@ octal-digit
 
 <pre>
   <i>class-declaration:</i>
-    <i>attribute-specification<sub>opt</sub></i>  <i>class-modifier<sub>opt</sub></i>  class  <i>name  generic-type-parameter-list<sub>opt</sub>  class-base  clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>  {  <i>trait-use-clauses<sub>opt</sub>  class-member-declarations<sub>opt</sub></i>  }
+    <i>attribute-specification<sub>opt</sub></i>  <i>class-modifier<sub>opt</sub></i>  class  <i>name  generic-type-parameter-list<sub>opt</sub></i>  <i>class-base-clause<sub>opt</sub></i>
+      <i>class-interface-clause<sub>opt</sub></i>  {  <i>trait-use-clauses<sub>opt</sub>  class-member-declarations<sub>opt</sub></i>  }
 
   <i>class-modifier:</i>
     abstract
@@ -1226,7 +1227,8 @@ octal-digit
 
 <pre>
   <i>interface-declaration:</i>
-    <i>attribute-specification<sub>opt</sub></i>  interface  <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  <i>interface-base-clause<sub>opt</sub></i> {  <i>interface-member-declarations<sub>opt</sub></i>  }
+    <i>attribute-specification<sub>opt</sub></i>  interface  <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  <i>interface-base-clause<sub>opt</sub></i> {
+      <i>interface-member-declarations<sub>opt</sub></i>  }
 
   <i>interface-base-clause:</i>
     extends  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
@@ -1237,7 +1239,7 @@ octal-digit
     <i>interface-member-declarations   interface-member-declaration</i>
   
   <i>interface-member-declaration:</i>
-    <i>requires-extends-clause</i>
+    <i>require-extends-clause</i>
     <i>const-declaration</i>
     <i>method-declaration</i>
 </pre>
@@ -1246,7 +1248,8 @@ octal-digit
 
 <pre>
   <i>trait-declaration:</i>
-   <i>attribute-specification<sub>opt</sub></i>  trait  <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  {  <i>trait-use-clauses<sub>opt</sub>  trait-member-declarations<sub>opt</sub></i>  }
+   <i>attribute-specification<sub>opt</sub></i>  trait  <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  <i>class-interface-clause<sub>opt</sub></i>  {
+     <i>trait-use-clauses<sub>opt</sub>  trait-member-declarations<sub>opt</sub></i>  }
 
   <i>trait-use-clauses:</i>
     <i>trait-use-clause</i>
@@ -1271,7 +1274,7 @@ octal-digit
     <i>constructor-declaration</i>
     <i>destructor-declaration</i>
 
-  <i>requires-extends-clause:</i>
+  <i>require-extends-clause:</i>
     require  extends  <i>qualified-name</i>
   
   <i>require-implements-clause:</i>
