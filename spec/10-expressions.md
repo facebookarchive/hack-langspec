@@ -1097,7 +1097,7 @@ call, *postfix-expression* is evaluated first, followed by each
 *assignment-expression* in the order left-to-right. There is a sequence
 point ([§§](#general)) right before the function is called. For details of the
 type and value of a function call see [§§](11-statements.md#the-return-statement). The value of a function
-call is a non-modifiable lvalue.
+call, if any, is a non-modifiable lvalue.
 
 If the called function is variadic, the function call can have any number of 
 arguments, provided the function call has at least an argument for each 
@@ -1115,7 +1115,7 @@ invoked instance has no `$this` defined.
 When a function is called, the value of each argument passed to it is
 assigned to the corresponding parameter in that function's definition,
 if such a parameter exists. The assignment of argument values to
-parameters is defined in terms of simple (10.20.2). Any parameters having a 
+parameters is defined in terms of simple assignment [§§](10-expressions.md#simple-assignment). Any parameters having a 
 default value but no corresponding argument, takes on that default value.
 
 If an undefined variable is passed using byRef, that variable becomes

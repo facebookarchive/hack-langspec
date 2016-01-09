@@ -111,7 +111,11 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
 
 <pre>
   <i>keyword::</i> one of
-    abstract  arraykey  as  async  break  case  catch  class  clone  const  continue  default  do  echo  else  elseif  enum  extends  final  finally  for  foreach  function  if  implements  instanceof  insteadof  interface  mixed  namespace  new  newtype  num  private  protected  public  require  require_once  return  shape  static  switch  throw  trait  try  tuple  type  use  while  yield
+    abstract  arraykey  as  async  break  case  catch  class  clone  const  continue  default  do
+    echo  else  elseif  enum  extends  final  finally  for  foreach  function  if  implements
+    instanceof  insteadof  interface  mixed  namespace  new  newtype  noreturn   num  private
+    protected  public  require  require_once  return  shape  static  switch  throw  trait  try
+    tuple  type  use  while  yield
 </pre>
 
 ###Literals
@@ -1127,7 +1131,6 @@ octal-digit
 
   <i>return type:</i>
     <i>type-specifier</i>
-    this
 </pre>
 
 ###Classes

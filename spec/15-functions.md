@@ -23,7 +23,8 @@ A function is called via the function-call operator `()` (10.5.6).
     <i>function-definition-header  compound-statement</i>
 
   <i>function-definition-header:</i>
-    <i>attribute-specification<sub>opt</sub></i>  async<sub>opt</sub>  function <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  (  <i>parameter-list<sub>opt</sub></i>  ) :  <i>return-type</i>
+    <i>attribute-specification<sub>opt</sub></i>  async<sub>opt</sub>  function <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  (  <i>parameter-list<sub>opt</sub></i>  )
+      :  <i>return-type</i>
 
   <i>parameter-list:</i>
     ...
@@ -42,7 +43,7 @@ A function is called via the function-call operator `()` (10.5.6).
 
   <i>return type:</i>
     <i>type-specifier</i>
-    this
+    noreturn
 </pre>
 
 *compound-statement* is defined in [§§](11-statements.md#compound-statements); *attribute-specification* is defined in [§§](21-attributes.md#attribute-specification); *name* is defined in [§§](09-lexical-structure.md#names); *generic-type-parameter-list* is defined in [§§](14-generic-types-methods-and-functions.md#type-parameters); *type-specifier* is described in [§§](05-types.md#general); *variable-name* is defined in [§§](09-lexical-structure.md#names); and *const-expression* is defined in [§§](10-expressions.md#constant-expressions).
@@ -54,6 +55,8 @@ The name of a method must not be the same as that of its parent class.
 Each *variable-name* in a *parameter-declaration-list* must be distinct.
 
 If any *parameter-declaration* has a *default-argument-specifier*, then all subsequent *parameter-declarations* in the same *parameter-declaration-list* must also have a *default-argument-specifier*.
+
+If *return-type* is `noreturn`, the *compound-statement* must not contain any `return` statements ([§§](11-statements.md#the-return-statement)).
 
 If the *type-specifier* in *return-type* is `void`, the *compound-statement* must not contain any `return` statements ([§§](11-statements.md#the-return-statement)) having an *expression*. Otherwise, all `return` statements must contain an *expression* whose type is a subtype of the type indicated by *type-specifier*.
 
@@ -78,6 +81,8 @@ Each parameter is a variable local to the parent function, it is a modifiable lv
 There may be more arguments than parameters, in which case, the library functions `func_num_args` (§xx), `func_get_arg` (§xx), and `func_get_args` (§xx) can be used to get access to the complete argument list that was passed.
 
 The presence of the `async` modifier declares the function to be asynchronous ([§§](15-functions.md#asynchronous-functions)). For an async function, control may be transferred back to the caller before the flow of execution reaches any `return` statement or the function-closing brace. In such a case, the Awaitable object that will be returned to the caller later on acts like a placeholder that will eventually be filled with the return result.
+
+A function having a *return-type* of `noreturn` never returns. Instead, it, or a function it calls directly or indirectly, terminates in some other manner, such as by throwing an exception or by calling the non-returning library function `exit`.
 
 A method having a *return-type* of `this` allows that method to return an object created via `new static` ([§§](10-expressions.md#the-new-operator)). In such cases, the type actually returned depends on whether the method is called on an instance of its own class or on one that is an instance of a derived class. (See [§§](21-attributes.md#attribute-__consistentconstruct) for an example.)
 
@@ -113,8 +118,17 @@ function variable_args(...): void {   // variadic function
     echo "\targ[$k] = >$e<\n";
   }
 }
-```
+// -----------------------------------------
+function f6(int $p): noreturn { 
+  if ($p < 0) throw new ExceptionA();
+  else if ($p > 0) throw new ExceptionB();
+  else exit(10);
+}                         // Okay; no path returns
 
+function f7c(int $p): noreturn { 
+  f6($p);
+}                         // implicit return nothing is allowed
+```
 
 ##Anonymous Functions
 
