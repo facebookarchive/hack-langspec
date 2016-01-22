@@ -721,14 +721,19 @@ $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
   <i>class-type-designator:</i>
     static
     <i>qualified-name</i>
+    <i>variable-name<i>
 </pre>
 
-*argument-expression-list* is defined in [§§](10-expressions.md#function-call-operator); and *qualified-name* is
-defined in [§§](09-lexical-structure.md#names).
+*argument-expression-list* is defined in [§§](10-expressions.md#function-call-operator); *qualified-name* is
+defined in [§§](09-lexical-structure.md#names); and *variable-name* is defined in [§§](09-lexical-structure.md#names).
 
 **Constraints**
 
 *qualified-name* must name a class.
+
+*variable-name* must name a value having the classname type ([§§](05-types.md#the-classname-type)).
+
+*variable-name* must designate a class that has the attribute  `__ConsistentConstruct` ([§§](21-attributes.md#attribute-__consistentconstruct)), or that has an abstract constructor or a final constructor.
 
 *class-type-designator* must not designate an abstract class ([§§](16-classes.md#general)).
 
@@ -744,7 +749,7 @@ than there are corresponding parameters.
 **Semantics**
 
 The `new` operator allocates memory for an object that is an instance of
-the class specified by *class-type-designator*.
+the class specified by *class-type-designator* or *variable-name*.
 
 The object is initialized by calling the class's constructor (16.8)
 passing it the optional *argument-expression-list*. If the class has no
@@ -753,7 +758,7 @@ Otherwise, each instance property having any nullable type takes on the value
 `null`.
 
 The result of an *object-creation-expression* is a handle to an object
-of the type specified by *class-type-designator*.
+of the type specified by *class-type-designator* or *variable-name*.
 
 From within a method, the use of `static` corresponds to the class in the
 inheritance context in which the method is called. The type of the object created by an expression of the form `new static` is `this` [§§](05-types.md#the-this-type).
@@ -774,6 +779,12 @@ class Point
 }
 $p1 = new Point();     // create Point(0, 0)
 $p1 = new Point(12);   // create Point(12, 0)
+// -----------------------------------------
+class C { ... }
+function f(classname<C> $clsname): void {
+  $w = new $clsname(); 
+  …
+}
 ```
 
 ###Array Creation Operator
@@ -1256,16 +1267,21 @@ $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 
   <i>scope-resolution-qualifier:</i>
     <i>qualified-name</i>
+    <i>variable-name</i>
     self
     parent
     static
 </pre>
 
-*name* and *qualified-name* are defined in [§§](09-lexical-structure.md#names).
+*name*, *qualified-name*, and *variable-name* are defined in [§§](09-lexical-structure.md#names).
 
 **Constraints**
 
-If *name* is present, *qualified-name* must be the name of an enum, a class, or an interface type, and *name* must designate an enumeration constant or member within that type. Otherwise, *qualified-name* must be the name of a class type.
+If *name* is present, *qualified-name* must be the name of an enum, a class, or an interface type, and *name* must designate an enumeration constant or member within that type. Otherwise, *qualified-name* must be the name of a class or interface type.
+
+*variable-name* must name a value having the classname type ([§§](05-types.md#the-classname-type)).
+
+*variable-name* `:: class` is not permitted.
 
 **Semantics**
 
@@ -1308,6 +1324,8 @@ $d1->b(); // as $d1 is an instance of Derived, Base::b() calls Derived::f()
 The value of the form of *scope-resolution-expression* ending in `::class`
 is a string containing the fully qualified name of the current class,
 which for a static qualifier, means the current class context.
+
+*variable-name* `::` *name* results in a constant whose value has the classname type ([§§](05-types.md#the-classname-type)) for the type designated by *variable-name*.
 
 **Examples**
 
@@ -1654,10 +1672,11 @@ Function `main` calls async function `f`, which in turn awaits on async function
 
 <i>instanceof-type-designator:</i>
   <i>qualified-name</i>
+  <i>variable-name</i>
 </pre>
 
 *unary-expression* is defined in [§§](10-expressions.md#general-4); *expression* is defined in
-[§§](10-expressions.md#yield-operator); and *qualified-name* is defined in [§§](09-lexical-structure.md#names). 
+[§§](10-expressions.md#yield-operator); *qualified-name* is defined in [§§](09-lexical-structure.md#names); and variable-name is defined in [§§](09-lexical-structure.md#names). 
 
 **Constraints**
 
@@ -1665,13 +1684,15 @@ The *expression* in *instanceof-subject* must designate a variable.
 
 *qualified-name* must be the name of a class or interface type.
 
+*variable-name* must name a value having the classname type ([§§](05-types.md#the-classname-type)).
+
 **Semantics**
 
 Operator `instanceof` returns `true` if the variable designated by
 *expression* in *instanceof-subject* is an object having type
-*qualified-name*, is an object whose type is derived from type
-*qualified-name*, or is an object whose type implements interface
-*qualified-name*. Otherwise, it returns `false`.
+*qualified-name* or *variable-name*, is an object whose type is derived from type
+*qualified-name* or *variable-name*, or is an object whose type implements interface
+*qualified-name* or *variable-name*. Otherwise, it returns `false`.
 
 If either *expression* is not an instance, `false` is returned.
 
