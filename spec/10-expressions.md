@@ -1128,8 +1128,8 @@ The following discussion applies when *postfix-expression* is a
 `null`, the behavior is the same as if a *member-selection-expression* 
 ([§§](10-expressions.md#member-selection-operator)) were used instead of a *null-safe-member-selection-expression*. 
 Otherwise, no function is called, and the *function-call-expression* 
-evaluates to `null`; as to whether the *expression*s in 
-*argument-expression-list* are evaluated, is implementation-defined.
+evaluates to `null`. The *expression*s in 
+*argument-expression-list* are evaluated.
 
 **Examples**
 
@@ -1208,20 +1208,13 @@ $p1->move(3, 9);  // calls public instance method move by name
 
 **Constraints**
 
-*postfix-expression* must designate an object.
+*postfix-expression* must designate a nullable-typed object.
 
-*name* must be the name of an instance method of the class designated by 
-*postfix-expression*.
-
-*null-safe-member-selection-expression* must be used as the 
-*postfix-expression* of a *function-call-expression* ([§§](10-expressions.md#function-call-operator)).
+*name* must designate an instance property or an instance method of the class designated by *postﬁx-expression*.
 
 **Semantics**
 
-A *null-safe-member-selection-expression* designates an instance method of the 
-object designated by *postfix-expression*.
-
-See [§§](10-expressions.md#function-call-operator) for more information.
+If *postﬁx-expression* is `null`, no property or method is selected and the resulting value is `null`. Otherwise, the behavior is like that of the member-selection operator `->` ([§§](10-expressions.md#member-selection-operator)), except that when *name* designates an instance property of the object designated by *postﬁx-expression*, the resulting value is not an lvalue. 
 
 ###Postfix Increment and Decrement Operators
 
