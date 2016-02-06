@@ -1138,6 +1138,31 @@ The three properties contain the name of the unknown
 class, and the name, visibility, and value of each property that was
 serialized, in order of serialization.
 
+###Class `Shapes`
+
+This class provides some shape-related methods. It is defined, as follows:
+
+```Hack
+abstract final class Shapes {
+  public static function idx(S $shape, arraykey $index) : ?Tv; 
+  public static function idx(S $shape, arraykey $index, Tv $default) : Tv;
+  public static function keyExists(S $shape, arraykey $index): bool;
+  public static function removeKey(S $shape, arraykey $index): void;
+  public static function toArray(S $shape): array<arraykey, mixed>;
+}
+```
+
+where S is any shape type.
+
+The class members are defined below:
+
+Name | Purpose
+---- | -------
+`idx` | This method searches shape `$shape` for the field named `$index`. If the field exists, its value is returned; otherwise, a default value is returned. For a field of type `T`, the function returns a value of type `?T`. A default value `$default` can be provided; however, if that argument is omitted, the value `null` is used. `$index` must be a single-quoted string or a class constant of type `string` or `int`.
+`keyExists` | This method searches shape `$shape` for the field named `$index`. If the field exists, `true` is returned; otherwise, `false` is returned. `$index` must be a single-quoted string or a class constant of type `string` or `int`.
+`removeKey` | Given a shape `$shape` and a field name `$index`, this method removes the specified field from that shape. If the field specified does not exist, the removal request is ignored. `$index` must be a single-quoted string or a class constant of type `string` or `int`.
+`toArray` | This method returns an array of type `array<arraykey, mixed>` containing one element for each field in the shape `$shape`. Each element's key and value are the name and value, respectively, of the corresponding field.
+
 ###Class `stdClass`
 
 This class contains no members. It can be instantiated and used as a

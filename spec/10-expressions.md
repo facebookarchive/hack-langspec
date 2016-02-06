@@ -2353,7 +2353,7 @@ If *assignment-expression* designates an expression having value type,
 see [§§](04-basic-concepts.md#value-assignment-of-scalar-types-to-a-local-variable). If *assignment-expression*
 designates an expression having a handle, see [§§](04-basic-concepts.md#byref-assignment-for-scalar-types-with-local-variables). If
 *assignment-expression* designates an expression having array type, see
-[§§](04-basic-concepts.md#value-assignment-of-array-types-to-local-variables).
+[§§](04-basic-concepts.md#value-assignment-of-array-types-to-local-variables). If *assignment-expression* designates an expression having a shape type, it is treated as if it had array type.
 
 The type and value of the result is the type and value of the left-hand
 operand after the store (if any [see below]) has taken place. The result
