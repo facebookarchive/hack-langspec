@@ -1140,10 +1140,10 @@ serialized, in order of serialization.
 
 ###Class `Shapes`
 
-This class provides some shape-related methods. This class cannot be instantiated directly. It is defined, as follows:
+This class provides some shape-related methods. It is defined, as follows:
 
 ```Hack
-abstract class Shape {
+abstract final class Shapes {
   public static function idx(S $shape, arraykey $index) : ?Tv; 
   public static function idx(S $shape, arraykey $index, Tv $default) : Tv;
   public static function keyExists(S $shape, arraykey $index): bool;
