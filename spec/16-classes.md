@@ -4,8 +4,8 @@
 
 A class is a type that may contain zero or more explicitly declared
 *members*, which can be any combination of *class constants* ([§§](16-classes.md#constants));
-data members, called *properties* ([§§](16-classes.md#properties)); and function members, called
-*methods* ([§§](16-classes.md#methods)). (The ability to add methods to an
+data members, called *properties* ([§§](16-classes.md#properties)); function members, called
+*methods* ([§§](16-classes.md#methods)); and *type constants* ([§§](16-classes.md#type-constants)). (The ability to add methods to an
 instance at runtime is described in [§§](16-classes.md#dynamic-methods).) An object (often called an
 *instance*) of a class type is created (i.e., *instantiated*) via the
 new operator ([§§](10-expressions.md#the-new-operator)). 
@@ -178,18 +178,18 @@ class MyList implements MyCollection {
      <i>method-declaration</i>
      <i>constructor-declaration</i>
      <i>destructor-declaration</i>
+     <i>type-constant-declaration</i>
 </pre>
 
 *const-declaration* is defined in [§§](16-classes.md#constants); *property-declaration* is
 defined in [§§](16-classes.md#properties); *method-declaration* is defined in [§§](16-classes.md#methods);
-*constructor-declaration* is defined in [§§](16-classes.md#constructors); and
-*destructor-declaration* is defined in [§§](16-classes.md#destructors).
+*constructor-declaration* is defined in [§§](16-classes.md#constructors); *destructor-declaration* is defined in [§§](16-classes.md#destructors); and *type-constant-declaration* is defined in [§§](16-classes.md#type-constants).
 
 **Semantics**
 
 The members of a class are those specified by its
 *class-member-declaration*s, and the members inherited from its base
-class. (A class may also contain dynamic members, as described in [§§](16-classes.md#dynamic-methods).
+class, from the interfaces it implements, and from the traits that it uses. (A class may also contain dynamic members, as described in [§§](16-classes.md#dynamic-methods).
 However, as these have no compile-time names, they can only be accessed
 via method calls.)
 
@@ -200,6 +200,7 @@ A class may contain the following members:
 * Methods – the computations and actions that can be performed by the class ([§§](16-classes.md#methods), [§§](16-classes.md#methods-with-special-semantics)).
 * Constructor – the actions required to initialize an instance of the class ([§§](16-classes.md#constructors))
 * Destructor – the actions to be performed when an instance of the class is no longer needed ([§§](16-classes.md#destructors)).
+*	Type constant – a way of parameterizing class types without using generics.
 
 A number of names are reserved for methods with special semantics, which
 user-defined versions must follow. These are described in ([§§](16-classes.md#methods-with-special-semantics)).
@@ -373,6 +374,10 @@ $col = Automobile::DEFAULT_COLOR;
 
 *type-specifier* is defined in ([§§](05-types.md#general)) *variable-name* is described in [§§](09-lexical-structure.md#names) and *constant-expression* is described
 in [§§](10-expressions.md#yield-operator).
+
+**Constraints**
+
+A static property cannot have a *type-specifier* of the form `this` `::` *name*.
 
 **Semantics**
 
@@ -579,6 +584,105 @@ inhibits destructor calls from derived classes.
 **Examples**
 
 See [§§](#constructors) for an example of a constructor and destructor.
+
+##Type Constants
+
+**Syntax**
+
+<pre>
+  <i>type-constant-declaration:</i>
+    <i>abstract-type-constant-declaration</i>
+    <i>concrete-type-constant-declaration</i>
+  <i>abstract-type-constant-declaration:</i>
+    abstract  const  type  <i>name</i>  <i>type-constraint<sub>opt</sub></i>  ;
+  <i>concrete-type-constant-declaration:</i>
+    const  type  name  <i>type-constraint<sub>opt</sub></i>  =  <i>type-specifier</i>  ;
+</pre>
+
+*name* is defined in [§§](09-lexical-structure.md#names); *type-constraint* is defined in [§§](05-types.md#general); and *type-specifier* is defined in [§§](05-types.md#general).
+
+**Constraints**
+
+A class or interface must not have multiple *type-constant-declaration*s for the same *name*.
+
+A class having an *abstract-type-constant-declaration* must be abstract. (Any class that defines an abstract type constant must be abstract itself, and any class that inherits an abstract type constant must be either abstract itself or override it with a concrete type constant.
+
+An interface must not contain a *concrete-type-constant-declaration* that has a *type-constraint*.
+
+When overriding a type constant having a *type-constraint*, the overriding type must be a subtype of the constraint type.
+
+A concrete type constant without a *type-constraint* cannot be overridden.
+
+*type-specifier* cannot designate a class type parameter.
+
+By convention, *name* should begin with an uppercase `T`.
+
+**Semantics**
+
+Type constants provide an alternative to parameterized types ([§§](14-generic-types,-methods,-and-functions.md#general)). For example, a base class can define an abstract type constant---essentially a name without a concrete type attached---and subclasses each override that with a concrete type constant. Conceptually, type constants are to types, as abstract methods are to methods.
+
+A type constant has public visibility ([§§](16-classes.md#general)) and is implicitly static ([§§](16-classes.md#class-members)).
+
+*type-constraint* restricts the type by which a type constant can be overridden.
+
+In an *abstract-type-constant-declaration*, the absence of a *type-constraint* is the same as the presence of one with a type of `mixed`. In a *concrete-type-constant-declaration*, the absence of a *type-constraint* prevents name from being overridden.
+
+**Examples**
+
+```Hack
+interface I1 {
+  abstract const type T1 as arraykey;
+  public function getID1(): this::T1;
+  const type T4a = int;
+}
+
+interface I2 {
+  abstract const type T2;
+  public function getID2(this::T2 $p): void;
+  abstract const type T3;
+  const type T4c = string;
+}
+
+interface I3 extends I2 {
+  public function f(this::T2 $p): void;
+}
+
+class Ctc6 implements I1, I2 {
+  const type T1 = int;
+  public function __construct(private this::T1 $id) {}
+  public function getID1(): this::T1 {
+    return $this->id;
+  }
+  const type T2 = string;
+  public function getID2(this::T2 $p): void {}
+  const type T3 = float;
+  public function f(this::T4a $p1, this::T4c $p2): void {}
+}
+// -----------------------------------------
+abstract class CBase {
+  abstract const type T;
+  public function __construct(protected this::T $value) {}
+}
+
+class Cstring extends CBase {
+  const type T = string;
+  public function getString(): string {
+    return $this->value;	// gets the string
+  }
+}
+
+class Cint extends CBase {
+  const type T = int;
+  public function getInt(): int {
+    return $this->value;	// gets the int
+  }
+}
+
+function run2(): void {
+  var_dump((new Cstring('abc'))->getString());
+  var_dump((new Cint(123))->getInt());
+}
+```
 
 ##Methods with Special Semantics
 
