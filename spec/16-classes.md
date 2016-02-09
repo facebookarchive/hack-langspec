@@ -40,7 +40,7 @@ a member with `public` visibility is unrestricted. 
 The *signature* of a method is a combination of the parent class name,
 that method's name, and its parameter types.
 
-Methods and properties from a base class can be *overridden* in a
+The members of a base class can be *overridden* in a
 derived class by redeclaring them with the same signature defined in the
 base class. However, overridden constructors are exempt from this requirement ([§§](16-classes.md#constructors)).
 
@@ -59,6 +59,7 @@ object. As such, assignment of a handle does not copy the object itself.
   <i>class-modifier:</i>
     abstract
     final
+    abstract  final
 
   <i>class-base-clause:</i>
     extends  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
@@ -297,12 +298,15 @@ Widget::__callStatic('sMethod', array(null, 1.234))
 
 <pre>
   <i>const-declaration:</i>
-    const  <i>type-specifier<sub>opt</sub></i>  <i>constant-declarator-list</i>  ;
+    abstract<i><sub>opt</sub></i>  const  <i>type-specifier<sub>opt</sub></i>  <i>constant-declarator-list</i>  ;
   <i>constant-declarator-list:</i>
     <i>constant-declarator</i>
     <i>constant-declarator-list</i>  ,  <i>constant-declarator</i>
   <i>constant-declarator:</i>
-    <i>name</i>  =  <i>const-expression</i>
+    <i>name</i>  <i>constant-initializer<sub>opt</sub></i>
+
+  <i>constant-initializer:</i>
+    =  <i>const-expression</i>
 </pre>
 
 *type-specifier* is defined in [§§](05-types.md#general); *name* is defined in [§§](09-lexical-structure.md#names). *const-expression* is defined in [§§](10-expressions.md#constant-expressions).
@@ -313,9 +317,7 @@ A *const-declaration* must be
 a *class constant* (inside a *class-definition*; [§§](16-classes.md#class-members)) or be an
 *interface constant* (inside an *interface-definition;* [§§](17-interfaces.md#interface-members)).
 
-A class constant must not have an explicit visibility specifier ([§§](#general)).
-
-A class constant must not have an explicit `static` specifier.
+If `abstract` is present, no *constant-initializer*s are permitted. If `abstract` is absent, each *constant-declarator* must have a *constant-initializer*.
 
 **Semantics**
 
@@ -328,7 +330,6 @@ All constants are implicitly `static`.
 If *type-specifier* is omitted, the type is inferred from *const-expression*.
 
 Note: Although the grammar allows a class constant to have any type, there is no way to write a *constant-expression* for closures, tuples, or shapes.
-
 
 **Examples:**
 
@@ -462,12 +463,22 @@ examples of abstract methods and their subsequent definitions.
 
 <pre>
   <i>constructor-declaration:</i>
-    <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __construct  (  <i>constructor-parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
+    <i>attribute-specification<sub>opt</sub></i>  <i>constructor-modifiers</i>  function  __construct  (
+      <i>constructor-parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
   <i>constructor-parameter-declaration-list:</i>
     <i>constructor-parameter-declaration</i>
     <i>constructor-parameter-declaration-list</i>  ,  <i>constructor-parameter-declaration</i>
   <i>constructor-parameter-declaration:</i>
     <i>visibility-modifier<sub>opt</sub></i>  <i>type-specifier</i>  <i>variable-name</i>  <i>default-argument-specifier<sub>opt</sub></i>
+
+  <i>constructor-modifiers:</i>
+    <i>constructor-modifier</i>
+    <i>constructor-modifiers</i>  <i>constructor-modifier</i>
+
+  <i>constructor-modifier:</i>
+    <i>visibility-modifier</i>
+    abstract
+    final
 </pre>
 
 *attribute-specification* is defined in [§§](21-attributes.md#attribute-specification); *visibility-modifier* is described in [§§](16-classes.md#properties);
@@ -496,6 +507,8 @@ defined in the base class. 
 
 Constructors are called by *object-creation-expression*s ([§§](10-expressions.md#the-new-operator))
 and from within other constructors.
+
+The `abstract` and `final` modifiers are described in [§§](16-classes.md#methods).
 
 If classes in a derived-class hierarchy have constructors, it is the
 responsibility of the constructor at each level to call the constructor

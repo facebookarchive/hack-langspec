@@ -556,6 +556,7 @@ shape('id' => null, 'url' => null, 'count' => 0)
 
 <i>anonymous-function-return:</i>
   : <i>type-specifier</i>
+  : noreturn
 
 <i>anonymous-function-use-clause:</i>
   use  (  <i>use-variable-name-list</i>  )
@@ -608,6 +609,8 @@ If the *type-specifier* for a parameter is omitted, that type is inferred.
 If *anonymous-function-return* is omitted, the return type is inferred.
 
 An anonymous function can be asynchronous ([§§](15-functions.md#asynchronous-functions)).
+
+The function-return types `this` and `noreturn` are described in ([§§](15-functions.md#function-definitions)).
 
 **Examples**
 
