@@ -1139,6 +1139,7 @@ octal-digit
   <i>class-modifier:</i>
     abstract
     final
+    abstract  final
 
   <i>class-base-clause:</i>
     extends  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
@@ -1159,14 +1160,17 @@ octal-digit
      <i>destructor-declaration</i>
      
   <i>const-declaration:</i>
-    const  <i>type-specifier<sub>opt</sub></i>  <i>constant-declarator-list</i>  ;
+    abstract<i><sub>opt</sub></i>  const  <i>type-specifier<sub>opt</sub></i>  <i>constant-declarator-list</i>  ;
   
   <i>constant-declarator-list:</i>
     <i>constant-declarator</i>
     <i>constant-declarator-list</i>  ,  <i>constant-declarator</i>
   
   <i>constant-declarator:</i>
-    <i>name</i>  =  <i>const-expression</i>
+    <i>name</i>  <i>constant-initializer<sub>opt</sub></i>
+
+  <i>constant-initializer:</i>
+    =  <i>const-expression</i>
     
   <i>property-declaration:</i>
     <i>property-modifier</i>  <i>type-specifier</i>  <i>property-declarator-list</i>  ;
@@ -1208,18 +1212,28 @@ octal-digit
     final
 
   <i>constructor-declaration:</i>
-    <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __construct  (  <i>constructor-parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
+    <i>attribute-specification<sub>opt</sub></i>  <i>constructor-modifiers</i>  function  __construct
+    (  <i>constructor-parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
   
   <i>constructor-parameter-declaration-list:</i>
     <i>constructor-parameter-declaration</i>
     <i>constructor-parameter-declaration-list</i>  ,  <i>constructor-parameter-declaration</i>
   
   <i>constructor-parameter-declaration:</i>
-    <i>visibility-modifier<sub>opt</sub></i>  <i>type-specifier</i>  <i>variable-name</i>  <i>default-argument-specifier<sub>opt</sub></i>
+    <i>visibility-modifier<sub>opt</sub></i>  <i>type-specifier</i>  <i>variable-name</i>
+    <i>default-argument-specifier<sub>opt</sub></i>
+
+  <i>constructor-modifiers:</i>
+    <i>constructor-modifier</i>
+    <i>constructor-modifiers</i>  <i>constructor-modifier</i>
+
+  <i>constructor-modifier:</i>
+    <i>visibility-modifier</i>
+    abstract
+    final
 
   <i>destructor-declaration:</i>
     <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __destruct  ( )  <i>compound-statement</i>
-    
 </pre>
 
 ###Interfaces

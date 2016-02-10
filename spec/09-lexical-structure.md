@@ -562,8 +562,7 @@ A single-quoted string literal is a c-constant ([§§](06-constants.md#general))
   <i>dq-char::</i>
     <i>dq-escape-sequence</i>
     any member of the source character set except double-quote (") or backslash (\)
-    \  any member of the source character set except "\$efnrtvxX or
-octal-digit
+    \  any member of the source character set except "\$efnrtvxX or octal-digit
 
   <i>dq-escape-sequence::</i>
     <i>dq-simple-escape-sequence</i>
