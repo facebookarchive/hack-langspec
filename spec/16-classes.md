@@ -374,6 +374,12 @@ $col = Automobile::DEFAULT_COLOR;
 *type-specifier* is defined in ([§§](05-types.md#general)) *variable-name* is described in [§§](09-lexical-structure.md#names) and *constant-expression* is described
 in [§§](10-expressions.md#yield-operator).
 
+**Constraints**
+
+A static property cannot have a *type-specifier* of the form `this` `::` *name*.
+
+A static property cannot have a *type-specifier* of `this` or `?this`.
+
 **Semantics**
 
 A *property-declaration* defines an instance or static property called *variable-name*.

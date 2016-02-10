@@ -94,6 +94,7 @@ A *name* used in a *generic-type-parameter* of a method must not be the same as 
 
 *generic-type-parameter-variance* must not be present in a *function-definition* ([§§](15-functions.md#function-definitions)). 
 
+The *type-specifier* in *generic-type-constraint* must not be `this` or `?this`.
 
 **Semantics**
 
