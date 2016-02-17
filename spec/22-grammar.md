@@ -474,6 +474,7 @@ octal-digit
     <i>tuple-literal</i>
     <i>shape-literal</i>
     <i>anonymous-function-creation-expression</i>
+    <i>awaitable-creation-expression</i>
     (  <i>expression</i>  )
     $this
 
@@ -578,13 +579,20 @@ octal-digit
   <i>use-variable-name-list:</i>
     <i>variable-name</i>
     <i>use-variable-name-list</i>  ,  <i>variable-name</i>             
-</pre>
 
+  <i>awaitable-creation-expression:</i>
+    async   {   <i>async-statement-list<sub>opt</sub></i>   }
+    
+  <i>async-statement-list:</i>
+    <i>statement</i>
+    <i>async-statement-list   statement</i>
+</pre>
+ 
 ####Postfix Operators
 
 <pre>
   <i>postfix-expression:</i>
-    <i>primary-expression</i>
+    <i>-expression</i>
     <i>clone-expression</i>
     <i>object-creation-expression</i>
     <i>array-creation-expression</i>
@@ -969,6 +977,7 @@ octal-digit
 
   <i>foreach-statement:</i>
     foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )   statement
+    foreach  (  <i>foreach-collection-name</i>  await  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )   statement
 
   <i>foreach-collection-name</i>:
     <i>expression</i>

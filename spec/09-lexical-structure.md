@@ -296,7 +296,7 @@ cannot be used as a name.
 
 <pre>
   <i>keyword::</i> one of
-    abstract   arraykey   as   async   break   case   catch   class   clone   
+    abstract   arraykey   as   async   await   break   case   catch   class   clone   
     const   continue   default   do   echo   else   elseif   
     enum   
     extends   final   finally   for   foreach   function   if   implements   instanceof

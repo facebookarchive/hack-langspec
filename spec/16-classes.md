@@ -440,6 +440,8 @@ A method must not have the same modifier specified more than once. A
 method must not have more than one *visibility-modifier*. A method must
 not have both the modifiers `abstract` and `private`, or `abstract` and `final`.
 
+An abstract method must not also be asynchronous. However, an abstract method can have a return-type of `Awaitable<T>`, so an async concrete implementation can be provided.
+
 **Semantics**
 
 A *method-declaration* defines an instance or static method. A method is
@@ -925,7 +927,7 @@ use in file storage or inter-program communication. The process of
 converting to this form is known as *serialization* while that of
 converting back again is known as *unserialization*. These facilities
 are provided by the library functions `serialize` (§xx) and `unserialize`
-(§xx), respectively.
+(§xx), respectively. (Library function `serialize_memoize_param` (§xx) helps when serializing parameters to async functions.)
 
 In the case of variables that are objects, on their own, these two
 functions serialize and unserialize all the instance properties, which
@@ -1064,12 +1066,30 @@ $v = unserialize($s);
 
 ##Predefined Classes
 
+###Class `AsyncGenerator`
+
+This class supports the `yield` operator when dealing with asynchronous operations. This class cannot be instantiated directly. It is defined, as follows:
+
+```Hack
+class AsyncGenerator<Tk,Tv,Ts> implements AsyncKeyedIterator {
+  public function next(): Awaitable<?tuple<Tk,Tv>>;
+  public function raise(Exception $e): Awaitable<?tuple<Tk,Tv>>;
+  public function send(?Ts $v): Awaitable<?tuple<Tk,Tv>>;
+}
+```
+
+The class members are defined below:
+
+Name | Purpose
+---- | -------
+`next` | Returns the `Awaitable<T>` associated with the next key/value tuple in the async generator, or `null` if the end of the iteration has been reached. (The result should always be subject to an `awai`t to get the actual key/value tuple. This function cannot be called without having the value returned from a previous call to `next`, `send`, or `raise` having first been the subject of an `await`.)
+`raise` | Raises exception *$e* to the async generator. (This function cannot be called without having the value returned from a previous call to `next`, `send`, or `raise` having first been the subject of an `await`.)
+`send` | Sends value *$v* to the async generator and resumes execution of that generator. (This function cannot be called without having the value returned from a previous call to `next`, `send`, or `raise` having first been the subject of an `await`.) If *$v* is `null`, the call is equivalent to calling `next`.
+
 ###Class `Generator`
 
 This class supports the `yield` operator ([§§](10-expressions.md#yield-operator)). This class cannot be
 instantiated directly. It is defined, as follows:
-
-class Generator implements Iterator
 
 ```Hack
 class Generator implements Iterator {
@@ -1082,6 +1102,7 @@ class Generator implements Iterator {
   public function valid(): bool;
   public function __wakeup(): void;
 ```
+The type `Continuation<T>` is an alias for `Generator<int, T, void>`.
 
 The class members are defined below:
 
