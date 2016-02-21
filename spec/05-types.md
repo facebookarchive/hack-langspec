@@ -127,7 +127,7 @@ but must be one of the following:
     arithmetic-like object type with the result being mathematically
     correct
 
-The constants `PHP_INT_SIZE` (§[[6.3](06-constants.md#core-predefined-constants)](#core-predefined-constants)) and `PHP_INT_MAX` (§[[6.3](06-constants.md#core-predefined-constants)](#core-predefined-constants)) define certain
+The constants [`PHP_INT_SIZE`, `PHP_INT_MIN` and `PHP_INT_MAX`](06-constants.md#core-predefined-constants) define certain
 characteristics about type `int`.
 
 The library function `is_int` (§xx) indicates if a given value has type
