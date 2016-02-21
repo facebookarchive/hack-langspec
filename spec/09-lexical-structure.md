@@ -808,7 +808,7 @@ A *null-literal* has the null type.
   <i>operator-or-punctuator:: one of</i>
     [   ]    (   )   {    }   .   ->   ++   --   **   *   +   -   ~   !
     $   /   %   &lt;&lt;   >>   &lt;   >   &lt;=   >=   ==   ===   !=   !==   ^   |
-    &amp;   &amp;&amp;   ||   ?   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
+    &amp;   &amp;&amp;   ||   ?   ??   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
     >>=   &amp;=   ^=   |=   ,   @   ::   =>   ==>   ?->
 </pre>
 

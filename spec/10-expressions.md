@@ -2230,11 +2230,57 @@ function factorial(int $int): int
 }
 ```
 
+##Coalesce Operator
+
+**Syntax**
+
+<pre>
+  <i>coalesce-expression:</i>
+    <i>logical-inc-OR-expression</i>  ??  <i>expression</i>
+</pre>
+
+**Defined elsewhere**
+
+* [*logical-OR-expression*](#logical-inclusive-or-operator-form-1)
+* [*expression*](#general-6)
+
+**Semantics**
+
+Given the expression `e1 ?? e2`, if `e1` is set and not `null`, then the result is `e1`. Otherwise, then and only then is `e2`
+evaluated, and the result becomes the result of the whole expression. There is a sequence point after the evaluation of `e1`.
+
+This operator associates right-to-left.
+
+**Examples**
+
+```PHP
+function foo(): void {
+  echo "executed!", PHP_EOL;
+}
+
+function main(): void {
+  $arr = ["foo" => "bar", "qux" => null];
+  $obj = (object)$arr;
+
+  $a = $arr["foo"] ?? "bang"; // "bar" as $arr["foo"] is set and not null
+  $a = $arr["qux"] ?? "bang"; // "bang" as $arr["qux"] is null
+  $a = $arr["bing"] ?? "bang"; // "bang" as $arr["bing"] is not set
+
+  $a = $obj->foo ?? "bang"; // "bar" as $obj->foo is set and not null
+  $a = $obj->qux ?? "bang"; // "bang" as $obj->qux is null
+  $a = $obj->bing ?? "bang"; // "bang" as $obj->bing is not set
+
+  $a = null ?? $arr["bing"] ?? 2; // 2 as null is null, and $arr["bing"] is not set
+  var_dump(true ?? foo()); // outputs bool(true), "executed!" does not appear as it short-circuits
+}
+```
+
 ##Lambda Expressions
 
 **Syntax**
 <pre>
 <i>lambda-expression:</i>
+  <i>coalesce-expression</i>
   <i>conditional-expression</i>
   async<sub>opt</sub>  <i>lambda-function-signature</i>  ==>  <i>anonymous-function-body</i>
 
@@ -2247,7 +2293,7 @@ function factorial(int $int): int
   <i>compound-statement</i>
 </pre>
 
-*conditional-expression* is defined in [§§](10-expressions.md#conditional-operator); *variable-name* is defined in [§§](09-lexical-structure.md#names); *anonymous-function-parameter-declaration-list* is defined in [§§](10-expressions.md#anonymous-function-creation); *anonymous-function-return* is defined in [§§](10-expressions.md#anonymous-function-creation); *expression* is defined in [§§](10-expressions.md#yield-operator); and *compound-statement* is defined in [§§](11-statements.md#compound-statements).
+*coalesce-expression* is defined in [§§](10-expressions.md#coalesce-operator); *conditional-expression* is defined in [§§](10-expressions.md#conditional-operator); *variable-name* is defined in [§§](09-lexical-structure.md#names); *anonymous-function-parameter-declaration-list* is defined in [§§](10-expressions.md#anonymous-function-creation); *anonymous-function-return* is defined in [§§](10-expressions.md#anonymous-function-creation); *expression* is defined in [§§](10-expressions.md#yield-operator); and *compound-statement* is defined in [§§](11-statements.md#compound-statements).
 
 **Constraints**
 
