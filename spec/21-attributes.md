@@ -132,6 +132,8 @@ class Item {
 
 The types of the parameters are restricted to the following: `null`, `bool`, `int`, `float`, `string`, any object type that implements `IMemoizeParaminterface`, enum constants, tuples, shapes, and arrays/collections containing any supported element type.
 
+The interface type `IMemoizeParam` ([§§](17-interfaces.md#interface-IMemoizeParam)) assists with memorizing objects passed to async functions.
+
 ###Attribute `__Override`
 
 This attribute can be applied to static or instance methods; it has no attribute values.

@@ -80,7 +80,7 @@ Each parameter is a variable local to the parent function, it is a modifiable lv
 
 There may be more arguments than parameters, in which case, the library functions `func_num_args` (§xx), `func_get_arg` (§xx), and `func_get_args` (§xx) can be used to get access to the complete argument list that was passed.
 
-The presence of the `async` modifier declares the function to be asynchronous ([§§](15-functions.md#asynchronous-functions)). For an async function, control may be transferred back to the caller before the flow of execution reaches any `return` statement or the function-closing brace. In such a case, the Awaitable object that will be returned to the caller later on acts like a placeholder that will eventually be filled with the return result.
+The presence of the `async` modifier declares the function to be asynchronous ([§§](15-functions.md#asynchronous-functions)). For an async function, control may be transferred back to the caller before the flow of execution reaches any `return` statement or the function-closing brace. In such a case, the awaitable object that will be returned to the caller later on acts like a placeholder that will eventually be filled with the return result.
 
 A function having a *return-type* of `noreturn` never returns. Instead, it, or a function it calls directly or indirectly, terminates in some other manner, such as by throwing an exception or by calling the non-returning library function `exit`.
 
@@ -154,7 +154,9 @@ When an async function is invoked, it executes synchronously until it returns no
 
 The await operation provides a way for an async function to yield control in cases where further progress cannot be made until the result of a dependency is available.
 
-An await operation takes a single operand called the *dependency*, which must be an object that implements the `Awaitable` interface. When an await operation executes, it checks the status of the dependency. If the result of the dependency is available, the await operation produces the result (without yielding control elsewhere) and the current async function continues executing. If the dependency has failed due to an exception, the await operation re-throws this exception. Otherwise, the await operation updates the current async function's `Awaitable` to reflect its dependence on the dependency and then yields control. The async function will be considered *blocked* and ineligible to resume execution until the result of the dependency is available.
+An await operation takes a single operand called the *dependency*, which must be an object that implements the `Awaitable` interface. (Such an object is called an *awaitable*.) When an await operation executes, it checks the status of the dependency. If the result of the dependency is available, the await operation produces the result (without yielding control elsewhere) and the current async function continues executing. If the dependency has failed due to an exception, the await operation re-throws this exception. Otherwise, the await operation updates the current async function's `Awaitable` to reflect its dependence on the dependency and then yields control. The async function will be considered *blocked* and ineligible to resume execution until the result of the dependency is available.
+
+It is possible to wait on multiple dependencies by having their awaitables be combined in a single awaitable using functions `HH\Asio\v` or `HH\Asio\map`, as appropriate. In such cases, if one of the awaitables throws an exception, the combined awaitable will rethrow that exception. If multiple component awaitables throw exceptions, the combined awaitable will rethrow only one of them. The library function `HH\Asio\wrap` can help deal with this.
 
 When yielding control, the implementation of `await` may choose to yield control back to the current async function's caller. Alternatively, if the dependency is a task and its async function is not blocked (i.e., it is eligible to resume execution), the implementation may choose (for optimization purposes) to perform an invocation to resume the dependency's async function to make further progress and then check again if the result of the dependency is available.
 
@@ -164,4 +166,4 @@ When a `return` statement executes inside an async function, typically, control 
 
 If an async function returns a value of type `T`, the return type visible to its callers is `Awaitable<T>`. (If an async function returns no value, the return type visible to its callers is `Awaitable<void>`.)
 
-
+The term *asynchronous function* includes asynchronous anonymous functions (([§§](15-functions.md#anonymous-functions)) and asynchronous lambda expressions (([§§](10-expressions.md#lambda-expressions)).
