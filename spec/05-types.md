@@ -159,7 +159,7 @@ See the discussion of type side effects ([§§](05-types.md#type-side-effects)).
 
 ###The String Type
 
-The is one string type, `string`.
+There is one string type, `string`.
 
 A string is a set of contiguous bytes that represents a sequence of zero
 or more characters.
@@ -182,13 +182,31 @@ library functions assume the strings they receive as arguments are UTF-8
 encoded, often without explicitly mentioning that fact.
 
 A *numeric string* is a string whose content exactly matches the pattern
-defined using integer format by the production *integer-literal*
-([§§](09-lexical-structure.md#integer-literals)) or using floating-point format by the production
-*floating-literal* ([§§](09-lexical-structure.md#floating-point-literals)), where leading whitespace is permitted.
-A *leading-numeric string* is a string whose initial characters follow
+defined by the *str-numeric* production below. A *leading-numeric string* is a string whose initial characters follow
 the requirements of a numeric string, and whose trailing characters are
 non-numeric. A *non-numeric string* is a string that is not a numeric
 string.
+
+<pre>
+  <i>str-numeric::</i>
+    <i>str-whitespace<sub>opt</sub>   sign<sub>opt</sub>   str-number</i>
+
+  <i>str-whitespace::</i>
+    <i>str-whitespace<sub>opt</sub>   str-whitespace-char</i>
+
+  <i>str-whitespace-char::</i>
+    <i>new-line</i>
+    Space character (U+0020)
+    Horizontal-tab character (U+0009)
+    Vertical-tab character (U+000B)
+    Form-feed character (U+000C)
+
+  <i>str-number::</i>
+    <i>digit-sequence</i>
+    <i>floating-literal</i>
+</pre>
+
+*new-line* is defined in [§§](09-lexical-structure.md#comments), and *digit-sequence*, *floating-literal*, and *sign* are defined in [§§](09-lexical-structure.md#floating-point-literals).
 
 Only one mutation operation may be performed on a string, offset
 assignment, which involves the simple assignment operator = ([§§](10-expressions.md#simple-assignment)).
