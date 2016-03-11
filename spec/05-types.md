@@ -63,7 +63,7 @@ for `null`, use `is_null` (§xx). Useful library functions for interrogating and
   <i>qualified-name</i>
 
 <i>enum-specifier:</i>
-  <i>qualified-name
+  <i>qualified-name</i>
 
 <i>class-interface-trait-specifier:</i>
   <i>qualified-name generic-type-argument-list<sub>opt</sub></i>
