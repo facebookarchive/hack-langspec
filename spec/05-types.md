@@ -58,7 +58,8 @@ for `null`, use `is_null` (§xx). Useful library functions for interrogating and
   <i>closure-type-specifier</i>
   <i>nullable-type-specifier</i>
   <i>generic-type-parameter-name</i>
-
+  this
+  
 <i>alias-type-specifier:</i>
   <i>qualified-name</i>
 
@@ -339,6 +340,10 @@ Trait types are described in [§§](18-traits.md#traits).
 Although traits are used to declare class and interface types, a trait type
 cannot be used in the usual context of a type name (see Constraints in [§§](05-types.md#general)).
 That said, for the purposes of subtyping ([§§](05-types.md#supertypes-and-subtypes)), traits are considered types.
+
+###The `this` Type
+
+The type name `this` refers to “the current class type at run time”. As such, it can only be used from within a class, an interface, or a trait. (`this` should not be confused with `$this` [§§](10-expressions.md#primary-expressions), which refers to “the current instance”, whose type is `this`.)
 
 ###Tuple Types
 

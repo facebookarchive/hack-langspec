@@ -129,10 +129,7 @@ the un-parenthesized expression.
 The variable `$this` is predefined inside any instance method, 
 constructor, or destructor when that method is called from within an object
 context. `$this` is a handle ([§§](05-types.md#general)) that points to the calling object or
-to the object being constructed. The type of `$this` is the type of the
-class within which the usage of `$this` occurs. However, at run time, the
-type of the object referred to by `$this` may be the type of the
-enclosing class or any type derived from that class.
+to the object being constructed. The type of `$this` is `this` [§§](05-types.md#the-this-type).
 
 ###Intrinsics
 
@@ -759,7 +756,7 @@ The result of an *object-creation-expression* is a handle to an object
 of the type specified by *class-type-designator*.
 
 From within a method, the use of `static` corresponds to the class in the
-inheritance context in which the method is called.
+inheritance context in which the method is called. The type of the object created by an expression of the form `new static` is `this` [§§](05-types.md#the-this-type).
 
 Because a constructor call is a function call, the relevant parts of
 10.5.6 also apply.
