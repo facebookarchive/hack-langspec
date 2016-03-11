@@ -55,6 +55,7 @@ for `null`, use `is_null` (§xx). Useful library functions for interrogating and
   <i>enum-specifier</i>
   <i>class-interface-trait-specifier</i>
   <i>tuple-type-specifier</i>
+  <i>shape-specifier</i>
   <i>closure-type-specifier</i>
   <i>nullable-type-specifier</i>
   <i>generic-type-parameter-name</i>
@@ -80,7 +81,7 @@ for `null`, use `is_null` (§xx). Useful library functions for interrogating and
 
 *vector-like-array-type-specifier* is defined in [§§](05-types.md#array-types);
 *map-like-array-type-specifier* is defined in [§§](05-types.md#array-types); *tuple-type-specifier* is
-defined in [§§](05-types.md#tuple-types); *closure-type-specifier* is defined in [§§](05-types.md#closure-types);
+defined in [§§](05-types.md#tuple-types); *shape-type-specifier* is defined in [§§](05-types.md#shape-types); *closure-type-specifier* is defined in [§§](05-types.md#closure-types);
 *nullable-type-specifier* is defined in [§§](05-types.md#nullable-types); *generic-type-parameter-name*
 is defined in [§§](14-generic-types-methods-and-functions.md#type-parameters); *generic-type-argument-list* is defined in [§§](14-generic-types-methods-and-functions.md#type-arguments); *classname-type-specifier* is defined in [§§](05-types.md#the-classname-type); and *qualified-name* is defined in [§§](09-lexical-structure.md#names).
 
@@ -419,12 +420,10 @@ private ?(int, (string, float)) $prop = null;
 
 <i>field-specifier:</i>
   <i>single-quoted-string-literal</i>  =>  <i>type-specifier</i>
-  <i>integer-literal</i>  =>  <i>type-specifier</i>
   <i>qualified-name</i>  =>  <i>type-specifier</i>
 </pre>
 
-*single-quoted-string-literal* is defined in [§§](09-lexical-structure.md#single-quoted-string-literals); *integer-literal*
-is defined in [§§](09-lexical-structure.md#integer-literals); *qualified-name* is defined in [§§](09-lexical-structure.md#names); and
+*single-quoted-string-literal* is defined in [§§](09-lexical-structure.md#single-quoted-string-literals); *qualified-name* is defined in [§§](09-lexical-structure.md#names); and
 *type-specifier* is defined in [§§](05-types.md#general).
 
 **Constraints**
@@ -436,14 +435,12 @@ Each string in the set of strings designated by all the
 *single-quoted-string-literals* and *qualified-names* in a
 *field-specifier-list* must have a distinct value.
 
-Each integer in the set of all the *integer-literals* and *qualified-names*
+Each integer in the set of all the *qualified-names*
 in a *field-specifier-list* must have a distinct value.
 
 The *field-specifiers* in a *field-specifier-list* must all have the
-*single-quoted-string-literal* form, the *integer-literal form*, or all
+*single-quoted-string-literal* form, or all
 have the *qualified-name* form; the forms must not be mixed.
-
-*shape-specifier* cannot be used as a *type-specifier* (see Examples below).
 
 **Semantics**
 
@@ -451,49 +448,68 @@ A *shape* consists of a group of zero or more data *fields* taken together as
 a whole. [It takes on the role of what C and C# call a struct.] Such a
 construct is sometimes referred to as a "lightweight class".
 
-A *shape-specifier* defines a shape type as having an ordered set of fields
-each of which has a name (indicated by *single-quoted-string-literal*,
-*integer-literal*, or *qualified-name*) and a type (indicated by
+A *shape-specifier* defines a shape type as having an unordered set of fields
+each of which has a name (indicated by *single-quoted-string-literal* or *qualified-name*) and a type (indicated by
 *type-specifier*). A field in a shape is accessed using its name as the key in
 a *subscript-expression* ([§§](10-expressions.md#subscript-operator)) that operates on a shape of the
 corresponding shape type.
 
-**Examples**
+A field that has a nullable type ([§§](05-types.md#nullable-types)) need not be mentioned in any initializer of, or assignment to, a variable of that type; however, until its value is set explicitly, that field does not actually exist in the shape. Consider the following:
 
-Consider the case in which we wish a type to represent a point in
-two-dimensional space. This can be implemented as a shape containing a pair of
-integers, using the following *shape-specifier*:
+```Hack
+function f3(shape('a' => int, 'n' => ?string) $p): void {
+  echo "\$p['a']: " . $p['a'] . "\n";
+  echo "\$p['n']: " . $p['n'] . "\n";  // only permitted if n exists
+}
+```
+
+Given the call `f3(shape('a' => 10, 'n' => null))`, field `n` has its value set explicitly, and `f3` works fine. However, given the call `f3(shape('a' => 10))`, field `n` does not have its value set explicitly, in which case, attempting to access that field using `$p['n']` results in an “undefined index” error at runtime. To be certain such accesses succeed, first call `Shapes::keyExists` ([§§](16-classes.md#class-shapes)).
+
+Consider a shape type *S2* whose field set is a superset of that in shape type *S1*. As such, *S2* is a subtype of *S1*. (See the banking example below.) However, when an *S2* is used as an *S1*, only the *S1* fields in that *S2* are accessible.
+
+**Examples**
 
 ```Hack
 shape('x' => int, 'y' => int)
-```
-
-However, such a construct does not directly define a first-class type.
-Specifically, such a type cannot be used as a *type-specifier* (in any of the
-usual places such as in the type of a property, a function parameter, a
-function return, or a constraint). Despite this, it makes sense for shapes to
-be described in this clause. A *shape-specifier* can only be used as a
-*type-to-be-aliased* in an *alias-declaration* ([§§](05-types.md#type-aliases)). For example, the
-following use is not permitted:
-
-```Hack
-function f1(shape('x' => int, 'y' => int) $p1): void { … }
-```
-
-To use a shape type, we must first create an alias — such as the name `Point`
-below — for that *shape-specifier*. Once that is done, the alias name can be
-used in any context in which a *type-specifier* can occur. For example:
-
-```Hack
-type Point = shape('x' => int, 'y' => int);
-function f2(Point $p1): void {}
-private Point $origin;
-// -----------------------------------------
-type Complex = shape('real' => float, 'imag' => float);
-type IdSet = shape('id' => string, 'url' => string, 'count' => int);
+shape('real' => float, 'imag' => float)
+shape('id' => string, 'url' => string, 'count' => int)
+shape('name' => string, 'address' => shape('street' => string, 'city' => string, 'state' => string, 'postcode' => int));
 type APoint<T> = shape('x' => T, 'y' => T);
-type Sh = shape('n1' => (int, float),'n2' => ?(function (array<num>): bool));
+// -----------------------------------------
+enum Bank: int {
+  INVALID = 0;
+  DEPOSIT = 1;
+  WITHDRAWAL = 2;
+  TRANSFER = 3;
+}
+
+type Transaction = shape('trtype' => Bank);
+type Deposit = shape('trtype' => Bank, 'toaccnum' => int, 'amount' => float);
+type Withdrawal = shape('trtype' => Bank, 'fromaccnum' => int, 'amount' => float);
+type Transfer = shape('trtype' => Bank, 'fromaccnum' => int, 'toaccnum' => int, 'amount' => float);
+
+function main(): void {
+  processTransaction(shape('trtype' => Bank::DEPOSIT, 'toaccnum' => 23456, 'amount' => 100.00));
+  processTransaction(shape('trtype' => Bank::WITHDRAWAL, 'fromaccnum' => 3157, 'amount' => 100.00));
+  processTransaction(shape('trtype' => Bank::TRANSFER, 'fromaccnum' => 23456, 'toaccnum' => 3157, 'amount' => 100.00));
+}
+
+function processTransaction(Transaction $t): void {
+  $ary = Shapes::toArray($t);
+  switch ($t['trtype']) {
+  case Bank::TRANSFER:
+    echo "Transfer: " . ((string)$ary['amount'])
+      . " from Account " . ((string)$ary['fromaccnum'])
+      . " to Account " . ((string)$ary['toaccnum']) . "\n";
+    break;
+
+  case Bank::DEPOSIT:
+    …
+  }
+}
 ```
+
+Note carefully, that inside function `processTransaction`, even though the transaction passed in might have been a `Deposit`, a `Withdrawal`, or a `Transfer`, it always appears as a `Transaction`, so the only field you can access in `$t` is `trtype`. However, using `Shapes::toArray`, we can convert the `Transaction` to an array, and then get read-access to the field values we know that array must contain by indexing it using the field names, as shown.
 
 ###Closure Types
 
@@ -645,7 +661,6 @@ class C2 {
 <i>type-to-be-aliased:</i>
   <i>type-specifier</i>
   <i>qualified-name</i>
-  <i>shape-specifier</i>
 </pre>
 
 *name* is defined in [§§](09-lexical-structure.md#names); *type-constraint* is defined in [§§](05-types.md#general); *qualified-name* is defined in [§§](09-lexical-structure.md#names);
@@ -774,7 +789,8 @@ For types in Hack, the following rules apply:
 13. A class type is a subtype of all its direct and indirect base-class types, including those resulting from *require-extends-clauses* ([§§](17-interfaces.md#interface-members)).
 14. A class type is a subtype of all the interfaces it and its direct and indirect base-class types implement, including those resulting from *require-implements-clauses* ([§§](18-traits.md#trait-members)).
 15. An interface type is a subtype of all its direct and indirect base interfaces.
-16. Although this specification doesn’t treat the *return-type* `noreturn` ([§§](15-functions.md#function-definitions)) as a type, per se, `noreturn` is regarded as a subtype of all other types, and a supertype of none.
+16. A shape type *S2* whose field set is a superset of that in shape type *S1*, is a subtype of *S1*.
+17. Although this specification doesn’t treat the *return-type* `noreturn` ([§§](15-functions.md#function-definitions)) as a type, per se, `noreturn` is regarded as a subtype of all other types, and a supertype of none.
 
 ###Type Side Effects
 

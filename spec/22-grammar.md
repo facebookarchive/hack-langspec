@@ -358,6 +358,7 @@ octal-digit
   <i>enum-specifier</i>
   <i>class-interface-trait-specifier</i>
   <i>tuple-type-specifier</i>
+  <i>shape-specifier</i>
   <i>closure-type-specifier</i>
   <i>nullable-type-specifier</i>
   <i>generic-type-parameter-name</i>
@@ -416,7 +417,6 @@ octal-digit
 
 <i>field-specifier:</i>
   <i>single-quoted-string-literal</i>  =>  <i>type-specifier</i>
-  <i>integer-literal</i>  =>  <i>type-specifier</i>
   <i>qualified-name</i>  =>  <i>type-specifier</i>
 </pre>
 
@@ -452,7 +452,6 @@ octal-digit
 <i>type-to-be-aliased:</i>
   <i>type-specifier</i>
   <i>qualified-name</i>
-  <i>shape-specifier</i>
 </pre>
 
 ###Variables
