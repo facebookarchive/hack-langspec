@@ -110,6 +110,7 @@ of supertypes such as `num`, `arraykey`, or `?int`. Refer to [§§](05-types.md#
     <i>tuple-literal</i>
     <i>shape-literal</i>
     <i>anonymous-function-creation-expression</i>
+    <i>awaitable-creation-expression</i>
     (  <i>expression</i>  )
     $this
 </pre>
@@ -118,7 +119,7 @@ of supertypes such as `num`, `arraykey`, or `?int`. Refer to [§§](05-types.md#
 is defined in [§§](09-lexical-structure.md#general-2); *const-expression* is defined in [§§](10-expressions.md#constant-expressions);
 *intrinsic* is defined in [§§](10-expressions.md#general-2); *collection-literal* is defined in [§§](10-expressions.md#collection-literals);
 *tuple-literal* is defined in [§§](10-expressions.md#tuple-literals); *shape-literal* is defined in [§§](10-expressions.md#shape-literals);
-*anonymous-function-creation-expression* is defined in [§§](10-expressions.md#anonymous-function-creation); and
+*anonymous-function-creation-expression* is defined in [§§](10-expressions.md#anonymous-function-creation); *awaitable-creation-expression* is defined in [§§](10-expressions.md#async-blocks); and
 *expression* is defined in [§§](10-expressions.md#yield-operator). 
 
 **Semantics**
@@ -627,6 +628,41 @@ function compute(array<int> $values): void {
   $callback();
   …
 }
+```
+
+###Async Blocks
+
+**Syntax**
+
+<pre>
+<i>awaitable-creation-expression:</i>
+  async   {   <i>async-statement-list<sub>opt</sub></i>   }
+  
+<i>async-statement-list:</i>
+  <i>statement</i>
+  <i>async-statement-list   statement</i>
+</pre>
+
+*statement* is defined in [§§](11-statements.md#general).
+
+**Constraints**
+
+*awaitable-creation-expression* must not be used as the *anonymous-function-body* in a *lambda-expression* ([§§](10-expressions.md#lambda-expressions)).
+
+**Semantics**
+
+The (possibly) asynchronous operations designated by *async-statement-list* are executed, in order.
+
+An *awaitable-creation-expression* produces a result of type `Awaitable<T>` ([§§](17-interfaces.md#interface-awaitable)), where `T` is the return type of the final statement in *async-statement-list*. If *async-statement-list* is omitted, or its final statement is `return;`, or its final statement is not a `return` statement, the final statement is treated as being `return;`, `T` is `void`, and no value is wrapped into the `Awaitable` object. Otherwise, the final statement has the form `return` *expression*`;`, `T` is the type of *expression*, and the value of *expression* is wrapped into the `Awaitable` object.
+
+**Examples**
+
+```Hack
+$x = await async {
+  $y = await task1();
+  $z = await task2();
+  return $y + $z;
+};
 ```
 
 ##Postfix Operators
@@ -1631,11 +1667,23 @@ This operator must be used within an asynchronous function ([§§](15-functions.
 
 The return type of the function containing a use of this operator must be a type that implements `Awaitable<T>`.
 
+*await-expression* can only be used in the following contexts: 
+*	As an *expression-statement* ([§§](11-statements.md#expression-statements))
+*	As the *assignment-expression* in a *simple-assignment-expression* ([§§](10-expressions.md#simple-assignment))
+*	As *expression* in a *return-statement* ([§§](11-statements.md#the-return-statement))
+
 **Semantics**
 
 `await` suspends the execution of an async function until the result of the asynchronous operation represented by *expression* is available. See [§§](15-functions.md#asynchronous-functions) for more information.
 
-The resulting value is the value of type `T` that was wrapped in the object of type `Awaitable<T>`` returned from the async function.
+The resulting value is the value of type `T` that was wrapped in the object of type `Awaitable<T>`` returned from the async function. Consider the following:
+
+```Hack
+async function f(): Awaitable<int> {…}
+
+$x = await f();		// $x is an int
+$x = f();			// $x is an Awaitable<int>
+```
 
 **Examples**
 

@@ -494,7 +494,8 @@ for ($a = 100, $i = 1; ++$i, $i <= 10; ++$i, $a -= 10) {
 
 <pre>
   <i>foreach-statement:</i>
-    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )   statement
+    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )   <i>statement</i>
+    foreach  (  <i>foreach-collection-name</i>  await as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )   <i>statement</i>
 
   <i>foreach-collection-name</i>:
     <i>expression</i>
@@ -516,6 +517,8 @@ The variable designated by *foreach-collection-name* must be a
 collection.
 
 Each *expression* must designate a variable name.
+
+For the “await as” form, the type of *foreach-collection-name* must implement interface `AsyncIterator` ([§§](17-interfaces.md#interface-AsyncIterator)) or interface `AsyncKeyedIterator` ([§§](17-interfaces.md#interface-AsyncKeyedIterator)).
 
 **Semantics**
 
@@ -556,6 +559,35 @@ foreach ($colors as $color) {
 
 foreach ($colors as &$color) {  // note the &
   $color = "black";
+}
+// -----------------------------------------
+async function countdown1(int $start): AsyncIterator<int> {
+  for ($i = $start; $i >= 0; --$i) {
+    await \HH\Asio\usleep(1000000); // Sleep for 1 second
+    yield $i;
+  }
+}
+
+async function use_countdown1(): Awaitable<void> {
+  $async_gen = countdown1(3);
+  foreach ($async_gen await as $value) {
+    // $value is of type int here
+    // …
+  }
+}
+
+async function countdown2(int $start): AsyncKeyedIterator<int, string> {
+  for ($i = $start; $i >= 0; --$i) {
+    await \HH\Asio\usleep(1000000);
+    yield $i => (string)$i;
+  }
+}
+
+async function use_countdown2(): Awaitable<void> {
+  foreach (countdown2(3) await as $num => $str) {
+    // $num is of type int, $str is of type string
+    // …
+  }
 }
 ```
 
@@ -661,16 +693,13 @@ The *expression* in a *return-statement* in a generator function
 
 A `return` statement must not occur in a finally-block ([§§](11-statements.md#the-try-statement)) or in the *compound-statement* of a *function-definition* for a function with *return-type* `noreturn` ([§§](15-functions.md#function-definitions)).
 
-For a non-async function, the type of *expression* must be assignment-compatible with the return type of the enclosing function ([§§](15-functions.md#function-definitions)). For an async function, the type of *expression* must be a subtype of the parameter type of the `Awaitable` *return*-type for the enclosing function.
+For a non-async function, the type of *expression* (or any implicitly returned `null`) must be assignment-compatible with the return type of the enclosing function ([§§](15-functions.md#function-definitions)). For an async function, the type of *expression* must be a subtype of the parameter type of the `Awaitable` *return-type* for the enclosing function. However, if `Awaitable`’s parameter type is `void`, *expression* must be omitted.
 
 **Semantics**
 
-A `return` statement from within a function terminates the execution of
-that function normally, and for a non-async function, it returns the value of *expression* to the function's caller
-by value or byRef. If *expression* is omitted no value is returned. For an async function, the value of *expression* is wrapped in an `Awaitable` object, which is then returned. 
+A `return` statement from within a function terminates the execution of that function normally. If *expression* is omitted, for a non-async function, no value is returned. For a sync function, an object of type `Awaitable<void>` is returned. If *expression* is present, for a non-async function, the value of *expression* is returned by value. For a sync function, the value of expression is wrapped in an object of type `Awaitable<T>` (where `T` is the type of *expression*), which is returned.
 
-If execution flows into the closing brace (`}`) of a function, 
-`return;` is implied.
+If execution flows into the closing brace (`}`) of a function, `return;` is implied.
 
 A function may have any number of `return` statements, whose returned
 values may have different types.

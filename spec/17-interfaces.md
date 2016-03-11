@@ -133,6 +133,8 @@ interface MyCollection<T> {
 
 Methods declared in an interface must not be declared `abstract`.
 
+An interface method must not also be asynchronous. However, a method can have a return-type of `Awaitable<T>`, so an async concrete implementation can be provided.
+
 **Semantics:**
 
 An interface method is just like an abstract method ([§§](16-classes.md#methods)).
@@ -172,13 +174,13 @@ Name	|   Purpose
 `offsetSet`	| This instance method sets the value having key `$offset` to $value. This method is called when an instance of a class that implements this interface is subscripted ([§§](10-expressions.md#subscript-operator)) in a modifiable-lvalue context.
 `offsetUnset`	| This instance method removes the value having key `$offset`.
 
-###Interface `Awaitable`
+###Interface `AsyncIterator`
 
-This interface supports asynchronous functions ([§§](15-functions.md#asynchronous-functions)) and await ([§§](10-expressions.md#await-operator)). It is defined, as follows:
+This interface supports iteration over the values returned from an asynchronous generator function ([§§](10-expressions.md#yield-operator)). It is defined, as follows:
 
 ```Hack
-interface Awaitable<T> {
-  public function getWaitHandle(): WaitHandle<T>;
+interface AsyncIterator<Tv> {
+  public function next(): Awaitable<?tuple<mixed,Tv>> 
 }
 ```
 
@@ -186,7 +188,35 @@ The interface members are defined below:
 
 Name  |  Purpose
 ----  |  -------
-getWaitHandle | This instance method returns the wait handle associated with this `Awaitable<T>`.
+`next` | This instance method moves the async iterator to the next `Awaitable` position.
+
+###Interface `AsyncKeyedIterator`
+
+This interface supports iteration over the keys and values returned from an asynchronous generator function ([§§](10-expressions.md#yield-operator)). It is defined, as follows:
+
+```Hack
+interface AsyncKeyedIterator<Tk,Tv> implements AsyncIterator<Tv> {
+  public function next(): Awaitable<?tuple<Tk,Tv>> 
+}
+```
+
+The interface members are defined below:
+
+Name  |  Purpose
+----  |  -------
+`next` | This instance method moves the async iterator to the next `Awaitable` position.
+
+###Interface `Awaitable`
+
+An instance of this interface is an awaitable object. Such objects are used in support of asynchronous functions ([§§](15-functions.md#asynchronous-functions)) and await ([§§](10-expressions.md#await-operator)). This interface is defined, as follows:
+
+```Hack
+interface Awaitable<T> {
+  // unspecified
+}
+```
+
+The interface members are unspecified.
 
 ###Interface `Container`
 
@@ -198,6 +228,22 @@ interface Container<Tv> extends Traversable<Tv> {
 ```
 
 This interface has no members.
+
+###Interface `IMemoizeParam`
+
+Instances of classes that implement this interface can be passed to `serialize_memoize_param` and to functions having the `__Memoize attribute` ([§§](21-attributes.md#Attribute-__Memoize)). It is defined, as follows:
+
+```Hack
+interface IMemoizeParam implements AsyncIterator<Tv> {
+  public function getInstanceKey(): string;
+}
+```
+
+The interface members are defined below:
+
+Name  |  Purpose
+----  |  -------
+`getInstanceKey` | Serializes the object to a string that can be used as a dictionary key to differentiate instances of this class.
 
 ###Interface `Iterator`
 
