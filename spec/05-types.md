@@ -718,6 +718,7 @@ For types in Hack, the following rules apply:
 13. A class type is a subtype of all its direct and indirect base-class types, including those resulting from *require-extends-clauses* ([§§](17-interfaces.md#interface-members)).
 14. A class type is a subtype of all the interfaces it and its direct and indirect base-class types implement, including those resulting from *require-implements-clauses* ([§§](18-traits.md#trait-members)).
 15. An interface type is a subtype of all its direct and indirect base interfaces.
+16. Although this specification doesn’t treat the *return-type* `noreturn` ([§§](15-functions.md#function-definitions)) as a type, per se, `noreturn` is regarded as a subtype of all other types, and a supertype of none.
 
 ###Type Side Effects
 
@@ -731,7 +732,7 @@ such, a `num` cannot be bit-shifted directly. (Similar situations occur with
 
 Certain program elements are capable of changing the type of an expression
 using what is called a *type side effect* (which is not to be confused with a
-*value side effect*) (10.1)).
+*value side effect*; [§§](10-expressions.md#general)).
 
 Consider the following function:
 
@@ -744,7 +745,7 @@ function F_n_int(?int $p1): void {
 ```
 
 On entry, `$p1` contains `null` or some `int`. However, the type of the
-expression `$p1` is not known to be `int`, so it is not safe to allow the `%`\
+expression `$p1` is not known to be `int`, so it is not safe to allow the `%`
 operator to be applied. When the library function `is_int` is applied to `$p1`
 , a type side effect occurs in which the type of the expression `$p1` is changed to `int` **for the true path of the `if` statement only**. As such,
 the `%` operator can be applied. However, once execution flows out of the `if`
