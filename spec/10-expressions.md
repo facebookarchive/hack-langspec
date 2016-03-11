@@ -129,10 +129,7 @@ the un-parenthesized expression.
 The variable `$this` is predefined inside any instance method, 
 constructor, or destructor when that method is called from within an object
 context. `$this` is a handle ([§§](05-types.md#general)) that points to the calling object or
-to the object being constructed. The type of `$this` is the type of the
-class within which the usage of `$this` occurs. However, at run time, the
-type of the object referred to by `$this` may be the type of the
-enclosing class or any type derived from that class.
+to the object being constructed. The type of `$this` is `this` [§§](05-types.md#the-this-type).
 
 ###Intrinsics
 
@@ -724,14 +721,19 @@ $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
   <i>class-type-designator:</i>
     static
     <i>qualified-name</i>
+    <i>variable-name<i>
 </pre>
 
-*argument-expression-list* is defined in [§§](10-expressions.md#function-call-operator); and *qualified-name* is
-defined in [§§](09-lexical-structure.md#names).
+*argument-expression-list* is defined in [§§](10-expressions.md#function-call-operator); *qualified-name* is
+defined in [§§](09-lexical-structure.md#names); and *variable-name* is defined in [§§](09-lexical-structure.md#names).
 
 **Constraints**
 
 *qualified-name* must name a class.
+
+*variable-name* must name a value having the classname type ([§§](05-types.md#the-classname-type)).
+
+*variable-name* must designate a class that has the attribute  `__ConsistentConstruct` ([§§](21-attributes.md#attribute-__consistentconstruct)), or that has an abstract constructor or a final constructor.
 
 *class-type-designator* must not designate an abstract class ([§§](16-classes.md#general)).
 
@@ -747,7 +749,7 @@ than there are corresponding parameters.
 **Semantics**
 
 The `new` operator allocates memory for an object that is an instance of
-the class specified by *class-type-designator*.
+the class specified by *class-type-designator* or *variable-name*.
 
 The object is initialized by calling the class's constructor (16.8)
 passing it the optional *argument-expression-list*. If the class has no
@@ -756,10 +758,10 @@ Otherwise, each instance property having any nullable type takes on the value
 `null`.
 
 The result of an *object-creation-expression* is a handle to an object
-of the type specified by *class-type-designator*.
+of the type specified by *class-type-designator* or *variable-name*.
 
 From within a method, the use of `static` corresponds to the class in the
-inheritance context in which the method is called.
+inheritance context in which the method is called. The type of the object created by an expression of the form `new static` is `this` [§§](05-types.md#the-this-type).
 
 Because a constructor call is a function call, the relevant parts of
 10.5.6 also apply.
@@ -777,6 +779,12 @@ class Point
 }
 $p1 = new Point();     // create Point(0, 0)
 $p1 = new Point(12);   // create Point(12, 0)
+// -----------------------------------------
+class C { ... }
+function f(classname<C> $clsname): void {
+  $w = new $clsname(); 
+  …
+}
 ```
 
 ###Array Creation Operator
@@ -1097,7 +1105,7 @@ call, *postfix-expression* is evaluated first, followed by each
 *assignment-expression* in the order left-to-right. There is a sequence
 point ([§§](#general)) right before the function is called. For details of the
 type and value of a function call see [§§](11-statements.md#the-return-statement). The value of a function
-call is a non-modifiable lvalue.
+call, if any, is a non-modifiable lvalue.
 
 If the called function is variadic, the function call can have any number of 
 arguments, provided the function call has at least an argument for each 
@@ -1115,7 +1123,7 @@ invoked instance has no `$this` defined.
 When a function is called, the value of each argument passed to it is
 assigned to the corresponding parameter in that function's definition,
 if such a parameter exists. The assignment of argument values to
-parameters is defined in terms of simple (10.20.2). Any parameters having a 
+parameters is defined in terms of simple assignment [§§](10-expressions.md#simple-assignment). Any parameters having a 
 default value but no corresponding argument, takes on that default value.
 
 If an undefined variable is passed using byRef, that variable becomes
@@ -1128,8 +1136,8 @@ The following discussion applies when *postfix-expression* is a
 `null`, the behavior is the same as if a *member-selection-expression* 
 ([§§](10-expressions.md#member-selection-operator)) were used instead of a *null-safe-member-selection-expression*. 
 Otherwise, no function is called, and the *function-call-expression* 
-evaluates to `null`; as to whether the *expression*s in 
-*argument-expression-list* are evaluated, is implementation-defined.
+evaluates to `null`. The *expression*s in 
+*argument-expression-list* are evaluated.
 
 **Examples**
 
@@ -1208,20 +1216,13 @@ $p1->move(3, 9);  // calls public instance method move by name
 
 **Constraints**
 
-*postfix-expression* must designate an object.
+*postfix-expression* must designate a nullable-typed object.
 
-*name* must be the name of an instance method of the class designated by 
-*postfix-expression*.
-
-*null-safe-member-selection-expression* must be used as the 
-*postfix-expression* of a *function-call-expression* ([§§](10-expressions.md#function-call-operator)).
+*name* must designate an instance property or an instance method of the class designated by *postﬁx-expression*.
 
 **Semantics**
 
-A *null-safe-member-selection-expression* designates an instance method of the 
-object designated by *postfix-expression*.
-
-See [§§](10-expressions.md#function-call-operator) for more information.
+If *postﬁx-expression* is `null`, no property or method is selected and the resulting value is `null`. Otherwise, the behavior is like that of the member-selection operator `->` ([§§](10-expressions.md#member-selection-operator)), except that when *name* designates an instance property of the object designated by *postﬁx-expression*, the resulting value is not an lvalue. 
 
 ###Postfix Increment and Decrement Operators
 
@@ -1266,16 +1267,21 @@ $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 
   <i>scope-resolution-qualifier:</i>
     <i>qualified-name</i>
+    <i>variable-name</i>
     self
     parent
     static
 </pre>
 
-*name* and *qualified-name* are defined in [§§](09-lexical-structure.md#names).
+*name*, *qualified-name*, and *variable-name* are defined in [§§](09-lexical-structure.md#names).
 
 **Constraints**
 
-If *name* is present, *qualified-name* must be the name of an enum, a class, or an interface type, and *name* must designate an enumeration constant or member within that type. Otherwise, *qualified-name* must be the name of a class type.
+If *name* is present, *qualified-name* must be the name of an enum, a class, or an interface type, and *name* must designate an enumeration constant or member within that type. Otherwise, *qualified-name* must be the name of a class or interface type.
+
+*variable-name* must name a value having the classname type ([§§](05-types.md#the-classname-type)).
+
+*variable-name* `:: class` is not permitted.
 
 **Semantics**
 
@@ -1318,6 +1324,8 @@ $d1->b(); // as $d1 is an instance of Derived, Base::b() calls Derived::f()
 The value of the form of *scope-resolution-expression* ending in `::class`
 is a string containing the fully qualified name of the current class,
 which for a static qualifier, means the current class context.
+
+*variable-name* `::` *name* results in a constant whose value has the classname type ([§§](05-types.md#the-classname-type)) for the type designated by *variable-name*.
 
 **Examples**
 
@@ -1664,10 +1672,11 @@ Function `main` calls async function `f`, which in turn awaits on async function
 
 <i>instanceof-type-designator:</i>
   <i>qualified-name</i>
+  <i>variable-name</i>
 </pre>
 
 *unary-expression* is defined in [§§](10-expressions.md#general-4); *expression* is defined in
-[§§](10-expressions.md#yield-operator); and *qualified-name* is defined in [§§](09-lexical-structure.md#names). 
+[§§](10-expressions.md#yield-operator); *qualified-name* is defined in [§§](09-lexical-structure.md#names); and variable-name is defined in [§§](09-lexical-structure.md#names). 
 
 **Constraints**
 
@@ -1675,13 +1684,15 @@ The *expression* in *instanceof-subject* must designate a variable.
 
 *qualified-name* must be the name of a class or interface type.
 
+*variable-name* must name a value having the classname type ([§§](05-types.md#the-classname-type)).
+
 **Semantics**
 
 Operator `instanceof` returns `true` if the variable designated by
 *expression* in *instanceof-subject* is an object having type
-*qualified-name*, is an object whose type is derived from type
-*qualified-name*, or is an object whose type implements interface
-*qualified-name*. Otherwise, it returns `false`.
+*qualified-name* or *variable-name*, is an object whose type is derived from type
+*qualified-name* or *variable-name*, or is an object whose type implements interface
+*qualified-name* or *variable-name*. Otherwise, it returns `false`.
 
 If either *expression* is not an instance, `false` is returned.
 
@@ -2230,11 +2241,57 @@ function factorial(int $int): int
 }
 ```
 
+##Coalesce Operator
+
+**Syntax**
+
+<pre>
+  <i>coalesce-expression:</i>
+    <i>logical-inc-OR-expression</i>  ??  <i>expression</i>
+</pre>
+
+**Defined elsewhere**
+
+* [*logical-OR-expression*](#logical-inclusive-or-operator-form-1)
+* [*expression*](#general-6)
+
+**Semantics**
+
+Given the expression `e1 ?? e2`, if `e1` is set and not `null`, then the result is `e1`. Otherwise, then and only then is `e2`
+evaluated, and the result becomes the result of the whole expression. There is a sequence point after the evaluation of `e1`.
+
+This operator associates right-to-left.
+
+**Examples**
+
+```PHP
+function foo(): void {
+  echo "executed!", PHP_EOL;
+}
+
+function main(): void {
+  $arr = ["foo" => "bar", "qux" => null];
+  $obj = (object)$arr;
+
+  $a = $arr["foo"] ?? "bang"; // "bar" as $arr["foo"] is set and not null
+  $a = $arr["qux"] ?? "bang"; // "bang" as $arr["qux"] is null
+  $a = $arr["bing"] ?? "bang"; // "bang" as $arr["bing"] is not set
+
+  $a = $obj->foo ?? "bang"; // "bar" as $obj->foo is set and not null
+  $a = $obj->qux ?? "bang"; // "bang" as $obj->qux is null
+  $a = $obj->bing ?? "bang"; // "bang" as $obj->bing is not set
+
+  $a = null ?? $arr["bing"] ?? 2; // 2 as null is null, and $arr["bing"] is not set
+  var_dump(true ?? foo()); // outputs bool(true), "executed!" does not appear as it short-circuits
+}
+```
+
 ##Lambda Expressions
 
 **Syntax**
 <pre>
 <i>lambda-expression:</i>
+  <i>coalesce-expression</i>
   <i>conditional-expression</i>
   async<sub>opt</sub>  <i>lambda-function-signature</i>  ==>  <i>anonymous-function-body</i>
 
@@ -2247,7 +2304,7 @@ function factorial(int $int): int
   <i>compound-statement</i>
 </pre>
 
-*conditional-expression* is defined in [§§](10-expressions.md#conditional-operator); *variable-name* is defined in [§§](09-lexical-structure.md#names); *anonymous-function-parameter-declaration-list* is defined in [§§](10-expressions.md#anonymous-function-creation); *anonymous-function-return* is defined in [§§](10-expressions.md#anonymous-function-creation); *expression* is defined in [§§](10-expressions.md#yield-operator); and *compound-statement* is defined in [§§](11-statements.md#compound-statements).
+*coalesce-expression* is defined in [§§](10-expressions.md#coalesce-operator); *conditional-expression* is defined in [§§](10-expressions.md#conditional-operator); *variable-name* is defined in [§§](09-lexical-structure.md#names); *anonymous-function-parameter-declaration-list* is defined in [§§](10-expressions.md#anonymous-function-creation); *anonymous-function-return* is defined in [§§](10-expressions.md#anonymous-function-creation); *expression* is defined in [§§](10-expressions.md#yield-operator); and *compound-statement* is defined in [§§](11-statements.md#compound-statements).
 
 **Constraints**
 

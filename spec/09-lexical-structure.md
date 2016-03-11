@@ -296,13 +296,11 @@ cannot be used as a name.
 
 <pre>
   <i>keyword::</i> one of
-    abstract   arraykey   as   async   break   case   catch   class   clone   
-    const   continue   default   do   echo   else   elseif   
-    enum   
-    extends   final   finally   for   foreach   function   if   implements   instanceof
-    insteadof   interface   mixed   namespace   new   newtype   num   private
-    protected   public   require   require_once   return   shape   static   switch
-    throw   trait   try   tuple   type   use   while   yield
+    abstract   arraykey   as   async   break   case   catch   class   classname clone   const   continue   default   do
+    echo   else   elseif   enum   extends   final   finally   for   foreach   function   if   implements
+    instanceof   insteadof   interface   mixed   namespace   new   newtype   noreturn   num   private
+    protected   public   require   require_once   return   shape   static   switch throw   trait   try
+    tuple   type   use   while   yield
 </pre>
 
 **Semantics:**
@@ -569,6 +567,7 @@ octal-digit
     <i>dq-simple-escape-sequence</i>
     <i>dq-octal-escape-sequence</i>
     <i>dq-hexadecimal-escape-sequence</i>
+    <i>dq-unicode-escape-sequence</i>
 
   <i>dq-simple-escape-sequence:: one of</i>
     \"   \\   \$   \e   \f   \n   \r   \t   \v
@@ -581,6 +580,13 @@ octal-digit
   <i>dq-hexadecimal-escape-sequence::</i>
     \x  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
     \X  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
+
+  <i>dq-unicode-escape-sequence::</i>
+    \u{  codepoint-digits  }
+
+  <i>codepoint-digits::</i>
+     <i>hexadecimal-digit</i>
+     <i>hexadecimal-digit   codepoint-digits</i>
 </pre>
 
 *octal-digit* and *hexadecimal-digit* are defined in [§§](09-lexical-structure.md#integer-literals).
@@ -613,45 +619,80 @@ Escape sequence | Character name
 Within a double-quoted string literal, except when recognized as the
 start of an escape sequence, a backslash (\\) is retained verbatim.
 
-Within a double-quoted string literal a dollar ($) character not
-escaped by a backslash (\\) is handled, as follows:
+Within a double-quoted string literal a dollar ($) character not
+escaped by a backslash (\\) is handled using a variable substitution rules
+described below.
 
--   If that dollar ($) character plus the character sequence following
-    spells a longest-possible variable name:
--   For a scalar type, that variable name is replaced by the string
-    representation of that variable's value, if such a variable exists. 
-    This is known as *variable substitution*. If no such variable is
-    currently defined, the value substituted is the empty string. (For
-    the purposes of variable substitution, the string representation is
-    produced as if the library function `sprintf` was used. In the case of
-    a floating-point value, the conversion specifier used is `%.nG`,
-    where the precision `n` is implementation-defined.
--   For a variable that designates an array, if that variable name is
-    followed by characters of the form "`[index]`" without any
-    intervening white space, the variable name and these following
-    characters are presumed to refer to the corresponding element of
-    that array, in which case, the value of that element is substituted.
-    If `index` is itself a variable having scalar type, that variable's
-    value is substituted. If `index` is an integer literal, it must be a
-    decimal-integer literal. `index` must not be a character sequence
-    that itself looks like an array subscript or a class property.
--   For a variable that designates an array, but no subscript-like
-    character sequence follows that variable name, the value substituted
-    is "Array".
--   For a variable that designates an instance of a class, if that
-    variable name is followed by characters of the form "`->name`"
-    without any intervening white space, the variable name and these
-    following characters are presumed to refer to the corresponding
-    property of that instance, in which case, the value of that property
-    is substituted.
--   Otherwise, the dollar ($) is retained verbatim.
+The `\u{xxxxxx}` escape sequence produces the UTF-8 encoding of the Unicode 
+codepoint with the hexadecimal number specified within the curly braces.
+Implementations MUST NOT allow Unicode codepoints beyond U+10FFFF as this is
+outside the range UTF-8 can encode (see
+[RFC 3629](http://tools.ietf.org/html/rfc3629#section-3)). If a codepoint 
+larger than U+10FFFF is specified, implementations MUST error.
+Implementations MUST pass through `\u` verbatim and not interpret it as an
+escape sequence if it is not followed by an opening `{`, but if it is,
+implementations MUST produce an error if there is no terminating `}` or the
+contents are not a valid codepoint. Implementations MUST support leading zeroes,
+but MUST NOT support leading or trailing whitespace for the codepoint between
+the opening and terminating braces. Implementations MUST allow Unicode 
+codepoints that are not Unicode scalar values, such as high and low surrogates.
+
+**Variable substitution**
+
+The variable substitution accepts the following syntax:
+
+<pre>
+    <i>string-variable::</i>
+        <i>variable-name</i>   <i>offset-or-property<sub>opt</sub></i>
+        ${   <i>expression</i>   }  
+
+    <i>offset-or-property::</i>
+        <i>offset-in-string</i>
+        <i>property-in-string</i>
+
+    <i>offset-in-string::</i>
+        [   <i>name</i>   ]
+        [   <i>variable-name</i>   ]
+        [   <i>integer-literal</i>   ]
+        
+    <i>property-in-string::</i>
+        ->   <i>name</i>
+        
+</pre>
+
+**Defined elsewhere**
+
+* [*variable-name*](#names)
+* [*name*](#names)
+* [*integer-literal*](#integer-literals)
+* [*expression*](10-expressions.md#general-6) 
+
+*expression* works the same way as in [variable name creation operator](10-expressions.md#variable-name-creation-operator).
+
+After the variable defined by the syntax above is evaluated, its value is converted
+to string according to the rules of [string conversion](08-conversions.md#converting-to-string-type)
+and is substituted into the string in place of the variable substitution expression. 
+
+Subscript or property access defined by *offset-in-string* and *property-in-string*
+is resolved according to the rules of the [subscript operator](10-expressions.md#subscript-operator)
+and [member selection operator](10-expressions.md#member-selection-operator) respectively. 
+The exception is that *name* inside *offset-in-string* is interpreted as a string literal even if it is not 
+quoted. 
+
+If the character sequence following the `$` does not parse as *name* and does not start with `{`, the `$` character
+is instead interpreted verbatim and no variable substitution is performed.
 
 Variable substitution also provides limited support for the evaluation
 of expressions. This is done by enclosing an expression in a pair of
-matching braces ({...}). The opening brace must be followed immediately by
-a dollar ($) without any intervening white space, and that dollar must
+matching braces (`{ ... }`). The opening brace must be followed immediately by
+a dollar (`$`) without any intervening white space, and that dollar must
 begin a variable name. If this is not the case, braces are treated
-verbatim. An opening brace ({) cannot be escaped.
+verbatim. If the opening brace (`{`) is escaped it is not interpreted as a start of
+the embedded expression and instead is interpreted verbatim.
+
+The value of the expression is converted to string according to the rules of 
+[string conversion](08-conversions.md#converting-to-string-type) and is substituted into the string
+in place of the substitution expression. 
 
 A double-quoted string literal is a c-constant ([§§](06-constants.md#general)) if it does not
 contain any variable substitution.
@@ -702,13 +743,14 @@ octal-digit
     <i>hd-simple-escape-sequence</i>
     <i>dq-octal-escape-sequence</i>
     <i>dq-hexadecimal-escape-sequence</i>
+    <i>dq-unicode-escape-sequence</i>
 
   <i>hd-simple-escape-sequence:: one of</i>
     \\   \$   \e   \f   \n   \r   \t   \v
 </pre>
 
 *name* is defined in [§§](09-lexical-structure.md#names); *new-line* is defined in [§§](09-lexical-structure.md#comments); and
-*dq-octal-escape-sequence* and *dq-hexadecimal-escape-sequence* are
+*dq-octal-escape-sequence*, *dq-hexadecimal-escape-sequence*, and *dq-unicode-escape-sequence* are
 defined in [§§](09-lexical-structure.md#double-quoted-string-literals).
 
 **Constraints**
@@ -808,8 +850,8 @@ A *null-literal* has the null type.
   <i>operator-or-punctuator:: one of</i>
     [   ]    (   )   {    }   .   ->   ++   --   **   *   +   -   ~   !
     $   /   %   &lt;&lt;   >>   &lt;   >   &lt;=   >=   ==   ===   !=   !==   ^   |
-    &amp;   &amp;&amp;   ||   ?   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
-    >>=   &amp;=   ^=   |=   ,
+    &amp;   &amp;&amp;   ||   ?   ??   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
+    >>=   &amp;=   ^=   |=   ,   @   ::   =>   ==>   ?->
 </pre>
 
 **Semantics**

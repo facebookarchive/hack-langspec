@@ -659,18 +659,18 @@ for (;;) {
 The *expression* in a *return-statement* in a generator function
 ([§§](10-expressions.md#yield-operator)) must be the literal `null`.
 
-A `return` statement must not occur in a finally-block ([§§](11-statements.md#the-try-statement)).
+A `return` statement must not occur in a finally-block ([§§](11-statements.md#the-try-statement)) or in the *compound-statement* of a *function-definition* for a function with *return-type* `noreturn` ([§§](15-functions.md#function-definitions)).
 
-For a non-async function, the type of *expression* (or any implicitly returned `null`) must be assignment-compatible with the return type of the enclosing function ([§§](15-functions.md#function-definitions)). For an async function, the type of *expression* must be a subtype of the parameter type of the `Awaitable` *return*-type for the enclosing function.
+For a non-async function, the type of *expression* must be assignment-compatible with the return type of the enclosing function ([§§](15-functions.md#function-definitions)). For an async function, the type of *expression* must be a subtype of the parameter type of the `Awaitable` *return*-type for the enclosing function.
 
 **Semantics**
 
 A `return` statement from within a function terminates the execution of
 that function normally, and for a non-async function, it returns the value of *expression* to the function's caller
-by value or byRef. If *expression* is omitted the value `null` is used. For an async function, the value of *expression* is wrapped in an `Awaitable` object, which is then returned. 
+by value or byRef. If *expression* is omitted no value is returned. For an async function, the value of *expression* is wrapped in an `Awaitable` object, which is then returned. 
 
 If execution flows into the closing brace (`}`) of a function, 
-`return null;` is implied.
+`return;` is implied.
 
 A function may have any number of `return` statements, whose returned
 values may have different types.
@@ -690,7 +690,6 @@ Return statements can be used in the body of anonymous functions.
 
 ```Hack
 function f(): int { return 100; } // f explicitly returns a value
-function g(): void {  return; } // g explicitly returns an implicit null
 function h(): void { }    // h implicitly returns null
 // -----------------------------------------
 // j returns one of three dissimilarly-typed values

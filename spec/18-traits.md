@@ -44,7 +44,8 @@ that trait is used.
 
 <pre>
   <i>trait-declaration:</i>
-   <i>attribute-specification<sub>opt</sub></i>  trait  <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  {  <i>trait-use-clauses<sub>opt</sub>  trait-member-declarations<sub>opt</sub></i>  }
+   <i>attribute-specification<sub>opt</sub></i>  trait  <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  <i>class-interface-clause<sub>opt</sub></i>  {
+     <i>trait-use-clauses<sub>opt</sub>  trait-member-declarations<sub>opt</sub></i>  }
 
   <i>trait-use-clauses:</i>
     <i>trait-use-clause</i>
@@ -59,7 +60,8 @@ that trait is used.
 </pre>
 
 *attribute-specification* is defined in [§§](21-attributes.md#attribute-specification); *name* is defined in [§§](09-lexical-structure.md#names); *generic-type-parameter-list* is defined in
-[§§](14-generic-types-methods-and-functions.md#type-parameters); and *trait-member-declarations* is defined in [§§](18-traits.md#trait-members).
+[§§](14-generic-types-methods-and-functions.md#type-parameters); *class-interface-clause* is defined in
+[§§](16-classes.md#class-declarations); and *trait-member-declarations* is defined in [§§](18-traits.md#trait-members).
 
 **Constraints**
 
@@ -78,6 +80,8 @@ Trait names are case-preserved ([§§](03-terms-and-definitions.md).
 A *trait-declaration* may also use other traits. This is done via one or
 more *trait-use-clause*s, each of which contains a comma-separated list
 of trait names.
+
+The optional *class-interface-clause* specifies the one or more interfaces that must be implemented by any class that uses this trait.
 
 **Examples**
 
@@ -108,7 +112,7 @@ trait T4 {
     <i>constructor-declaration</i>
     <i>destructor-declaration</i>
 
-  <i>requires-extends-clause:</i>
+  <i>require-extends-clause:</i>
     require  extends  <i>qualified-name</i>
   <i>require-implements-clause:</i>
     require  implements  <i>qualified-name</i>
@@ -120,9 +124,9 @@ defined in [§§](16-classes.md#methods); *constructor-declaration* is defined i
 
 **Constraints**
 
-The *qualified-name* in *require-extends-clause* must designate a class name.
+The *qualified-name* in *require-extends-clause* must designate the name of a class that does not directly use the trait being defined.
 
-The *qualified-name* in *require-implements-clause* must designate an interface name.
+The *qualified-name* in *require-implements-clause* must designate the name of an interface that does not directly use the trait being defined.
 
 **Semantics**
 
@@ -139,11 +143,17 @@ A trait may contain the following members:
 * Constructor – the actions required to initialize an instance of the class in which the trait is used ([§§](16-classes.md#constructors))
 * Destructor – the actions to be performed when an instance of the class in which the trait is used is no longer needed ([§§](16-classes.md#destructors)).
 
+*trait-member-declarations* may contain multiple *require-extends-clauses* that designate the same class, in which case, the duplicates are redundant. 
+
+*trait-member-declarations* may contain multiple *require-implements-clauses* that designate the same interface, in which case, the duplicates are redundant.
+
 **Examples**
 
 ```Hack
 trait T {
+  require extends C1;
   private int $prop1 = 1000;
+  require implements I1;
   protected static int $prop2;
   public function compute( … ): void { … }
   public static function getData( … ): void { … }

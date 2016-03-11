@@ -515,7 +515,7 @@ using `unset` on variable `$a` or variable `$b`. For example, consider
 </pre>
 
 Unsetting `$a` causes variable `$a` to be destroyed and its corresponding
-alias to the VStore to be removed, leaving `$c`’s VSlot as the only
+alias to the VStore to be removed, leaving `$b`’s VSlot as the only
 pointer remaining to the VStore.
 
 Other operations can also break an alias relationship between two or
@@ -530,7 +530,7 @@ more variables. For example, `$a = 123` and `$b =& $a`, and `$c = 'hi'`:
 </pre>
 
 After the byRef assignment, `$a` and `$b` now have an alias relationship.
-Next, let's observe what happens for `$b = &$c`:
+Next, let's observe what happens for `$b =& $c`:
 <pre>
 [VSlot $a *]-->[VStore Int 123]
 
@@ -550,8 +550,8 @@ It is also possible to use byRef assignment to make three or more VSlots
 point to the same VStore. Consider the following example:
 
 ```Hack
-$b = &$a;
-$c = &$b;
+$b =& $a;
+$c =& $b;
 $a = 123;
 ```
 <pre>
@@ -596,7 +596,7 @@ semantics:
 [VSlot $b *]-----+                               [VStore Int 1] [VStore Int 3]
 </pre>
 `$a` and `$b` now aliases of each other. Note that byRef assignment
-produces a different result than `$b = `$a where `$a` and `$b` would point
+produces a different result than `$b = $a` where `$a` and `$b` would point
 to distinct VStores pointing to the same HStore.
 
 Let's modify the value of the `Point` aliased by `$a` using `$a->move(4,
@@ -704,7 +704,7 @@ as follows:
 -   If `$source`’s VStore has a refcount that is greater than 1, the Engine
     uses an implementation-defined algorithm to decide whether to copy the element
     using value assignment (`$destination = $source`) or byRef
-    assignment (`$destination = &$source`).
+    assignment (`$destination =& $source`).
 
 Note the member-copy assignment `=*` is **not** an operator or language
 construct in the Hack language, but instead it is used internally to
@@ -1114,7 +1114,7 @@ value.
 
 ###Cloning objects
 When an instance is allocated, operator `new` ([§§](10-expressions.md#the-new-operator)) returns a handle
-that points to that object. As described in [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable)), value assignment of a handle to an object does not copy the object HStore itself. Instead, it creates a copy of the handle. How then to make a copy of the object itself? Our only access to it is
+that points to that object. (As described in [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable)), value assignment of a handle to an object does not copy the object HStore itself. Instead, it creates a copy of the handle. How then to make a copy of the object itself? Our only access to it is
 via the handle. The Hack language allows us to do this via operator `clone` ([§§](10-expressions.md#the-clone-operator)).
 
 To demonstrate how the `clone` operator works, consider the case in which
@@ -1245,6 +1245,7 @@ function main($p1): void {
   $av1 = new Point();   // auto variable $av1 created and initialized
   static $sv1 = ...;    // static variable $sv1 created and initialized
   doit(true);
+}
 
 // At end of script, $sv1, $sv2, and $sv3 are eligible for destruction
 ```

@@ -72,17 +72,15 @@ Type parameters are discussed further in [§§](14-generic-types-methods-and-fun
   <i>generic-type-parameter</i>
   <i>generic-type-parameters</i>  ,  <i>generic-type-parameter</i>
 <i>generic-type-parameter:</i>
-  <i>generic-type-parameter-variance<sub>opt</sub></i>  <i>generic-type-parameter-name</i>  <i>generic-type-constraint<sub>opt</sub></i>
+  <i>generic-type-parameter-variance<sub>opt</sub></i>  <i>generic-type-parameter-name</i>  <i>type-constraint<sub>opt</sub></i>
 <i>generic-type-parameter-name:</i>
   <i>name</i>
 <i>generic-type-parameter-variance:</i>
   +
   -
-<i>generic-type-constraint:</i>
-  as  <i>type-specifier</i>
 </pre>
 
-*name* is defined in [§§](09-lexical-structure.md#names) and *type-specifier* is described in [§§](05-types.md#general).
+*name* is defined in [§§](09-lexical-structure.md#names) and *type-constraint* is described in [§§](05-types.md#general).
 
 **Constraints**
 
@@ -94,6 +92,7 @@ A *name* used in a *generic-type-parameter* of a method must not be the same as 
 
 *generic-type-parameter-variance* must not be present in a *function-definition* ([§§](15-functions.md#function-definitions)). 
 
+The *type-specifier* in *generic-type-constraint* must not be `this` or `?this`.
 
 **Semantics**
 
@@ -136,7 +135,7 @@ function maxValue<T>(T $p1, T $p2): T { … }
 
 ##Type Constraints
 
-A *generic-type-constraint* ([§§](14-generic-types-methods-and-functions.md#type-parameters)) indicates a requirement that a type must fulfill in order to be accepted as a type argument for a given type parameter. (For example, it might have to be a given class type or a subtype of that class type, or it might have to implement a given interface.)
+A *type-constraint* ([§§](05-types.md#general)) in a *generic-type-parameter* indicates a requirement that a type must fulfill in order to be accepted as a type argument for a given type parameter. (For example, it might have to be a given class type or a subtype of that class type, or it might have to implement a given interface.)
 
 Consider the following example in which class `Complex` has one type parameter, `T`, and that has a constraint:
 

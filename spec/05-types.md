@@ -32,6 +32,8 @@ Variables are not declared to have a particular type. Instead, a
 variable's type is decided at runtime by the context in which it is
 used.
 
+A *type constraint* indicates a requirement that a type must fulfill in order to be accepted in a given context. Type constraints are used in type aliasing ([§§](05-types.md#type-aliases)), enum declarations ([§§](13-enums.md#enum-declarations)), type parameters ([§§](14-generic-types,-methods,-and-functions.md#type-parameters)), and type constants ([§§](16-classes.md#type-constants)).
+
 The library function `is_scalar` (§xx) indicates if a given value has a scalar
 type. However, that function does not consider `null` to be scalar. To test
 for `null`, use `is_null` (§xx). Useful library functions for interrogating and using type information include `gettype` (§xx), `is_type` (§xx), `settype` (§xx), and `var_dump` (§xx).
@@ -57,12 +59,14 @@ for `null`, use `is_null` (§xx). Useful library functions for interrogating and
   <i>closure-type-specifier</i>
   <i>nullable-type-specifier</i>
   <i>generic-type-parameter-name</i>
-
+  this
+  <i>classname-type-specifier</i>
+  
 <i>alias-type-specifier:</i>
   <i>qualified-name</i>
 
 <i>enum-specifier:</i>
-  <i>qualified-name
+  <i>qualified-name</i>
 
 <i>class-interface-trait-specifier:</i>
   <i>qualified-name generic-type-argument-list<sub>opt</sub></i>
@@ -70,14 +74,16 @@ for `null`, use `is_null` (§xx). Useful library functions for interrogating and
 <i>type-specifier-list:</i>
   <i>type-specifier</i>
   <i>type-specifier-list</i> , <i>type-specifier</i>
+
+<i>type-constraint:</i>
+  as  <i>type-specifier</i>
 </pre>
 
 *vector-like-array-type-specifier* is defined in [§§](05-types.md#array-types);
 *map-like-array-type-specifier* is defined in [§§](05-types.md#array-types); *tuple-type-specifier* is
 defined in [§§](05-types.md#tuple-types); *shape-type-specifier* is defined in [§§](05-types.md#shape-types); *closure-type-specifier* is defined in [§§](05-types.md#closure-types);
 *nullable-type-specifier* is defined in [§§](05-types.md#nullable-types); *generic-type-parameter-name*
-is defined in [§§](14-generic-types-methods-and-functions.md#type-parameters); *generic-type-argument-list* is defined in [§§](14-generic-types-methods-and-functions.md#type-arguments); and
-*qualified-name* is defined in [§§](09-lexical-structure.md#names).
+is defined in [§§](14-generic-types-methods-and-functions.md#type-parameters); *generic-type-argument-list* is defined in [§§](14-generic-types-methods-and-functions.md#type-arguments); *classname-type-specifier* is defined in [§§](05-types.md#the-classname-type); and *qualified-name* is defined in [§§](09-lexical-structure.md#names).
 
 **Constraints**
 
@@ -128,7 +134,7 @@ but must be one of the following:
     arithmetic-like object type with the result being mathematically
     correct
 
-The constants `PHP_INT_SIZE` (§[[6.3](06-constants.md#core-predefined-constants)](#core-predefined-constants)) and `PHP_INT_MAX` (§[[6.3](06-constants.md#core-predefined-constants)](#core-predefined-constants)) define certain
+The constants [`PHP_INT_SIZE`, `PHP_INT_MIN` and `PHP_INT_MAX`](06-constants.md#core-predefined-constants) define certain
 characteristics about type `int`.
 
 The library function `is_int` (§xx) indicates if a given value has type
@@ -154,7 +160,7 @@ See the discussion of type side effects ([§§](05-types.md#type-side-effects)).
 
 ###The String Type
 
-The is one string type, `string`.
+There is one string type, `string`.
 
 A string is a set of contiguous bytes that represents a sequence of zero
 or more characters.
@@ -177,13 +183,31 @@ library functions assume the strings they receive as arguments are UTF-8
 encoded, often without explicitly mentioning that fact.
 
 A *numeric string* is a string whose content exactly matches the pattern
-defined using integer format by the production *integer-literal*
-([§§](09-lexical-structure.md#integer-literals)) or using floating-point format by the production
-*floating-literal* ([§§](09-lexical-structure.md#floating-point-literals)), where leading whitespace is permitted.
-A *leading-numeric string* is a string whose initial characters follow
+defined by the *str-numeric* production below. A *leading-numeric string* is a string whose initial characters follow
 the requirements of a numeric string, and whose trailing characters are
 non-numeric. A *non-numeric string* is a string that is not a numeric
 string.
+
+<pre>
+  <i>str-numeric::</i>
+    <i>str-whitespace<sub>opt</sub>   sign<sub>opt</sub>   str-number</i>
+
+  <i>str-whitespace::</i>
+    <i>str-whitespace<sub>opt</sub>   str-whitespace-char</i>
+
+  <i>str-whitespace-char::</i>
+    <i>new-line</i>
+    Space character (U+0020)
+    Horizontal-tab character (U+0009)
+    Vertical-tab character (U+000B)
+    Form-feed character (U+000C)
+
+  <i>str-number::</i>
+    <i>digit-sequence</i>
+    <i>floating-literal</i>
+</pre>
+
+*new-line* is defined in [§§](09-lexical-structure.md#comments), and *digit-sequence*, *floating-literal*, and *sign* are defined in [§§](09-lexical-structure.md#floating-point-literals).
 
 Only one mutation operation may be performed on a string, offset
 assignment, which involves the simple assignment operator = ([§§](10-expressions.md#simple-assignment)).
@@ -335,6 +359,10 @@ Trait types are described in [§§](18-traits.md#traits).
 Although traits are used to declare class and interface types, a trait type
 cannot be used in the usual context of a type name (see Constraints in [§§](05-types.md#general)).
 That said, for the purposes of subtyping ([§§](05-types.md#supertypes-and-subtypes)), traits are considered types.
+
+###The `this` Type
+
+The type name `this` refers to “the current class type at run time”. As such, it can only be used from within a class, an interface, or a trait. (`this` should not be confused with `$this` [§§](10-expressions.md#primary-expressions), which refers to “the current instance”, whose type is `this`.)
 
 ###Tuple Types
 
@@ -588,6 +616,40 @@ Hack contains a mechanism to define generic (that is, type-less) classes,
 interfaces, and traits, and to create type-specific instances of them via
 parameters. See [§§](14-generic-types-methods-and-functions.md#generic-types-methods-and-functions).
 
+###The Classname Type
+
+**Syntax**
+<pre>
+<i>classname-type-specifier:</i>
+  classname  <  <i>qualified-name</i>  >
+</pre>
+
+*qualified-name* is defined in [§§](09-lexical-structure.md#names).
+
+**Constraints**
+
+*qualified-name* must be the name of a class or interface type.
+
+**Semantics**
+
+This type gets around some limitations Hack has that its ancestor, PHP, does not. Specifically, the use of type-name strings as operands to `new` ([§§](10-expressions.md#the-new-operator)), `instanceof` ([§§](10-expressions.md#instanceof-operator)), and `::` ([§§](10-expressions.md#scope-resolution-operator)), is prohibited in Hack. However, equivalent functionality is possible via an instance of this type (which can only be created via `::`).
+
+The value of an expression of the classname type can be converted implicitly or explicitly to type `string` ([§§](08-conversions.md#converting-to-string-type)). The classname type is not assignment-compatible with any other type.
+
+The representation of a value having the classname type is unspecified.
+
+**Examples**
+
+```Hack
+namespace NS_cn;
+class C1 { … }
+class C2 {
+  public static classname<\NS_cn\C1> $p1 = \NS_cn\C1::class;
+  public static function f(?classname<C1> $p) : classname<C1> { … }
+  public static array<classname<C1>> $p2 = array(C1::class);
+}
+```
+
 ###Type Aliases
 
 **Syntax**
@@ -596,18 +658,13 @@ parameters. See [§§](14-generic-types-methods-and-functions.md#generic-types-m
   type  <i>name</i>  =  <i>type-to-be-aliased</i>  ;
   newtype  <i>name</i>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-to-be-aliased</i>  ;
 
-<i>type-constraint:</i>
-  as  <i>type-constraint-type</i>
-
-<i>type-constraint-type:</i>
-  <i>type-specifier</i>
-
 <i>type-to-be-aliased:</i>
   <i>type-specifier</i>
   <i>qualified-name</i>
 </pre>
 
-*name* is defined in [§§](09-lexical-structure.md#names); *qualified-name* is defined in [§§](09-lexical-structure.md#names); and *type-specifier* is defined in [§§](05-types.md#general).
+*name* is defined in [§§](09-lexical-structure.md#names); *type-constraint* is defined in [§§](05-types.md#general); *qualified-name* is defined in [§§](09-lexical-structure.md#names);
+*type-specifier* is defined in [§§](05-types.md#general); and *shape-specifier* is defined in [§§](05-types.md#general)6.
 
 **Constraints**
 
@@ -621,7 +678,7 @@ or *class-interface-trait-specifier* ([§§](05-types.md#general)).
 *qualified-name* in *alias-type-specifier* must be defined as the *name* for a
 type via an *alias-declaration*.
 
-*type-constraint-type* must be a subtype of *type-to-be-aliased*.
+*type-specifier* in *type-constraint* must be a subtype of *type-to-be-aliased*.
 
 **Semantics**
 
@@ -669,7 +726,7 @@ integer, so that the including file cannot perform any integer-like operations
 on a `Widget`.
 
 The presence of a *type-constraint* allows an opaque type alias to be treated
-as if it had the type specified by *type-constraint-type*, which removes some
+as if it had the type specified by *type-specifier* in *type-constraint*, which removes some
 of the alias' opaqueness. Note: Although the presence of a constraint allows
 the alias type to be converted implicitly to that constraint type, there is no
 conversion in the opposite direction.
@@ -733,6 +790,7 @@ For types in Hack, the following rules apply:
 14. A class type is a subtype of all the interfaces it and its direct and indirect base-class types implement, including those resulting from *require-implements-clauses* ([§§](18-traits.md#trait-members)).
 15. An interface type is a subtype of all its direct and indirect base interfaces.
 16. A shape type *S2* whose field set is a superset of that in shape type *S1*, is a subtype of *S1*.
+17. Although this specification doesn’t treat the *return-type* `noreturn` ([§§](15-functions.md#function-definitions)) as a type, per se, `noreturn` is regarded as a subtype of all other types, and a supertype of none.
 
 ###Type Side Effects
 
@@ -746,7 +804,7 @@ such, a `num` cannot be bit-shifted directly. (Similar situations occur with
 
 Certain program elements are capable of changing the type of an expression
 using what is called a *type side effect* (which is not to be confused with a
-*value side effect*) (10.1)).
+*value side effect*; [§§](10-expressions.md#general)).
 
 Consider the following function:
 
@@ -759,7 +817,7 @@ function F_n_int(?int $p1): void {
 ```
 
 On entry, `$p1` contains `null` or some `int`. However, the type of the
-expression `$p1` is not known to be `int`, so it is not safe to allow the `%`\
+expression `$p1` is not known to be `int`, so it is not safe to allow the `%`
 operator to be applied. When the library function `is_int` is applied to `$p1`
 , a type side effect occurs in which the type of the expression `$p1` is changed to `int` **for the true path of the `if` statement only**. As such,
 the `%` operator can be applied. However, once execution flows out of the `if`

@@ -54,7 +54,8 @@ object. As such, assignment of a handle does not copy the object itself.
 
 <pre>
   <i>class-declaration:</i>
-    <i>attribute-specification<sub>opt</sub></i>  <i>class-modifier<sub>opt</sub></i>  class  <i>name  generic-type-parameter-list<sub>opt</sub>  class-base  clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>  {  <i>trait-use-clauses<sub>opt</sub>  class-member-declarations<sub>opt</sub></i>  }
+    <i>attribute-specification<sub>opt</sub></i>  <i>class-modifier<sub>opt</sub></i>  class  <i>name  generic-type-parameter-list<sub>opt</sub></i>  <i>class-base-clause<sub>opt</sub></i>
+      <i>class-interface-clause<sub>opt</sub></i>  {  <i>trait-use-clauses<sub>opt</sub>  class-member-declarations<sub>opt</sub></i>  }
 
   <i>class-modifier:</i>
     abstract
@@ -68,7 +69,7 @@ object. As such, assignment of a handle does not copy the object itself.
     <i>class-interface-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
 </pre>
 
-*attribute-specification* is defined in [§§](21-attributes.md#attribute-specification); *name* is defined in [§§](09-lexical-structure.md#names); *generic-type-parameter-list* is defined in [§§](14-generic-types-methods-and-functions.md#type-parameters); qualified-name* is defined in [§§](09-lexical-structure.md#names); *class-member-declarations* is
+*attribute-specification* is defined in [§§](21-attributes.md#attribute-specification); *name* is defined in [§§](09-lexical-structure.md#names); *generic-type-parameter-list* is defined in [§§](14-generic-types-methods-and-functions.md#type-parameters); *qualified-name* is defined in [§§](09-lexical-structure.md#names); *class-member-declarations* is
 defined in [§§](16-classes.md#class-members); and *trait-use-clauses* is defined in [§§](18-traits.md#trait-declarations).
 
 **Constraints**
@@ -96,7 +97,7 @@ A generic class and a non-generic class in the same scope cannot have the same *
 **Semantics**
 
 A *class-declaration* defines a class type by the name *name*. Class
-names are case-preserved ([§§](03-terms-and-definitions.md).
+names are case-preserved [§§](03-terms-and-definitions.md).
 
 The `abstract` modifier declares a class usable only as a base class; the
 class cannot be instantiated directly. An abstract class may contain one
@@ -113,6 +114,11 @@ inherits all the members from the base class.
 
 The optional *class-interface-clause* specifies the one or more
 interfaces that are implemented by the class being defined.
+
+A class is required to implement a given interface in either of the following cases:
+* If its *class-declaration* specifies that interface directly in a *class-interface-clause*; or
+* If that class contains a *trait-use-clause* for a trait whose *trait-declaration* contains a *class-interface-clause* naming that interface; or
+* Both.
 
 A class can use one or more traits via a *trait-use-clauses*; see [§§](18-traits.md#general)
 and [§§](18-traits.md#trait-declarations).
@@ -374,6 +380,12 @@ $col = Automobile::DEFAULT_COLOR;
 *type-specifier* is defined in ([§§](05-types.md#general)) *variable-name* is described in [§§](09-lexical-structure.md#names) and *constant-expression* is described
 in [§§](10-expressions.md#yield-operator).
 
+**Constraints**
+
+A static property cannot have a *type-specifier* of the form `this` `::` *name*.
+
+A static property cannot have a *type-specifier* of `this` or `?this`.
+
 **Semantics**
 
 A *property-declaration* defines an instance or static property called *variable-name*.
@@ -462,7 +474,8 @@ examples of abstract methods and their subsequent definitions.
 
 <pre>
   <i>constructor-declaration:</i>
-    <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __construct  (  <i>constructor-parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
+    <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __construct  (
+      <i>constructor-parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
   <i>constructor-parameter-declaration-list:</i>
     <i>constructor-parameter-declaration</i>
     <i>constructor-parameter-declaration-list</i>  ,  <i>constructor-parameter-declaration</i>
@@ -592,7 +605,7 @@ Method Name	| Description | Reference
 ------------|-------------|----------
 `__call` | Calls a dynamic method in the context of an instance-method call | [§§](16-classes.md#method-__call)
 `__callStatic` | Calls a dynamic method in the context of a static-method call | [§§](16-classes.md#method-__callstatic)
-__clone |Typically used to make a deep copy ([§§](#)) of an object | [§§](16-classes.md#method-__clone)
+`__clone` |Typically used to make a deep copy of an object | [§§](16-classes.md#method-__clone)
 `__construct` | A constructor | [§§](16-classes.md#constructors)
 `__destruct` | A destructor | [§§](16-classes.md#destructors)
 `__sleep` | Executed before serialization ([§§](16-classes.md#serialization)) of an instance of this class | [§§](16-classes.md#method-__sleep)
@@ -642,7 +655,8 @@ $obj->iMethod(10, true, "abc"); // $obj->__call('iMethod', array(…))
 **Syntax**
 
 <pre>
-  public  static  function  __callStatic  (  string  <i>$name</i>  ,  array&lt;mixed&gt;  <i>$arguments</i>  )  :  mixed  <i>compound-statement</i>
+  public  static  function  __callStatic  (  string  <i>$name</i>  ,  array&lt;mixed&gt;  <i>$arguments</i>  )  :  mixed
+    <i>compound-statement</i>
 </pre>
 
 *compound-statement* is described in [§§](11-statements.md#compound-statements).
@@ -1089,7 +1103,7 @@ Name | Purpose
 ---- | -------
 `current` | An implementation of the instance method `Iterator::current `([§§](17-interfaces.md#interface-awaitable)).
 `key` | An implementation of the instance method `Iterator::key` ([§§](17-interfaces.md#interface-awaitable)).
-next | An implementation of the instance method Iterator::next ([§§](17-interfaces.md#interface-awaitable)).
+`next` | An implementation of the instance method Iterator::next ([§§](17-interfaces.md#interface-awaitable)).
 `rewind` | An implementation of the instance method `Iterator::rewind` ([§§](17-interfaces.md#interface-awaitable)).
 `send` | This instance method sends the value designated by `$value` to the generator as the result of the current [`yield`](http://us2.php.net/manual/en/ language.generators.syntax.php#control-structures.yield) expression, and resumes execution of the generator. `$value` is the return value of the [`yield`](http://us2.php.net/manual/en/language.generators.syntax.php#control-structures.yield) expression the generator is currently at. If the generator is not at a [`yield`](http://us2.php.net/manual/en/language.generators.syntax.php#control-structures.yield) expression when this method is called, it will first be let to advance to the first [`yield`](http://us2.php.net/manual/en/language.generators.syntax.php#control-structures.yield) expression before sending the value. This method returns the yielded value.
 `throw` | This instance method throws an exception into the generator and resumes execution of the generator. The behavior is as if the current [`yield`](http://us2.php.net/manual/en/language.generators.syntax.php#control-structures.yield) expression was replaced with throw `$exception`. If the generator is already closed when this method is invoked, the exception will be thrown in the caller's context instead. This method returns the yielded value.

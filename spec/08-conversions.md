@@ -113,10 +113,9 @@ The result type is `num`.
 
 ##Converting to String Type
 
-No non-`string` type can be converted implicitly to `string`. All other 
-conversions must be explicit.
+Except for the classname type ([§§](05-types.md#the-classname-type)), no non-`string` type can be converted implicitly to `string`. All other conversions must be explicit.
 
-The [result type](http://docs.hhvm.com/manual/en/language.types.string.php#language.types.string.casting) is string.
+The [result type](http://docs.hhvm.com/manual/en/language.types.string.php#language.types.string.casting) is `string`.
 
 If the source type is `bool`, then if the source value is `false`, the
 result value is the empty string; otherwise, the result value is "1".
@@ -133,6 +132,8 @@ by that method; otherwise, the conversion is invalid.
 
 If the source is a resource, the result value is an
 implementation-defined string.
+
+If the source type is the classname type ([§§](05-types.md#the-classname-type)), the result value is a string containing the corresponding fully qualified class or interface name without any leading `\`.
 
 The library function `strval` (§xx) allows values to be converted to
 `string`.

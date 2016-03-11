@@ -111,7 +111,11 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
 
 <pre>
   <i>keyword::</i> one of
-    abstract  arraykey  as  async  break  case  catch  class  clone  const  continue  default  do  echo  else  elseif  enum  extends  final  finally  for  foreach  function  if  implements  instanceof  insteadof  interface  mixed  namespace  new  newtype  num  private  protected  public  require  require_once  return  shape  static  switch  throw  trait  try  tuple  type  use  while  yield
+    abstract  arraykey  as  async  break  case  catch  class  classname clone  const  continue  default  do
+    echo  else  elseif  enum  extends  final  finally  for  foreach  function  if  implements
+    instanceof  insteadof  interface  mixed  namespace  new  newtype  noreturn   num  private
+    protected  public  require  require_once  return  shape  static  switch  throw  trait  try
+    tuple  type  use  while  yield
 </pre>
 
 ###Literals
@@ -306,7 +310,7 @@ octal-digit
     [   ]    (   )   {    }   .   -&gt;   ++   --   **   *   +   -   ~   !
     $   /   %   &lt;&lt;   &gt;&gt;   &lt;   &gt;   &lt;=   &gt;=   ==   ===   !=   !==   ^   |
     &amp;   &amp;&amp;   ||   ?   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
-    &gt;&gt;=   &amp;=   ^=   |=   ,
+    &gt;&gt;=   &amp;=   ^=   |=   ,   @   ::   =>   ==>   ?->
 </pre>
 
 ##Syntactic Grammar
@@ -358,6 +362,8 @@ octal-digit
   <i>closure-type-specifier</i>
   <i>nullable-type-specifier</i>
   <i>generic-type-parameter-name</i>
+  this
+  <i>classname-type-specifier</i>
 
 <i>alias-type-specifier:</i>
   <i>qualified-name</i>
@@ -371,6 +377,9 @@ octal-digit
 <i>type-specifier-list:</i>
   <i>type-specifier</i>
   <i>type-specifier-list</i> , <i>type-specifier</i>
+
+  <i>type-constraint:</i>
+    as  <i>type-specifier</i>
 </pre>
 
 ####Array Types
@@ -421,9 +430,16 @@ octal-digit
 ####Nullable Types
 
 <pre>
-  <i>nullable-type-specifier:</i>
+<i>nullable-type-specifier:</i>
   ? <i>type-specifier</i>
   mixed
+</pre>
+
+####The Classname Type
+
+<pre>
+<i>classname-type-specifier:</i>
+  classname   <   <i>qualified-name<i>   >
 </pre>
 
 ####Type Aliases
@@ -432,12 +448,6 @@ octal-digit
 <i>alias-declaration:</i>
   type  <i>name</i>  =  <i>type-to-be-aliased</i>  ;
   newtype  <i>name</i>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-to-be-aliased</i>  ;
-
-<i>type-constraint:</i>
-  as  <i>type-constraint-type</i>
-
-<i>type-constraint-type:</i>
-  <i>type-specifier</i>
 
 <i>type-to-be-aliased:</i>
   <i>type-specifier</i>
@@ -606,6 +616,7 @@ octal-digit
   <i>class-type-designator:</i>
     static
     <i>qualified-name</i>
+    <i>variable-name</i>
 
   <i>array-creation-expression:</i>
     array  (  <i>array-initializer<sub>opt</sub></i>  )
@@ -661,6 +672,7 @@ octal-digit
 
   <i>scope-resolution-qualifier:</i>
     <i>qualified-name</i>
+    <i>variable-name</i>
     self
     parent
     static
@@ -719,6 +731,7 @@ octal-digit
 
   <i>instanceof-type-designator:</i>
     <i>qualified-name</i>
+    <i>variable-name</i>
 </pre>
 
 ####Multiplicative Operators
@@ -1030,29 +1043,26 @@ octal-digit
     <i>require-once-expression</i>
   
   <i>require-multiple-directive:</i>
-    require  (  <i>include-filename</i>  )
-    require  <i>include-filename</i>
+    require  (  <i>include-filename</i>  )  ;
+    require  <i>include-filename</i>  ;
 
   <i>include-filename:</i>
     <i>expression</i>  
 
   <i>require-once-directive:</i>
-    require_once  (  <i>include-filename</i>  )
-    require_once  <i>include-filename</i>
+    require_once  (  <i>include-filename</i>  )  ;
+    require_once  <i>include-filename</i>  ;
 </pre>  
 
 ###Enums
 
 <pre>
   <i>enum-declaration:</i>
-  enum  <i>name</i>  <i>enum-base</i>  <i>enum-constraint-clause<sub>opt</sub></i>  {  <i>enumerator-list<sub>opt</sub></i>  }
+  enum  <i>name</i>  <i>enum-base</i>  <i>type-constraint<sub>opt</sub></i>  {  <i>enumerator-list<sub>opt</sub></i>  }
   
   <i>enum-base:</i>
     :  int
     :  string
-  
-  <i>enum-constraint-clause:</i>
-    as  <i>type-specifier</i>
   
   <i>enumerator-list:</i>
     <i>enumerator</i>
@@ -1076,7 +1086,7 @@ octal-digit
     <i>generic-type-parameters</i>  ,  <i>generic-type-parameter</i>
   
   <i>generic-type-parameter:</i>
-    <i>generic-type-parameter-variance<sub>opt</sub></i>  <i>generic-type-parameter-name</i>  <i>generic-type-constraint<sub>opt</sub></i>
+    <i>generic-type-parameter-variance<sub>opt</sub></i>  <i>generic-type-parameter-name</i>  <i>type-constraint<sub>opt</sub></i>
   
   <i>generic-type-parameter-name:</i>
     <i>name</i>
@@ -1085,9 +1095,6 @@ octal-digit
     +
     -
   
-  <i>generic-type-constraint:</i>
-    as  <i>type-specifier</i>
-
   <i>generic-type-argument-list:</i>
     &lt;  <i>generic-type-arguments</i>  &gt;
   
@@ -1126,14 +1133,14 @@ octal-digit
 
   <i>return type:</i>
     <i>type-specifier</i>
-    this
 </pre>
 
 ###Classes
 
 <pre>
   <i>class-declaration:</i>
-    <i>attribute-specification<sub>opt</sub></i>  <i>class-modifier<sub>opt</sub></i>  class  <i>name  generic-type-parameter-list<sub>opt</sub>  class-base  clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>  {  <i>trait-use-clauses<sub>opt</sub>  class-member-declarations<sub>opt</sub></i>  }
+    <i>attribute-specification<sub>opt</sub></i>  <i>class-modifier<sub>opt</sub></i>  class  <i>name  generic-type-parameter-list<sub>opt</sub></i>  <i>class-base-clause<sub>opt</sub></i>
+      <i>class-interface-clause<sub>opt</sub></i>  {  <i>trait-use-clauses<sub>opt</sub>  class-member-declarations<sub>opt</sub></i>  }
 
   <i>class-modifier:</i>
     abstract
@@ -1225,7 +1232,8 @@ octal-digit
 
 <pre>
   <i>interface-declaration:</i>
-    <i>attribute-specification<sub>opt</sub></i>  interface  <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  <i>interface-base-clause<sub>opt</sub></i> {  <i>interface-member-declarations<sub>opt</sub></i>  }
+    <i>attribute-specification<sub>opt</sub></i>  interface  <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  <i>interface-base-clause<sub>opt</sub></i> {
+      <i>interface-member-declarations<sub>opt</sub></i>  }
 
   <i>interface-base-clause:</i>
     extends  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
@@ -1236,7 +1244,7 @@ octal-digit
     <i>interface-member-declarations   interface-member-declaration</i>
   
   <i>interface-member-declaration:</i>
-    <i>requires-extends-clause</i>
+    <i>require-extends-clause</i>
     <i>const-declaration</i>
     <i>method-declaration</i>
 </pre>
@@ -1245,7 +1253,8 @@ octal-digit
 
 <pre>
   <i>trait-declaration:</i>
-   <i>attribute-specification<sub>opt</sub></i>  trait  <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  {  <i>trait-use-clauses<sub>opt</sub>  trait-member-declarations<sub>opt</sub></i>  }
+   <i>attribute-specification<sub>opt</sub></i>  trait  <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  <i>class-interface-clause<sub>opt</sub></i>  {
+     <i>trait-use-clauses<sub>opt</sub>  trait-member-declarations<sub>opt</sub></i>  }
 
   <i>trait-use-clauses:</i>
     <i>trait-use-clause</i>
@@ -1270,7 +1279,7 @@ octal-digit
     <i>constructor-declaration</i>
     <i>destructor-declaration</i>
 
-  <i>requires-extends-clause:</i>
+  <i>require-extends-clause:</i>
     require  extends  <i>qualified-name</i>
   
   <i>require-implements-clause:</i>

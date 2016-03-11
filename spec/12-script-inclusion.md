@@ -47,8 +47,8 @@ configuration directive
 
 <pre>
 <i>require-multiple-directive:</i>
-  require  (  <i>include-filename</i>  )
-  require  <i>include-filename</i>
+  require  (  <i>include-filename</i>  )  ;
+  require  <i>include-filename</i>  ;
 <i>include-filename:</i>
   <i>expression</i>
 </pre>
@@ -81,8 +81,8 @@ require ('Circle.php');
 
 <pre>
   <i>require-once-directive:</i>
-    require_once  (  <i>include-filename</i>  )
-    require_once  <i>include-filename</i>
+    require_once  (  <i>include-filename</i>  )  ;
+    require_once  <i>include-filename</i>  ;
 </pre>
 
 *include-filename* is defined in [§§](12-script-inclusion.md#the-require-directive).   
@@ -106,8 +106,8 @@ require_once 'Point.php';
 class Circle { /* uses Point somehow */ }
 
 // MyApp.php
-require _once 'Point.php';    // Point.php included directly
-require _once 'Circle.php';   // Point.php now not included indirectly
+require_once 'Point.php';    // Point.php included directly
+require_once 'Circle.php';   // Point.php now not included indirectly
 $p1 = new Point(10, 20);
 $c1 = new Circle(9, 7, 2.4);
 ```
