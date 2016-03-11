@@ -59,6 +59,7 @@ for `null`, use `is_null` (§xx). Useful library functions for interrogating and
   <i>nullable-type-specifier</i>
   <i>generic-type-parameter-name</i>
   this
+  <i>classname-type-specifier</i>
   
 <i>alias-type-specifier:</i>
   <i>qualified-name</i>
@@ -81,8 +82,7 @@ for `null`, use `is_null` (§xx). Useful library functions for interrogating and
 *map-like-array-type-specifier* is defined in [§§](05-types.md#array-types); *tuple-type-specifier* is
 defined in [§§](05-types.md#tuple-types); *closure-type-specifier* is defined in [§§](05-types.md#closure-types);
 *nullable-type-specifier* is defined in [§§](05-types.md#nullable-types); *generic-type-parameter-name*
-is defined in [§§](14-generic-types-methods-and-functions.md#type-parameters); *generic-type-argument-list* is defined in [§§](14-generic-types-methods-and-functions.md#type-arguments); and
-*qualified-name* is defined in [§§](09-lexical-structure.md#names).
+is defined in [§§](14-generic-types-methods-and-functions.md#type-parameters); *generic-type-argument-list* is defined in [§§](14-generic-types-methods-and-functions.md#type-arguments); *classname-type-specifier* is defined in [§§](05-types.md#the-classname-type); and *qualified-name* is defined in [§§](09-lexical-structure.md#names).
 
 **Constraints**
 
@@ -599,6 +599,40 @@ private ?(int, ?string, ?(bool, int)) $pr;      // nullable tuple whose
 Hack contains a mechanism to define generic (that is, type-less) classes,
 interfaces, and traits, and to create type-specific instances of them via
 parameters. See [§§](14-generic-types-methods-and-functions.md#generic-types-methods-and-functions).
+
+###The Classname Type
+
+**Syntax**
+<pre>
+<i>classname-type-specifier:</i>
+  classname  <  <i>qualified-name</i>  >
+</pre>
+
+*qualified-name* is defined in [§§](09-lexical-structure.md#names).
+
+**Constraints**
+
+*qualified-name* must be the name of a class or interface type.
+
+**Semantics**
+
+This type gets around some limitations Hack has that its ancestor, PHP, does not. Specifically, the use of type-name strings as operands to `new` ([§§](10-expressions.md#the-new-operator)), `instanceof` ([§§](10-expressions.md#instanceof-operator)), and `::` ([§§](10-expressions.md#scope-resolution-operator)), is prohibited in Hack. However, equivalent functionality is possible via an instance of this type (which can only be created via `::`).
+
+The value of an expression of the classname type can be converted implicitly or explicitly to type `string` ([§§](08-conversions.md#converting-to-string-type)). The classname type is not assignment-compatible with any other type.
+
+The representation of a value having the classname type is unspecified.
+
+**Examples**
+
+```Hack
+namespace NS_cn;
+class C1 { … }
+class C2 {
+  public static classname<\NS_cn\C1> $p1 = \NS_cn\C1::class;
+  public static function f(?classname<C1> $p) : classname<C1> { … }
+  public static array<classname<C1>> $p2 = array(C1::class);
+}
+```
 
 ###Type Aliases
 

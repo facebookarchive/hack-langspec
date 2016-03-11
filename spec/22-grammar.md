@@ -111,7 +111,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
 
 <pre>
   <i>keyword::</i> one of
-    abstract  arraykey  as  async  break  case  catch  class  clone  const  continue  default  do
+    abstract  arraykey  as  async  break  case  catch  class  classname clone  const  continue  default  do
     echo  else  elseif  enum  extends  final  finally  for  foreach  function  if  implements
     instanceof  insteadof  interface  mixed  namespace  new  newtype  noreturn   num  private
     protected  public  require  require_once  return  shape  static  switch  throw  trait  try
@@ -362,7 +362,8 @@ octal-digit
   <i>nullable-type-specifier</i>
   <i>generic-type-parameter-name</i>
   this
-  
+  <i>classname-type-specifier</i>
+
 <i>alias-type-specifier:</i>
   <i>qualified-name</i>
 
@@ -429,9 +430,16 @@ octal-digit
 ####Nullable Types
 
 <pre>
-  <i>nullable-type-specifier:</i>
+<i>nullable-type-specifier:</i>
   ? <i>type-specifier</i>
   mixed
+</pre>
+
+####The Classname Type
+
+<pre>
+<i>classname-type-specifier:</i>
+  classname   <   <i>qualified-name<i>   >
 </pre>
 
 ####Type Aliases
@@ -609,6 +617,7 @@ octal-digit
   <i>class-type-designator:</i>
     static
     <i>qualified-name</i>
+    <i>variable-name</i>
 
   <i>array-creation-expression:</i>
     array  (  <i>array-initializer<sub>opt</sub></i>  )
@@ -664,6 +673,7 @@ octal-digit
 
   <i>scope-resolution-qualifier:</i>
     <i>qualified-name</i>
+    <i>variable-name</i>
     self
     parent
     static
@@ -722,6 +732,7 @@ octal-digit
 
   <i>instanceof-type-designator:</i>
     <i>qualified-name</i>
+    <i>variable-name</i>
 </pre>
 
 ####Multiplicative Operators
