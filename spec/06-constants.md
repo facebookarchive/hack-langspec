@@ -81,6 +81,7 @@ Constant Name | Description
 `NAN` | `float`; Not-a-Number
 `PHP_EOL` | `string`; the end-of-line terminator for this platform.
 `PHP_INT_MAX` | `int`; the largest representable value for an integer.
+`PHP_INT_MIN` | `int`; the minimum representable value for an integer. 
 `PHP_INT_SIZE` |  `int`; the number of bytes used to represent an integer.
 
 The members of the `E_\*` family have values that are powers of 2, so
