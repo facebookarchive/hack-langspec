@@ -24,7 +24,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
   <i>comment::</i>
     <i>single-line-comment</i>
     <i>delimited-comment</i>
-    
+
   <i>single-line-comment::</i>
     //  <i>input-characters<sub>opt</sub></i>
     #  <i>input-characters<sub>opt</sub></i>
@@ -35,7 +35,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
 
   <i>input-character::</i>
     Any source character except new-line
-    
+
   <i>new-line::</i>
     Carriage-return character (U+000D)
     Line-feed character (U+000A)
@@ -80,16 +80,16 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
   <i>namespace-name::</i>
     <i>name </i>
     <i>namespace-name   \   name</i>
-    
+
   <i>namespace-name-as-a-prefix::</i>
     \
     \<sub>opt</sub>   <i>namespace-name</i>   \
     namespace   \
     namespace   \   <i>namespace-name</i>   \
-    
+
   <i>qualified-name::</i>
     <i>namespace-name-as-a-prefix<sub>opt</sub>   name</i>
-    
+
   <i>name::</i>
     <i>name-nondigit</i>
     <i>name   name-nondigit</i>
@@ -175,7 +175,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
 
     <i>nonzero-digit:: one of</i>
       1  2  3  4  5  6  7  8  9
-      
+
     <i>octal-digit:: one of</i>
       0  1  2  3  4  5  6  7
 
@@ -461,13 +461,13 @@ octal-digit
     static <i>static-declarator-list</i>  ;
   <i>static-declarator-list:</i>
     <i>static-declarator</i>  
-    <i>static-declarator-list</i>  ,  <i>static-declarator</i> 
-  <i>static-declarator:</i> 
+    <i>static-declarator-list</i>  ,  <i>static-declarator</i>
+  <i>static-declarator:</i>
     <i>variable-name</i>  <i>function-static-initializer<sub>opt</sub></i>
   <i>function-static-initializer:</i>
     = <i>const-expression</i>
 </pre>
-    
+
 ###Expressions
 
 ####Primary Expressions
@@ -525,33 +525,33 @@ octal-digit
     <i>non-key-collection-class-type</i>  {  <i>cl-initializer-list-without-keys<sub>opt</sub></i>  }
     <i>key-collection-class-type</i>  {  <i>cl-initializer-list-with-keys<sub>opt</sub></i>  }
     <i>pair-type</i>  {  <i>cl-element-value</i>  ,  <i>cl-element-value</i>  }
-  
+
   <i>non-key-collection-class-type:</i>
     <i>qualified-name</i>
-  
+
   <i>key-collection-class-type:</i>
     <i>qualified-name</i>
-  
+
   <i>pair-type:</i>
     <i>qualified-name</i>
-  
+
   <i>cl-initializer-list-without-keys:</i>
     <i>cl-element-value</i>
     <i>cl-initializer-list-without-keys</i>  ,  <i>cl-element-value</i>
-  
+
   <i>cl-initializer-list-with-keys:</i>
     <i>cl-element-key</i>  =>  <i>cl-element-value</i>
     <i>cl-initializer-list-with-keys</i>  ,  <i>cl-element-key</i>  =>  <i>cl-element-value</i>
-  
+
   <i>cl-element-key:</i>
     <i>expression</i>
-  
+
   <i>cl-element-value:</i>
     <i>expression</i>
 
   <i>tuple-literal:</i>
     tuple  (  <i>expression-list-one-or-more</i>  )
-  
+
   <i>expression-list-one-or-more:</i>
     <i>expression</i>
     <i>expression-list-one-or-more</i>  ,  <i>expression</i>
@@ -676,7 +676,7 @@ octal-digit
     self
     parent
     static
-   
+
   <i>exponentiation-expression:</i>
     <i>expression  **  expression</i>                   
 </pre>
@@ -716,7 +716,7 @@ octal-digit
 
   <i>await-expression:</i>
     await  <i>expression</i>
-                        
+
 </pre>
 
 ####instanceof Operator
@@ -795,7 +795,7 @@ octal-digit
   <i>bitwise-exc-OR-expression:</i>
     <i>bitwise-AND-expression</i>
     <i>bitwise-exc-OR-expression</i>  ^   <i>bitwise-AND-expression</i>
-    
+
   <i>bitwise-inc-OR-expression:</i>
     <i>bitwise-exc-OR-expression</i>
     <i>bitwise-inc-OR-expression</i>  |  <i>bitwise-exc-OR-expression</i>
@@ -847,10 +847,10 @@ octal-digit
 
   <i>simple-assignment-expression:</i>
     <i>unary-expression</i>  =  <i>assignment-expression</i>
-    
+
   <i>byref-assignment-expression:</i>
     <i>unary-expression</i>  =  &  <i>assignment-expression</i>
-    
+
   <i>compound-assignment-expression:</i>
     <i>unary-expression   compound-assignment-operator   assignment-expression</i>
 
@@ -879,7 +879,7 @@ octal-digit
   <i>const-expression:</i>
     <i>expression</i>
 </pre>
-  
+
 ###Statements
 
 ####General
@@ -930,7 +930,7 @@ octal-digit
   <i>selection-statement:</i>
     <i>if-statement</i>
     <i>switch-statement</i>
-    
+
   <i>if-statement:</i>
     if   (   <i>expression</i>   )   <i>statement   elseif-clauses-opt   else-clause-opt</i>
 
@@ -940,7 +940,7 @@ octal-digit
 
   <i>elseif-clause:</i>
     elseif   (   <i>expression</i>   )   <i>statement</i>
- 
+
   <i>else-clause:</i>
     else   <i>statement</i>
 
@@ -959,7 +959,7 @@ octal-digit
 
   <i>while-statement:</i>
     while  (  <i>expression</i>  )  <i>statement</i>
-    
+
   <i>do-statement:</i>
     do  <i>statement</i>  while  (  <i>expression</i>  )  ;
 
@@ -991,7 +991,7 @@ octal-digit
   <i>foreach-value:<i>
     &amp;<sub>opt</sub>  <i>expression</i>
     <i>list-intrinsic</i>
-            
+
 </pre>
 
 ####Jump Statements
@@ -1002,16 +1002,16 @@ octal-digit
     <i>break-statement</i>
     <i>return-statement</i>
     <i>throw-statement</i>
-    
+
   <i>continue-statement:</i>
     continue  ;
 
   <i>break-statement:</i>
     break  ;
-    
+
   <i>return-statement:</i>
     return  <i>expression<sub>opt</sub></i>  ;
-    
+
   <i>throw-statement:</i>
     throw  <i>expression</i>  ;
 </pre>
@@ -1041,7 +1041,7 @@ octal-digit
   <i>inclusion-directive:</i>
     <i>require-multiple-directive</i>
     <i>require-once-expression</i>
-  
+
   <i>require-multiple-directive:</i>
     require  (  <i>include-filename</i>  )  ;
     require  <i>include-filename</i>  ;
@@ -1059,18 +1059,18 @@ octal-digit
 <pre>
   <i>enum-declaration:</i>
   enum  <i>name</i>  <i>enum-base</i>  <i>type-constraint<sub>opt</sub></i>  {  <i>enumerator-list<sub>opt</sub></i>  }
-  
+
   <i>enum-base:</i>
     :  int
     :  string
-  
+
   <i>enumerator-list:</i>
     <i>enumerator</i>
     <i>enumerator-list</i>  ;  <i>enumerator</i>
-  
+
   <i>enumerator:</i>
     <i>enumerator-constant</i>  =  <i>constant-expression</i>
-  
+
   <i>enumerator-constant:</i>
     <i>name</i>
 </pre>
@@ -1080,28 +1080,28 @@ octal-digit
 <pre>
   <i>generic-type-parameter-list:</i>
     &lt;  <i>generic-type-parameters</i>  &gt;
-  
+
   <i>generic-type-parameters:</i>
     <i>generic-type-parameter</i>
     <i>generic-type-parameters</i>  ,  <i>generic-type-parameter</i>
-  
+
   <i>generic-type-parameter:</i>
     <i>generic-type-parameter-variance<sub>opt</sub></i>  <i>generic-type-parameter-name</i>  <i>type-constraint<sub>opt</sub></i>
-  
+
   <i>generic-type-parameter-name:</i>
     <i>name</i>
-  
+
   <i>generic-type-parameter-variance:</i>
     +
     -
-  
+
   <i>generic-type-argument-list:</i>
     &lt;  <i>generic-type-arguments</i>  &gt;
-  
+
   <i>generic-type-arguments:</i>
     <i>generic-type-argument</i>
     <i>generic-type-arguments</i>  ,  <i>generic-type-argument</i>
-  
+
   <i>generic-type-argument:</i>
     <i>type-specifier</i>
     <i>name</i>
@@ -1145,6 +1145,7 @@ octal-digit
   <i>class-modifier:</i>
     abstract
     final
+    abstract final
 
   <i>class-base-clause:</i>
     extends  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
@@ -1163,17 +1164,20 @@ octal-digit
      <i>method-declaration</i>
      <i>constructor-declaration</i>
      <i>destructor-declaration</i>
-     
+
   <i>const-declaration:</i>
-    const  <i>type-specifier<sub>opt</sub></i>  <i>constant-declarator-list</i>  ;
-  
+    abstract<i><sub>opt</sub></i>  const  <i>type-specifier<sub>opt</sub></i>  <i>constant-declarator-list</i>  ;
+
   <i>constant-declarator-list:</i>
     <i>constant-declarator</i>
     <i>constant-declarator-list</i>  ,  <i>constant-declarator</i>
-  
+
   <i>constant-declarator:</i>
-    <i>name</i>  =  <i>const-expression</i>
-    
+    <i>name</i>  <i>constant-initializer<sub>opt</sub></i>
+
+  <i>constant-initializer:</i>
+    =  <i>const-expression</i>
+
   <i>property-declaration:</i>
     <i>property-modifier</i>  <i>type-specifier</i>  <i>property-declarator-list</i>  ;
 
@@ -1214,18 +1218,28 @@ octal-digit
     final
 
   <i>constructor-declaration:</i>
-    <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __construct  (  <i>constructor-parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
-  
+  <i>attribute-specification<sub>opt</sub></i>  <i>constructor-modifiers</i>  function  __construct  (
+    <i>constructor-parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
+
   <i>constructor-parameter-declaration-list:</i>
     <i>constructor-parameter-declaration</i>
     <i>constructor-parameter-declaration-list</i>  ,  <i>constructor-parameter-declaration</i>
-  
+
   <i>constructor-parameter-declaration:</i>
-    <i>visibility-modifier<sub>opt</sub></i>  <i>type-specifier</i>  <i>variable-name</i>  <i>default-argument-specifier<sub>opt</sub></i>
+    <i>visibility-modifier<sub>opt</sub></i>  <i>type-specifier</i>  <i>variable-name</i> <i>default-argument-specifier<sub>opt</sub></i>
+
+  <i>constructor-modifiers:</i>
+    <i>constructor-modifier</i>
+    <i>constructor-modifiers</i>  <i>constructor-modifier</i>
+
+  <i>constructor-modifier:</i>
+    <i>visibility-modifier</i>
+    abstract
+    final
 
   <i>destructor-declaration:</i>
     <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __destruct  ( )  <i>compound-statement</i>
-    
+
 </pre>
 
 ###Interfaces
@@ -1242,7 +1256,7 @@ octal-digit
   <i>interface-member-declarations:</i>
     <i>interface-member-declaration</i>
     <i>interface-member-declarations   interface-member-declaration</i>
-  
+
   <i>interface-member-declaration:</i>
     <i>require-extends-clause</i>
     <i>const-declaration</i>
@@ -1281,7 +1295,7 @@ octal-digit
 
   <i>require-extends-clause:</i>
     require  extends  <i>qualified-name</i>
-  
+
   <i>require-implements-clause:</i>
     require  implements  <i>qualified-name</i>
 </pre>

@@ -61,7 +61,7 @@ for `null`, use `is_null` (§xx). Useful library functions for interrogating and
   <i>generic-type-parameter-name</i>
   this
   <i>classname-type-specifier</i>
-  
+
 <i>alias-type-specifier:</i>
   <i>qualified-name</i>
 
@@ -236,11 +236,6 @@ Enumerated types are described in [§§](13-enums.md#enums).
 The type `void` indicates the absence of a value. Its primary use is as the
 return type of a function.
 
-Note: Although the grammar permits the use of the `void` type as the type of a
-constant, a property, or a function parameter; as a key or value type in an
-array type; or as an argument type of a generic, almost all such uses are
-likely to be ill conceived.
-
 ###Array Types
 
 **Syntax**
@@ -263,13 +258,12 @@ likely to be ill conceived.
 **Constraints**
 
 This is not currently a syntax constraint, but ... Although
-*array-key-type-specifier* can really be any type, **including** `void`,
+*array-key-type-specifier* can really be any type,
 behind the scenes, the key is actually represented as an `int` or `string`,
 so (possibly surprising, or at least, unexpected) conversions occur when other
 key types are specified. Similarly, *array-value-type-specifier* can really be
-any type, **including** `void`. **Warning: Here be dragons!** Programmers are
-strongly advised to avoid using key types other than `int` or `string`, and to
-avoid using a value type of `void`.
+any type. Programmers are
+strongly advised to avoid using key types other than `int` or `string`.
 
 **Semantics**
 

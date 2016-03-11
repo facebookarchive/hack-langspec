@@ -10,7 +10,7 @@ expression.
 A *value side effect* is an action that changes the state of the execution
 environment. (Examples of such actions are modifying a variable, writing
 to a device or file, or calling a function that performs such
-operations.) Throughout this specification, this term is shortened to 
+operations.) Throughout this specification, this term is shortened to
 *side effect*, which should not be confused with *type side effect* ([§§](05-types.md#type-side-effects)).
 
 When an expression is evaluated, it produces a result. It might also
@@ -85,12 +85,12 @@ function, `$a` need not actually be incremented.
 
 ##Restrictions on Arithmetic Operations
 
-No arithmetic operation can be performed on the value `null` or on a value of 
+No arithmetic operation can be performed on the value `null` or on a value of
 type `bool`, `string` (not even if the string is numeric), or any nullable type (including nullable arithmetic types).
 
 ##Operations on Operands Having One or More Subtypes
 
-None of the subclauses in this Expressions clause discuss the use of operands 
+None of the subclauses in this Expressions clause discuss the use of operands
 of supertypes such as `num`, `arraykey`, or `?int`. Refer to [§§](05-types.md#type-side-effects) for a discussion of type side effects.
 
 ##Primary Expressions
@@ -116,7 +116,7 @@ of supertypes such as `num`, `arraykey`, or `?int`. Refer to [§§](05-types.md#
 
 *variable-name* and *qualified-name* are defined in [§§](09-lexical-structure.md#names); *literal*
 is defined in [§§](09-lexical-structure.md#general-2); *const-expression* is defined in [§§](10-expressions.md#constant-expressions);
-*intrinsic* is defined in [§§](10-expressions.md#general-2); *collection-literal* is defined in [§§](10-expressions.md#collection-literals); 
+*intrinsic* is defined in [§§](10-expressions.md#general-2); *collection-literal* is defined in [§§](10-expressions.md#collection-literals);
 *tuple-literal* is defined in [§§](10-expressions.md#tuple-literals); *shape-literal* is defined in [§§](10-expressions.md#shape-literals);
 *anonymous-function-creation-expression* is defined in [§§](10-expressions.md#anonymous-function-creation); and
 *expression* is defined in [§§](10-expressions.md#yield-operator). 
@@ -126,7 +126,7 @@ is defined in [§§](09-lexical-structure.md#general-2); *const-expression* is d
 The type and value of a parenthesized expression are identical to those of
 the un-parenthesized expression.
 
-The variable `$this` is predefined inside any instance method, 
+The variable `$this` is predefined inside any instance method,
 constructor, or destructor when that method is called from within an object
 context. `$this` is a handle ([§§](05-types.md#general)) that points to the calling object or
 to the object being constructed. The type of `$this` is `this` [§§](05-types.md#the-this-type).
@@ -155,9 +155,9 @@ is defined in [§§](10-expressions.md#list).
 The names in this series of subclauses are reserved and are
 called *intrinsics*. These names are not keywords; nor are they functions.
 
-Note: The initial Hack execution environment was built on top of that for PHP, 
-which has an intrinsic called `empty`. And even though an intrinsic by that 
-name is not supported by Hack strict mode, the case-indistinct name `empty` is 
+Note: The initial Hack execution environment was built on top of that for PHP,
+which has an intrinsic called `empty`. And even though an intrinsic by that
+name is not supported by Hack strict mode, the case-indistinct name `empty` is
 reserved in Hack as well.
 
 ####array
@@ -216,7 +216,7 @@ echo  '>>' . $v1 . '|' . $v2 . "<<\n";    // outputs ">>1|123<<"
 echo  '>>' , $v1 , '|' , $v2 , "<<\n";    // outputs ">>1|123<<"
 echo ('>>' . $v1 . '|' . $v2 . "<<\n");   // outputs ">>1|123<<"
 $v3 = "qqq{$v2}zzz";
-echo "$v3\n"; 
+echo "$v3\n";
 ```
 
 ####exit
@@ -273,7 +273,7 @@ exit;
 
 **Constraints**
 
-*condition* can be any expression allowed as the operand of the `!` operator 
+*condition* can be any expression allowed as the operand of the `!` operator
 ([§§](10-expressions.md#unary-arithmetic-operators)). *format* is a string that can contain text and/or optional
 formatting information as understood by the library function `sprintf` (§xx).
 The optional comma-separated list of values designated by *values* must match
@@ -283,14 +283,14 @@ the set of types expected by the optional formatting information inside
 
 **Semantics**
 
-If *condition* tests true, the program continues execution; otherwise, the 
-library function `invariant_violation` (§xx) is called. That function does not 
-return; instead, it either throws an exception of type 
-`\HH\InvariantException`, or calls the handler previously registered by the 
+If *condition* tests true, the program continues execution; otherwise, the
+library function `invariant_violation` (§xx) is called. That function does not
+return; instead, it either throws an exception of type
+`\HH\InvariantException`, or calls the handler previously registered by the
 library function `invariant_callback_register` (§xx).
 
-This intrinsic behaves like a function with a `void` return type. It is 
-intended to indicate a programmer error for a condition that should never 
+This intrinsic behaves like a function with a `void` return type. It is
+intended to indicate a programmer error for a condition that should never
 occur.
 
 **Examples**
@@ -324,13 +324,13 @@ invariant(!is_null($p) && $p <= $max, "Value %d must be <= %d", $p, $max);
 
 *list-intrinsic* must be used as the left-hand operand in a
 *simple-assignment-expression* ([§§](10-expressions.md#simple-assignment)) of which the right-hand
-operand must be an expression that designates a vector-like array or an instance of the class types `Vector`, `ImmVector`, or `Pair` (the 
+operand must be an expression that designates a vector-like array or an instance of the class types `Vector`, `ImmVector`, or `Pair` (the
 "source").
 
 Each *expression* in *list-expression-list* must designate a
 variable (the "target variable").
 
-There must not be fewer element candidates in the source than there are target 
+There must not be fewer element candidates in the source than there are target
 variables.
 
 Only the right-most *list-or-variable* can be omitted.
@@ -347,8 +347,8 @@ target variable, and so on, until all target variables have been
 assigned. Any elements having an `int` key outside the range 0–(*n*-1),
 where *n* is the number of target variables, are ignored.
 
-When the source is an instance of the classes `Vector`, `ImmVector`, or `Pair`, the 
-elements in the source are assigned to the target variables in lexical order, 
+When the source is an instance of the classes `Vector`, `ImmVector`, or `Pair`, the
+elements in the source are assigned to the target variables in lexical order,
 until all target variables have been assigned.
 
 If the source elements and the target variables overlap in any
@@ -400,40 +400,40 @@ Note: The term *literal* as used here is a misnomer; *cl-element-keys* and
 
 **Constraints**
 
-For *key-collection-class-type*, *qualified-name* must designate the library 
-type `Map` or `ImmMap`, and in both cases, each *cl-element-key* must have 
+For *key-collection-class-type*, *qualified-name* must designate the library
+type `Map` or `ImmMap`, and in both cases, each *cl-element-key* must have
 type `int` or `string`.
 
-For *key-collection-class-type*, *qualified-name* must designate the library 
-type `Vector`, `ImmVector`, `Set`, or `ImmSet`, and in all such cases, each 
+For *key-collection-class-type*, *qualified-name* must designate the library
+type `Vector`, `ImmVector`, `Set`, or `ImmSet`, and in all such cases, each
 *cl-element-value* must have type `int` or `string`.
 
 For *pair-type*, *qualified-name* must designate the library type `Pair`.
 
 **Semantics**
 
-For *non-key-collection-class-types* `Vector` and `ImmVector`, an instance of 
-the corresponding class is created with elements having values as specified by 
-*cl-initializer-list-without-keys*, inserted in that order, and assigned 
-consecutive keys starting at zero. If *cl-initializer-list-without-keys* is 
+For *non-key-collection-class-types* `Vector` and `ImmVector`, an instance of
+the corresponding class is created with elements having values as specified by
+*cl-initializer-list-without-keys*, inserted in that order, and assigned
+consecutive keys starting at zero. If *cl-initializer-list-without-keys* is
 omitted, the resulting vector is empty.
 
-For *non-key-collection-class-types* `Map` and `ImmMap`, an instance of the 
-corresponding class is created with elements having keys and values as 
-specified by *cl-initializer-list-with-keys*, inserted in that order. If 
-*cl-initializer-list-with-keys* is omitted, the resulting map is empty. If two 
-or more *cl-element-keys* in a *cl-initializer-list-with-keys* contain the 
-same key, the lexically right-most one is the one whose *cl-element-value* is 
+For *non-key-collection-class-types* `Map` and `ImmMap`, an instance of the
+corresponding class is created with elements having keys and values as
+specified by *cl-initializer-list-with-keys*, inserted in that order. If
+*cl-initializer-list-with-keys* is omitted, the resulting map is empty. If two
+or more *cl-element-keys* in a *cl-initializer-list-with-keys* contain the
+same key, the lexically right-most one is the one whose *cl-element-value* is
 used to initialize the element designated by that key.
 
-For *non-key-collection-class-types* `Set` and `ImmSet`, an instance of the 
-corresponding class is created with elements having values as specified by 
-*cl-initializer-list-without-keys*, inserted in that order. If 
-*cl-initializer-list-without-keys* is omitted, the resulting set is empty. 
+For *non-key-collection-class-types* `Set` and `ImmSet`, an instance of the
+corresponding class is created with elements having values as specified by
+*cl-initializer-list-without-keys*, inserted in that order. If
+*cl-initializer-list-without-keys* is omitted, the resulting set is empty.
 Duplicate *cl-element-values* are ignored.
 
-For type `Pair`, an instance of that class is created with element 0 having 
-the value of the left-hand *cl-element-value*, and element 1 having the value 
+For type `Pair`, an instance of that class is created with element 0 having
+the value of the left-hand *cl-element-value*, and element 1 having the value
 of the right-hand *cl-element-value*.
 
 **Examples**
@@ -466,13 +466,13 @@ Note: The term *literal* as used here is a misnomer; the *expression*s in
 
 **Semantics**
 
-A *tuple-literal* creates a tuple ([§§](05-types.md#tuple-types)) with elements having values as 
+A *tuple-literal* creates a tuple ([§§](05-types.md#tuple-types)) with elements having values as
 specified by *expression-list-one-or-more*, inserted in that order.
 
-The type of a *tuple-literal* is "tuple of type 
+The type of a *tuple-literal* is "tuple of type
 <*element type list in lexical order*>".
 
-Note: Although a tuple of only one element can be created using a tuple 
+Note: Although a tuple of only one element can be created using a tuple
 literal, a *tuple-type-specifier* ([§§](05-types.md#tuple-types)) must contain at least two elements.
 
 **Examples**
@@ -485,7 +485,7 @@ $t2 = tuple(100, tuple('abc', false));
 
 ###Shape Literals
 
-Note: The term *literal* as used here is a misnomer; the *expression*s 
+Note: The term *literal* as used here is a misnomer; the *expression*s
 in *field-initializer* need not be compile-time constants.
 
 **Syntax**
@@ -501,31 +501,31 @@ in *field-initializer* need not be compile-time constants.
     <i>qualified-name</i>  =>  <i>expression</i>
 </pre>
 
-*single-quoted-string-literal* is defined in [§§](09-lexical-structure.md#single-quoted-string-literals); *integer-literal* 
-is defined in [§§](09-lexical-structure.md#integer-literals); *qualified-name* is defined in [§§](09-lexical-structure.md#names); and 
+*single-quoted-string-literal* is defined in [§§](09-lexical-structure.md#single-quoted-string-literals); *integer-literal*
+is defined in [§§](09-lexical-structure.md#integer-literals); *qualified-name* is defined in [§§](09-lexical-structure.md#names); and
 *expression* is defined in [§§](10-expressions.md#yield-operator).
 
 **Constraints**
 
-Each string in the set of strings designated by all the 
-*single-quoted-string-literals* and *qualified-names* in a 
-*field-initializer-list* must have a distinct value, and each string must 
+Each string in the set of strings designated by all the
+*single-quoted-string-literals* and *qualified-names* in a
+*field-initializer-list* must have a distinct value, and each string must
 match exactly a field name in the shape type's *shape-specifier* ([§§](05-types.md#shape-types)).
 
-Each integer in the set of *integer-literals* and *qualified-names* in a 
-*field-initializer-list* must have a distinct value, and each integer must 
+Each integer in the set of *integer-literals* and *qualified-names* in a
+*field-initializer-list* must have a distinct value, and each integer must
 match exactly a field name in the shape type's *shape-specifier*.
 
-The number of *field-initializers* must match exactly the number of 
+The number of *field-initializers* must match exactly the number of
 *field-specifiers* in the shape type's *shape-specifier*.
 
-The type of *expression* in a *field-initializer* must be a subtype of the 
+The type of *expression* in a *field-initializer* must be a subtype of the
 corresponding field type in the shape type's *shape-specifier*.
 
 **Semantics**
 
-A *shape-literal* creates a shape ([§§](05-types.md#shape-types)) with fields having values as specified by *field-initializer-list*. The order of the 
-*field-initializers* need not be the same as the order of the 
+A *shape-literal* creates a shape ([§§](05-types.md#shape-types)) with fields having values as specified by *field-initializer-list*. The order of the
+*field-initializers* need not be the same as the order of the
 *field-specifiers* in the shape type's *shape-specifier*.
 
 **Examples**
@@ -553,6 +553,7 @@ shape('id' => null, 'url' => null, 'count' => 0)
 
 <i>anonymous-function-return:</i>
   : <i>type-specifier</i>
+  : noreturn
 
 <i>anonymous-function-use-clause:</i>
   use  (  <i>use-variable-name-list</i>  )
@@ -562,7 +563,7 @@ shape('id' => null, 'url' => null, 'count' => 0)
   <i>use-variable-name-list</i>  ,  <i>variable-name</i>
 </pre>
 
-*compound-statement* is defined in [§§](11-statements.md#compound-statements); 
+*compound-statement* is defined in [§§](11-statements.md#compound-statements);
 *attribute-specification* is defined in [§§](20-namespaces.md#name-lookup); *type-specifier* is described in
 [§§](05-types.md#general); *variable-name* is defined in [§§](09-lexical-structure.md#names); and *default-argument-specifier* is defined in [§§](15-functions.md#function-definitions).
 
@@ -570,26 +571,26 @@ shape('id' => null, 'url' => null, 'count' => 0)
 
 Each *variable-name* in an *anonymous-function-parameter-declaration-list* must be distinct.
 
-If any *anonymous-function-parameter-declaration* has a 
-*default-argument-specifier*, then all subsequent 
-*anonymous-function-parameter-declarations* in the same 
-*anonymous-function-parameter-declaration-list* must also have a 
+If any *anonymous-function-parameter-declaration* has a
+*default-argument-specifier*, then all subsequent
+*anonymous-function-parameter-declarations* in the same
+*anonymous-function-parameter-declaration-list* must also have a
 *default-argument-specifier*.
 
-If the *type-specifier* in *anonymous-function-return* is `void`, the 
-*compound-statement* must not contain any `return` statements ([§§](11-statements.md#the-return-statement)) 
-having an *expression*. Otherwise, all `return` statements must contain an 
+If the *type-specifier* in *anonymous-function-return* is `void`, the
+*compound-statement* must not contain any `return` statements ([§§](11-statements.md#the-return-statement))
+having an *expression*. Otherwise, all `return` statements must contain an
 *expression* whose type is a subtype of the type indicated by *type-specifier*.
 
-If `async` is present, *return-type* must be a type that implements 
-`Awaitable<T>` ([§§](17-interfaces.md#interface-awaitable)). 
+If `async` is present, *return-type* must be a type that implements
+`Awaitable<T>` ([§§](17-interfaces.md#interface-awaitable)).
 
 **Semantics**
 
-This operator returns an object that encapsulates the anonymous function 
-([§§](15-functions.md#anonymous-functions)) defined within. An anonymous function is defined like, and behaves 
-like, a named function ([§§](13-functions.md#function-definitions)) except 
-that the former has no name and has an optional 
+This operator returns an object that encapsulates the anonymous function
+([§§](15-functions.md#anonymous-functions)) defined within. An anonymous function is defined like, and behaves
+like, a named function ([§§](13-functions.md#function-definitions)) except
+that the former has no name and has an optional
 *anonymous-function-use-clause*.
 
 The *use-variable-name-list* is a list of variables from the enclosing
@@ -605,6 +606,8 @@ If the *type-specifier* for a parameter is omitted, that type is inferred.
 If *anonymous-function-return* is omitted, the return type is inferred.
 
 An anonymous function can be asynchronous ([§§](15-functions.md#asynchronous-functions)).
+
+The function-return types `this` and `noreturn` are described in ([§§](15-functions.md#function-definitions)).
 
 **Examples**
 
@@ -651,7 +654,7 @@ function compute(array<int> $values): void {
 *primary-expression* is defined in [§§](10-expressions.md#general-1); *clone-expression* is
 defined in [§§](10-expressions.md#the-clone-operator); *object-creation-expression* is defined in [§§](10-expressions.md#the-new-operator);
 *array-creation-expression* is defined in [§§](10-expressions.md#array-creation-operator);
-*subscript-expression* is defined in [§§](10-expressions.md#subscript-operator); *function-call-expression* is defined in [§§](10-expressions.md#function-call-operator); *member-selection-expression* is defined in [§§](10-expressions.md#member-selection-operator); 
+*subscript-expression* is defined in [§§](10-expressions.md#subscript-operator); *function-call-expression* is defined in [§§](10-expressions.md#function-call-operator); *member-selection-expression* is defined in [§§](10-expressions.md#member-selection-operator);
 *null-safe-member-selection-expression* is defined in [§§](10-expressions.md#null-safe-member-selection-operator);
 *postfix-increment-expression* and *postfix-decrement-expression* are
 defined in [§§](10-expressions.md#postfix-increment-and-decrement-operators); *scope-resolution-expression* is defined in [§§](10-expressions.md#scope-resolution-operator);
@@ -739,11 +742,11 @@ defined in [§§](09-lexical-structure.md#names); and *variable-name* is defined
 
 *class-type-designator* must not be a generic type parameter ([§§](14-generic-types-methods-and-functions.md#type-parameters)).
 
-*argument-expression-list* must contain an argument for each parameter in the 
-constructor's definition ([§§](15-functions.md#function-definitions)) not having a default value, and each 
+*argument-expression-list* must contain an argument for each parameter in the
+constructor's definition ([§§](15-functions.md#function-definitions)) not having a default value, and each
 argument's type must be a subtype of the corresponding parameter's type.
 
-If the constructor is not variadic, the call must not contain more arguments 
+If the constructor is not variadic, the call must not contain more arguments
 than there are corresponding parameters.
 
 **Semantics**
@@ -769,9 +772,9 @@ Because a constructor call is a function call, the relevant parts of
 **Examples**
 
 ```Hack
-class Point 
+class Point
 {
-  public function __construct(float $x = 0, float $y = 0) 
+  public function __construct(float $x = 0, float $y = 0)
   {
     ...
   }
@@ -782,7 +785,7 @@ $p1 = new Point(12);   // create Point(12, 0)
 // -----------------------------------------
 class C { ... }
 function f(classname<C> $clsname): void {
-  $w = new $clsname(); 
+  $w = new $clsname();
   …
 }
 ```
@@ -822,21 +825,21 @@ the array-creation operator `[]`, as described below, or the intrinsic
 
 **Constraints**
 
-If any *array-element-initializer* in an *array-initializer-list* contains 
-an *element-key*, then all *array-element-initializers* in that 
+If any *array-element-initializer* in an *array-initializer-list* contains
+an *element-key*, then all *array-element-initializers* in that
 *array-initializer-list* must contain an *element-key*.
 
 **Semantics**
 
-This operator creates an array. If *array-initializer* contains any 
-*element-keys*, the resulting array is a map-like array; otherwise, it is a 
+This operator creates an array. If *array-initializer* contains any
+*element-keys*, the resulting array is a map-like array; otherwise, it is a
 vector-like array. If *array-initializer* is omitted, the array has zero elements, and the resulting array is neither a vector-like nor a map-like
-array, although it is a subtype of both types.. For convenience, an 
-*array-initializer* may have a trailing comma; however, this comma has no 
-purpose. An *array-initializer-list* consists of a vector-like array. If 
-*array-initializer* is omitted, the array has zero elements. For convenience, 
-an *array-initializer* may have a trailing comma; however, this comma has no 
-purpose. An *array-initializer-list* consists of a comma-separated list of 
+array, although it is a subtype of both types.. For convenience, an
+*array-initializer* may have a trailing comma; however, this comma has no
+purpose. An *array-initializer-list* consists of a vector-like array. If
+*array-initializer* is omitted, the array has zero elements. For convenience,
+an *array-initializer* may have a trailing comma; however, this comma has no
+purpose. An *array-initializer-list* consists of a comma-separated list of
 one or more *array-element-initializer*s, each of which is used to provide an
 *element-value* and an optional *element-key*.
 
@@ -906,7 +909,7 @@ string.
 If *subscript-expression* is used in a non-lvalue context, the element
 being designated must exist.
 
-When *postfix-expression* designates a vector-like array, *expression* must 
+When *postfix-expression* designates a vector-like array, *expression* must
 have type `int`.
 
 When *postfix-expression* designates a map-like array, elements cannot be appended using empty `[]`.
@@ -914,18 +917,18 @@ When *postfix-expression* designates a map-like array, elements cannot be append
 When *postfix-expression* designates a tuple, *expression* must be a constant.
 
 When *postfix-expression* designates a shape, *expression* must be a
-*single-quoted-string-literal* ([§§](09-lexical-structure.md#single-quoted-string-literals)) that specifies a key in that 
+*single-quoted-string-literal* ([§§](09-lexical-structure.md#single-quoted-string-literals)) that specifies a key in that
 shape's *shape-specifier* ([§§](05-types.md#shape-types)).
 
 When postfix-expression designates an instance of a collection class:
 
 * The deprecated form, `{ … }`, is not supported.
 * `Vector` or `ImmVector`, *expression* must have type `int`.
-* `Vector`, if *expression* is omitted, *subscript-expression* must be the 
+* `Vector`, if *expression* is omitted, *subscript-expression* must be the
 left-hand side of a *simple-assignment-expression* ([§§](10-expressions.md#simple-assignment)).
 * `Map` or `ImmMap`, *expression* must have type `int` or `string`.
-* `Map`, if *expression* is omitted, *subscript-expression* must be the 
-left-hand side of a *simple-assignment-expression* whose right-hand operand 
+* `Map`, if *expression* is omitted, *subscript-expression* must be the
+left-hand side of a *simple-assignment-expression* whose right-hand operand
 has type `Pair`.
 * `Set` or `ImmSet`, subscripting is not permitted.
 * `Pair`, *expression* must be either the literal 0 or 1.
@@ -977,37 +980,37 @@ string.
 
 *postfix-expression designates a vector*
 
-For a `Vector` or `ImmVector`, if *expression* is present, if the designated 
-element exists, the type and value of the result is the type and value of that 
+For a `Vector` or `ImmVector`, if *expression* is present, if the designated
+element exists, the type and value of the result is the type and value of that
 element; otherwise, an exception of type `\OutOfBoundsException` is thrown.
 
-For a `Vector`, if *expression* is omitted, a new element is inserted whose 
-value is that of the right-hand side of the *simple-assignment-expression*. 
-Its key has type `int` and is one more than the highest, previously assigned, 
-`int` key for this `Vector`. If this is the first element, key zero is used. 
+For a `Vector`, if *expression* is omitted, a new element is inserted whose
+value is that of the right-hand side of the *simple-assignment-expression*.
+Its key has type `int` and is one more than the highest, previously assigned,
+`int` key for this `Vector`. If this is the first element, key zero is used.
 The type and value of the result is the type and value of the new element.
 
 *postfix-expression designates a map*
 
-For a `Map` or `ImmMap`, if *expression* is present, if the designated element 
-exists, the type and value of the result is the type and value of that 
+For a `Map` or `ImmMap`, if *expression* is present, if the designated element
+exists, the type and value of the result is the type and value of that
 element; otherwise, an exception of type `\OutOfBoundsException` is thrown.
 
-For a `Map`, if *expression* is omitted, the contents of the `Pair` right-hand 
-operand of the *simple-assignment-expression* for which this 
-*subscript-expression* is the left operand, is examined. Element 0 of that 
-Pair represents the key while element 1 represents the value. If the Map 
-already contains an element having that key, that element's value is changed 
-to the value in the Pair; otherwise, a new element is inserted in the Map with 
-the key and value from the Pair. The type and value of the result is the type 
+For a `Map`, if *expression* is omitted, the contents of the `Pair` right-hand
+operand of the *simple-assignment-expression* for which this
+*subscript-expression* is the left operand, is examined. Element 0 of that
+Pair represents the key while element 1 represents the value. If the Map
+already contains an element having that key, that element's value is changed
+to the value in the Pair; otherwise, a new element is inserted in the Map with
+the key and value from the Pair. The type and value of the result is the type
 and value of the modified or new element.
 
 *postfix-expression designates a Pair*
 
-If *expression* is the literal 0, the type and value of the result is the type 
+If *expression* is the literal 0, the type and value of the result is the type
 and value of the first element in that `Pair`.
 
-If *expression* is the literal 1, the type and value of the result is the type 
+If *expression* is the literal 1, the type and value of the result is the type
 and value of the second element in that `Pair`.
 
 *postfix-expression designates an object of a type that implements*
@@ -1037,7 +1040,7 @@ $v[-10] = 19;     // insert a new element with int key -10
 $v["red"] = true; // insert a new element with string key "red"
 [[2,4,6,8], [5,10], [100,200,300]][0][2]  // designates element with value 6
 ["black", "white", "yellow"][1][2]  // designates substring "i" in "white"
-function f(): array<int> { return [1000, 2000, 3000]; } 
+function f(): array<int> { return [1000, 2000, 3000]; }
 f()[2]           // designates element with value 3000
 "red"[1.9]       // designates [1]
 "red"[0][0][0]   // designates [0]
@@ -1081,38 +1084,38 @@ is defined in [§§](10-expressions.md#yield-operator).
 
 **Constraints**
 
-*postfix-expression* must designate a function, by *name*, be a variable of 
+*postfix-expression* must designate a function, by *name*, be a variable of
 closure type([§§](05-types.md#closure-types)).
 
-The function call must contain an argument for each parameter in the called 
-function's definition ([§§](15-functions.md#function-definitions)) not having a default value, and the argument 
+The function call must contain an argument for each parameter in the called
+function's definition ([§§](15-functions.md#function-definitions)) not having a default value, and the argument
 type must be a subtype of the parameter type.
 
-If the called function is not variadic, the function call must not contain 
+If the called function is not variadic, the function call must not contain
 more arguments than there are corresponding parameters.
 
 **Semantics**
 
-If *postfix-expression* is a *null-safe-member-selection-expression* 
-([§§](10-expressions.md#null-safe-member-selection-operator)), special handling occurs; see later below. 
+If *postfix-expression* is a *null-safe-member-selection-expression*
+([§§](10-expressions.md#null-safe-member-selection-operator)), special handling occurs; see later below.
 
 An expression of the form *function-call-expression* is a *function
 call*. The postfix expression designates the *called function*, and
 *argument-expression-list* specifies the arguments to be passed to that
-function. Each argument corresponds to a parameter or the optional ellipsis in 
-the called function's definition. An argument can have any type. In a function 
+function. Each argument corresponds to a parameter or the optional ellipsis in
+the called function's definition. An argument can have any type. In a function
 call, *postfix-expression* is evaluated first, followed by each
 *assignment-expression* in the order left-to-right. There is a sequence
 point ([§§](#general)) right before the function is called. For details of the
 type and value of a function call see [§§](11-statements.md#the-return-statement). The value of a function
 call, if any, is a non-modifiable lvalue.
 
-If the called function is variadic, the function call can have any number of 
-arguments, provided the function call has at least an argument for each 
+If the called function is variadic, the function call can have any number of
+arguments, provided the function call has at least an argument for each
 parameter not having a default value.
 
-When an argument corresponds to the ellipsis in the called function's 
-definition, the argument can have any type. 
+When an argument corresponds to the ellipsis in the called function's
+definition, the argument can have any type.
 
 When *postfix-expression* designates an instance method or constructor,
 the instance used in that designation is used as the value of `$this` in
@@ -1123,7 +1126,7 @@ invoked instance has no `$this` defined.
 When a function is called, the value of each argument passed to it is
 assigned to the corresponding parameter in that function's definition,
 if such a parameter exists. The assignment of argument values to
-parameters is defined in terms of simple assignment [§§](10-expressions.md#simple-assignment). Any parameters having a 
+parameters is defined in terms of simple assignment [§§](10-expressions.md#simple-assignment). Any parameters having a
 default value but no corresponding argument, takes on that default value.
 
 If an undefined variable is passed using byRef, that variable becomes
@@ -1131,12 +1134,12 @@ defined, with a default value of `null`.
 
 Direct and indirect recursive function calls are permitted.
 
-The following discussion applies when *postfix-expression* is a 
-*null-safe-member-selection-expression*: If *postfix-expression* is not 
-`null`, the behavior is the same as if a *member-selection-expression* 
-([§§](10-expressions.md#member-selection-operator)) were used instead of a *null-safe-member-selection-expression*. 
-Otherwise, no function is called, and the *function-call-expression* 
-evaluates to `null`. The *expression*s in 
+The following discussion applies when *postfix-expression* is a
+*null-safe-member-selection-expression*: If *postfix-expression* is not
+`null`, the behavior is the same as if a *member-selection-expression*
+([§§](10-expressions.md#member-selection-operator)) were used instead of a *null-safe-member-selection-expression*.
+Otherwise, no function is called, and the *function-call-expression*
+evaluates to `null`. The *expression*s in
 *argument-expression-list* are evaluated.
 
 **Examples**
@@ -1151,7 +1154,7 @@ f3(123, 3.14, 'Hello'); // $p1 is 123, $p2 is 3.14, $p3 is Hello
 function fx(int $p1, int $p2, int $p3, int $p4, int $p5): void { … }
 function fy(int $p1, int $p2, int $p3, int $p4, int $p5): void { … }
 function fz(int $p1, int $p2, int $p3, int $p4, int $p5): void { … }
-$funcTable = array(fun('fx'), fun('fy'), fun('fz')); // use lib function fun 
+$funcTable = array(fun('fx'), fun('fy'), fun('fz')); // use lib function fun
 $i = 1;
 $funcTable[$i++]($i, ++$i, $i, $i = 12, --$i); // calls fy(2,3,3,12,11)
 // -----------------------------------------
@@ -1222,7 +1225,7 @@ $p1->move(3, 9);  // calls public instance method move by name
 
 **Semantics**
 
-If *postﬁx-expression* is `null`, no property or method is selected and the resulting value is `null`. Otherwise, the behavior is like that of the member-selection operator `->` ([§§](10-expressions.md#member-selection-operator)), except that when *name* designates an instance property of the object designated by *postﬁx-expression*, the resulting value is not an lvalue. 
+If *postﬁx-expression* is `null`, no property or method is selected and the resulting value is `null`. Otherwise, the behavior is like that of the member-selection operator `->` ([§§](10-expressions.md#member-selection-operator)), except that when *name* designates an instance property of the object designated by *postﬁx-expression*, the resulting value is not an lvalue.
 
 ###Postfix Increment and Decrement Operators
 
@@ -1330,7 +1333,7 @@ which for a static qualifier, means the current class context.
 **Examples**
 
 ```Hack
-final class MathLibrary 
+final class MathLibrary
 enum ControlStatus: int {
   Stopped = 0;
   Stopping = 1;
@@ -2230,7 +2233,7 @@ for ($i = -5; $i <= 5; ++$i)
 $a = 10 ? : "Hello";  // result is int with value 10
 $a = 0 ? : "Hello";     // result is string with value "Hello"
 $i = PHP_INT_MAX;
-$a = $i++ ? : "red";  // result is int with value 2147483647 (on a 32-bit 
+$a = $i++ ? : "red";  // result is int with value 2147483647 (on a 32-bit
                 // system) even though $i is now the float 2147483648.0
 // -----------------------------------------
 $i++ ? f($i) : f(++$i); // the sequence point makes this well-defined
@@ -2314,7 +2317,7 @@ If any *anonymous-function-parameter-declaration* has a *default-argument-specif
 
 If the *type-specifier* in *anonymous-function-return* is `void`, the *compound-statement* must not contain any `return` statements ([§§](11-statements.md#the-return-statement)) having an *expression*. Otherwise, if that *type-specifier* is not omitted, the *expression* in *anonymous-function-body*, or all `return` statements in *compound-statement* must contain an *expression* whose type is a subtype of the type indicated by the return type's *type-specifier*.
 
-If `async` is present, *return-type* must be a type that implements `Awaitable<T>` ([§§](17-interfaces.md#interface-awaitable)). 
+If `async` is present, *return-type* must be a type that implements `Awaitable<T>` ([§§](17-interfaces.md#interface-awaitable)).
 
 **Semantics**
 
