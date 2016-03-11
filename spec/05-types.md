@@ -32,6 +32,8 @@ Variables are not declared to have a particular type. Instead, a
 variable's type is decided at runtime by the context in which it is
 used.
 
+A *type constraint* indicates a requirement that a type must fulfill in order to be accepted in a given context. Type constraints are used in type aliasing ([§§](05-types.md#type-aliases)), enum declarations ([§§](13-enums.md#enum-declarations)), type parameters ([§§](14-generic-types,-methods,-and-functions.md#type-parameters)), and type constants ([§§](16-classes.md#type-constants)).
+
 The library function `is_scalar` (§xx) indicates if a given value has a scalar
 type. However, that function does not consider `null` to be scalar. To test
 for `null`, use `is_null` (§xx). Useful library functions for interrogating and using type information include `gettype` (§xx), `is_type` (§xx), `settype` (§xx), and `var_dump` (§xx).
@@ -69,6 +71,9 @@ for `null`, use `is_null` (§xx). Useful library functions for interrogating and
 <i>type-specifier-list:</i>
   <i>type-specifier</i>
   <i>type-specifier-list</i> , <i>type-specifier</i>
+
+<i>type-constraint:</i>
+  as  <i>type-specifier</i>
 </pre>
 
 *vector-like-array-type-specifier* is defined in [§§](05-types.md#array-types);
@@ -580,19 +585,13 @@ parameters. See [§§](14-generic-types-methods-and-functions.md#generic-types-m
   type  <i>name</i>  =  <i>type-to-be-aliased</i>  ;
   newtype  <i>name</i>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-to-be-aliased</i>  ;
 
-<i>type-constraint:</i>
-  as  <i>type-constraint-type</i>
-
-<i>type-constraint-type:</i>
-  <i>type-specifier</i>
-
 <i>type-to-be-aliased:</i>
   <i>type-specifier</i>
   <i>qualified-name</i>
   <i>shape-specifier</i>
 </pre>
 
-*name* is defined in [§§](09-lexical-structure.md#names); *qualified-name* is defined in [§§](09-lexical-structure.md#names);
+*name* is defined in [§§](09-lexical-structure.md#names); *type-constraint* is defined in [§§](05-types.md#general); *qualified-name* is defined in [§§](09-lexical-structure.md#names);
 *type-specifier* is defined in [§§](05-types.md#general); and *shape-specifier* is defined in [§§](05-types.md#general)6.
 
 **Constraints**
@@ -607,7 +606,7 @@ or *class-interface-trait-specifier* ([§§](05-types.md#general)).
 *qualified-name* in *alias-type-specifier* must be defined as the *name* for a
 type via an *alias-declaration*.
 
-*type-constraint-type* must be a subtype of *type-to-be-aliased*.
+*type-specifier* in *type-constraint* must be a subtype of *type-to-be-aliased*.
 
 **Semantics**
 
@@ -655,7 +654,7 @@ integer, so that the including file cannot perform any integer-like operations
 on a `Widget`.
 
 The presence of a *type-constraint* allows an opaque type alias to be treated
-as if it had the type specified by *type-constraint-type*, which removes some
+as if it had the type specified by *type-specifier* in *type-constraint*, which removes some
 of the alias' opaqueness. Note: Although the presence of a constraint allows
 the alias type to be converted implicitly to that constraint type, there is no
 conversion in the opposite direction.

@@ -374,6 +374,9 @@ octal-digit
 <i>type-specifier-list:</i>
   <i>type-specifier</i>
   <i>type-specifier-list</i> , <i>type-specifier</i>
+
+  <i>type-constraint:</i>
+    as  <i>type-specifier</i>
 </pre>
 
 ####Array Types
@@ -436,12 +439,6 @@ octal-digit
 <i>alias-declaration:</i>
   type  <i>name</i>  =  <i>type-to-be-aliased</i>  ;
   newtype  <i>name</i>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-to-be-aliased</i>  ;
-
-<i>type-constraint:</i>
-  as  <i>type-constraint-type</i>
-
-<i>type-constraint-type:</i>
-  <i>type-specifier</i>
 
 <i>type-to-be-aliased:</i>
   <i>type-specifier</i>
@@ -1050,14 +1047,11 @@ octal-digit
 
 <pre>
   <i>enum-declaration:</i>
-  enum  <i>name</i>  <i>enum-base</i>  <i>enum-constraint-clause<sub>opt</sub></i>  {  <i>enumerator-list<sub>opt</sub></i>  }
+  enum  <i>name</i>  <i>enum-base</i>  <i>type-constraint<sub>opt</sub></i>  {  <i>enumerator-list<sub>opt</sub></i>  }
   
   <i>enum-base:</i>
     :  int
     :  string
-  
-  <i>enum-constraint-clause:</i>
-    as  <i>type-specifier</i>
   
   <i>enumerator-list:</i>
     <i>enumerator</i>
@@ -1081,7 +1075,7 @@ octal-digit
     <i>generic-type-parameters</i>  ,  <i>generic-type-parameter</i>
   
   <i>generic-type-parameter:</i>
-    <i>generic-type-parameter-variance<sub>opt</sub></i>  <i>generic-type-parameter-name</i>  <i>generic-type-constraint<sub>opt</sub></i>
+    <i>generic-type-parameter-variance<sub>opt</sub></i>  <i>generic-type-parameter-name</i>  <i>type-constraint<sub>opt</sub></i>
   
   <i>generic-type-parameter-name:</i>
     <i>name</i>
@@ -1090,9 +1084,6 @@ octal-digit
     +
     -
   
-  <i>generic-type-constraint:</i>
-    as  <i>type-specifier</i>
-
   <i>generic-type-argument-list:</i>
     &lt;  <i>generic-type-arguments</i>  &gt;
   

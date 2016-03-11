@@ -9,12 +9,10 @@ An *enumeration* consists of a set of zero or more named, constant values called
 **Syntax**
 <pre>
 <i>enum-declaration:</i>
-  enum  <i>name</i>  <i>enum-base</i>  <i>enum-constraint-clause<sub>opt</sub></i>  {  <i>enumerator-list<sub>opt</sub></i>  }
+  enum  <i>name</i>  <i>enum-base</i>  <i>type-constraint<sub>opt</sub></i>  {  <i>enumerator-list<sub>opt</sub></i>  }
 <i>enum-base:</i>
   :  int
   :  string
-<i>enum-constraint-clause:</i>
-  as  <i>type-specifier</i>
 <i>enumerator-list:</i>
   <i>enumerator</i>
   <i>enumerator-list</i>  ;  <i>enumerator</i>
@@ -24,13 +22,13 @@ An *enumeration* consists of a set of zero or more named, constant values called
   <i>name</i>
 </pre>
 
-*name* is defined in [§§](09-lexical-structure.md#names); *type-specifier* is defined in [§§](05-types.md#general); and *constant-expression* is defined in [§§](10-expressions.md#constant-expressions).
+*name* is defined in [§§](09-lexical-structure.md#names); *type-constraint* is defined in [§§](05-types.md#general); and *constant-expression* is defined in [§§](10-expressions.md#constant-expressions).
 
 **Constraints**
 
 The underlying type designated by *enum-base* must be able to represent all the values of the enumerators defined in the *enumerator-list*.
 
-If *enum-constraint-clause* is present, *enum-base* must be a subtype ([§§](05-types.md#supertypes-and-subtypes)) of *type-specifier*.
+If *type-constraint* is present, *enum-base* must be a subtype ([§§](05-types.md#supertypes-and-subtypes)) of *type-constraint*s *type-specifier*.
 
 Each *constant-expression* must have type `int` or `string`.
 
@@ -44,7 +42,7 @@ An *enum-declaration* defines an enumerated type by the name *name*. Enumerated 
 
 The *name*s in an *enumerator-list* are declared as constants. Multiple *enumeration-constants* declared in the same *enum-declaration* may have the same *constant-expression* value. Different enumerated types can have *enumeration-constants* with the same *name*. When used, each *name* is qualified by prepending its parent enumerated type *name* and "`::`", in that order.
 
-The type of each *enumeration-constant* is the type specified by *enum-constraint-clause*, if present; otherwise, the type of each *enumeration-constant* is the enumerated type in which it is defined.
+The type of each *enumeration-constant* is the type specified by *type-constraint*, if present; otherwise, the type of each *enumeration-constant* is the enumerated type in which it is defined.
 
 An *enumeration-constant* can be used in any read-only context for an expression of its type.
 
