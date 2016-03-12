@@ -86,10 +86,11 @@ processCollection(new MyQueue(…));
     <i>require-extends-clause</i>
     <i>const-declaration</i>
     <i>method-declaration</i>
+    <i>type-constant-declaration</i>
 </pre>
 
-*require-extends-clause* is defined in [§§](18-traits.md#trait-members); *const-declaration* is defined in [§§](16-classes.md#constants) and *method-declaration* is
-defined in [§§](16-classes.md#methods).
+*require-extends-clause* is defined in [§§](18-traits.md#trait-members); *const-declaration* is defined in [§§](16-classes.md#constants); *method-declaration* is
+defined in [§§](16-classes.md#methods); and *type-constant-declaration* is defined in [§§](16-classes.md#type-constants).
 
 **Constraints**
 
@@ -106,6 +107,7 @@ An interface may contain the following members:
 * *require-extends-clauses* each of which requires the class implementing this interface to directly or indirectly extend the class type designated by *qualified-name*.
 * Constants – the constant values associated with the interface ([§§](17-interfaces.md#constants)).
 * Methods – placeholders for the computations and actions that can be performed by implementers of the interface ([§§](17-interfaces.md#methods)).
+*	Type constants – a way of parameterizing class types without using generics.
 
 An *interface-member-declarations* may contain multiple *require-extends-clause*s that designate the same class, in which case, the duplicates are redundant. 
 
