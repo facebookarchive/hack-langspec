@@ -59,8 +59,10 @@ for `null`, use `is_null` (§xx). Useful library functions for interrogating and
   <i>closure-type-specifier</i>
   <i>nullable-type-specifier</i>
   <i>generic-type-parameter-name</i>
+<<<<<<< HEAD
   this
   <i>classname-type-specifier</i>
+  <i>type-constant-type-name</i>
 
 <i>alias-type-specifier:</i>
   <i>qualified-name</i>
@@ -77,13 +79,19 @@ for `null`, use `is_null` (§xx). Useful library functions for interrogating and
 
 <i>type-constraint:</i>
   as  <i>type-specifier</i>
+
+<i>type-constant-type-name:</i>
+  <i>name</i>  ::  <i>name</i>
+  self  ::  <i>name</i>
+  this  ::  <i>name
+  <i>type-constant-type-name</i>  ::  <i>name</i>
 </pre>
 
 *vector-like-array-type-specifier* is defined in [§§](05-types.md#array-types);
 *map-like-array-type-specifier* is defined in [§§](05-types.md#array-types); *tuple-type-specifier* is
 defined in [§§](05-types.md#tuple-types); *shape-type-specifier* is defined in [§§](05-types.md#shape-types); *closure-type-specifier* is defined in [§§](05-types.md#closure-types);
 *nullable-type-specifier* is defined in [§§](05-types.md#nullable-types); *generic-type-parameter-name*
-is defined in [§§](14-generic-types-methods-and-functions.md#type-parameters); *generic-type-argument-list* is defined in [§§](14-generic-types-methods-and-functions.md#type-arguments); *classname-type-specifier* is defined in [§§](05-types.md#the-classname-type); and *qualified-name* is defined in [§§](09-lexical-structure.md#names).
+is defined in [§§](14-generic-types-methods-and-functions.md#type-parameters); *generic-type-argument-list* is defined in [§§](14-generic-types-methods-and-functions.md#type-arguments); *classname-type-specifier* is defined in [§§](05-types.md#the-classname-type); and *name* and *qualified-name* are defined in [§§](09-lexical-structure.md#names).
 
 **Constraints**
 
@@ -99,6 +107,52 @@ type declared in a *trait-declaration* ([§§](18-traits.md#trait-declarations))
 
 The *name* of a trait type declared in a *trait-declaration* can only be used
 as a type-specifier in the context of a *trait-use-clauses* ([§§](18-traits.md#trait-declarations)).
+
+For *name* `::` *name*, the left-hand *name* must be the name of a class or interface that directly or indirectly has a type-constant member ([§§](16-classes.md#type-constants)) whose name is the right-hand *name*.
+
+For `self` `::` *name*, *name* must be the name of a type-constant member in the current class (including any implemented interfaces).
+
+For `this` `::` *name*, *name* must be the name of a type-constant member in the current class/interface hierarchy.
+
+A *type-constant-type-name* beginning with `self` or `this` must be used in the context of a class or interface to which `self` or `this`, respectively, can apply.
+
+**Semantics**
+
+A *type-constant-type-name* specifies a type, as follows:
+
+*	For *name* `::` *name*, the type is that designated by the type-constant having the right-hand *name*, in the class or interface having the left-hand *name*.
+*	For `self` `::` *name*, used within a class, the type is that designated by the type-constant named *name*, in the enclosing class, ignoring any overrides.
+*	For `this` `::` *name*, used within a class, the type is that designated by the type-constant named *name*, in the enclosing class’s hierarchy resolved in a late-bound context. For a non-static member, this designates the class of the `$this` object; for a static member, this designates the current class. `this` is recommended when accessing abstract type constant names.
+*	In cases of *type-constant-type-name* having the form `x::y::z`, the type is resolved left-to-right.
+
+A given type constant can be referenced via multiple names; for example:
+
+```Hack
+interface I {
+  const type T = int;
+}
+
+class C1 implements I {}
+class C2 extends C1 {}
+```
+
+Here, `I::T`, `C1::T`, and `C2::T`, all refer to the same type constant.
+
+Consider the following:
+
+```Hack
+interface I {
+  const type this = int;    // this is a name, NOT a keyword
+}
+
+class C {
+  const type self = I;      // self is a name, NOT a keyword
+}
+
+function test10(C::self::this $x): void {}
+```
+
+For some examples, see [§§](16-classes.md#type-constants).
 
 ###The Boolean Type
 

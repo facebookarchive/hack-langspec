@@ -364,7 +364,8 @@ octal-digit
   <i>generic-type-parameter-name</i>
   this
   <i>classname-type-specifier</i>
-
+  <i>type-constant-type-name</i>
+  
 <i>alias-type-specifier:</i>
   <i>qualified-name</i>
 
@@ -380,6 +381,12 @@ octal-digit
 
   <i>type-constraint:</i>
     as  <i>type-specifier</i>
+
+<i>type-constant-type-name:</i>
+  <i>name</i>  ::  <i>name</i>
+  self  ::  <i>name</i>
+  this  ::  <i>name</i>
+  <i>type-constant-type-name</i>  ::  <i>name</i>
 </pre>
 
 ####Array Types
@@ -1173,6 +1180,7 @@ octal-digit
      <i>method-declaration</i>
      <i>constructor-declaration</i>
      <i>destructor-declaration</i>
+     <i>type-constant-declaration</i>
 
   <i>const-declaration:</i>
     abstract<i><sub>opt</sub></i>  const  <i>type-specifier<sub>opt</sub></i>  <i>constant-declarator-list</i>  ;
@@ -1249,6 +1257,13 @@ octal-digit
   <i>destructor-declaration:</i>
     <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __destruct  ( )  <i>compound-statement</i>
 
+  <i>type-constant-declaration:</i>
+    <i>abstract-type-constant-declaration</i>
+    <i>concrete-type-constant-declaration</i>
+  <i>abstract-type-constant-declaration:</i>
+    abstract  const  type  name  <i>type-constraint<sub>opt</sub></i>  ;
+  <i>concrete-type-constant-declaration:</i>
+    const  type  name  <i>type-constraint<sub>opt</sub><i>  =  <i>type-specifier</i>  ;
 </pre>
 
 ###Interfaces
@@ -1270,6 +1285,7 @@ octal-digit
     <i>require-extends-clause</i>
     <i>const-declaration</i>
     <i>method-declaration</i>
+    <i>type-constant-declaration</i>
 </pre>
 
 ###Traits
