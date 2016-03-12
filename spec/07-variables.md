@@ -3,46 +3,38 @@
 ##General
 
 A *variable* is a named area of data storage that has a type and a
-value. A variable is represented by a VSlot
-([§§](04-basic-concepts.md#general)). A variable is created by assigning a value to it ([§§](04-basic-concepts.md#assignment), [§§](10-expressions.md#simple-assignment),
-[§§](10-expressions.md#simple-assignment)). A variable that somehow becomes defined, but is not initialized starts out with the value `null`.
+value. A variable is represented by a 
+[VSlot](04-basic-concepts.md#general). A variable is created by [assigning a value to it](10-expressions.md#simple-assignment). A variable that somehow becomes defined, but is not initialized starts out with the value `null`.
 
-Variables have names as defined in [§§](09-lexical-structure.md#names). Distinct variables may have
-the same name provided they are in different scopes ([§§](04-basic-concepts.md#scope)).
+Variables have [names](09-lexical-structure.md#names). Distinct variables may have
+the same name provided they are in different [scopes](04-basic-concepts.md#scope).
 
-A constant ([§§](06-constants.md#general)) is a variable that, once initialized, its value cannot
+A [constant](06-constants.md#general) is a variable that, once initialized, its value cannot
 be changed. 
 
-Based on the context in which it is declared, a variable has a scope
-([§§](04-basic-concepts.md#scope)) and a storage duration ([§§](04-basic-concepts.md#storage-duration)).
+Based on the context in which it is declared, a variable has a 
+[scope](04-basic-concepts.md#scope) and a [storage duration](04-basic-concepts.md#storage-duration).
 
 The following kinds of variable may exist in a script:
 
--   Local variable ([§§](07-variables.md#local-variables))
--   Array element ([§§](07-variables.md#array-elements))
--   Function static ([§§](07-variables.md#function-statics))
--   Instance property ([§§](07-variables.md#instance-properties))
--   Static property ([§§](07-variables.md#static-properties))
--   Class and interface constant ([§§](07-variables.md#class-and-interface-constants))
+-   [Local variable](07-variables.md#local-variables)
+-   [Array element](07-variables.md#array-elements)
+-   [Function static](07-variables.md#function-statics)
+-   [Instance property](07-variables.md#instance-properties)
+-   [Static property](07-variables.md#static-properties)
+-   [Class and interface constant](07-variables.md#class-and-interface-constants)
 
 ##Kinds of Variables
 
 ###Local Variables
 
-**Syntax:**
+**Syntax**
 
 See Semantics below.
 
-Semantics:
+**Semantics**
 
-Except for a function parameter ([§§](15-functions.md#general)), a local variable is never defined 
-explicitly; instead, it is created when it is first assigned a value. A local
-variable can be assigned to as a parameter in the parameter list of a
-function definition ([§§](15-functions.md#function-definitions)) or inside any
-compound statement ([§§](11-statements.md#compound-statements)). It
-has function scope ([§§](04-basic-concepts.md#scope)) and automatic storage
-duration ([§§](04-basic-concepts.md#storage-duration)). A local
-variable is a modifiable lvalue.
+Except for a [function parameter](15-functions.md#general), a local variable is never defined explicitly; instead, it is created when it is first assigned a value. A local variable can be assigned to as a parameter in the parameter list of a [function definition](15-functions.md#function-definitions) or inside any [compound statement](11-statements.md#compound-statements). It has [function scope](04-basic-concepts.md#scope) and [automatic storage duration](04-basic-concepts.md#storage-duration). A local variable is a modifiable lvalue.
 
 **Examples**
 
@@ -69,25 +61,25 @@ for ($i = 1; $i <= 3; ++$i)
   f();
 ```
 
-Unlike the function static equivalent in [§§](07-variables.md#function-statics), function `f` outputs
+Unlike the [function static equivalent](07-variables.md#function-statics), function `f` outputs
 "`$lv = 1`" each time.
 
-See the recursive function example in [§§](04-basic-concepts.md#storage-duration).
+See the [recursive function example](04-basic-concepts.md#storage-duration).
 
 ###Array Elements
 
-**Syntax:**
+**Syntax**
 
-Arrays ([§§](05-types.md#array-types)) are created via the array-creation operator ([§§](10-expressions.md#array-creation-operator)) or
-the intrinsic `array` ([§§](10-expressions.md#array)). At the same time, one or more elements
+[Arrays](05-types.md#array-types) are created via the [array-creation operator](10-expressions.md#array-creation-operator) or
+the intrinsic [`array`](10-expressions.md#array). At the same time, one or more elements
 may be created for that array. New elements are inserted into an
-existing array via the simple-assignment operator ([§§](10-expressions.md#simple-assignment)) in
-conjunction with the subscript operator `[]` ([§§](10-expressions.md#subscript-operator)).
+existing array via the [simple-assignment operator](10-expressions.md#simple-assignment) in
+conjunction with the [subscript operator `[]`](10-expressions.md#subscript-operator).
 
 **Semantics**
 
-The scope ([§§](04-basic-concepts.md#scope)) of an array element is the same as the scope of that
-array's name. An array element has allocated storage duration ([§§](04-basic-concepts.md#storage-duration)).
+The [scope](04-basic-concepts.md#scope) of an array element is the same as the scope of that
+array's name. An array element has [allocated storage duration](04-basic-concepts.md#storage-duration).
 
 **Examples**
 
@@ -112,20 +104,22 @@ $colors[] = "green";                // insert a new element
     = <i>const-expression</i>
 </pre>
 
-*variable-name* is defined in ([§§](09-lexical-structure.md#names)), and *const-expression* is defined in
-([§§](10-expressions.md#constant-expressions)).
+**Defined elsewhere**
+
+* [*variable-name*](09-lexical-structure.md#names)
+* [*constant-expression*](10-expressions.md#constant-expressions)
 
 **Semantics**
 
-A function static may be defined inside any compound statement ([§§](11-statements.md#compound-statements)).
+A function static may be defined inside any [compound statement](11-statements.md#compound-statements).
 It is a modifiable lvalue.
 
-A function static has function scope ([§§](04-basic-concepts.md#scope)) and static storage duration
-([§§](04-basic-concepts.md#storage-duration)).
+A function static has [function scope](04-basic-concepts.md#scope) and 
+[static storage duration](04-basic-concepts.md#storage-duration).
 
 The value of a function static is retained across calls to its parent
 function. Each time the function containing a function static
-declaration is called, that execution is dealing with an alias ([§§](04-basic-concepts.md#general))
+declaration is called, that execution is dealing with an [alias](04-basic-concepts.md#general)
 to that static variable. The next time that function
 is called, a new alias is created.
 
@@ -141,21 +135,18 @@ for ($i = 1; $i <= 3; ++$i)
   f();
 ```
 
-Unlike the local variable equivalent in [§§](07-variables.md#local-variables), function `f` outputs "`$fs
+Unlike the [local variable equivalent](07-variables.md#local-variables), function `f` outputs "`$fs
 = 1`", "`$fs = 2`", and "`$fs = 3`", as `$fs` retains its value across
 calls.
 
 ###Instance Properties
 
-These are described in ([§§](16-classes.md#properties)). They have class scope ([§§](04-basic-concepts.md#scope)) and
-allocated storage duration ([§§](04-basic-concepts.md#storage-duration)).
+These are described in [class instance properties section](16-classes.md#properties). They have [class scope](04-basic-concepts.md#scope) and [allocated storage duration](04-basic-concepts.md#storage-duration).
 
 ###Static Properties
 
-These are described in ([§§](16-classes.md#properties)). They have class scope ([§§](04-basic-concepts.md#scope)) and static
-storage duration ([§§](04-basic-concepts.md#storage-duration)).
+These are described in [class static properties section](16-classes.md#properties). They have [class scope](04-basic-concepts.md#scope) and [static storage duration](04-basic-concepts.md#storage-duration).
 
 ###Class and Interface Constants
 
-These are described in [§§](16-classes.md#constants) and [§§](17-interfaces.md#constants). They have class or interface
-scope ([§§](04-basic-concepts.md#scope)) and static storage duration ([§§](04-basic-concepts.md#storage-duration)).
+These are described in [class constants section](16-classes.md#constants) and [interface constants section](17-interfaces.md#constants). They have [class or interface scope](04-basic-concepts.md#scope) and [static storage duration](04-basic-concepts.md#storage-duration).
