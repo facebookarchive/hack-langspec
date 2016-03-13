@@ -6,7 +6,7 @@ An *exception* is some unusual condition in that it is outside the
 ordinary expected behavior. (Examples include dealing with situations in
 which a critical resource is needed, but is unavailable, and detecting
 an out-of-range value for some computation.) As such, exceptions require
-special handling. This clause describes how exceptions can be created
+special handling. This chapter describes how exceptions can be created
 and handled.
 
 Whenever some exceptional condition is detected at runtime, an exception
@@ -20,13 +20,12 @@ or by explicit code source code in the script.
 
 Exception handling involves the use of the following keywords:
 
-* `try` ([§§](11-statements.md#the-try-statement)), which allows a *try-block* of code containing one or more possible exception generations, to be tried
-* `catch` ([§§](11-statements.md#the-try-statement)), which defines a handler for a specific type of exception thrown from the corresponding try-block or from some function it calls
-* `finally` ([§§](11-statements.md#the-try-statement)), which allows the *finally-block* of a try-block to be executed (to perform some cleanup, for example), whether or not an exception occurred within that try-block
-* `throw` ([§§](11-statements.md#the-throw-statement)), which generates an exception of a given type, from a place called a *throw point*
+* [`try`](11-statements.md#the-try-statement), which allows a *try-block* of code containing one or more possible exception generations, to be tried
+* [`catch`](11-statements.md#the-try-statement), which defines a handler for a specific type of exception thrown from the corresponding try-block or from some function it calls
+* [`finally`](11-statements.md#the-try-statement), which allows the *finally-block* of a try-block to be executed (to perform some cleanup, for example), whether or not an exception occurred within that try-block
+* [`throw`](11-statements.md#the-throw-statement), which generates an exception of a given type, from a place called a *throw point*.
 
-When an exception is thrown, an *exception object* of type `\Exception`
-([§§](19-exception-handling.md#class-exception)), or of a subclass of that type, is created and made available to
+When an exception is thrown, an *exception object* of type [`\Exception`](19-exception-handling.md#class-exception), or of a subclass of that type, is created and made available to
 the first catch-handler that can catch it. Among other things, the
 exception object contains an *exception message* and an *exception
 code*, both of which can be used by a handler to decide how to handle
@@ -38,7 +37,7 @@ Class `Exception` is the base class of all exception types. This class is
 defined, as follows:
 
 ```Hack
-Class Exception {
+class Exception {
   protected string $message = 'Unknown exception';
   protected int $code = 0;
   protected string $file;
@@ -143,20 +142,18 @@ for the parameter having the default value, no corresponding argument
 exists in array-argument. Only arguments present at the function-call
 site have their values recorded in array-argument. 
 
-See also, library functions `debug_backtrace` (§xx) and
-`debug_print_backtrace` (§xx).
+See also, library functions [`debug_backtrace`](http://www.php.net/debug_backtrace) and
+[`debug_print_backtrace`](http://www.php.net/debug_print_backtrace).
 
 ##User-Defined Exception Classes
 
-An exception class is defined simply by having it extend class `\Exception`
-([§§](19-exception-handling.md#class-exception)). However, as that class's `__clone` method is declared `final`
-([§§](16-classes.md#methods)), exception objects cannot be cloned.
+An exception class is defined simply by having it extend class [`\Exception`](19-exception-handling.md#class-exception). However, as that class's `__clone` method is declared [`final`](16-classes.md#methods), exception objects cannot be cloned.
 
 When an exception class is defined, typically, its constructors call the
 parent class' constructor as their first operation to ensure the
 base-class part of the new object is initialized appropriately. They
 often also provide an augmented implementation of
-[`__toString()`](http://docs.hhvm.com/manual/en/language.oop5.magic.php)
+[`__toString`](http://docs.hhvm.com/manual/en/language.oop5.magic.php) 
 ([§§](16-classes.md#method-__tostring)).
 
 
