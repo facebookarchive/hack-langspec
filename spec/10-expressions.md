@@ -11,11 +11,11 @@ A *value side effect* is an action that changes the state of the execution
 environment. (Examples of such actions are modifying a variable, writing
 to a device or file, or calling a function that performs such
 operations.) Throughout this specification, this term is shortened to
-*side effect*, which should not be confused with *type side effect* ([§§](05-types.md#type-side-effects)).
+*side effect*, which should not be confused with [*type side effect*](05-types.md#type-side-effects).
 
 When an expression is evaluated, it produces a result. It might also
 produce a side effect. Only a few operators produce side effects. (For
-example, given the expression statement ([§§](11-statements.md#expression-statements)) `$v = 10`; the
+example, given the [expression statement](11-statements.md#expression-statements) `$v = 10`; the
 expression 10 is evaluated to the result 10, and there is no side
 effect. Then the assignment operator is executed, which results in the
 side effect of `$v` being modified. The result of the whole expression is
@@ -29,9 +29,7 @@ The occurrence of value computation and side effects is delimited by
 *sequence points*, places in a program's execution at which all the
 computations and side effects previously promised are complete, and no
 computations or side effects of future operations have yet begun. There
-is a sequence point at the end of each full expression. The logical and
-([§§](10-expressions.md#logical-and-operator)), logical or ([§§](10-expressions.md#logical-inclusive-or-operator)), conditional ([§§](10-expressions.md#conditional-operator)), and function-call
-([§§](#function-call-operator)) operators each contain a sequence point. (For example, in the
+is a sequence point at the end of each full expression. The [logical and](10-expressions.md#logical-and-operator), [logical or](10-expressions.md#logical-inclusive-or-operator), [conditional](10-expressions.md#conditional-operator), and [function-call](#function-call-operator) operators each contain a sequence point. (For example, in the
 following series of expression statements, `$a = 10; ++$a; $b = $a;`,
 there is sequence point at the end of each full expression, so the
 assignment to $a is completed before `$a` is incremented, and the
@@ -115,12 +113,19 @@ of supertypes such as `num`, `arraykey`, or `?int`. Refer to [§§](05-types.md#
     $this
 </pre>
 
-*variable-name* and *qualified-name* are defined in [§§](09-lexical-structure.md#names); *literal*
-is defined in [§§](09-lexical-structure.md#general-2); *const-expression* is defined in [§§](10-expressions.md#constant-expressions);
-*intrinsic* is defined in [§§](10-expressions.md#general-2); *collection-literal* is defined in [§§](10-expressions.md#collection-literals);
-*tuple-literal* is defined in [§§](10-expressions.md#tuple-literals); *shape-literal* is defined in [§§](10-expressions.md#shape-literals);
-*anonymous-function-creation-expression* is defined in [§§](10-expressions.md#anonymous-function-creation); *awaitable-creation-expression* is defined in [§§](10-expressions.md#async-blocks); and
-*expression* is defined in [§§](10-expressions.md#yield-operator). 
+**Defined elsewhere**
+
+* [*anonymous-function-creation-expression*](10-expressions.md#anonymous-function-creation)
+* [*awaitable-creation-expression*](10-expressions.md#async-blocks)
+* [*collection-literal*](10-expressions.md#collection-literals)
+* [*const-expression*](10-expressions.md#constant-expressions)
+* [*expression*](10-expressions.md#yield-operator)
+* [*intrinsic*](10-expressions.md#general-2)
+* [*literal*](09-lexical-structure.md#general-2)
+* [*qualified-name*](09-lexical-structure.md#names)
+* [*shape-literal*](10-expressions.md#shape-literals)
+* [*tuple-literal*](10-expressions.md#tuple-literals)
+* [*variable-name*](09-lexical-structure.md#names)
 
 **Semantics**
 
@@ -129,8 +134,8 @@ the un-parenthesized expression.
 
 The variable `$this` is predefined inside any instance method,
 constructor, or destructor when that method is called from within an object
-context. `$this` is a handle ([§§](05-types.md#general)) that points to the calling object or
-to the object being constructed. The type of `$this` is `this` [§§](05-types.md#the-this-type).
+context. `$this` is a [handle](05-types.md#general) that points to the calling object or
+to the object being constructed. The type of `$this` is [`this`](05-types.md#the-this-type).
 
 ###Intrinsics
 
@@ -146,10 +151,13 @@ to the object being constructed. The type of `$this` is `this` [§§](05-types.
     <i>list-intrinsic</i>
 </pre>
 
-*array-intrinsic* is defined in [§§](10-expressions.md#array); *echo-intrinsic* is defined
-in [§§](10-expressions.md#echo); *exit-intrinsic* is defined in
-[§§](10-expressions.md#exit); *invariant-intrinsic* is defined in [§§](10-expressions.md#invariant); and *list-intrinsic*
-is defined in [§§](10-expressions.md#list).
+**Defined elsewhere**
+
+* [*array-intrinsic*](10-expressions.md#array)
+* [*echo-intrinsic*](10-expressions.md#echo)
+* [*exit-intrinsic*](10-expressions.md#exit)
+* [*invariant-intrinsic*](10-expressions.md#invariant)
+* [*list-intrinsic*](10-expressions.md#list)
 
 **Semantics**
 
@@ -170,12 +178,14 @@ reserved in Hack as well.
     array ( <i>array-initializer<sub>opt</sub></i>  )
 </pre>
 
-*array-initializer* is defined in [§§](10-expressions.md#array-creation-operator).
+**Defined elsewhere**
+
+* [*array-initializer*](10-expressions.md#array-creation-operator)
 
 **Semantics**
 
 This intrinsic creates and initializes an array. It is equivalent to the
-array-creation operator `[]` ([§§](10-expressions.md#array-creation-operator)).
+[array-creation operator `[]`](10-expressions.md#array-creation-operator).
 
 ####echo
 
@@ -192,18 +202,20 @@ array-creation operator `[]` ([§§](10-expressions.md#array-creation-operator)
     <i>expression-list-two-or-more</i>  ,  <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
 
 **Constraints**
 
 *expression* must not designate an array nor an instance of a type not
-having a `__toString` method ([§§](16-classes.md#method-__tostring)). 
+having a [`__toString` method](16-classes.md#method-__tostring).
 
 **Semantics**
 
 After converting each of its *expression*s' values to strings, if
 necessary, `echo` concatenates them in lexical order, and writes the
-resulting string to `STDOUT` ([§§](05-types.md#resource-types)).
+resulting string to [`STDOUT`](05-types.md#resource-types).
 
 For value substitution in string literals, see [§§](09-lexical-structure.md#double-quoted-string-literals) and
 [§§](09-lexical-structure.md#heredoc-string-literals). For conversion to string, see [§§](08-conversions.md#converting-to-string-type).
@@ -230,7 +242,9 @@ echo "$v3\n";
     exit  (  <i>expression<sub>opt</sub></i>  )
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
 
 **Constraints**
 
@@ -240,7 +254,7 @@ When *expression* designates an integer, its value must be in the range
 **Semantics**
 
 This intrinsic terminates the current script. If *expression* designates
-a string, that string is written to `STDOUT` ([§§](05-types.md#resource-types)). If *expression*
+a string, that string is written to [`STDOUT`](05-types.md#resource-types). If *expression*
 designates an integer, that represents the script's *exit status code*.
 Code 255 is reserved by Hack. Code 0 represents "success". The exit
 status code is made available to the execution environment. If
@@ -251,8 +265,8 @@ status code is made available to the execution environment. If
 
 -   Writes the optional string to `STDOUT`.
 -   Calls any functions registered via the library function
-    `register_shutdown_function` (§xx) in their order of registration.
--   Invokes destructors ([§§](16-classes.md#destructors)) for all remaining instances.
+    [`register_shutdown_function`](http://www.php.net/register_shutdown_function) in their order of registration.
+-   Invokes [destructors](16-classes.md#destructors) for all remaining instances.
 
 **Examples**
 
@@ -274,9 +288,8 @@ exit;
 
 **Constraints**
 
-*condition* can be any expression allowed as the operand of the `!` operator
-([§§](10-expressions.md#unary-arithmetic-operators)). *format* is a string that can contain text and/or optional
-formatting information as understood by the library function `sprintf` (§xx).
+*condition* can be any expression allowed as the operand of the [`!` operator](10-expressions.md#unary-arithmetic-operators). *format* is a string that can contain text and/or optional
+formatting information as understood by the library function [`sprintf`](http://www.php.net/sprintf).
 The optional comma-separated list of values designated by *values* must match
 the set of types expected by the optional formatting information inside
 *format*.
@@ -285,10 +298,10 @@ the set of types expected by the optional formatting information inside
 **Semantics**
 
 If *condition* tests true, the program continues execution; otherwise, the
-library function `invariant_violation` (§xx) is called. That function does not
+library function [`invariant_violation`](http://www.php.net/invariant_violation) is called. That function does not
 return; instead, it either throws an exception of type
 `\HH\InvariantException`, or calls the handler previously registered by the
-library function `invariant_callback_register` (§xx).
+library function [`invariant_callback_register`](http://www.php.net/invariant_callback_register).
 
 This intrinsic behaves like a function with a `void` return type. It is
 intended to indicate a programmer error for a condition that should never
@@ -319,12 +332,14 @@ invariant(!is_null($p) && $p <= $max, "Value %d must be <= %d", $p, $max);
     <i>list-expression-list</i>  ,  <i>expression<sub>opt</sub></i>
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
 
 **Constraints**
 
 *list-intrinsic* must be used as the left-hand operand in a
-*simple-assignment-expression* ([§§](10-expressions.md#simple-assignment)) of which the right-hand
+[*simple-assignment-expression*](10-expressions.md#simple-assignment) of which the right-hand
 operand must be an expression that designates a vector-like array or an instance of the class types `Vector`, `ImmVector`, or `Pair` (the
 "source").
 
@@ -397,7 +412,9 @@ Note: The term *literal* as used here is a misnomer; *cl-element-keys* and
   <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#yield-operator).   
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
 
 **Constraints**
 
@@ -463,18 +480,20 @@ Note: The term *literal* as used here is a misnomer; the *expression*s in
   <i>expression-list-one-or-more</i>  ,  <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#yield-operator).   
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
 
 **Semantics**
 
-A *tuple-literal* creates a tuple ([§§](05-types.md#tuple-types)) with elements having values as
+A *tuple-literal* creates a [tuple](05-types.md#tuple-types) with elements having values as
 specified by *expression-list-one-or-more*, inserted in that order.
 
 The type of a *tuple-literal* is "tuple of type
 <*element type list in lexical order*>".
 
 Note: Although a tuple of only one element can be created using a tuple
-literal, a *tuple-type-specifier* ([§§](05-types.md#tuple-types)) must contain at least two elements.
+literal, a [*tuple-type-specifier*](05-types.md#tuple-types) must contain at least two elements.
 
 **Examples**
 
@@ -502,16 +521,19 @@ in *field-initializer* need not be compile-time constants.
     <i>qualified-name</i>  =>  <i>expression</i>
 </pre>
 
-*single-quoted-string-literal* is defined in [§§](09-lexical-structure.md#single-quoted-string-literals); *integer-literal*
-is defined in [§§](09-lexical-structure.md#integer-literals); *qualified-name* is defined in [§§](09-lexical-structure.md#names); and
-*expression* is defined in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
+* [*integer-literal*](09-lexical-structure.md#integer-literals)
+* [*qualified-name*](09-lexical-structure.md#names)
+* [*single-quoted-string-literal*](09-lexical-structure.md#single-quoted-string-literals)
 
 **Constraints**
 
 Each string in the set of strings designated by all the
 *single-quoted-string-literals* and *qualified-names* in a
 *field-initializer-list* must have a distinct value, and each string must
-match exactly a field name in the shape type's *shape-specifier* ([§§](05-types.md#shape-types)).
+match exactly a field name in the shape type's [*shape-specifier*](05-types.md#shape-types).
 
 Each integer in the set of *integer-literals* and *qualified-names* in a
 *field-initializer-list* must have a distinct value, and each integer must
@@ -525,7 +547,7 @@ corresponding field type in the shape type's *shape-specifier*.
 
 **Semantics**
 
-A *shape-literal* creates a shape ([§§](05-types.md#shape-types)) with fields having values as specified by *field-initializer-list*. The order of the
+A *shape-literal* creates a [shape](05-types.md#shape-types) with fields having values as specified by *field-initializer-list*. The order of the
 *field-initializers* need not be the same as the order of the
 *field-specifiers* in the shape type's *shape-specifier*.
 
@@ -564,9 +586,13 @@ shape('id' => null, 'url' => null, 'count' => 0)
   <i>use-variable-name-list</i>  ,  <i>variable-name</i>
 </pre>
 
-*compound-statement* is defined in [§§](11-statements.md#compound-statements);
-*attribute-specification* is defined in [§§](20-namespaces.md#name-lookup); *type-specifier* is described in
-[§§](05-types.md#general); *variable-name* is defined in [§§](09-lexical-structure.md#names); and *default-argument-specifier* is defined in [§§](15-functions.md#function-definitions).
+**Defined elsewhere**
+
+* [*attribute-specification*](20-namespaces.md#name-lookup)
+* [*compound-statement*](11-statements.md#compound-statements)
+* [*default-argument-specifier*](15-functions.md#function-definitions)
+* [*type-specifier*](05-types.md#general)
+* [*variable-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
@@ -579,18 +605,17 @@ If any *anonymous-function-parameter-declaration* has a
 *default-argument-specifier*.
 
 If the *type-specifier* in *anonymous-function-return* is `void`, the
-*compound-statement* must not contain any `return` statements ([§§](11-statements.md#the-return-statement))
+*compound-statement* must not contain any [`return` statements](11-statements.md#the-return-statement)
 having an *expression*. Otherwise, all `return` statements must contain an
 *expression* whose type is a subtype of the type indicated by *type-specifier*.
 
 If `async` is present, *return-type* must be a type that implements
-`Awaitable<T>` ([§§](17-interfaces.md#interface-awaitable)).
+[`Awaitable<T>`](17-interfaces.md#interface-awaitable).
 
 **Semantics**
 
-This operator returns an object that encapsulates the anonymous function
-([§§](15-functions.md#anonymous-functions)) defined within. An anonymous function is defined like, and behaves
-like, a named function ([§§](13-functions.md#function-definitions)) except
+This operator returns an object that encapsulates the [anonymous function](15-functions.md#anonymous-functions) defined within. An anonymous function is defined like, and behaves
+like, a [named function](13-functions.md#function-definitions) except
 that the former has no name and has an optional
 *anonymous-function-use-clause*.
 
@@ -606,7 +631,7 @@ If the *type-specifier* for a parameter is omitted, that type is inferred.
 
 If *anonymous-function-return* is omitted, the return type is inferred.
 
-An anonymous function can be asynchronous ([§§](15-functions.md#asynchronous-functions)).
+An anonymous function can be [asynchronous](15-functions.md#asynchronous-functions).
 
 The function-return types `this` and `noreturn` are described in ([§§](15-functions.md#function-definitions)).
 
@@ -643,17 +668,19 @@ function compute(array<int> $values): void {
   <i>async-statement-list   statement</i>
 </pre>
 
-*statement* is defined in [§§](11-statements.md#general).
+**Defined elsewhere**
+
+* [*statement*](11-statements.md#general)
 
 **Constraints**
 
-*awaitable-creation-expression* must not be used as the *anonymous-function-body* in a *lambda-expression* ([§§](10-expressions.md#lambda-expressions)).
+*awaitable-creation-expression* must not be used as the *anonymous-function-body* in a [*lambda-expression*](10-expressions.md#lambda-expressions).
 
 **Semantics**
 
 The (possibly) asynchronous operations designated by *async-statement-list* are executed, in order.
 
-An *awaitable-creation-expression* produces a result of type `Awaitable<T>` ([§§](17-interfaces.md#interface-awaitable)), where `T` is the return type of the final statement in *async-statement-list*. If *async-statement-list* is omitted, or its final statement is `return;`, or its final statement is not a `return` statement, the final statement is treated as being `return;`, `T` is `void`, and no value is wrapped into the `Awaitable` object. Otherwise, the final statement has the form `return` *expression*`;`, `T` is the type of *expression*, and the value of *expression* is wrapped into the `Awaitable` object.
+An *awaitable-creation-expression* produces a result of type [`Awaitable<T>`](17-interfaces.md#interface-awaitable), where `T` is the return type of the final statement in *async-statement-list*. If *async-statement-list* is omitted, or its final statement is `return;`, or its final statement is not a `return` statement, the final statement is treated as being `return;`, `T` is `void`, and no value is wrapped into the `Awaitable` object. Otherwise, the final statement has the form `return` *expression*`;`, `T` is the type of *expression*, and the value of *expression* is wrapped into the `Awaitable` object.
 
 **Examples**
 
@@ -687,14 +714,20 @@ $x = await async {
     <i>exponentiation-expression</i>
 </pre>
 
-*primary-expression* is defined in [§§](10-expressions.md#general-1); *clone-expression* is
-defined in [§§](10-expressions.md#the-clone-operator); *object-creation-expression* is defined in [§§](10-expressions.md#the-new-operator);
-*array-creation-expression* is defined in [§§](10-expressions.md#array-creation-operator);
-*subscript-expression* is defined in [§§](10-expressions.md#subscript-operator); *function-call-expression* is defined in [§§](10-expressions.md#function-call-operator); *member-selection-expression* is defined in [§§](10-expressions.md#member-selection-operator);
-*null-safe-member-selection-expression* is defined in [§§](10-expressions.md#null-safe-member-selection-operator);
-*postfix-increment-expression* and *postfix-decrement-expression* are
-defined in [§§](10-expressions.md#postfix-increment-and-decrement-operators); *scope-resolution-expression* is defined in [§§](10-expressions.md#scope-resolution-operator);
-and *exponentiation-expression* is defined in [§§](10-expressions.md#exponentiation-operator).
+**Defined elsewhere**
+
+* [*array-creation-expression*](10-expressions.md#array-creation-operator)
+* [*clone-expression*](10-expressions.md#the-clone-operator)
+* [*exponentiation-expression*](10-expressions.md#exponentiation-operator)
+* [*function-call-expression*](10-expressions.md#function-call-operator)
+* [*member-selection-expression*](10-expressions.md#member-selection-operator)
+* [*null-safe-member-selection-expression*](10-expressions.md#null-safe-member-selection-operator)
+* [*object-creation-expression*](10-expressions.md#the-new-operator)
+* [*postfix-decrement-expression*](10-expressions.md#postfix-increment-and-decrement-operators)
+* [*postfix-increment-expression*](10-expressions.md#postfix-increment-and-decrement-operators)
+* [*primary-expression*](10-expressions.md#general-1)
+* [*scope-resolution-expression*](10-expressions.md#scope-resolution-operator)
+* [*subscript-expression*](10-expressions.md#subscript-operator)
 
 **Semantics**
 
@@ -709,7 +742,9 @@ These operators associate left-to-right.
     clone  <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
 
 **Constraints**
 
@@ -717,7 +752,7 @@ These operators associate left-to-right.
 
 **Semantics**
 
-The `clone` operator creates a new object that is a shallow copy ([§§](04-basic-concepts.md#cloning-objects)) of the object designated by *expression*. Then, if the class type of *expression* has a method called `__clone` ([§§](16-classes.md#method-__clone)), that is called to perform a deep copy ([§§](04-basic-concepts.md#cloning-objects)). The result is a handle that points to the new object.
+The `clone` operator creates a new object that is a [shallow copy](04-basic-concepts.md#cloning-objects) of the object designated by *expression*. Then, if the class type of *expression* has a method called [`__clone`](16-classes.md#method-__clone), that is called to perform a [deep copy](04-basic-concepts.md#cloning-objects). The result is a handle that points to the new object.
 
 **Examples**
 
@@ -763,23 +798,26 @@ $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
     <i>variable-name<i>
 </pre>
 
-*argument-expression-list* is defined in [§§](10-expressions.md#function-call-operator); *qualified-name* is
-defined in [§§](09-lexical-structure.md#names); and *variable-name* is defined in [§§](09-lexical-structure.md#names).
+**Defined elsewhere**
+
+* [*argument-expression-list*](10-expressions.md#function-call-operator)
+* [*qualified-name*](09-lexical-structure.md#names)
+* [*variable-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
 *qualified-name* must name a class.
 
-*variable-name* must name a value having the classname type ([§§](05-types.md#the-classname-type)).
+*variable-name* must name a value having the [`classname` type](05-types.md#the-classname-type).
 
-*variable-name* must designate a class that has the attribute  `__ConsistentConstruct` ([§§](21-attributes.md#attribute-__consistentconstruct)), or that has an abstract constructor or a final constructor.
+*variable-name* must designate a class that has the attribute  [`__ConsistentConstruct`](21-attributes.md#attribute-__consistentconstruct), or that has an abstract constructor or a final constructor.
 
-*class-type-designator* must not designate an abstract class ([§§](16-classes.md#general)).
+*class-type-designator* must not designate an [abstract class](16-classes.md#general).
 
-*class-type-designator* must not be a generic type parameter ([§§](14-generic-types-methods-and-functions.md#type-parameters)).
+*class-type-designator* must not be a [generic type parameter](14-generic-types-methods-and-functions.md#type-parameters).
 
 *argument-expression-list* must contain an argument for each parameter in the
-constructor's definition ([§§](15-functions.md#function-definitions)) not having a default value, and each
+[constructor's definition](15-functions.md#function-definitions) not having a default value, and each
 argument's type must be a subtype of the corresponding parameter's type.
 
 If the constructor is not variadic, the call must not contain more arguments
@@ -800,7 +838,7 @@ The result of an *object-creation-expression* is a handle to an object
 of the type specified by *class-type-designator* or *variable-name*.
 
 From within a method, the use of `static` corresponds to the class in the
-inheritance context in which the method is called. The type of the object created by an expression of the form `new static` is `this` [§§](05-types.md#the-this-type).
+inheritance context in which the method is called. The type of the object created by an expression of the form `new static` is [`this`](05-types.md#the-this-type).
 
 Because a constructor call is a function call, the relevant parts of
 10.5.6 also apply.
@@ -829,8 +867,8 @@ function f(classname<C> $clsname): void {
 ###Array Creation Operator
 
 An array is created and initialized by one of two equivalent ways: via
-the array-creation operator `[]`, as described below, or the intrinsic
-`array` ([§§](10-expressions.md#array)).
+the array-creation operator `[]`, as described below, or the [intrinsic
+`array`](10-expressions.md#array).
 
 **Syntax**
 
@@ -857,7 +895,9 @@ the array-creation operator `[]`, as described below, or the intrinsic
     <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
 
 **Constraints**
 
@@ -881,8 +921,8 @@ one or more *array-element-initializer*s, each of which is used to provide an
 
 If the value of *element-key* is neither `int` nor `string`, keys with `float`
 or `bool` values, or strings whose contents match exactly the pattern of
-*decimal-literal* ([§§](09-lexical-structure.md#integer-literals)), are converted to `int` ([§§](08-conversions.md#converting-to-integer-type)), and values
-of all other key types are converted to `string` ([§§](08-conversions.md#converting-to-string-type)).
+[*decimal-literal*](09-lexical-structure.md#integer-literals), are [converted to `int`](08-conversions.md#converting-to-integer-type), and values
+of all other key types are [converted to `string`](08-conversions.md#converting-to-string-type).
 
 If *element-key* is omitted from an *array-element-initializer*, an
 element key of type `int` is associated with the corresponding
@@ -930,8 +970,10 @@ for ($i = -1; $i <= 2; ++$i) { … $v[$i] } // retrieves via keys -1, 0, 1, 2
     <i>postfix-expression</i>  {  <i>expression<sub>opt</sub></i>  }   <b>[Deprecated form]</b>
 </pre>
 
-*postfix-expression* is defined in [§§](10-expressions.md#general-3); and *expression* is defined
-in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
+* [*postfix-expression*](10-expressions.md#general-3)
 
 **Constraints**
 
@@ -953,15 +995,15 @@ When *postfix-expression* designates a map-like array, elements cannot be append
 When *postfix-expression* designates a tuple, *expression* must be a constant.
 
 When *postfix-expression* designates a shape, *expression* must be a
-*single-quoted-string-literal* ([§§](09-lexical-structure.md#single-quoted-string-literals)) that specifies a key in that
-shape's *shape-specifier* ([§§](05-types.md#shape-types)).
+[*single-quoted-string-literal*](09-lexical-structure.md#single-quoted-string-literals) that specifies a key in that
+shape's [*shape-specifier*](05-types.md#shape-types).
 
 When postfix-expression designates an instance of a collection class:
 
 * The deprecated form, `{ … }`, is not supported.
 * `Vector` or `ImmVector`, *expression* must have type `int`.
 * `Vector`, if *expression* is omitted, *subscript-expression* must be the
-left-hand side of a *simple-assignment-expression* ([§§](10-expressions.md#simple-assignment)).
+left-hand side of a [*simple-assignment-expression*](10-expressions.md#simple-assignment).
 * `Map` or `ImmMap`, *expression* must have type `int` or `string`.
 * `Map`, if *expression* is omitted, *subscript-expression* must be the
 left-hand side of a *simple-assignment-expression* whose right-hand operand
@@ -974,15 +1016,14 @@ has type `Pair`.
 
 A *subscript-expression* designates a (possibly non-existent) element of
 an array, a string, a vector, a map, or a Pair. When *subscript-expression* designates an object of
-a type that implements `ArrayAccess` ([§§](17-interfaces.md#interface-arrayaccess)), the minimal semantics are
+a type that implements [`ArrayAccess`](17-interfaces.md#interface-arrayaccess), the minimal semantics are
 defined below; however, they can be augmented by that object's methods
-`offsetGet` ([§§](17-interfaces.md#interface-arrayaccess)) and `offsetSet` ([§§](17-interfaces.md#interface-arrayaccess)).
+[`offsetGet`](17-interfaces.md#interface-arrayaccess) and [`offsetSet`](17-interfaces.md#interface-arrayaccess).
 
 The element key is designated by *expression*. If the value of
 *element-key* is neither `int` nor `string`, keys with `float` or `bool` values,
-or strings whose contents match exactly the pattern of *decimal-literal*
-([§§](09-lexical-structure.md#integer-literals)), are converted to `int` ([§§](08-conversions.md#converting-to-integer-type)), and values of all other key
-types are converted to `string` ([§§](08-conversions.md#converting-to-string-type)).
+or strings whose contents match exactly the pattern of [*decimal-literal*](09-lexical-structure.md#integer-literals), are [converted to `int`](08-conversions.md#converting-to-integer-type), and values of all other key
+types are [converted to `string`](08-conversions.md#converting-to-string-type).
 
 If both *postfix-expression* and *expression* designate strings,
 *expression* is treated as if it specified the `int` key zero instead.
@@ -1000,13 +1041,13 @@ If *expression* is omitted, a new element is inserted. Its key has type
 `int` and is one more than the highest, previously assigned, non-negative
 `int` key for this array. If this is the first element with a non-negative
 `int` key, key zero is used. However, if the highest, previously assigned
-`int` key for this array is `PHP_INT_MAX` ([§§](06-constants.md#core-predefined-constants)), **no new element is
+`int` key for this array is [`PHP_INT_MAX`](06-constants.md#core-predefined-constants), **no new element is
 inserted**. The type and value of the result is the type and value of
 the new element.
 
-* If the usage context is as the left-hand side of a *simple-assignment-expression* ([§§](10-expressions.md#simple-assignment)): The value of the new element is the value of the right-hand side of that *simple-assignment-expression*.
-* If the usage context is as the left-hand side of a *compound-assignment-expression* ([§§](10-expressions.md#compound-assignment)): The expression `e1 op= e2` is evaluated as `e1 = null op (e2)`.
-* If the usage context is as the operand of a postfix- or prefix-increment or decrement operator ([§§](10-expressions.md#postfix-increment-and-decrement-operators), [§§](10-expressions.md#prefix-increment-and-decrement-operators)): The value of the new element is `null`.
+* If the usage context is as the left-hand side of a [*simple-assignment-expression*](10-expressions.md#simple-assignment): The value of the new element is the value of the right-hand side of that *simple-assignment-expression*.
+* If the usage context is as the left-hand side of a [*compound-assignment-expression*](10-expressions.md#compound-assignment): The expression `e1 op= e2` is evaluated as `e1 = null op (e2)`.
+* If the usage context is as the operand of a [postfix-](10-expressions.md#postfix-increment-and-decrement-operators) or [prefix-increment or decrement operator](10-expressions.md#prefix-increment-and-decrement-operators): The value of the new element is `null`.
 
 *postfix-expression designates a string*
 
@@ -1057,13 +1098,13 @@ If *expression* is present,
 * If *subscript-expression* is used in a non-lvalue context, the object's method `offsetGet` is called with an argument of *expression*. The type and value of the result is the type and value returned by `offsetGet`.
 * If the usage context is as the left-hand side of a *simple-assignment-expression*: The object's method `offsetSet` is called with a first argument of *expression* and a second argument that is the value of the right-hand side of that *simple-assignment-expression*. The type and value of the result is the type and value of the right-hand side of that *simple-assignment-expression*.
 * If the usage context is as the left-hand side of a *compound-assignment-expression*: The expression `e1 op= e2` is evaluated as `e1 = offsetGet(expression) op (e2)`, which is then processed according to the rules for simple assignment immediately above.
-* If the usage context is as the operand of a postfix- or prefix-increment or decrement operator ([§§](10-expressions.md#postfix-increment-and-decrement-operators)), [§§](10-expressions.md#prefix-increment-and-decrement-operators)): The object's method `offsetGet` is called with an argument of *expression*. However, this method has no way of knowing if an increment or decrement operator was used, or whether it was a prefix or postfix operator. The type and value of the result is the type and value returned by `offsetGet`.
+* If the usage context is as the operand of a [postfix-](10-expressions.md#postfix-increment-and-decrement-operators) or [prefix-increment or decrement operator](10-expressions.md#prefix-increment-and-decrement-operators): The object's method `offsetGet` is called with an argument of *expression*. However, this method has no way of knowing if an increment or decrement operator was used, or whether it was a prefix or postfix operator. The type and value of the result is the type and value returned by `offsetGet`.
 
 If *expression* is omitted, 
 
-* If the usage context is as the left-hand side of a *simple-assignment-expression*: The object's method `offsetSet` ([§§](15-interfaces.md#interface-arrayaccess)) is called with a first argument of `null` and a second argument that is the value of the right-hand side of that *simple-assignment-expression*. The type and value of the result is the type and value of the right-hand side of that *simple-assignment-expression*.
+* If the usage context is as the left-hand side of a *simple-assignment-expression*: The object's method [`offsetSet`](15-interfaces.md#interface-arrayaccess) is called with a first argument of `null` and a second argument that is the value of the right-hand side of that *simple-assignment-expression*. The type and value of the result is the type and value of the right-hand side of that *simple-assignment-expression*.
 * If the usage context is as the left-hand side of a *compound-assignment-expression*: The expression `e1 op= e2` is evaluated as `e1 = offsetGet(null) op (e2)`, which is then processed according to the rules for simple assignment immediately above.
-* If the usage context is as the operand of a postfix- or prefix-increment or decrement operator ([§§](10-expressions.md#postfix-increment-and-decrement-operators)), [§§](10-expressions.md#prefix-increment-and-decrement-operators)): The object's method `offsetGet` is called with an argument of `null`. However, this method has no way of knowing if an increment or decrement operator was used, or whether it was a prefix or postfix operator. The type and value of the result is the type and value returned by `offsetGet`.
+* If the usage context is as the operand of a [postfix-](10-expressions.md#postfix-increment-and-decrement-operators) or [prefix-increment or decrement operator](10-expressions.md#prefix-increment-and-decrement-operators): The object's method `offsetGet` is called with an argument of `null`. However, this method has no way of knowing if an increment or decrement operator was used, or whether it was a prefix or postfix operator. The type and value of the result is the type and value returned by `offsetGet`.
 
 Note: The brace (`{...}`) form of this operator has been deprecated. 
 
@@ -1114,17 +1155,19 @@ echo "\$p1[0] = " . $p1[0] . "\n";  // outputs '$p1[0] = 55'
     <i>argument-expression-list</i>  ,  <i>expression</i>
 </pre>
 
-*postfix-expression* is defined in [§§](10-expressions.md#general-3); and *expression*
-is defined in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
+* [*postfix-expression*](10-expressions.md#general-3)
 
 
 **Constraints**
 
 *postfix-expression* must designate a function, by *name*, be a variable of
-closure type([§§](05-types.md#closure-types)).
+[closure type](05-types.md#closure-types).
 
 The function call must contain an argument for each parameter in the called
-function's definition ([§§](15-functions.md#function-definitions)) not having a default value, and the argument
+[function's definition](15-functions.md#function-definitions) not having a default value, and the argument
 type must be a subtype of the parameter type.
 
 If the called function is not variadic, the function call must not contain
@@ -1132,8 +1175,7 @@ more arguments than there are corresponding parameters.
 
 **Semantics**
 
-If *postfix-expression* is a *null-safe-member-selection-expression*
-([§§](10-expressions.md#null-safe-member-selection-operator)), special handling occurs; see later below.
+If *postfix-expression* is a [*null-safe-member-selection-expression*](10-expressions.md#null-safe-member-selection-operator), special handling occurs; see later below.
 
 An expression of the form *function-call-expression* is a *function
 call*. The postfix expression designates the *called function*, and
@@ -1141,8 +1183,8 @@ call*. The postfix expression designates the *called function*, and
 function. Each argument corresponds to a parameter or the optional ellipsis in
 the called function's definition. An argument can have any type. In a function
 call, *postfix-expression* is evaluated first, followed by each
-*assignment-expression* in the order left-to-right. There is a sequence
-point ([§§](#general)) right before the function is called. For details of the
+*assignment-expression* in the order left-to-right. There is a [sequence
+point](#general) right before the function is called. For details of the
 type and value of a function call see [§§](11-statements.md#the-return-statement). The value of a function
 call, if any, is a non-modifiable lvalue.
 
@@ -1162,7 +1204,7 @@ invoked instance has no `$this` defined.
 When a function is called, the value of each argument passed to it is
 assigned to the corresponding parameter in that function's definition,
 if such a parameter exists. The assignment of argument values to
-parameters is defined in terms of simple assignment [§§](10-expressions.md#simple-assignment). Any parameters having a
+parameters is defined in terms of [simple assignment](10-expressions.md#simple-assignment). Any parameters having a
 default value but no corresponding argument, takes on that default value.
 
 If an undefined variable is passed using byRef, that variable becomes
@@ -1172,8 +1214,7 @@ Direct and indirect recursive function calls are permitted.
 
 The following discussion applies when *postfix-expression* is a
 *null-safe-member-selection-expression*: If *postfix-expression* is not
-`null`, the behavior is the same as if a *member-selection-expression*
-([§§](10-expressions.md#member-selection-operator)) were used instead of a *null-safe-member-selection-expression*.
+`null`, the behavior is the same as if a [*member-selection-expression*](10-expressions.md#member-selection-operator) were used instead of a *null-safe-member-selection-expression*.
 Otherwise, no function is called, and the *function-call-expression*
 evaluates to `null`. The *expression*s in
 *argument-expression-list* are evaluated.
@@ -1207,8 +1248,10 @@ $anon();  // call the anonymous function
     <i>postfix-expression</i>  ->  <i>name</i>
 </pre>
 
-*postfix-expression* is defined in [§§](10-expressions.md#general-3); *name* is defined in
-[§§](09-lexical-structure.md#names).
+**Defined elsewhere**
+
+* [*name*](09-lexical-structure.md#names)
+* [*postfix-expression*](10-expressions.md#general-3)
 
 **Constraints**
 
@@ -1251,7 +1294,10 @@ $p1->move(3, 9);  // calls public instance method move by name
   <i>postfix-expression</i>  ?->  <i>name</i>
 </pre>
 
-*postfix-expression* is defined in [§§](10-expressions.md#general-3); and *name* is defined in [§§](09-lexical-structure.md#names).
+**Defined elsewhere**
+
+* [*name*](09-lexical-structure.md#names)
+* [*postfix-expression*](10-expressions.md#general-3)
 
 **Constraints**
 
@@ -1261,7 +1307,7 @@ $p1->move(3, 9);  // calls public instance method move by name
 
 **Semantics**
 
-If *postﬁx-expression* is `null`, no property or method is selected and the resulting value is `null`. Otherwise, the behavior is like that of the member-selection operator `->` ([§§](10-expressions.md#member-selection-operator)), except that when *name* designates an instance property of the object designated by *postﬁx-expression*, the resulting value is not an lvalue.
+If *postﬁx-expression* is `null`, no property or method is selected and the resulting value is `null`. Otherwise, the behavior is like that of the [member-selection operator `->`](10-expressions.md#member-selection-operator), except that when *name* designates an instance property of the object designated by *postﬁx-expression*, the resulting value is not an lvalue.
 
 ###Postfix Increment and Decrement Operators
 
@@ -1275,7 +1321,9 @@ If *postﬁx-expression* is `null`, no property or method is selected and the re
     <i>unary-expression</i>  --
 </pre>
 
-*unary-expression* is defined in [§§](10-expressions.md#general-4).
+**Defined elsewhere**
+
+* [*unary-expression*](10-expressions.md#general-4)
 
 **Constraints**
 
@@ -1284,7 +1332,7 @@ lvalue that has arithmetic type.
 
 **Semantics**
 
-These operators behave like their prefix counterparts ([§§](10-expressions.md#prefix-increment-and-decrement-operators)) except
+These operators behave like their [prefix counterparts](10-expressions.md#prefix-increment-and-decrement-operators) except
 that the value of a postfix ++ or -- expression is the value before any
 increment or decrement takes place.
 
@@ -1312,13 +1360,17 @@ $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
     static
 </pre>
 
-*name*, *qualified-name*, and *variable-name* are defined in [§§](09-lexical-structure.md#names).
+**Defined elsewhere**
+
+* [*name*](09-lexical-structure.md#names)
+* [*qualified-name*](09-lexical-structure.md#names)
+* [*variable-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
 If *name* is present, *qualified-name* must be the name of an enum, a class, or an interface type, and *name* must designate an enumeration constant or member within that type. Otherwise, *qualified-name* must be the name of a class or interface type.
 
-*variable-name* must name a value having the classname type ([§§](05-types.md#the-classname-type)).
+*variable-name* must name a value having the [`classname` type](05-types.md#the-classname-type).
 
 *variable-name* `:: class` is not permitted.
 
@@ -1364,7 +1416,7 @@ The value of the form of *scope-resolution-expression* ending in `::class`
 is a string containing the fully qualified name of the current class,
 which for a static qualifier, means the current class context.
 
-*variable-name* `::` *name* results in a constant whose value has the classname type ([§§](05-types.md#the-classname-type)) for the type designated by *variable-name*.
+*variable-name* `::` *name* results in a constant whose value has the [`classname` type](05-types.md#the-classname-type) for the type designated by *variable-name*.
 
 **Examples**
 
@@ -1423,7 +1475,9 @@ class Point {
     <i>expression  **  expression</i>
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
 
 **Constraints**
 
@@ -1461,12 +1515,15 @@ values and the result can be represented as an `int`, the result has type
     <i>await-expression</i>
 </pre>
 
-*postfix-expression* is defined in [§§](10-expressions.md#general-3);
-*prefix-increment-expression* and *prefix-decrement-expression* are
-defined in [§§](10-expressions.md#prefix-increment-and-decrement-operators); *unary-op-expression* is defined in [§§](10-expressions.md#unary-arithmetic-operators);
-*error-control-expression* is defined in [§§](10-expressions.md#error-control-operator); *cast-expression* is
-defined in [§§](10-expressions.md#anonymous-function-creation) and *await-expression* is defined in
-[§§](10-expressions.md#await-operator).
+**Defined elsewhere**
+
+* [*await-expression*](10-expressions.md#await-operator)
+* [*cast-expression*](10-expressions.md#anonymous-function-creation)
+* [*error-control-expression*](10-expressions.md#error-control-operator)
+* [*postfix-expression*](10-expressions.md#general-3)
+* [*prefix-decrement-expression*](10-expressions.md#prefix-increment-and-decrement-operators)
+* [*prefix-increment-expression*](10-expressions.md#prefix-increment-and-decrement-operators)
+* [*unary-op-expression*](10-expressions.md#unary-arithmetic-operators)
 
 **Semantics**
 
@@ -1484,7 +1541,9 @@ These operators associate right-to-left.
     -- <i>unary-expression</i>
 </pre>
 
-*unary-expression* is defined in [§§](10-expressions.md#general-4).   
+**Defined elsewhere**
+
+* [*unary-expression*](10-expressions.md#general-4)
 
 **Constraints**
 
@@ -1495,19 +1554,16 @@ that has arithmetic type.
 
 *Arithmetic Operands*
 
-For a prefix `++` operator, the side
-effect ([§§](#general)) of the operator is to increment by 1, as appropriate, the
+For a prefix `++` operator, the [side effect](#general) of the operator is to increment by 1, as appropriate, the
 value of the operand. The result is the value of the operand after it
 has been incremented. If an int operand's value is the largest
-representable for that type, the type and value of the result is
-implementation-defined ([§§](05-types.md#the-integer-type)).
+representable for that type, the type and value of [the result is implementation-defined](05-types.md#the-integer-type).
 
 For a prefix `--` operator, the side
 effect of the operator is to decrement by 1, as appropriate, the value
 of the operand. The result is the value of the operand after it has been
 decremented. If an int operand's value is the smallest representable for
-that type, the type and value of the result is implementation-defined
-([§§](05-types.md#the-integer-type)).
+that type, the type and value of [the result is implementation-defined](05-types.md#the-integer-type).
 
 For a prefix `++` or `--` operator used with an operand having the value
 `INF`, `-INF`, or `NAN`, there is no side effect, and the result is the
@@ -1532,7 +1588,9 @@ $a = array(100, 200); $v = ++$a[1]; // new value of $ia[1] (201) is assigned
     +  -  !  \
 </pre>
 
-*cast-expression* is defined in [§§](10-expressions.md#cast-operator).
+**Defined elsewhere**
+
+* [*cast-expression*](10-expressions.md#cast-operator)
 
 **Constraints**
 
@@ -1551,7 +1609,7 @@ value of the result is the type and value of the operand. 
 For a unary `-` operator, the value of the
 result is the negated value of the operand. However, if an int operand's
 original value is the smallest representable for that type, the type and
-value of the result is implementation-defined ([§§](05-types.md#the-integer-type)).
+value of [the result is implementation-defined](05-types.md#the-integer-type).
 
 For a unary `!` operator, the type of the
 result is `bool`. The value of the result is `true` if the value of the
@@ -1583,7 +1641,9 @@ $v = ~0b1010101;
     @  <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
 
 **Semantics**
 
@@ -1591,8 +1651,7 @@ Operator `@` suppresses any error messages generated by the evaluation of
 *expression*.
 
 If a custom error-handler has been established using the library
-function [`set_error_handler` (§xx), that
-handler](http://docs.hhvm.com/manual/en/function.set-error-handler.php)is
+function [`set_error_handler`](http://docs.hhvm.com/manual/en/function.set-error-handler.php) that handler is
 still called.
 
 **Examples**
@@ -1617,7 +1676,9 @@ error message displayed.
     bool  int  float  string
 </pre>
 
-*unary-expression* is defined in [§§](10-expressions.md#general-4).   
+**Defined elsewhere**
+
+* [*unary-expression*](10-expressions.md#general-4)
 
 **Semantics**
 
@@ -1640,7 +1701,7 @@ A *cast-type* of `float` results in a conversion to type `float`. See [§§](08-
 A *cast-type* of `string` results in a conversion to type `string`. See [§§](08-conversions.md#converting-to-string-type)
 for details.
 
-Note that *cast-type* cannot be a generic type parameter ([§§](14-generic-types-methods-and-functions.md#type-parameters)).
+Note that *cast-type* cannot be a [generic type parameter](14-generic-types-methods-and-functions.md#type-parameters).
 
 **Examples**
 
@@ -1657,20 +1718,22 @@ Note that *cast-type* cannot be a generic type parameter ([§§](14-generic-type
     await  <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
 
 **Constraints**
 
-This operator must be used within an asynchronous function ([§§](15-functions.md#asynchronous-functions)).
+This operator must be used within an[ asynchronous function](15-functions.md#asynchronous-functions).
 
-*expression* must have a type that implements `Awaitable<T>` ([§§](17-interfaces.md#interface-awaitable)).
+*expression* must have a type that implements [`Awaitable<T>`(17-interfaces.md#interface-awaitable).
 
 The return type of the function containing a use of this operator must be a type that implements `Awaitable<T>`.
 
 *await-expression* can only be used in the following contexts: 
-*	As an *expression-statement* ([§§](11-statements.md#expression-statements))
-*	As the *assignment-expression* in a *simple-assignment-expression* ([§§](10-expressions.md#simple-assignment))
-*	As *expression* in a *return-statement* ([§§](11-statements.md#the-return-statement))
+*	As an [*expression-statement*](11-statements.md#expression-statements)
+*	As the *assignment-expression* in a [*simple-assignment-expression*](10-expressions.md#simple-assignment)
+*	As *expression* in a [*return-statement*](11-statements.md#the-return-statement)
 
 **Semantics**
 
@@ -1726,8 +1789,12 @@ Function `main` calls async function `f`, which in turn awaits on async function
   <i>variable-name</i>
 </pre>
 
-*unary-expression* is defined in [§§](10-expressions.md#general-4); *expression* is defined in
-[§§](10-expressions.md#yield-operator); *qualified-name* is defined in [§§](09-lexical-structure.md#names); and variable-name is defined in [§§](09-lexical-structure.md#names). 
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
+* [*qualified-name*](09-lexical-structure.md#names)
+* [*unary-expression*](10-expressions.md#general-4)
+* [*variable-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
@@ -1735,7 +1802,7 @@ The *expression* in *instanceof-subject* must designate a variable.
 
 *qualified-name* must be the name of a class or interface type.
 
-*variable-name* must name a value having the classname type ([§§](05-types.md#the-classname-type)).
+*variable-name* must name a value having the [`classname` type](05-types.md#the-classname-type).
 
 **Semantics**
 
@@ -1747,8 +1814,8 @@ Operator `instanceof` returns `true` if the variable designated by
 
 If either *expression* is not an instance, `false` is returned.
 
-Note: This operator supersedes the library function `is_a` (§xx), which
-has been deprecated. 
+Note: This operator supersedes the library function [`is_a`](http://www.php.net/is_a), which
+has been deprecated.
 
 **Examples**
 
@@ -1779,7 +1846,9 @@ $e1 instanceof I1     // true
     <i>multiplicative-expression</i>  %  <i>instanceof-expression</i>
 </pre>
 
-*instanceof-expression* is defined in [§§](10-expressions.md#instanceof-operator). 
+**Defined elsewhere**
+
+* [*instanceof-expression*](10-expressions.md#instanceof-operator)
 
 **Constraints**
 
@@ -1795,8 +1864,7 @@ The binary `*` operator produces the product of its operands. If either operand
 `float`, the other is converted to that type, and the result has type
 `float`. Otherwise, both operands have type `int`, in which case, if the
 resulting value can be represented in type `int` that is the result type.
-Otherwise, the type and value of the result is implementation-defined
-([§§](05-types.md#the-integer-type)).
+Otherwise, the type and value of [the result is implementation-defined](05-types.md#the-integer-type).
 
 Division by zero results in a diagnostic followed by a `bool` result
 having value `false`. (The values +/- infinity and NaN cannot be generated
@@ -1837,7 +1905,9 @@ These operators associate left-to-right.
     <i>additive-expression</i>  .  <i>multiplicative-expression</i>
 </pre>
 
-*multiplicative-expression* is defined in [§§](#multiplicative-operators). 
+**Defined elsewhere**
+
+* [*multiplicative-expression*](#multiplicative-operators)
 
 **Constraints**
 
@@ -1854,8 +1924,7 @@ operands when subtracting the right-hand operand from the left-hand one.
 If either operand has type `float`, the other is converted to that type, and
 the result has type `float`. Otherwise, both operands have type `int`, in
 which case, if the resulting value can be represented in type `int` that
-is the result type. Otherwise, the type and value of the result is
-implementation-defined ([§§](05-types.md#the-integer-type)).
+is the result type. Otherwise, the type and value of [the result is implementation-defined](05-types.md#the-integer-type).
 
 If both operands have array type, the binary `+` operator produces a new
 array that is the union of the two operands. The result is a copy of the
@@ -1900,7 +1969,9 @@ true . null → string with value "1"
     <i>shift-expression</i>  &gt;&gt;  <i>additive-expression</i>
 </pre>
 
-*additive-expression* is defined in [§§](10-expressions.md#additive-operators).
+**Defined elsewhere**
+
+* [*additive-expression*](10-expressions.md#additive-operators)
 
 **Constraints**
 
@@ -1947,7 +2018,9 @@ These operators associate left-to-right.
     <i>relational-expression</i>  &gt;=  <i>shift-expression</i>
 </pre>
 
-*shift-expression* is defined in [§§](10-expressions.md#bitwise-shift-operators). 
+**Defined elsewhere**
+
+* [*shift-expression*](10-expressions.md#bitwise-shift-operators)
 
 **Constraints**
 
@@ -2005,7 +2078,9 @@ Ideally, one might expect some constraints on the combination of operand types. 
     <i>equality-expression</i>  !==  <i>relational-expression</i>
 </pre>
 
-*relational-expression* is defined in [§§](10-expressions.md#relational-operators). 
+**Defined elsewhere**
+
+* [*relational-expression*](10-expressions.md#relational-operators)
 
 **Semantics**
 
@@ -2042,7 +2117,7 @@ The operands are processed using the following steps, in order:
     defined to be less than `true`.
 4.  If the operands both have arithmetic type, string type, or are
     resources, for operators `==` and `!=`, they are converted to the
-    corresponding arithmetic type ([§§](08-conversions.md#converting-to-integer-type) and [§§](08-conversions.md#converting-to-floating-point-type)). The result is the
+    corresponding arithmetic type [§§](08-conversions.md#converting-to-integer-type) and [§§](08-conversions.md#converting-to-floating-point-type)). The result is the
     numerical comparison of the two operands after any conversion.
 5.  If both operands have array type, for operators `==` and `!=`,
     the arrays are equal if they have the same set of key/value pairs and the corresponding values have the same type,
@@ -2099,7 +2174,9 @@ Ideally, one might expect some constraints on the combination of operand types. 
     <i>bit-wise-AND-expression</i>  &amp;  <i>equality-expression</i>
 </pre>
 
-*equality-expression* is defined in [§§](10-expressions.md#equality-operators). 
+**Defined elsewhere**
+
+* [*equality-expression*](10-expressions.md#equality-operators)
 
 **Constraints**
 
@@ -2130,7 +2207,9 @@ $uLetter = $lLetter & ~0x20;  // clear the 6th bit to make letter 'S'
     <i>bitwise-exc-OR-expression</i>  ^   <i>bitwise-AND-expression</i>
 </pre>
 
-*bitwise-AND-expression* is defined in [§§](10-expressions.md#bitwise-and-operator). 
+**Defined elsewhere**
+
+* [*bitwise-AND-expression*](10-expressions.md#bitwise-and-operator)
 
 **Constraints**
 
@@ -2163,7 +2242,9 @@ $v1 = $v1 ^ $v2;    // $v1 is now -987, and $v2 is now 1234
     <i>bitwise-inc-OR-expression</i>  |  <i>bitwise-exc-OR-expression</i>
 </pre>
 
-*bitwise-exc-OR-expression* is defined in [§§](10-expressions.md#bitwise-exclusive-or-operator). 
+**Defined elsewhere**
+
+* [*bitwise-exc-OR-expression*](10-expressions.md#bitwise-exclusive-or-operator)
 
 **Constraints**
 
@@ -2194,7 +2275,9 @@ $lLetter = $upCaseLetter | 0x20;  // set the 6th bit to make letter 'a'
     <i>logical-AND-expression</i>  &amp;&amp;  <i>bitwise-inc-OR-expression</i>
 </pre>
 
-*bitwise-inc-OR-expression* is defined in [§§](10-expressions.md#bitwise-inclusive-or-operator). 
+**Defined elsewhere**
+
+* [*bitwise-inc-OR-expression*](10-expressions.md#bitwise-inclusive-or-operator)
 
 **Constraints**
 
@@ -2225,7 +2308,9 @@ if ($month > 1 && $month <= 12) ...
     <i>logical-inc-OR-expression</i>  ||  <i>logical-AND-expression</i>
 </pre>
 
-*logical-AND-expression* is defined in [§§](10-expressions.md#logical-and-operator). 
+**Defined elsewhere**
+
+* [*logical-AND-expression*](10-expressions.md#logical-and-operator)
 
 **Constraints**
 
@@ -2256,8 +2341,10 @@ if ($month < 1 || $month > 12) ...
     <i>logical-inc-OR-expression</i>  ?  <i>expression<sub>opt</sub></i>  :  <i>conditional-expression</i>
 </pre>
 
-*logical-inc-OR-expression* is defined in [§§](10-expressions.md#logical-inclusive-or-operator); and *expression* is
-defined in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
+* [*logical-inc-OR-expression*](10-expressions.md#logical-inclusive-or-operator)
 
 **Semantics**
 
@@ -2303,8 +2390,8 @@ function factorial(int $int): int
 
 **Defined elsewhere**
 
-* [*logical-OR-expression*](#logical-inclusive-or-operator-form-1)
 * [*expression*](#general-6)
+* [*logical-OR-expression*](#logical-inclusive-or-operator-form-1)
 
 **Semantics**
 
@@ -2355,7 +2442,15 @@ function main(): void {
   <i>compound-statement</i>
 </pre>
 
-*coalesce-expression* is defined in [§§](10-expressions.md#coalesce-operator); *conditional-expression* is defined in [§§](10-expressions.md#conditional-operator); *variable-name* is defined in [§§](09-lexical-structure.md#names); *anonymous-function-parameter-declaration-list* is defined in [§§](10-expressions.md#anonymous-function-creation); *anonymous-function-return* is defined in [§§](10-expressions.md#anonymous-function-creation); *expression* is defined in [§§](10-expressions.md#yield-operator); and *compound-statement* is defined in [§§](11-statements.md#compound-statements).
+**Defined elsewhere**
+
+* [*anonymous-function-parameter-declaration-list*](10-expressions.md#anonymous-function-creation)
+* [*anonymous-function-return*](10-expressions.md#anonymous-function-creation)
+* [*coalesce-expression*](10-expressions.md#coalesce-operator)
+* [*compound-statement*](11-statements.md#compound-statements)
+* [*conditional-expression*](10-expressions.md#conditional-operator)
+* [*expression*](10-expressions.md#yield-operator)
+* [*variable-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
@@ -2363,9 +2458,9 @@ Each variable-name in an *anonymous-function-parameter-declaration-list* must be
 
 If any *anonymous-function-parameter-declaration* has a *default-argument-specifier*, then all subsequent *anonymous-function-parameter-declarations* in the same *anonymous-function-parameter-declaration-list* must also have a *default-argument-specifier*.
 
-If the *type-specifier* in *anonymous-function-return* is `void`, the *compound-statement* must not contain any `return` statements ([§§](11-statements.md#the-return-statement)) having an *expression*. Otherwise, if that *type-specifier* is not omitted, the *expression* in *anonymous-function-body*, or all `return` statements in *compound-statement* must contain an *expression* whose type is a subtype of the type indicated by the return type's *type-specifier*.
+If the *type-specifier* in *anonymous-function-return* is `void`, the *compound-statement* must not contain any [`return` statements](11-statements.md#the-return-statement) having an *expression*. Otherwise, if that *type-specifier* is not omitted, the *expression* in *anonymous-function-body*, or all `return` statements in *compound-statement* must contain an *expression* whose type is a subtype of the type indicated by the return type's *type-specifier*.
 
-If `async` is present, *return-type* must be a type that implements `Awaitable<T>` ([§§](17-interfaces.md#interface-awaitable)).
+If `async` is present, *return-type* must be a type that implements [`Awaitable<T>`](17-interfaces.md#interface-awaitable).
 
 **Semantics**
 
@@ -2376,7 +2471,7 @@ $doublerl = ($p) ==> $p * 2;
 $doubler2 = function ($p) { return $p * 2; };
 ```
 
-Lambda expressions automatically capture any variables appearing in their body that also appear in the enclosing lexical function scopes transitively (i.e., nested lambda expressions can refer to variables from several levels out, with intermediate lambda expressions capturing that variable so it can be forwarded to the inner lambda expression). Variables are only captured when they are statically visible as names in the enclosing scope; i.e., the capture list is computed statically, not based on dynamically defined names in the scope. A lambda expression's captured variables are captured with the same by-value semantics that are used for variables in an *anonymous-function-use-clause* of an *anonymous-function-creation-expression* ([§§](10-expressions.md#anonymous-function-creation)).
+Lambda expressions automatically capture any variables appearing in their body that also appear in the enclosing lexical function scopes transitively (i.e., nested lambda expressions can refer to variables from several levels out, with intermediate lambda expressions capturing that variable so it can be forwarded to the inner lambda expression). Variables are only captured when they are statically visible as names in the enclosing scope; i.e., the capture list is computed statically, not based on dynamically defined names in the scope. A lambda expression's captured variables are captured with the same by-value semantics that are used for variables in an *anonymous-function-use-clause* of an [*anonymous-function-creation-expression*](10-expressions.md#anonymous-function-creation).
 
 This operator is right-associative and lambda-expressions can be chained together, allowing expressions of the form `$f = $x ==> $y ==> $x + $y`.
 
@@ -2386,7 +2481,7 @@ If the *type-specifier* for a parameter is omitted, that type is inferred.
 
 If *anonymous-function-return* is omitted, the return type is inferred.
 
-The anonymous function in a *lambda-expression* can be asynchronous ([§§](15-functions.md#asynchronous-functions)).
+The anonymous function in a *lambda-expression* can be [asynchronous](15-functions.md#asynchronous-functions).
 
 **Examples**
 
@@ -2419,9 +2514,11 @@ $fn2 = $fn1(10); $res = $fn2(7);  // result is 17
     <i>compound-assignment-expression</i>
 </pre>
 
-*lambda-expression* is defined in [§§](10-expressions.md#lambda-expressions);
-*simple-assignment-expression* is defined in [§§](10-expressions.md#simple-assignment); and
-*compound-assignment-expression* is defined in [§§](10-expressions.md#compound-assignment).
+**Defined elsewhere**
+
+* [*compound-assignment-expression*](10-expressions.md#compound-assignment)
+* [*lambda-expression*](10-expressions.md#lambda-expressions)
+* [*simple-assignment-expression*](10-expressions.md#simple-assignment)
 
 **Constraints**
 
@@ -2441,8 +2538,10 @@ These operators associate right-to-left.
     <i>unary-expression</i>  =  <i>assignment-expression</i>
 </pre>
 
-*unary-expression* is defined in [§§](10-expressions.md#general-4); *assignment-expression* is
-defined in [§§](10-expressions.md#general-5).
+**Defined elsewhere**
+
+* [*assignment-expression*](10-expressions.md#general-5)
+* [*unary-expression*](10-expressions.md#general-4)
 
 **Constraints**
 
@@ -2450,7 +2549,7 @@ If the location designated by the left-hand operand is a string element,
 the key must not be a negative-valued `int`, and the right-hand operand
 must have type `string`.
 
-If *unary-expression* is a *subscript-expression* ([§§](10-expressions.md#subscript-operator)) whose *postfix-expression* designates a vector-like array and whose *expression* is present, if *expression* designates a non-existent element, the behavior is unspecified.
+If *unary-expression* is a [*subscript-expression*](10-expressions.md#subscript-operator) whose *postfix-expression* designates a vector-like array and whose *expression* is present, if *expression* designates a non-existent element, the behavior is unspecified.
 
 If *unary-expression* is a *subscript-expression* whose *postfix-expression* designates a `Map` and whose *expression* is omitted, *assignment-expression* must designate a `Pair`.
 
@@ -2513,8 +2612,10 @@ $a = new C();   // make $a point to the allocated object
     **=  *=  /=  %=  +=  -=  .=  &lt;&lt;=  >>=  &amp;=  ^=  |=
 </pre>
 
-*unary-expression* is defined in [§§](10-expressions.md#general-4); *assignment-expression* is
-defined in [§§](10-expressions.md#general-5).
+**Defined elsewhere**
+
+* [*assignment-expression*](10-expressions.md#general-5)
+* [*unary-expression*](10-expressions.md#general-4)
 
 **Constraints**
 
@@ -2538,7 +2639,6 @@ $i = 1;
 $a[$i++] += 50; // $a[1] = 250, $i → 2
 ```
 
-
 ##`yield` Operator
 
 **Syntax**
@@ -2549,12 +2649,14 @@ $a[$i++] += 50; // $a[1] = 250, $i → 2
     yield  <i>array-element-initializer</i>
 </pre>
 
-*assignment-expression* is defined in [§§](10-expressions.md#general-5);
-*array-element-initializer* is defined in [§§](#array-creation-operator).
+**Defined elsewhere**
+
+* [*array-element-initializer*](#array-creation-operator)
+* [*assignment-expression*](10-expressions.md#general-5)
 
 **Constraints**
 
-`yield` must not be used inside an async function, method, or closure ([§§](15-functions.md#asynchronous-functions)).
+`yield` must not be used inside an [async function, method, or closure](15-functions.md#asynchronous-functions).
 
 **Semantics**
 
@@ -2564,22 +2666,21 @@ pairs where each pair represents the next in some series. For example, a
 generator might *yield* random numbers or the series of Fibonacci
 numbers. When a generator function is called explicitly, it returns an
 object of type `Generator` (see below and [§§](16-classes.md#class-generator)), which implements the interface
-`Iterator` ([§§](15-interfaces.md#interface-iterator)). As such, this allows that object to be iterated over
-using the `foreach` statement ([§§](11-statements.md#the-foreach-statement)). During each iteration, the Engine
+[`Iterator`](15-interfaces.md#interface-iterator). As such, this allows that object to be iterated over
+using the [`foreach` statement](11-statements.md#the-foreach-statement). During each iteration, the Engine
 calls the generator function implicitly to get the next key/value pair.
 Then the Engine saves the state of the generator for subsequent
 key/value pair requests.
 
 This operator produces the result `null` unless the method
-`Generator->send` ([§§](16-classes.md#class-generator)) was called to provide a result value. This
+[`Generator->send`](16-classes.md#class-generator) was called to provide a result value. This
 operator has the side effect of generating the next value in the
 collection.
 
 Before being used, an *element-key* must have, or be converted to, type
 `int` or `string`. Keys with `float` or `bool` values, or strings whose contents
-match exactly the pattern of *decimal-literal* ([§§](09-lexical-structure.md#integer-literals)), are
-converted to `int` ([§§](08-conversions.md#converting-to-integer-type)). Values of all other key types are converted to
-`string` ([§§](08-conversions.md#converting-to-string-type)).
+match exactly the pattern of [*decimal-literal*](09-lexical-structure.md#integer-literals), are
+[converted to `int`](08-conversions.md#converting-to-integer-type). Values of all other key types are [converted to `string`](08-conversions.md#converting-to-string-type).
 
 If *element-key* is omitted from an *array-element-initializer*, an
 element key of type `int` is associated with the corresponding
@@ -2638,12 +2739,18 @@ foreach (series(1, 5, "X") as $key => $val) { /* process each key/val pair */ }
     <i>expression</i>
 </pre>
 
-*array-creation-expression* is defined in [§§](10-expressions.md#array-creation-operator); *collection-literal* is defined in [§§](10-expressions.md#collection-literals); *tuple-literal* is defined in [§§](10-expressions.md#tuple-literals); *shape-literal* is defined in [§§](10-expressions.md#shape-literals); and *expression* is defined in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
+
+* [*array-creation-expression*](10-expressions.md#array-creation-operator)
+* [*collection-literal*](10-expressions.md#collection-literals)
+* [*expression*](10-expressions.md#yield-operator)
+* [*shape-literal*](10-expressions.md#shape-literals)
+* [*tuple-literal*](10-expressions.md#tuple-literals)
 
 **Constraints:**
 
 All of the *element-key* and *element-value* *expression*s in
-*array-creation-expression* ([§§](10-expressions.md#array-creation-operator)) must be *literals* ([§§](09-lexical-structure.md#general-2)), or *tuple-literals* and/or *shape-literals* containing only *literals*.
+[*array-creation-expression*](10-expressions.md#array-creation-operator) must be [*literals*](09-lexical-structure.md#general-2), or *tuple-literals* and/or *shape-literals* containing only *literals*.
 
 All of the *expression*s in a *collection-literal* must be *literals*.
 
@@ -2652,11 +2759,11 @@ All of the *expression*s in *tuple-literal* must be *literals*.
 All of the *expression*s in *shape-literal* must be *literals*.
 
 *expression* must have a scalar type, and be a literal or the name of an
-existing c-constant ([§§](06-constants.md#general)) that is currently in scope.
+existing [c-constant](06-constants.md#general) that is currently in scope.
 
 **Semantics:**
 
 A *const-expression* is the value of a c-constant. A *const-expression*
 is required in several contexts, such as in initializer values in a
-*const-declaration* ([§§](16-classes.md#constants)) and default initial values in a function
-definition ([§§](15-functions.md#function-definitions)).
+[*const-declaration*](16-classes.md#constants) and default initial values in a [function
+definition](15-functions.md#function-definitions).
