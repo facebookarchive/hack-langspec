@@ -34,8 +34,6 @@ pr_bool_string: array(2) {
   [0]=>
   string(3) "def"
 }
-pr_bool_void: array(0) {
-}
 
 ====== int keys ======
 
@@ -69,8 +67,6 @@ pr_int_string: array(2) {
   [-5]=>
   string(3) "def"
 }
-pr_int_void: array(0) {
-}
 
 ====== float keys (implicitly converted to int) ======
 
@@ -103,8 +99,6 @@ pr_float_string: array(2) {
   string(3) "abc"
   [9]=>
   string(3) "def"
-}
-pr_float_void: array(0) {
 }
 
 ====== num keys (implicitly converted to int) ======
@@ -143,8 +137,6 @@ pr_num_string: array(2) {
   [9]=>
   string(3) "def"
 }
-pr_num_void: array(0) {
-}
 
 ====== string keys ======
 
@@ -180,25 +172,9 @@ pr_string_string: array(2) {
   ["green"]=>
   string(2) "no"
 }
-pr_string_void: array(0) {
-}
 
 ====== void keys ======
 
-pr_void_bool: array(0) {
-}
-pr_void_int: array(1) {
-  [""]=>
-  int(123)
-}
-pr_void_float: array(0) {
-}
-pr_void_num: array(0) {
-}
-pr_void_string: array(0) {
-}
-pr_void_void: array(0) {
-}
 
 ====== array<bool> keys ======
 
@@ -212,8 +188,6 @@ pr_arraybool_num: array(0) {
 }
 pr_arraybool_string: array(0) {
 }
-pr_arraybool_void: array(0) {
-}
 
 ====== C1 keys ======
 
@@ -226,6 +200,4 @@ pr_C1_float: array(0) {
 pr_C1_num: array(0) {
 }
 pr_C1_string: array(0) {
-}
-pr_C1_void: array(0) {
 }

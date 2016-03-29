@@ -1,4 +1,4 @@
-<?hh // strict
+//<?hh // strict
 
 namespace NS_subscripting_2;
 

@@ -1,7 +1,7 @@
 ================= Class C1 ===================
 
 Inside NS_arrays2\C1::__construct
-object(NS_arrays2\C1)#1 (30) {
+object(NS_arrays2\C1)#1 (29) {
   ["a_defint_string":"NS_arrays2\C1":private]=>
   array(2) {
     [0]=>
@@ -48,9 +48,6 @@ object(NS_arrays2\C1)#1 (30) {
     int(20)
     [""]=>
     int(30)
-  }
-  ["a_void":"NS_arrays2\C1":private]=>
-  array(0) {
   }
   ["a_bool":"NS_arrays2\C1":private]=>
   array(2) {
@@ -255,13 +252,13 @@ result of (bool) = 1
 result of (int) = 0
 result of (int) = 1
 
-Notice: Array to string conversion in %s/tests/Types/arrays.php on line 178
+Notice: Array to string conversion in %s/tests/Types/arrays.php on line 181
 result of (string) = string(5) "Array"
 
-Notice: Array to string conversion in %s/tests/Types/arrays.php on line 180
+Notice: Array to string conversion in %s/tests/Types/arrays.php on line 183
 result of (string) = string(5) "Array"
 
-Notice: Array to string conversion in %s/tests/Types/arrays.php on line 182
+Notice: Array to string conversion in %s/tests/Types/arrays.php on line 185
 result of (string) = string(5) "Array"
 ================= Class C1::test_intrinsics ===================
 

@@ -1,6 +1,6 @@
 <?hh // strict
 
-namespace NS_shapes_rf;
+namespace NS_shapes_rf_in_types_dir;
 
 // ------------------------------------------------------------
 
@@ -11,18 +11,15 @@ class C {
   const num KEY4 = 2.5;
 }
 
-// ----------- Is a shape really a type? ------------
-/*
-// As the shape "type" CANNOT be used in the usual places, is it really a type?
+// ----------- Is a shape really a type? Yes, this has changed ------------
 
 function CXf1(shape('x' => int, 'y' => int) $p1): void {}
-function CXf2(): shape('x' => int, 'y' => int) {}
+function CXf2(): shape('x' => int, 'y' => int) { return shape('x' => 3, 'y' => 5); }
 class CX {
-  private shape('x' => int, 'y' => int) $p1;
+  private ?shape('x' => int, 'y' => int) $p1 = null;
 }
-*/
 
-// However, the following is OK
+// Previously, we had to make a shape an alias before using it
 
 type Point = shape('x' => int, 'y' => int);
 function CYf1(Point $p1): void {}
@@ -69,7 +66,7 @@ type st2a = shape('x' => int);		// can have 1 field with '-quoted string key
 //type st2d = shape("x\tx\$" => int);	// gags too
 
 /*
-// can't use a heredoc literal 
+// can't use a heredoc literal
 // hhvm says at <<< line: Fatal error: syntax error, unexpected T_START_HEREDOC, expecting ')'
 
 type st2e = shape(
@@ -80,7 +77,7 @@ ID
 */
 
 /*
-// can't use a nowdoc literal 
+// can't use a nowdoc literal
 // hhvm says at <<< line: Fatal error: syntax error, unexpected T_START_HEREDOC, expecting ')'
 
 type st2f = shape(
@@ -102,7 +99,7 @@ function st3a_test(): st3a { return shape(C::KEY1 => 88); }
 
 // ----------- Shapes with int keys ------------
 
-// There seems to be confusion about whether a key can have type int
+// There seems to be confusion about whether a key can have type int. The answer is NO!
 
 //type st4a = shape(3 => int);		// gags: Expected string literal or class constant
 type st4b = shape(C::KEY2 => int);	// but can have an int key via class constant!!!

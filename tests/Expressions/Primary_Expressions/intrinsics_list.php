@@ -10,6 +10,7 @@ function main(): void {
 ///*
   echo "--------- test with full and omitted LHS vars -------------\n";
 
+  // UNSAFE (type check error - diff D3113299 out to fix)
   $v = list($min, $max, $avg) = array(0, 100, 67);
   echo "\$min: $min, \$max: $max, \$avg: $avg\n";
   print_r($v);
@@ -37,9 +38,11 @@ function main(): void {
 */
 
 ///*
-  list($min, $max, ) = array(10, 1100, 167);
+  // UNSAFE (type error here - seems to work for collection like Vector but not array, maybe?)
+  list($min, $max,) = array(10, 1100, 167);
   echo "\$min: $min, \$max: $max,\n";
 
+  // UNSAFE (type error here - seems to work for collection like Vector but not array, maybe?)
   list($min, $max) = array(20, 2100, 267);
   echo "\$min: $min, \$max: $max\n";
 

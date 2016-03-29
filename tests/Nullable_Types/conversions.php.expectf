@@ -33,7 +33,7 @@
 (int)array(): pr_int = >0<
 (int)array(10,20,30): pr_int = >1<
 
-Notice: Object of class NS_conversions\Button could not be converted to int in %s/tests/Nullable_Types/conversions.php on line 190
+Notice: Object of class NS_conversions_in_nullable_dir\Button could not be converted to int in %s/tests/Nullable_Types/conversions.php on line 190
 (int)new Button(): pr_int = >1<
 (int)STDOUT: pr_int = >2<
 
@@ -55,7 +55,7 @@ Notice: Object of class NS_conversions\Button could not be converted to int in %
 (float)array(): pr_float = >0<
 (float)array(10,20,30): pr_float = >1<
 
-Notice: Object of class NS_conversions\Button could not be converted to int in %s/tests/Nullable_Types/conversions.php on line 260
+Notice: Object of class NS_conversions_in_nullable_dir\Button could not be converted to int in %s/tests/Nullable_Types/conversions.php on line 260
 (float)new Button(): pr_float = >1<
 (float)STDOUT: pr_float = >2<
 
@@ -84,10 +84,10 @@ Notice: Object of class NS_conversions\Button could not be converted to int in %
 (int)array(10,20,30): pr_num = >1<
 (float)array(10,20,30): pr_num = >1<
 
-Notice: Object of class NS_conversions\Button could not be converted to int in %s/tests/Nullable_Types/conversions.php on line 336
+Notice: Object of class NS_conversions_in_nullable_dir\Button could not be converted to int in %s/tests/Nullable_Types/conversions.php on line 336
 (int)new Button(): pr_num = >1<
 
-Notice: Object of class NS_conversions\Button could not be converted to int in %s/tests/Nullable_Types/conversions.php on line 338
+Notice: Object of class NS_conversions_in_nullable_dir\Button could not be converted to int in %s/tests/Nullable_Types/conversions.php on line 338
 (float)new Button(): pr_num = >1<
 (int)STDOUT: pr_num = >2<
 (float)STDOUT: pr_num = >2<

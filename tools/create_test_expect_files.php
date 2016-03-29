@@ -15,7 +15,11 @@ function check_output(array<string> $output, string $test_file): array<string> {
   return $output;
 }
 
-function main(): void {
+function main(?string $replace_option = null): void {
+  $replace_all = false;
+  if ($replace_option === 'replace') {
+    $replace_all = true;
+  }
   $tests_dir = __DIR__ . "/../tests";
 
   $di = new RecursiveDirectoryIterator($tests_dir,
@@ -24,8 +28,9 @@ function main(): void {
   $output = array();
   foreach ($it as $test_file) {
     if ($test_file->isFile() && $test_file->getExtension() === "php") {
-      if (!file_exists($test_file . ".expect") &&
-          !file_exists($test_file . ".expectf")) {
+      if ($replace_all ||
+          (!file_exists($test_file . ".expect") &&
+           !file_exists($test_file . ".expectf"))) {
         exec("hhvm " . $test_file . " 2>&1", $output);
         $updated_output = check_output($output, $test_file->getRealPath());
         $file_output = implode(PHP_EOL, $updated_output);
@@ -40,4 +45,8 @@ function main(): void {
   }
 }
 
-main();
+if (count($argv) === 2) {
+  main($argv[1]);
+} else {
+  main();
+}

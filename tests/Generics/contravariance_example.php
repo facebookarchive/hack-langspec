@@ -18,7 +18,9 @@ class Cat extends Animal {}
 function f(C<Cat> $p1): void { var_dump($p1); }
 
 function main(): void {
+  // UNSAFE (type error - this is not accepted)
   f(new C(new Animal()));	// accepted
+  // UNSAFE (type error - this is not accepted)
   f(new C(new Cat()));
 }
 

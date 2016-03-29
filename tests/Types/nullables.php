@@ -1,6 +1,6 @@
 <?hh // strict
 
-namespace NS_nullables;
+namespace NS_nullables_in_types_dir;
 
 class Button {}
 class CustomButton extends Button {}

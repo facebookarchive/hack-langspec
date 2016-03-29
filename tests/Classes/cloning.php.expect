@@ -49,8 +49,6 @@ object(NS_cloning\Manager)#7 (2) {
 }
 Inside NS_cloning\Manager::__clone
 Inside NS_cloning\Employee::__clone
-
-====>>>>NULL
 object(NS_cloning\Manager)#8 (2) {
   ["level":"NS_cloning\Manager":private]=>
   int(23)

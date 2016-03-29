@@ -19,7 +19,7 @@ function main(int $idx): void {
   $v1[] = 20;
   $v1[0] = -5;
 
-//  $v1[] += 17;	// throws InvalidOperationException; 
+//  $v1[] += 17;	// throws InvalidOperationException;
 			// Cannot use [] with collections for reading in an lvalue context
 //  $v1[]++;	// ditto
 //  ++$v1[];	// ditto
@@ -325,6 +325,8 @@ function main(int $idx): void {
   echo "Pair \$p1 = >$p1<\n";
 
   $p2 = Pair {15, 75};
+  
+  // UNSAFE (type check error - diff D3113087 out to fix)
   $v = list($min, $max) = $p2;
   echo "\$min: $min, \$max: $max\n";
   var_dump($v);

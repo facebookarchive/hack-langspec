@@ -97,7 +97,7 @@ class Point {
 
   public function __toString(): string {
     return '(' . $this->x . ',' . $this->y . ')';
-  }
+  }	
 }
 
 function main(): void {
@@ -140,7 +140,6 @@ function main(): void {
   echo "\$p2: $p2\n";
 }
 
-/* HH_FIXME[1002] */
 /* HH_FIXME[1002] call to main in strict*/
 main();
 

@@ -25,7 +25,7 @@ namespace NS20 {
 }
 
 namespace {
-  function main(): void {
+  function main_namespaces2(): void {
     \NS10\f10();
     f20();
     \NS20\f30();
@@ -33,4 +33,4 @@ namespace {
 }
 
 /* HH_FIXME[1002] call to main in strict*/
-main();
+main_namespaces2();

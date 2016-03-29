@@ -14,10 +14,8 @@ function f2(): (bool, array<int>, float) {
   return tuple(true, array(99, 88, 77), 10.5);
 }
 
-
 function ft1((int, int) $p1): void {}
 function ft2(): (int, int) { return tuple(10, 20); }
-function ft3((int, void) $p1): void {}		// even void is allowed as an element type
 
 function main(?int $p1 = 123): void {
 //  $t1 = tuple();	// must have at least 1 element

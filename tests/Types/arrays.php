@@ -35,11 +35,14 @@ class C1 {
   private array<num,int> $a_num_int = array(5 => 10, 5.5 => 30);
   private array<mixed,int> $a_mixed_int = array(5 => 10, null => 20, 5.5 => 30);
 //*/
-///*
+/*
 // The following is accepted, but one can never add any elements to it. Is there a good use for it?
 
   private array<void> $a_void = array();
-//*/
+
+// Discovered to be no longer accepted as of Jan 18, 2016
+
+*/
 /*
 // HHVM ==> SegFault
 //  private array<resource> $a_resource = array(STDIN, STDOUT);

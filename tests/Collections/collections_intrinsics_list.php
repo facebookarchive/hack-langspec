@@ -22,6 +22,7 @@ function main(): void {
   list($min) = Vector {0, 100, 67};
   echo "\$min: $min\n";
 
+  // UNSAFE (type check error - diff D3113087 out to fix)
   $v = list($first, $second) = Pair {-5, 7};
   echo "\$first: $first, \$second: $second\n";
   print_r($v);
@@ -46,6 +47,7 @@ function main(): void {
   echo "\$min: $min, \$max: $max, \$avg: $avg\n";
   print_r($v);
 
+  // UNSAFE (type check error - diff D3113087 out to fix)
   $v = list($first, $second) = Pair {Vector {1, 7}, Vector {3, 6}};
   echo "\$first: $first, \$second: $second\n";
   print_r($v);
@@ -58,6 +60,7 @@ function main(): void {
   print_r($v);
 
   $a = array();
+  // UNSAFE (type check error - diff D3113087 out to fix)
   $v = list($a[0], $a[2]) = Pair {12, 24};
   print_r($a);
   print_r($v);

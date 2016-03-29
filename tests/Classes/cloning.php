@@ -43,8 +43,7 @@ class Manager extends Employee {
   public function __clone(): void {
     echo "Inside " . __METHOD__ . "\n";
 
-    $v = parent::__clone();
-    echo "\n====>>>>"; var_dump($v);
+    parent::__clone();
 
     // make a copy of Manager object
   }

@@ -1,6 +1,6 @@
 <?hh // strict
 
-namespace NS_shapes;
+namespace NS_shapes_in_types_dir;
 
 require_once 'shapes_rf.php';
 
@@ -20,7 +20,7 @@ function main(): void {
 <<<ID
 XXX
 ID
- => 40, 
+ => 40,
 <<<'ID'
 YYY
 ID
@@ -40,7 +40,7 @@ ID
 
   $point1 = shape('x' => -3, 'y' => 6);
   echo "\$point1 is " . $point1['x'] . "\n";
-//  echo "\$point1 instanceof Point is " . 
+//  echo "\$point1 instanceof Point is " .
 //    (($point1 instanceof \NS_shapes_rf\Point) ? "True" : "False") . "\n";	// False
 
 /*
@@ -61,7 +61,7 @@ ID
 
   $str = \NS_shapes_rf\Point_toString($point1);
   echo "\$point1 is $str\n";
-//  echo "\$point1 instanceof Point is " . 
+//  echo "\$point1 instanceof Point is " .
 //    (($point1 instanceof \NS_shapes_rf\Point) ? "True" : "False") . "\n";	// False
 
 // The following function-call argument is incompatible with PointNT while alias is created using 'newtype'.
@@ -72,6 +72,11 @@ ID
 
   $str = \NS_shapes_rf\PointNT_toString(\NS_shapes_rf\PointNT_getOrigin());
   echo "Origin is $str\n";
+
+  echo "----------- Create some shape values ------------\n\n";
+
+  $v = is_array(shape('x' => -3, 'y' => 6));
+  echo "A shape " . ($v ? "is" : "is not") . " an array\n";
 }
 
 /* HH_FIXME[1002] call to main in strict*/

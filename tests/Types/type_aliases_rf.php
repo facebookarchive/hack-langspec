@@ -22,8 +22,13 @@ newtype OTA_bool3 = OTA_bool1;	// aliasing an alias
 
 // ------------------------------------------------------
 
+
+/*
+// Discovered to be no longer accepted as of Jan 18, 2016
+
 type TTA_void = void;
 newtype OTA_void = void;
+*/
 
 type TTA_int = int;
 type TTA_float = float;
