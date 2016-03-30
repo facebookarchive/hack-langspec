@@ -7,6 +7,4 @@ use by the following:
 -   Implementers of a test suite for the Hack language
 -   Programmers writing Hack code
 
-For now, the runtime library has been excluded, as that is documented at
-[docs.hhvm.com](http://docs.hhvm.com). As such, all forward references to library facilities have placeholders of the form (§xx).
-
+For now, the runtime library has been excluded, as that is documented at [www.php.net](http://www.php.net) and [docs.hhvm.com](http://docs.hhvm.com). As such, all forward references to library facilities have placeholders of the form (§xx).
