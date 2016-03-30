@@ -10,8 +10,10 @@
     <i>require-once-expression</i>
 </pre>
 
-*require-multiple-directive* is described in [§§](12-script-inclusion.md#the-require-directive); and
-*require-once-expression* is described in [§§](12-script-inclusion.md#the-require_once-directive).
+**Defined elsewhere**
+
+* [*require-multiple-directive*](12-script-inclusion.md#the-require-directive)
+* [*require-once-expression*](12-script-inclusion.md#the-require_once-directive)
 
 **Semantics:**
 
@@ -39,7 +41,7 @@ The name used to specify an include file may contain an absolute or
 relative path. In the latter case, an implementation may use the
 configuration directive
 [`include_path`](http://docs.hhvm.com/manual/en/ini.core.php#ini.include-path)
-(§xx) to resolve the include file's location.
+to resolve the include file's location.
 
 ##The `require` Directive
 
@@ -53,11 +55,13 @@ configuration directive
   <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
 
 **Constraints**
 
-*expression* must be a string that designates a file that exists, is accessible, and whose format is suitable for inclusion (that is, starts with a Hack start-tag ([§§](04-basic-concepts.md#program-structure))).
+*expression* must be a string that designates a file that exists, is accessible, and whose format is suitable for inclusion (that is, starts with a [Hack start-tag](04-basic-concepts.md#program-structure)).
 
 **Semantics:**
 
@@ -65,7 +69,7 @@ If the designated file is not accessible, execution is terminated.
 
 Variables defined in an included file take on scope of the source line on which the inclusion occurs in the including file. However, functions and classes defined in the included file are given global scope.
 
-The library function `get_included_files` (§xx) provides the names of
+The library function [`get_included_files`](http://www.php.net/get_included_files) provides the names of
 all files included or required.
 
 **Examples**
@@ -85,11 +89,13 @@ require ('Circle.php');
     require_once  <i>include-filename</i>  ;
 </pre>
 
-*include-filename* is defined in [§§](12-script-inclusion.md#the-require-directive).   
+**Defined elsewhere**
+
+* [*include-filename*](12-script-inclusion.md#the-require-directive)
 
 **Semantics:**
 
-This operator is identical to operator `require` ([§§](12-script-inclusion.md#the-require-directive)) except that in
+This operator is identical to operator [`require`](12-script-inclusion.md#the-require-directive) except that in
 the case of `require_once`, the include file is included once only during
 program execution.
 
