@@ -16,11 +16,16 @@
     <i>try-statement</i>
 </pre>
 
-*function-static-declaration* is defined in [§§](07-variables.md#function-statics); *compound-statement* is defined in [§§](#compound-statements); *labeled-statement* is defined
-in [§§](#labeled-statements); *expression-statement* is defined in [§§](#expression-statements);
-*selection-statement* is defined in [§§](#general-1); *iteration-statement* is
-defined in [§§](#general-2); *jump-statement* is defined in [§§](#general-3);
-and *try-statement* is defined in [§§](11-statements.md#the-try-statement).
+**Defined elsewhere**
+
+* [*compound-statement*](#compound-statements)
+* [*expression-statement*](#expression-statements)
+* [*function-static-declaration*](07-variables.md#function-statics)
+* [*iteration-statement*](#general-2)
+* [*jump-statement*](#general-3)
+* [*labeled-statement*](#labeled-statements)
+* [*selection-statement*](#general-1)
+* [*try-statement*](11-statements.md#the-try-statement)
 
 ##Compound Statements
 
@@ -35,11 +40,13 @@ and *try-statement* is defined in [§§](11-statements.md#the-try-statement).
     <i>statement-list   statement</i>
 </pre>
 
-*statement* is defined in [§§](#general).
+**Defined elsewhere**
+
+* [*statement*](#general)
 
 **Semantics**
 
-A *compound statement* allows a group of zero of more statements to be
+A *compound statement* allows a group of zero or more statements to be
 treated syntactically as a single statement. A compound statement is
 often referred to as a *block*.
 
@@ -77,13 +84,14 @@ while (condition)
     default  :  <i>statement</i>
 </pre>
 
-*statement* is defined in [§§](#general); and
-*expression* is defined in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
+* [*statement*](#general)
 
 **Constraints**
 
-*case-label* and *default-label* must only occur inside a `switch` statement
-([§§](#the-switch-statement)).
+*case-label* and *default-label* must only occur inside a [`switch` statement](#the-switch-statement).
 
 **Semantics**
 
@@ -98,7 +106,9 @@ See the `switch` statement.
      <i>expression<sub>opt</sub></i>  ;
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
 
 **Semantics**
 
@@ -132,8 +142,10 @@ true;
     <i>switch-statement</i>
 </pre>
 
-*if-statement* is defined in [§§](#the-if-statement) and *switch-statement* is defined
-in [§§](#the-switch-statement).
+**Defined elsewhere**
+
+* [*if-statement*](#the-if-statement)
+* [*switch-statement*](#the-switch-statement)
 
 **Semantics**
 
@@ -159,7 +171,10 @@ selects among a set of statements.
     else   <i>statement</i>
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#yield-operator); and *statement* is defined in [§§](#general).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
+* [*statement*](#general)
 
 **Constraints**
 
@@ -213,7 +228,10 @@ if (1) {
     switch  (  <i>expression</i>  )  <i>compound-statement</i>
 </pre>
 
-*expression* is defined in [[§§](10-expressions.md#yield-operator); and *compound-statement* is defined in [§§](#compound-statements).
+**Defined elsewhere**
+
+* [*compound-statement*](#compound-statements)
+* [*expression*](10-expressions.md#yield-operator)
 
 **Constraints**
 
@@ -226,7 +244,7 @@ Each label expression's type must be a subtype of the switch *expression* type.
 **Semantics**
 
 Based on the value of its *expression*, a `switch` statement transfers
-control to a case label (§[[11.3](#labeled-statements)](#labeled-statements)); to a default label (§[[11.3](#labeled-statements)](#labeled-statements)), if one
+control to a [case label](#labeled-statements); to a [default label](#labeled-statements), if one
 exists; or to the statement immediately following the end of the `switch`
 statement. A case or default label is only reachable directly within its
 closest enclosing `switch` statement.
@@ -239,22 +257,22 @@ then if there is a default label, control transfers to the statement
 following that; otherwise, control transfers to the statement
 immediately following the end of the `switch` statement. If a `switch`
 contains more than one case label whose values compare equal to the
-controlling expression, the first in lexical order is consider the
+controlling expression, the first in lexical order is considered the
 match.
 
 An arbitrary number of statements can be associated with any case or
-default label. In the absence of a `break` statement ([§§](11-statements.md#the-break-statement)) at the end
+default label. In the absence of a [`break` statement](11-statements.md#the-break-statement) at the end
 of a set of such statements, control drops through into any following
 case or default label. Thus, if all cases and the default end in break
 and there are no duplicate-valued case labels, the order of case and
 default labels is insignificant.
 
-In no break *statement* is seen for a case or default before a subsequent case label, default label, or the switch-terminating `}` is encountered, an implementation might issue a warning. However, such a warning can be suppressed by placing a source line containing the special comment `// FALLTHROUGH` ([§§](09-lexical-structure.md#comments)), at the end of that case or default statement group.
+In no break *statement* is seen for a case or default before a subsequent case label, default label, or the switch-terminating `}` is encountered, an implementation might issue a warning. However, such a warning can be suppressed by placing a source line containing the special comment [`// FALLTHROUGH`](09-lexical-structure.md#comments), at the end of that case or default statement group.
 
 Case-label values can be runtime expressions, and the types of sibling
 case-label values need not be the same.
 
-Switches may nested, in which case, each `switch` has its own set of
+Switches may be nested, in which case, each `switch` has its own set of
 `switch` clauses.
 
 **Examples**
@@ -320,9 +338,12 @@ case ControlStatus::Started:
     <i>foreach-statement</i>
 </pre>
 
-*while-statement* is defined in [§§](#the-while-statement); *do-statement* is defined in
-[§§](#the-do-statement); *for-statement* is defined in [§§](#the-for-statement); and *foreach-statement*
-is defined in [§§](#the-foreach-statement).
+**Defined elsewhere**
+
+* [*do-statement*](#the-do-statement)
+* [*for-statement*](#the-for-statement)
+* [*foreach-statement*§](#the-foreach-statement)
+* [*while-statement*](#the-while-statement)
 
 ##The `while` Statement
 
@@ -333,7 +354,10 @@ is defined in [§§](#the-foreach-statement).
     while  (  <i>expression</i>  )  <i>statement</i>
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#yield-operator); and *statement* is defined in [§§](#general).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
+* [*statement*](#general)
 
 **Constraints**
 
@@ -374,9 +398,12 @@ while (true) {
     do  <i>statement</i>  while  (  <i>expression</i>  )  ;
 </pre>
 
-*statement* is defined in [§§](#general) and *expresion* is defined in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
 
- (Note: There is no `:/enddo` alternate syntax.)
+* [*statement*](#general)
+* [*expresion*](10-expressions.md#yield-operator)
+
+(Note: There is no `:/enddo` alternate syntax.)
 
 **Constraints**
 
@@ -423,8 +450,10 @@ while ($i <= 10);
     <i>for-expression-group</i>   ,   <i>expression</i>
 </pre>
 
-*statement* is defined in [§§](#general)
-and *expression* is defined in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
+* [*statement*](#general)
 
 Note: Unlike C/C++, Hack does not support a comma operator, per se.
 However, the syntax for the `for` statement has been extended from that of
@@ -452,7 +481,7 @@ times.
 
 If *for-initializer* is omitted, no action is taken at the start of the
 loop processing. If *for-control* is omitted, this is treated as if
-*for-control* was an expression with the value `TRUE`. If
+*for-control* was an expression with the value `true`. If
 *for-end-of-loop* is omitted, no action is taken at the end of each
 iteration.
 
@@ -508,8 +537,11 @@ for ($a = 100, $i = 1; ++$i, $i <= 10; ++$i, $a -= 10) {
     <i>list-intrinsic</i>
 </pre>
 
-*statement* is defined in [§§](#general); *list-intrinsic* is defined in
-[§§](10-expressions.md#list); and *expression* is defined in [§§](10-expressions.md#yield-operator).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
+* [*list-intrinsic*](10-expressions.md#list)
+* [*statement*](#general)
 
 **Constraints**
 
@@ -518,7 +550,7 @@ collection.
 
 Each *expression* must designate a variable name.
 
-For the “await as” form, the type of *foreach-collection-name* must implement interface `AsyncIterator` ([§§](17-interfaces.md#interface-AsyncIterator)) or interface `AsyncKeyedIterator` ([§§](17-interfaces.md#interface-AsyncKeyedIterator)).
+For the “await as” form, the type of *foreach-collection-name* must implement interface [`AsyncIterator`](17-interfaces.md#interface-AsyncIterator) or interface [`AsyncKeyedIterator`](17-interfaces.md#interface-AsyncKeyedIterator).
 
 **Semantics**
 
@@ -605,9 +637,12 @@ async function use_countdown2(): Awaitable<void> {
     <i>throw-statement</i>
 </pre>
 
-*continue-statement* is defined
-in [§§](#the-continue-statement); *break-statement* is defined in [§§](#the-break-statement); *return-statement*
-is defined in [§§](#the-return-statement); and *throw-statement* is defined in [§§](#the-throw-statement).
+**Defined elsewhere**
+
+* [*break-statement*](#the-break-statement)
+* [*continue-statement*](#the-continue-statement)
+* [*return-statement*](#the-return-statement)
+* [*throw-statement*](#the-throw-statement)
 
 ###The `continue` Statement
 
@@ -620,13 +655,12 @@ is defined in [§§](#the-return-statement); and *throw-statement* is defined in
 
 **Constraints**
 
-A `continue` statement must not attempt to break out of a finally-block
-([§§](#the-try-statement)).
+A `continue` statement must not attempt to break out of a [finally-block](#the-try-statement).
 
 **Semantics**
 
 A `continue` statement terminates the execution of the innermost enclosing
-iteration ([§§](#iteration-statements)) or `switch` ([§§](#the-switch-statement)) statement.
+[iteration](#iteration-statements) or [`switch`](#the-switch-statement) statement.
 
 A `continue` statement may break out of a construct that is fully
 contained within a finally-block.
@@ -652,13 +686,12 @@ for ($i = 1; $i <= 5; ++$i) {
 
 **Constraints**
 
-A `break` statement must not attempt to break out of a finally-block
-([§§](#the-try-statement)).
+A `break` statement must not attempt to break out of a [finally-block](#the-try-statement).
 
 **Semantics**
 
 A `break` statement terminates the execution of one or more enclosing
-iteration ([§§](#iteration-statements)) or `switch` ([§§](#the-switch-statement)) statements.
+[iteration](#iteration-statements) or [`switch`](#the-switch-statement) statements.
 
 A `break` statement may break out of a construct that is fully contained
 within a finally-block.
@@ -684,16 +717,17 @@ for (;;) {
     return  <i>expression<sub>opt</sub></i>  ;
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#yield-operator). 
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
 
 **Constraints**
 
-The *expression* in a *return-statement* in a generator function
-([§§](10-expressions.md#yield-operator)) must be the literal `null`.
+The *expression* in a *return-statement* in a [generator function](10-expressions.md#yield-operator) must be the literal `null`.
 
-A `return` statement must not occur in a finally-block ([§§](11-statements.md#the-try-statement)) or in the *compound-statement* of a *function-definition* for a function with *return-type* `noreturn` ([§§](15-functions.md#function-definitions)).
+A `return` statement must not occur in a [finally-block](11-statements.md#the-try-statement) or in the *compound-statement* of a *function-definition* for a function with [*return-type* `noreturn`](15-functions.md#function-definitions).
 
-For a non-async function, the type of *expression* (or any implicitly returned `null`) must be assignment-compatible with the return type of the enclosing function ([§§](15-functions.md#function-definitions)). For an async function, the type of *expression* must be a subtype of the parameter type of the `Awaitable` *return-type* for the enclosing function. However, if `Awaitable`’s parameter type is `void`, *expression* must be omitted.
+For a non-async function, the type of *expression* (or any implicitly returned `null`) must be assignment-compatible with the return type of the [enclosing function](15-functions.md#function-definitions). For an async function, the type of *expression* must be a subtype of the parameter type of the `Awaitable` *return-type* for the enclosing function. However, if `Awaitable`’s parameter type is `void`, *expression* must be omitted.
 
 **Semantics**
 
@@ -704,8 +738,7 @@ If execution flows into the closing brace (`}`) of a function, `return;` is impl
 A function may have any number of `return` statements, whose returned
 values may have different types.
 
-A `return` statement is permitted in a try-block ([§§](#the-try-statement)) and a catch-block
-([§§](#the-try-statement)).
+A `return` statement is permitted in a [try-block](#the-try-statement) and a [catch-block](#the-try-statement).
 
 Returning from a constructor or destructor behaves just like returning
 from a function having a return type of `void`.
@@ -742,8 +775,8 @@ class Point {
 
 **Implementation Notes**
 
-Although *expression* is a full expression ([§§](10-expressions.md#general)), and there is a
-sequence point ([§§](10-expressions.md#general)) at the end of that expression, as stated in
+Although *expression* is a [full expression](10-expressions.md#general), and there is a
+[sequence point](10-expressions.md#general) at the end of that expression, as stated in
 [§§](10-expressions.md#general), a side effect need not be executed if it can be decided that
 no other program code relies on its having happened. (For example, in
 the cases of `return $a++;` and `return ++$a;`, it is obvious what value
@@ -759,11 +792,13 @@ enclosing function, `$a` need not actually be incremented.
     throw  <i>expression</i>  ;
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#yield-operator). 
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#yield-operator)
 
 **Constraints**
 
-The type of *expression* must be \Exception ([§§](19-exception-handling.md#class-exception)) or a subclass of that
+The type of *expression* must be [[\Exception](19-exception-handling.md#class-exception) or a subclass of that
 class.
 
 *expression* must be such that an alias to it can be created. 
@@ -809,13 +844,15 @@ throw new MyException;
     finally   <i>compound-statement</i>
 </pre>
 
-*compound-statement* is defined in [§§](#compound-statements) and
-*parameter-declaration-list* is defined in [§§](15-functions.md#function-definitions).
+**Defined elsewhere**
+
+* [*compound-statement*](#compound-statements)
+* [*parameter-declaration-list*](15-functions.md#function-definitions)
 
 **Constraints**
 
 In a *catch-clause*, *parameter-declaration-list* must contain only one
-parameter, and its type must be `\Exception` ([§§](19-exception-handling.md#class-exception)) or a type derived from
+parameter, and its type must be [`\Exception`](19-exception-handling.md#class-exception) or a type derived from
 that class.
 
 **Semantics**
