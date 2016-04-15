@@ -1,6 +1,6 @@
 # Hack Language Specification
 
-This repo will contain the WIP Hack Language Specification.
+This repo contains the Hack Language Specification.
 
 This GitHub URL is:
 
