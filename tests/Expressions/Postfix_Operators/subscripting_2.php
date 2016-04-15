@@ -13,31 +13,31 @@ function main(): void {
   echo "====== array without index; compound assignment =========\n";
 
   $a = array(33, -11);
-  var_dump($a[] += 991);		// creates $a[2]
+  $a[] += 991;    // creates $a[2]
   var_dump($a);
   echo "------\n";
 
   $a = array(33, -11);
-  var_dump($a[] -= 991);		// creates $a[2]
+  $a[] -= 991;    // creates $a[2]
   var_dump($a);
   echo "------\n";
 
   $a = array(33, -11);
-  var_dump($a[] *= 991);		// creates $a[2]
+  $a[] *= 991;		// creates $a[2]
   var_dump($a);
 
   echo "====== array without index; ++/-- =========\n";
 
   $a = array(33, -11);
-  var_dump($a[]++);
+  $a[]++;
   var_dump($a);
   echo "------\n";
 
-  var_dump(++$a[]);
+  ++$a[];
   var_dump($a);
   echo "------\n";
 
-  var_dump(--$a[]);
+  --$a[];
   var_dump($a);
 
 // Hack does not permit a map-like array to have an element appended using an empty []
