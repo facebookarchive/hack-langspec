@@ -511,7 +511,7 @@ in *field-initializer* need not be compile-time constants.
 **Syntax**
 <pre>
   <i>shape-literal:</i>
-    <i>shape  (  <i>field-initializer-list<sub>opt</sub></i>  )
+    <i>shape  (  <i>field-initializer-list<sub>opt</sub></i>  )</i>
   <i>field-initializer-list:</i>
     <i>field-initializer</i>
     <i>field-initializer-list  </i>  ,  <i>field-initializer</i>
@@ -662,7 +662,7 @@ function compute(array<int> $values): void {
 <pre>
 <i>awaitable-creation-expression:</i>
   async   {   <i>async-statement-list<sub>opt</sub></i>   }
-  
+
 <i>async-statement-list:</i>
   <i>statement</i>
   <i>async-statement-list   statement</i>
@@ -1730,7 +1730,7 @@ This operator must be used within an[ asynchronous function](15-functions.md#asy
 
 The return type of the function containing a use of this operator must be a type that implements `Awaitable<T>`.
 
-*await-expression* can only be used in the following contexts: 
+*await-expression* can only be used in the following contexts:
 *	As an [*expression-statement*](11-statements.md#expression-statements)
 *	As the *assignment-expression* in a [*simple-assignment-expression*](10-expressions.md#simple-assignment)
 *	As *expression* in a [*return-statement*](11-statements.md#the-return-statement)
