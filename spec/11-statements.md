@@ -166,7 +166,7 @@ selects among a set of statements.
 
   <i>elseif-clause:</i>
     elseif   (   <i>expression</i>   )   <i>statement</i>
- 
+
   <i>else-clause:</i>
     else   <i>statement</i>
 </pre>
@@ -345,7 +345,7 @@ case ControlStatus::Started:
 * [*foreach-statement*§](#the-foreach-statement)
 * [*while-statement*](#the-while-statement)
 
-##The `while` Statement
+###The `while` Statement
 
 **Syntax**
 
@@ -389,7 +389,7 @@ while (true) {
 }
 ```
 
-##The `do` Statement
+###The `do` Statement
 
 **Syntax**
 
@@ -428,7 +428,7 @@ do {
 while ($i <= 10);
 ```
 
-##The `for` Statement
+###The `for` Statement
 
 **Syntax**
 
@@ -517,7 +517,7 @@ for ($a = 100, $i = 1; ++$i, $i <= 10; ++$i, $a -= 10) {
 }
 ```
 
-##The `foreach` Statement
+###The `foreach` Statement
 
 **Syntax**
 
