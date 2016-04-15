@@ -1,7 +1,7 @@
 __LINE__: int(70)
-__FILE__: string(79) "%s/tests/Constants/context_dependent_constants.php"
-__DIR__: string(47) "/data/users/joelm/hack-langspec/tests/Constants"
-string(47) "/data/users/joelm/hack-langspec/tests/Constants"
+__FILE__: string(%d) "%s/tests/Constants/context_dependent_constants.php"
+__DIR__: string(%d) "%s/tests/Constants"
+string(%d) "%s/tests/Constants"
 __LINE__: int(77)
 __NAMESPACE__: string(30) "NS_context_dependent_constants"
 -----------------------------------------
