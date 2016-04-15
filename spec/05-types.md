@@ -78,7 +78,7 @@ for `null`, use [`is_null`](http://www.php.net/is_null). Useful library function
 <i>type-constant-type-name:</i>
   <i>name</i>  ::  <i>name</i>
   self  ::  <i>name</i>
-  this  ::  <i>name
+  this  ::  <i>name</i>
   <i>type-constant-type-name</i>  ::  <i>name</i>
 </pre>
 
