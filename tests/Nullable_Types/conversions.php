@@ -260,7 +260,7 @@ class C1 {
     $this->pr_float = (float)new Button();
     echo "(float)new Button(): pr_float = >" . $this->pr_float . "<\n";
 
-    $this->pr_float = STDOUT;		// Uh-oh!! resource IS compatible with float
+    //$this->pr_float = STDOUT;		// Uh-oh!! resource IS compatible with float
     $this->pr_float = (float)STDOUT;
     echo "(float)STDOUT: pr_float = >" . $this->pr_float . "<\n";
 
@@ -475,7 +475,7 @@ class C1 {
     echo "new MyQueue(): pr_MyCollection = >" . $this->pr_MyCollection . "<\n";
 
     //$this->pr_MyCollection = STDOUT;	// Uh-oh!! resource IS compatible with MyCollection
-    echo "STDOUT: pr_MyCollection = >" . $this->pr_MyCollection . "<\n";
+    //echo "STDOUT: pr_MyCollection = >" . $this->pr_MyCollection . "<\n";
 
     echo "\n================ converting non-nullable to corresponding nullable ===================\n\n";
 
