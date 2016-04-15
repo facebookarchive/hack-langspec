@@ -128,7 +128,7 @@ class C1 {
     $this->pr_bool = (bool)new Button();
     echo "(bool)new Button(): pr_bool = >" . ($this->pr_bool ? "true" : "false") . "<\n";
 
-    $this->pr_bool = STDOUT;		// Uh-oh!! resource IS compatible with bool
+    //$this->pr_bool = STDOUT;		// Uh-oh!! resource IS compatible with bool
     $this->pr_bool = (bool)STDOUT;
     echo "(bool)STDOUT: pr_bool = >" . ($this->pr_bool ? "true" : "false") . "<\n";
 
@@ -190,7 +190,7 @@ class C1 {
     $this->pr_int = (int)new Button();
     echo "(int)new Button(): pr_int = >" . $this->pr_int . "<\n";
 
-    $this->pr_int = STDOUT;		// Uh-oh!! resource IS compatible with int
+    //$this->pr_int = STDOUT;		// Uh-oh!! resource IS compatible with int
     $this->pr_int = (int)STDOUT;
     echo "(int)STDOUT: pr_int = >" . $this->pr_int . "<\n";
 
@@ -338,7 +338,7 @@ class C1 {
     $this->pr_num = (float)new Button();
     echo "(float)new Button(): pr_num = >" . $this->pr_num . "<\n";
 
-    $this->pr_num = STDOUT;		// Uh-oh!! resource IS compatible with num
+    //$this->pr_num = STDOUT;		// Uh-oh!! resource IS compatible with num
     $this->pr_num = (int)STDOUT;
     echo "(int)STDOUT: pr_num = >" . $this->pr_num . "<\n";
     $this->pr_num = (float)STDOUT;
@@ -404,7 +404,7 @@ class C1 {
     $this->pr_string = (string)new Button();
     echo "(string)new Button(): pr_string = >" . $this->pr_string . "<\n";
 
-    $this->pr_string = STDOUT;		// Uh-oh!! resource IS compatible with string
+    //$this->pr_string = STDOUT;		// Uh-oh!! resource IS compatible with string
     $this->pr_string = (string)STDOUT;
     echo "(string)STDOUT: pr_string = >" . $this->pr_string . "<\n";
 
@@ -452,7 +452,7 @@ class C1 {
     $this->pr_Button = new CustomButton("RAISE");
     echo "new CustomButton(\"RAISE\"): pr_Button = >" . $this->pr_Button . "<\n";
 
-    $this->pr_Button = STDOUT;		// Uh-oh!! resource IS compatible with Button
+    //$this->pr_Button = STDOUT;		// Uh-oh!! resource IS compatible with Button
     echo "STDOUT: pr_Button = >" . $this->pr_Button . "<\n";
 
     echo "\n================ setting pr_CustomButton===================\n\n";
@@ -460,7 +460,7 @@ class C1 {
     $this->pr_CustomButton = new CustomButton("LOWER");
     echo "new CustomButton(\"LOWER\"): pr_CustomButton= >" . $this->pr_CustomButton. "<\n";
 
-    $this->pr_CustomButton = STDOUT;	// Uh-oh!! resource IS compatible with CustomButton
+    //$this->pr_CustomButton = STDOUT;	// Uh-oh!! resource IS compatible with CustomButton
     echo "STDOUT: pr_CustomButton = >" . $this->pr_CustomButton . "<\n";
 
     echo "\n================ setting pr_MyCollection ===================\n\n";
@@ -474,7 +474,7 @@ class C1 {
     $this->pr_MyCollection = new MyQueue();
     echo "new MyQueue(): pr_MyCollection = >" . $this->pr_MyCollection . "<\n";
 
-    $this->pr_MyCollection = STDOUT;	// Uh-oh!! resource IS compatible with MyCollection
+    //$this->pr_MyCollection = STDOUT;	// Uh-oh!! resource IS compatible with MyCollection
     echo "STDOUT: pr_MyCollection = >" . $this->pr_MyCollection . "<\n";
 
     echo "\n================ converting non-nullable to corresponding nullable ===================\n\n";
@@ -687,4 +687,3 @@ function main(): void {
 
 /* HH_FIXME[1002] call to main in strict*/
 main();
-
