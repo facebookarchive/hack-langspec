@@ -1,10 +1,13 @@
 # Hack Language Specification
 
-This repo contains the Hack Language Specification.
+This repo contains the Hack Language Specification. The easiest way to navigate the specification is
+via the [table of contents](hack-langspec/spec/00-specification-for-hack.md).
 
-This GitHub URL is:
+The latest release of the specification is [1.1](https://github.com/hhvm/hack-langspec/releases/tag/v1.1).
 
-> [https://github.com/hhvm/hack-langspec](https://github.com/hhvm/hack-langspec)
+You can run the specification tests with [HHVM](https://docs.hhvm.com/hhvm/) via its
+[test runner](https://github.com/facebook/hhvm/blob/master/hphp/test/README.md) and the
+[Hack typechecker](https://docs.hhvm.com/hack/typechecker/introduction) via `hh_client`.
 
 Pull requests, issue filings and comments are extremely welcome.
 
