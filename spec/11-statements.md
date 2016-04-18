@@ -532,7 +532,7 @@ for ($a = 100, $i = 1; ++$i, $i <= 10; ++$i, $a -= 10) {
   <i>foreach-key:</i>
     <i>expression</i>  =>
 
-  <i>foreach-value:<i>
+  <i>foreach-value:</i>
     &amp;<sub>opt</sub>   <i>expression</i>
     <i>list-intrinsic</i>
 </pre>

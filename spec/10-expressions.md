@@ -795,7 +795,7 @@ $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
   <i>class-type-designator:</i>
     static
     <i>qualified-name</i>
-    <i>variable-name<i>
+    <i>variable-name</i>
 </pre>
 
 **Defined elsewhere**

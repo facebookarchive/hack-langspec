@@ -84,8 +84,8 @@ script. Each script must conform to this production.
 
 <pre>
   <i>input-file::
-    <i>input-element
-    <i>input-file   input-element
+    <i>input-element</i>
+    <i>input-file   input-element</i>
   <i>input-element::</i>
     <i>comment</i>
     <i>white-space</i>
