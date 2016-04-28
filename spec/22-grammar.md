@@ -309,7 +309,7 @@ octal-digit
   <i>operator-or-punctuator:: one of</i>
     [   ]    (   )   {    }   .   -&gt;   ++   --   **   *   +   -   ~   !
     $   /   %   &lt;&lt;   &gt;&gt;   &lt;   &gt;   &lt;=   &gt;=   ==   ===   !=   !==   ^   |
-    &amp;   &amp;&amp;   ||   ?   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
+    &amp;   &amp;&amp;   ||   ?   ??   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
     &gt;&gt;=   &amp;=   ^=   |=   ,   @   ::   =>   ==>   ?->
 </pre>
 
