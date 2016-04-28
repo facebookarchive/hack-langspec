@@ -718,7 +718,7 @@ octal-digit
     <i>unary-operator cast-expression</i>
 
   <i>unary-operator: one of</i>
-    +  -  !  \
+    +  -  !  ~
 
   <i>error-control-expression:</i>
     @  <i>expression</i>

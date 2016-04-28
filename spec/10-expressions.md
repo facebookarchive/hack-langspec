@@ -65,7 +65,7 @@ the full expression `$list1[$i] = $list2[$i++]`, whether the value
 of `$i` on the left-hand side is the old or new `$i`, is unspecified.
 Similarly, in the full expression `$j = $i + $i++`, whether the value
 of `$i` is the old or new `$i`, is unspecified. Finally, in the full
-expression `f() + g() \* h()`, the order in which the three functions are
+expression `f() + g() * h()`, the order in which the three functions are
 called, is unspecified.)
 
 **Implementation Notes**
@@ -1585,7 +1585,7 @@ $a = array(100, 200); $v = ++$a[1]; // new value of $ia[1] (201) is assigned
     <i>unary-operator cast-expression</i>
 
   <i>unary-operator: one of</i>
-    +  -  !  \
+    +  -  !  ~
 </pre>
 
 **Defined elsewhere**
