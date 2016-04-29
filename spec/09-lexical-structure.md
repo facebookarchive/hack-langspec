@@ -232,19 +232,6 @@ There are several kinds of source tokens:
   <i>variable-name::</i>
     $   <i>name</i>
 
-  <i>namespace-name::</i>
-    <i>name </i>
-    <i>namespace-name</i>   \   </i>name</i>
-
-  <i>namespace-name-as-a-prefix::</i>
-    \
-    \<sub>opt</sub>   <i>namespace-name</i>   \
-    namespace   \
-    namespace   \   <i>namespace-name</i>   \
-
-  <i>qualified-name::</i>
-    <i>namespace-name-as-a-prefix<sub>opt</sub>   name</i>
-
   <i>name::</i>
     <i>name-nondigit</i>
     <i>name   name-nondigit</i>
@@ -882,7 +869,7 @@ A *null-literal* has the null type.
     [   ]    (   )   {    }   .   ->   ++   --   **   *   +   -   ~   !
     $   /   %   &lt;&lt;   >>   &lt;   >   &lt;=   >=   ==   ===   !=   !==   ^   |
     &amp;   &amp;&amp;   ||   ?   ??   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
-    >>=   &amp;=   ^=   |=   ,   @   ::   =>   ==>   ?->
+    >>=   &amp;=   ^=   |=   ,   @   ::   =>   ==>   ?->   \
 </pre>
 
 **Semantics**
