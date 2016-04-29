@@ -34,7 +34,7 @@ inherits all members from its *base interface(s)*.
 * [*generic-type-parameter-list*](14-generic-types-methods-and-functions.md#type-parameters)
 * [*interface-member-declarations*](17-interfaces.md#interface-members)
 * [*name*](09-lexical-structure.md#names)
-* [*qualified-name*](09-lexical-structure.md#names)
+* [*qualified-name*](20-namespaces.md#defining-namespaces)
 
 **Constraints**
 

@@ -128,7 +128,7 @@ trait T4 {
 * [*destructor-declaration*](16-classes.md#destructors)
 * [*method-declaration*](16-classes.md#methods)
 * [*property-declaration*](16-classes.md#properties)
-* [*qualified-name*](09-lexical-structure.md#names)
+* [*qualified-name*](20-namespaces.md#defining-namespaces)
 
 **Constraints**
 

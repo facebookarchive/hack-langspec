@@ -65,7 +65,7 @@ the full expression `$list1[$i] = $list2[$i++]`, whether the value
 of `$i` on the left-hand side is the old or new `$i`, is unspecified.
 Similarly, in the full expression `$j = $i + $i++`, whether the value
 of `$i` is the old or new `$i`, is unspecified. Finally, in the full
-expression `f() + g() \* h()`, the order in which the three functions are
+expression `f() + g() * h()`, the order in which the three functions are
 called, is unspecified.)
 
 **Implementation Notes**
@@ -122,7 +122,7 @@ of supertypes such as `num`, `arraykey`, or `?int`. Refer to [§§](05-types.md#
 * [*expression*](10-expressions.md#yield-operator)
 * [*intrinsic*](10-expressions.md#general-2)
 * [*literal*](09-lexical-structure.md#general-2)
-* [*qualified-name*](09-lexical-structure.md#names)
+* [*qualified-name*](20-namespaces.md#defining-namespaces)
 * [*shape-literal*](10-expressions.md#shape-literals)
 * [*tuple-literal*](10-expressions.md#tuple-literals)
 * [*variable-name*](09-lexical-structure.md#names)
@@ -525,7 +525,7 @@ in *field-initializer* need not be compile-time constants.
 
 * [*expression*](10-expressions.md#yield-operator)
 * [*integer-literal*](09-lexical-structure.md#integer-literals)
-* [*qualified-name*](09-lexical-structure.md#names)
+* [*qualified-name*](20-namespaces.md#defining-namespaces)
 * [*single-quoted-string-literal*](09-lexical-structure.md#single-quoted-string-literals)
 
 **Constraints**
@@ -801,7 +801,7 @@ $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
 **Defined elsewhere**
 
 * [*argument-expression-list*](10-expressions.md#function-call-operator)
-* [*qualified-name*](09-lexical-structure.md#names)
+* [*qualified-name*](20-namespaces.md#defining-namespaces)
 * [*variable-name*](09-lexical-structure.md#names)
 
 **Constraints**
@@ -1363,7 +1363,7 @@ $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 **Defined elsewhere**
 
 * [*name*](09-lexical-structure.md#names)
-* [*qualified-name*](09-lexical-structure.md#names)
+* [*qualified-name*](20-namespaces.md#defining-namespaces)
 * [*variable-name*](09-lexical-structure.md#names)
 
 **Constraints**
@@ -1585,7 +1585,7 @@ $a = array(100, 200); $v = ++$a[1]; // new value of $ia[1] (201) is assigned
     <i>unary-operator cast-expression</i>
 
   <i>unary-operator: one of</i>
-    +  -  !  \
+    +  -  !  ~
 </pre>
 
 **Defined elsewhere**
@@ -1792,7 +1792,7 @@ Function `main` calls async function `f`, which in turn awaits on async function
 **Defined elsewhere**
 
 * [*expression*](10-expressions.md#yield-operator)
-* [*qualified-name*](09-lexical-structure.md#names)
+* [*qualified-name*](20-namespaces.md#defining-namespaces)
 * [*unary-expression*](10-expressions.md#general-4)
 * [*variable-name*](09-lexical-structure.md#names)
 

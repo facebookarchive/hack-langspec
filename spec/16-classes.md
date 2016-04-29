@@ -75,7 +75,7 @@ object. As such, assignment of a handle does not copy the object itself.
 * [*class-member-declarations*](16-classes.md#class-members)
 * [*generic-type-parameter-list*](14-generic-types-methods-and-functions.md#type-parameters)
 * [*name*](09-lexical-structure.md#names)
-* [*qualified-name*](09-lexical-structure.md#names)
+* [*qualified-name*](20-namespaces.md#defining-namespaces)
 * [*trait-use-clauses*](18-traits.md#trait-declarations)
 
 **Constraints**

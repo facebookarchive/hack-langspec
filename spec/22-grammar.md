@@ -77,19 +77,6 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
   <i>variable-name::</i>
     $   <i>name</i>
 
-  <i>namespace-name::</i>
-    <i>name </i>
-    <i>namespace-name   \   name</i>
-
-  <i>namespace-name-as-a-prefix::</i>
-    \
-    \<sub>opt</sub>   <i>namespace-name</i>   \
-    namespace   \
-    namespace   \   <i>namespace-name</i>   \
-
-  <i>qualified-name::</i>
-    <i>namespace-name-as-a-prefix<sub>opt</sub>   name</i>
-
   <i>name::</i>
     <i>name-nondigit</i>
     <i>name   name-nondigit</i>
@@ -309,8 +296,8 @@ octal-digit
   <i>operator-or-punctuator:: one of</i>
     [   ]    (   )   {    }   .   -&gt;   ++   --   **   *   +   -   ~   !
     $   /   %   &lt;&lt;   &gt;&gt;   &lt;   &gt;   &lt;=   &gt;=   ==   ===   !=   !==   ^   |
-    &amp;   &amp;&amp;   ||   ?   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
-    &gt;&gt;=   &amp;=   ^=   |=   ,   @   ::   =>   ==>   ?->
+    &amp;   &amp;&amp;   ||   ?   ??   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
+    &gt;&gt;=   &amp;=   ^=   |=   ,   @   ::   =>   ==>   ?->   \   ...
 </pre>
 
 ##Syntactic Grammar
@@ -718,7 +705,7 @@ octal-digit
     <i>unary-operator cast-expression</i>
 
   <i>unary-operator: one of</i>
-    +  -  !  \
+    +  -  !  ~
 
   <i>error-control-expression:</i>
     @  <i>expression</i>
@@ -1344,6 +1331,19 @@ octal-digit
 
   <i>namespace-aliasing-clause:</i>
     as  <i>name</i>
+
+  <i>namespace-name:</i>
+    <i>name </i>
+    <i>namespace-name   \   name</i>
+
+  <i>namespace-name-as-a-prefix:</i>
+    \
+    \<sub>opt</sub>   <i>namespace-name</i>   \
+    namespace   \
+    namespace   \   <i>namespace-name</i>   \
+
+  <i>qualified-name:</i>
+    <i>namespace-name-as-a-prefix<sub>opt</sub>   name</i>
 </pre>
 
 ###Attributes

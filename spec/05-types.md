@@ -91,7 +91,7 @@ for `null`, use [`is_null`](http://www.php.net/is_null). Useful library function
 * [*map-like-array-type-specifier*](05-types.md#array-types)
 * [*name*](09-lexical-structure.md#names)
 * [*nullable-type-specifier*](05-types.md#nullable-types)
-* [*qualified-name*](09-lexical-structure.md#names)
+* [*qualified-name*](20-namespaces.md#defining-namespaces)
 * [*shape-type-specifier*](05-types.md#shape-types)
 * [*tuple-type-specifier*](05-types.md#tuple-types)
 * [*vector-like-array-type-specifier*](05-types.md#array-types)
@@ -487,7 +487,7 @@ private ?(int, (string, float)) $prop = null;
 
 **Defined elsewhere**
 
-* [*qualified-name*](09-lexical-structure.md#names)
+* [*qualified-name*](20-namespaces.md#defining-namespaces)
 * [*single-quoted-string-literal*](09-lexical-structure.md#single-quoted-string-literals)
 * [*type-specifier*](05-types.md#general)
 
@@ -695,7 +695,7 @@ parameters. See [§§](14-generic-types-methods-and-functions.md#generic-types-m
 
 **Defined elsewhere**
 
-* [*qualified-name*](09-lexical-structure.md#names)
+* [*qualified-name*](20-namespaces.md#defining-namespaces)
 
 **Constraints**
 
@@ -737,7 +737,7 @@ class C2 {
 **Defined elsewhere**
 
 * [*name*](09-lexical-structure.md#names)
-* [*qualified-name*](09-lexical-structure.md#names)
+* [*qualified-name*](20-namespaces.md#defining-namespaces)
 * [*type-constraint*](05-types.md#general)
 * [*type-specifier*](05-types.md#general)
 

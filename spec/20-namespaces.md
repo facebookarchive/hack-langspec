@@ -53,12 +53,25 @@ with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`. The
   <i>namespace-definition:</i>
     namespace  <i>namespace-name</i>  ;
     namespace  <i>namespace-name<sub>opt</sub>  compound-statement</i>
+
+  <i>namespace-name:</i>
+    <i>name </i>
+    <i>namespace-name</i>   \   </i>name</i>
+
+  <i>namespace-name-as-a-prefix:</i>
+    \
+    \<sub>opt</sub>   <i>namespace-name</i>   \
+    namespace   \
+    namespace   \   <i>namespace-name</i>   \
+
+  <i>qualified-name:</i>
+    <i>namespace-name-as-a-prefix<sub>opt</sub>   name</i>
 </pre>
 
 **Defined elsewhere**
 
 * [*compound-statement*](11-statements.md#compound-statements)
-* [*namespace-name*](09-lexical-structure.md#names)
+* [*name*](09-lexical-structure.md#names)
 
 **Constraints**
 
@@ -140,7 +153,7 @@ namespace NS3\Sub1;
 **Defined elsewhere**
 
 * [*name*](09-lexical-structure.md#names)
-* [*qualified-name*](09-lexical-structure.md#names)
+* [*qualified-name*](#defining-namespaces)
 
 **Constraints**
 
