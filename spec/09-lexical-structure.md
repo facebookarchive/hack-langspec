@@ -75,7 +75,7 @@ as the right-shift operator `>>`.
 
 ##Lexical Analysis
 
-##General
+###General
 
 The production *input-file* is the root of the lexical structure for a
 script. Each script must conform to this production.
@@ -84,8 +84,8 @@ script. Each script must conform to this production.
 
 <pre>
   <i>input-file::
-    <i>input-element
-    <i>input-file   input-element
+    <i>input-element</i>
+    <i>input-file   input-element</i>
   <i>input-element::</i>
     <i>comment</i>
     <i>white-space</i>
@@ -111,7 +111,7 @@ Apart from the exception noted in [§§](09-lexical-structure.md#grammar-ambigui
 possible lexical element. (For example, `$a+++++$b` must be parsed as
 `$a++ ++ +$b`, which syntactically is invalid.)
 
-##Comments
+###Comments
 
 Two forms of comments are supported: *delimited comments* and
 *single-line comments*. 
@@ -619,7 +619,7 @@ Escape sequence | Character name | Unicode character
 \r  | Carriage Return | U+000D
 \t  | Horizontal Tab | U+0009
 \v  | Vertical Tab | U+000B
-\ooo |  1–3-digit octal digit value ooo | 
+\ooo |  1–3-digit octal digit value ooo |
 \xhh or \Xhh  | 1–2-digit hexadecimal digit value hh | U+00hh
 \u{xxxxxx} | UTF-8 encoding of Unicode codepoint U+xxxxxx | U+xxxxxx
 

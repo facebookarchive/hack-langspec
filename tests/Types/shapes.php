@@ -4,7 +4,7 @@ namespace NS_shapes_in_types_dir;
 
 require_once 'shapes_rf.php';
 
-function f1(\NS_shapes_rf\st2a $p1): void {
+function f1(\NS_shapes_rf_in_types_dir\st2a $p1): void {
   echo "----- dumping 'x' => int -----\n\n";
 
   var_dump($p1);
@@ -34,19 +34,19 @@ ID
 //  f1(shape($key => 10));	// gags: The field '' is missing
 				// like the shape definition, key must be a string literal
 
-//  var_dump(\NS_shapes_rf\st4b_test2());
+//  var_dump(\NS_shapes_rf_in_types_dir\st4b_test2());
 
   echo "----------- Create some shape values ------------\n\n";
 
   $point1 = shape('x' => -3, 'y' => 6);
   echo "\$point1 is " . $point1['x'] . "\n";
 //  echo "\$point1 instanceof Point is " .
-//    (($point1 instanceof \NS_shapes_rf\Point) ? "True" : "False") . "\n";	// False
+//    (($point1 instanceof \NS_shapes_rf_in_types_dir\Point) ? "True" : "False") . "\n";	// False
 
 /*
 // a key must be a string literal; apparently can't be a class constant
 
-// ???	echo "\$point1 is " . $point1[\NS_shapes_rf\C::KEY1] . "\n";	// The field  is undefined *** WHY IS THIS?
+// ???	echo "\$point1 is " . $point1[\NS_shapes_rf_in_types_dir\C::KEY1] . "\n";	// The field  is undefined *** WHY IS THIS?
   $key = 'x';
   echo "\$point1 is " . $point1[$key] . "\n";	// The field  is undefined
 
@@ -59,18 +59,18 @@ ID
 
   echo "shape(...)['y'] is " . (shape('x' => -3, 'y' => 6))['y'] . "\n";	// works with parens, but shouldn't need them
 
-  $str = \NS_shapes_rf\Point_toString($point1);
+  $str = \NS_shapes_rf_in_types_dir\Point_toString($point1);
   echo "\$point1 is $str\n";
 //  echo "\$point1 instanceof Point is " .
-//    (($point1 instanceof \NS_shapes_rf\Point) ? "True" : "False") . "\n";	// False
+//    (($point1 instanceof \NS_shapes_rf_in_types_dir\Point) ? "True" : "False") . "\n";	// False
 
 // The following function-call argument is incompatible with PointNT while alias is created using 'newtype'.
 // However, it's okay when 'type' used
 
-//  $str = \NS_shapes_rf\PointNT_toString($point1);
+//  $str = \NS_shapes_rf_in_types_dir\PointNT_toString($point1);
 //  echo "\$point1 is $str\n";
 
-  $str = \NS_shapes_rf\PointNT_toString(\NS_shapes_rf\PointNT_getOrigin());
+  $str = \NS_shapes_rf_in_types_dir\PointNT_toString(\NS_shapes_rf_in_types_dir\PointNT_getOrigin());
   echo "Origin is $str\n";
 
   echo "----------- Create some shape values ------------\n\n";

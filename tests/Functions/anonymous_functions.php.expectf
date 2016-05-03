@@ -7,7 +7,7 @@ Calling f2 =>hihihihihi<
 --
 string(6) "object"
 --
-object(Closure$NS_anonymous_functions\I::NS_anonymous_functions\main;1338866257)#5 (0) {
+object(Closure$NS_anonymous_functions\I::NS_anonymous_functions\main;%d)#%d (0) {
 }
 --
 bool(true)
@@ -18,7 +18,7 @@ Inside method >>{closure}<<
 --
 string(6) "object"
 --
-object(Closure$NS_anonymous_functions\I::NS_anonymous_functions\main#2;1338866257)#6 (1) {
+object(Closure$NS_anonymous_functions\I::NS_anonymous_functions\main#%d;%d)#%d (1) {
   ["parameter"]=>
   array(5) {
     ["$p1"]=>
@@ -45,7 +45,7 @@ Result of calling doit using function double = 20
 string(30) "\NS_anonymous_functions\square"
 Result of calling doit using function square = 100
 -------
-object(Closure$NS_anonymous_functions\I::NS_anonymous_functions\main#3;1338866257)#7 (1) {
+object(Closure$NS_anonymous_functions\I::NS_anonymous_functions\main#%d;%d)#%d (1) {
   ["parameter"]=>
   array(1) {
     ["$p"]=>
@@ -54,7 +54,7 @@ object(Closure$NS_anonymous_functions\I::NS_anonymous_functions\main#3;133886625
 }
 Result of calling doit using double closure = 10
 -------
-object(Closure$NS_anonymous_functions\I::NS_anonymous_functions\main#4;1338866257)#8 (1) {
+object(Closure$NS_anonymous_functions\I::NS_anonymous_functions\main#%d;%d)#%d (1) {
   ["parameter"]=>
   array(1) {
     ["$p"]=>
@@ -67,7 +67,7 @@ $functionList[0] returns 24
 $functionList[1] returns 225
 array(2) {
   [0]=>
-  object(Closure$NS_anonymous_functions\I::NS_anonymous_functions\main#3;1338866257)#7 (1) {
+  object(Closure$NS_anonymous_functions\I::NS_anonymous_functions\main#%d;%d)#%d (1) {
     ["parameter"]=>
     array(1) {
       ["$p"]=>
@@ -75,7 +75,7 @@ array(2) {
     }
   }
   [1]=>
-  object(Closure$NS_anonymous_functions\I::NS_anonymous_functions\main#4;1338866257)#8 (1) {
+  object(Closure$NS_anonymous_functions\I::NS_anonymous_functions\main#%d;%d)#%d (1) {
     ["parameter"]=>
     array(1) {
       ["$p"]=>
@@ -92,7 +92,7 @@ $count = 0
 --
 string(6) "object"
 --
-object(Closure$NS_anonymous_functions\D::compute;1338866257)#11 (3) {
+object(Closure$NS_anonymous_functions\D::compute;%d)#%d (3) {
   ["static"]=>
   array(2) {
     ["count"]=>
@@ -128,7 +128,7 @@ $count = 0
 --
 string(6) "object"
 --
-object(Closure$NS_anonymous_functions\D::compute#2;1338866257)#12 (1) {
+object(Closure$NS_anonymous_functions\D::compute#%d;%d)#%d (1) {
   ["this"]=>
   object(NS_anonymous_functions\D)#10 (0) {
   }
@@ -141,7 +141,7 @@ Inside method >>NS_anonymous_functions\D::{closure}<<
 --
 string(6) "object"
 --
-object(Closure$NS_anonymous_functions\D::stcompute;1338866257)#13 (2) {
+object(Closure$NS_anonymous_functions\D::stcompute;%d)#%d (2) {
   ["static"]=>
   array(2) {
     ["count"]=>

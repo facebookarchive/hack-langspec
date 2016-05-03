@@ -171,10 +171,8 @@ async function main(): Awaitable<void> {
 
   echo "\nCheck usage contexts for await ======================\n\n";
 
-//  await fDirect();
+  await fDirect();
 }
 
-//\HH\Asio\join(main());
-
 /* HH_FIXME[1002] call to main in strict*/
-main($2);
+\HH\Asio\join(main());

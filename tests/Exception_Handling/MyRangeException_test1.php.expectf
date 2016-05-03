@@ -12,7 +12,7 @@ object(NS_MyRangeException\MyRangeException)#1 (10) {
   ["code":protected]=>
   int(0)
   ["file":protected]=>
-  string(83) "%s/tests/Exception_Handling/MyRangeException_test1.php"
+  string(%d) "%s/tests/Exception_Handling/MyRangeException_test1.php"
   ["line":protected]=>
   int(8)
   ["trace":"Exception":private]=>
@@ -20,7 +20,7 @@ object(NS_MyRangeException\MyRangeException)#1 (10) {
     [0]=>
     array(4) {
       ["file"]=>
-      string(83) "%s/tests/Exception_Handling/MyRangeException_test1.php"
+      string(%d) "%s/tests/Exception_Handling/MyRangeException_test1.php"
       ["line"]=>
       int(17)
       ["function"]=>

@@ -15,7 +15,7 @@ array(1) {
   [0]=>
   array(4) {
     ["file"]=>
-    string(76) "%s/tests/Exception_Handling/Exception_class.php"
+    string(%d) "%s/tests/Exception_Handling/Exception_class.php"
     ["line"]=>
     int(121)
     ["function"]=>
@@ -54,7 +54,7 @@ array(2) {
   [0]=>
   array(4) {
     ["file"]=>
-    string(76) "%s/tests/Exception_Handling/Exception_class.php"
+    string(%d) "%s/tests/Exception_Handling/Exception_class.php"
     ["line"]=>
     int(116)
     ["function"]=>
@@ -68,7 +68,7 @@ array(2) {
   [1]=>
   array(4) {
     ["file"]=>
-    string(76) "%s/tests/Exception_Handling/Exception_class.php"
+    string(%d) "%s/tests/Exception_Handling/Exception_class.php"
     ["line"]=>
     int(121)
     ["function"]=>
@@ -115,7 +115,7 @@ array(3) {
   [0]=>
   array(4) {
     ["file"]=>
-    string(76) "%s/tests/Exception_Handling/Exception_class.php"
+    string(%d) "%s/tests/Exception_Handling/Exception_class.php"
     ["line"]=>
     int(52)
     ["function"]=>
@@ -131,7 +131,7 @@ array(3) {
   [1]=>
   array(4) {
     ["file"]=>
-    string(76) "%s/tests/Exception_Handling/Exception_class.php"
+    string(%d) "%s/tests/Exception_Handling/Exception_class.php"
     ["line"]=>
     int(116)
     ["function"]=>
@@ -145,7 +145,7 @@ array(3) {
   [2]=>
   array(4) {
     ["file"]=>
-    string(76) "%s/tests/Exception_Handling/Exception_class.php"
+    string(%d) "%s/tests/Exception_Handling/Exception_class.php"
     ["line"]=>
     int(121)
     ["function"]=>
@@ -201,7 +201,7 @@ array(4) {
   [0]=>
   array(4) {
     ["file"]=>
-    string(76) "%s/tests/Exception_Handling/Exception_class.php"
+    string(%d) "%s/tests/Exception_Handling/Exception_class.php"
     ["line"]=>
     int(75)
     ["function"]=>
@@ -219,7 +219,7 @@ array(4) {
   [1]=>
   array(4) {
     ["file"]=>
-    string(76) "%s/tests/Exception_Handling/Exception_class.php"
+    string(%d) "%s/tests/Exception_Handling/Exception_class.php"
     ["line"]=>
     int(52)
     ["function"]=>
@@ -235,7 +235,7 @@ array(4) {
   [2]=>
   array(4) {
     ["file"]=>
-    string(76) "%s/tests/Exception_Handling/Exception_class.php"
+    string(%d) "%s/tests/Exception_Handling/Exception_class.php"
     ["line"]=>
     int(116)
     ["function"]=>
@@ -249,7 +249,7 @@ array(4) {
   [3]=>
   array(4) {
     ["file"]=>
-    string(76) "%s/tests/Exception_Handling/Exception_class.php"
+    string(%d) "%s/tests/Exception_Handling/Exception_class.php"
     ["line"]=>
     int(121)
     ["function"]=>

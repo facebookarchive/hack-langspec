@@ -10,7 +10,6 @@ function main(): void {
 ///*
   echo "--------- test with full and omitted LHS vars -------------\n";
 
-  // UNSAFE (type check error - diff D3113299 out to fix)
   $v = list($min, $max, $avg) = array(0, 100, 67);
   echo "\$min: $min, \$max: $max, \$avg: $avg\n";
   print_r($v);
