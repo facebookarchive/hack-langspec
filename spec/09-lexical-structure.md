@@ -294,8 +294,8 @@ cannot be used as a name.
   <i>keyword::</i> one of
     abstract   arraykey   as   async   await   break   case   catch   class   classname   clone   const   continue   default   do
     echo   else   elseif   enum   extends   final   finally   for   foreach   function   if   implements
-    instanceof   insteadof   interface   mixed   namespace   new   newtype   noreturn   num   private
-    protected   public   require   require_once   return   shape   static   switch throw   trait   try
+    instanceof   insteadof   interface   mixed   namespace   new   newtype   noreturn   num   parent   private
+    protected   public   require   require_once   return   self   shape   static   switch   throw   trait   try
     tuple   type   use   while   yield
 </pre>
 
@@ -678,7 +678,7 @@ The variable substitution accepts the following syntax:
 * [*name*](#names)
 * [*variable-name*](#names)
 
-*expression* works the same way as in [variable name creation operator](10-expressions.md#variable-name-creation-operator).
+The `${ expression }` syntax is deprecated in Hack. The expression must be such that if the enclosing braces were removed and the `$` prepended, then the resulting expression would be a legal <i>`string-variable`</i>. For example, `"${y[123]}"` is legal because `$y[123]` is a legal <i>`string-variable`</i>. No whitespace or comments are allowed inside the braces.
 
 After the variable defined by the syntax above is evaluated, its value is converted
 to string according to the rules of [string conversion](08-conversions.md#converting-to-string-type)
