@@ -2390,8 +2390,8 @@ function factorial(int $int): int
 
 **Defined elsewhere**
 
-* [*expression*](#general-6)
-* [*logical-OR-expression*](#logical-inclusive-or-operator-form-1)
+* [*expression*](10-expressions.md#yield-operator)
+* [*logical-inc-OR-expression*](#logical-inclusive-or-operator)
 
 **Semantics**
 
