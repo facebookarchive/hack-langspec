@@ -7,13 +7,13 @@
 <pre>
   <i>inclusion-directive:</i>
     <i>require-multiple-directive</i>
-    <i>require-once-expression</i>
+    <i>require-once-directive</i>
 </pre>
 
 **Defined elsewhere**
 
 * [*require-multiple-directive*](12-script-inclusion.md#the-require-directive)
-* [*require-once-expression*](12-script-inclusion.md#the-require_once-directive)
+* [*require-once-directive*](12-script-inclusion.md#the-require_once-directive)
 
 **Semantics:**
 

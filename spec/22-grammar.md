@@ -1043,7 +1043,7 @@ octal-digit
 <pre>
   <i>inclusion-directive:</i>
     <i>require-multiple-directive</i>
-    <i>require-once-expression</i>
+    <i>require-once-directive</i>
 
   <i>require-multiple-directive:</i>
     require  (  <i>include-filename</i>  )  ;
