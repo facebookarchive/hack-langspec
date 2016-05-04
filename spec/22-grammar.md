@@ -1134,7 +1134,7 @@ octal-digit
   <i>default-argument-specifier:</i>
     =  <i>const-expression</i>
 
-  <i>return type:</i>
+  <i>return-type:</i>
     <i>type-specifier</i>
 </pre>
 
