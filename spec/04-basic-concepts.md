@@ -28,7 +28,7 @@ A Hack *program* consists of one or more source files, known formally as
 
 * [*alias-declaration*](05-types.md#type-aliases)
 * [*class-declaration*](16-classes.md#class-declarations)
-* [*enum-declaration*](12-script-inclusion.md#the-require-directive)
+* [*enum-declaration*](13-enums.md#enum-declarations)
 * [*function-definition*](15-functions.md#function-definitions)
 * [*inclusion-directive*](12-script-inclusion.md#general)
 * [*interface-declaration*](17-interfaces.md#interface-declarations)
