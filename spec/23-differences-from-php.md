@@ -137,9 +137,7 @@ The `and`, `xor`, and `or` alternate forms are not supported.
 
 ###String Literals
 
-PHP allows the syntax `"${ expression }"` in a double-quoted string literal, where the expression can be the name of a variable, or any expression which evaluates to a string naming a variable. In PHP the expression may include delimited comments, spaces, and so on. In Hack this syntax is both deprecated and more strict. In Hack the only expression that may appear inside the braces is an expression which would be a legal <i>`string-variable`</i> if the braces were removed. 
-
-For example, `"${y[123]}"` would be legal in Hack because `$y[123]` is a legal <i>`string-variable`</i>. In contrast, `"${ 'x'}"` is legal PHP equivalent to "$x", but in Hack this is not legal because `$ 'x'` is not a legal <i>`string-variable`</i>. 
+PHP allows the syntax `"${ expression }"` in a double-quoted string literal, where the expression can be the name of a variable, or any expression which evaluates to a string naming a variable. This is an invalid string interpolation syntax in Hack.
 
 ##Statements
 

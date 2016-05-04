@@ -655,7 +655,6 @@ The variable substitution accepts the following syntax:
 <pre>
     <i>string-variable::</i>
         <i>variable-name</i>   <i>offset-or-property<sub>opt</sub></i>
-        ${   <i>expression</i>   }  
 
     <i>offset-or-property::</i>
         <i>offset-in-string</i>
@@ -678,8 +677,6 @@ The variable substitution accepts the following syntax:
 * [*name*](#names)
 * [*variable-name*](#names)
 
-The `${ expression }` syntax is deprecated in Hack. The expression must be such that if the enclosing braces were removed and the `$` prepended, then the resulting expression would be a legal <i>`string-variable`</i>. For example, `"${y[123]}"` is legal because `$y[123]` is a legal <i>`string-variable`</i>. No whitespace or comments are allowed inside the braces.
-
 After the variable defined by the syntax above is evaluated, its value is converted
 to string according to the rules of [string conversion](08-conversions.md#converting-to-string-type)
 and is substituted into the string in place of the variable substitution expression.
@@ -690,20 +687,8 @@ and [member selection operator](10-expressions.md#member-selection-operator) res
 The exception is that *name* inside *offset-in-string* is interpreted as a string literal even if it is not
 quoted.
 
-If the character sequence following the `$` does not parse as *name* and does not start with `{`, the `$` character
+If the character sequence following the `$` does not parse as *name* then the `$` character
 is instead interpreted verbatim and no variable substitution is performed.
-
-Variable substitution also provides limited support for the evaluation
-of expressions. This is done by enclosing an expression in a pair of
-matching braces (`{ ... }`). The opening brace must be followed immediately by
-a dollar (`$`) without any intervening white space, and that dollar must
-begin a variable name. If this is not the case, braces are treated
-verbatim. If the opening brace (`{`) is escaped it is not interpreted as a start of
-the embedded expression and instead is interpreted verbatim.
-
-The value of the expression is converted to string according to the rules of
-[string conversion](08-conversions.md#converting-to-string-type) and is substituted into the string
-in place of the substitution expression.
 
 A double-quoted string literal is a [c-constant](06-constants.md#general) if it does not
 contain any variable substitution.
