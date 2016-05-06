@@ -41,7 +41,7 @@ A function is called via the [function-call operator `()`](10-expressions.md#fun
   <i>default-argument-specifier:</i>
     =  <i>const-expression</i>
 
-  <i>return type:</i>
+  <i>return-type:</i>
     <i>type-specifier</i>
     noreturn
 </pre>
