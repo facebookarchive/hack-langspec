@@ -382,6 +382,7 @@ is distributed without any warranty.
     - [Assignment Operators](23-differences-from-php.md#assignment-operators)
       - [byRef Assignment](23-differences-from-php.md#byref-assignment)
     - [Logical `AND`, `OR`, `XOR` Operators (Alternate Forms)](23-differences-from-php.md#logical-and-or-xor-operators-alternate-forms)
+    - [String Literals](23-differences-from-php.md#string-literals)
   - [Statements](23-differences-from-php.md#statements)
     - [General](23-differences-from-php.md#general-2)
     - [Labeled Statements](23-differences-from-php.md#labeled-statements)
