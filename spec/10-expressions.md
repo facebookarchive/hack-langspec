@@ -113,6 +113,7 @@ of supertypes such as `num`, `arraykey`, or `?int`. Refer to [§§](05-types.md#
     <i>awaitable-creation-expression</i>
     (  <i>expression</i>  )
     $this
+    $$
 </pre>
 
 *variable-name* and *qualified-name* are defined in [§§](09-lexical-structure.md#names); *literal*
@@ -130,7 +131,9 @@ the un-parenthesized expression.
 The variable `$this` is predefined inside any instance method,
 constructor, or destructor when that method is called from within an object
 context. `$this` is a handle ([§§](05-types.md#general)) that points to the calling object or
-to the object being constructed. The type of `$this` is `this` [§§](05-types.md#the-this-type).
+to the object being constructed. The type of `$this` is `this` [§§](05-types.md#the-this-type). `$this` is a non-modifiable lvalue.
+
+The *pipe variable* `$$` is predefined only within the *coalesce-expression* of a [*piped-expression*](10-expressions.md#pipe-operator). The type and value of `$$` is the type and value of that *coalesce-expression*. `$$` is a non-modifiable lvalue.
 
 ###Intrinsics
 
@@ -2337,13 +2340,47 @@ function main(): void {
 }
 ```
 
+##Pipe Operator
+
+**Syntax**
+<pre>
+<i>piped-expression:</i>
+  <i>coalesce-expression</i>
+  <i>piped-expression</i>   |>   <i>coalesce-expression</i>
+</pre>
+
+*coalesce-expression* is defined in [§§](10-expressions.md#coalesce-operator).
+
+**Constraints**
+
+*piped-expression* cannot be used as the right-hand operand of an assignment operator.
+
+*coalesce-expression* must contain at least one occurrence of the pipe variable `$$`.
+
+**Semantics**
+
+*piped-expression* is evaluated with the result being stored in the pipe variable `$$`. There is a sequence point after the evaluation of *piped-expression*. Then *coalesce-expression* is evaluated, and its type and value become the type and value of the result.
+
+This operator associates left-to-right.
+
+**Examples**
+
+```PHP
+class Widget { … }
+function pipe_operator_example(array<Widget> $arr): int {
+  return $arr
+    |> array_map($x ==> $x->getNumber(), $$)
+    |> array_filter($$, $x ==> $x % 2 == 0)
+    |> count($$);
+}
+```
+
 ##Lambda Expressions
 
 **Syntax**
 <pre>
 <i>lambda-expression:</i>
-  <i>coalesce-expression</i>
-  <i>conditional-expression</i>
+  <i>piped-expression</i>
   async<sub>opt</sub>  <i>lambda-function-signature</i>  ==>  <i>anonymous-function-body</i>
 
 <i>lambda-function-signature:</i>
@@ -2355,7 +2392,7 @@ function main(): void {
   <i>compound-statement</i>
 </pre>
 
-*coalesce-expression* is defined in [§§](10-expressions.md#coalesce-operator); *conditional-expression* is defined in [§§](10-expressions.md#conditional-operator); *variable-name* is defined in [§§](09-lexical-structure.md#names); *anonymous-function-parameter-declaration-list* is defined in [§§](10-expressions.md#anonymous-function-creation); *anonymous-function-return* is defined in [§§](10-expressions.md#anonymous-function-creation); *expression* is defined in [§§](10-expressions.md#yield-operator); and *compound-statement* is defined in [§§](11-statements.md#compound-statements).
+*piped-expression* is defined in [§§](10-expressions.md#pipe-operator); *variable-name* is defined in [§§](09-lexical-structure.md#names); *anonymous-function-parameter-declaration-list* is defined in [§§](10-expressions.md#anonymous-function-creation); *anonymous-function-return* is defined in [§§](10-expressions.md#anonymous-function-creation); *expression* is defined in [§§](10-expressions.md#yield-operator); and *compound-statement* is defined in [§§](11-statements.md#compound-statements).
 
 **Constraints**
 
