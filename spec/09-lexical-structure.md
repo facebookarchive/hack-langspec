@@ -263,9 +263,11 @@ members ([§§](16-classes.md#class-members)), interfaces ([§§](17-interfaces.
 and names in heredoc ([§§](09-lexical-structure.md#heredoc-string-literals)) and nowdoc comments ([§§](09-lexical-structure.md#nowdoc-string-literals)); and attributes ([§§](21-attributes.md#attributes)).
 
 A *name* begins with an underscore (_), *name-nondigit*, or extended
-name character in the range U+007f– ** U+00ff. Subsequent characters can
+name character in the range U+007f–U+00ff. Subsequent characters can
 also include *digit*s. A *variable name* is a name with a leading
 dollar ($).
+
+The name `$_`, referred to as the *placeholder variable*, is reserved for use in the ([`list` intrinsic](§10-expressions.md#list)) and the ([`foreach` statement](§11-statements.md#The-foreach-Statement)). This name does not actually designate any storage; instead, it’s an indication that the value that would otherwise be stored in a variable in that context, is ignored.
 
 Unless stated otherwise ([§§](14-generic-types-methods-and-functions.md#type-parameters), [§§](15-functions.md#function-calls), [§§](16-classes.md#class-declarations), [§§](18-traits.md#trait-members)),
 names are case-sensitive, and every character in a name is significant.
