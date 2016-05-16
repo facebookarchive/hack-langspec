@@ -504,7 +504,7 @@ for ($a = 100, $i = 1; ++$i, $i <= 10; ++$i, $a -= 10) {
     <i>expression</i>  =>
 
   <i>foreach-value:<i>
-    &amp;<sub>opt</sub>   <i>expression</i>
+    <i>expression</i>
     <i>list-intrinsic</i>
 </pre>
 
@@ -524,14 +524,11 @@ For the “await as” form, the type of *foreach-collection-name* must implemen
 
 The *foreach* statement iterates over the set of elements in the
 collection designated by *foreach-collection-name*, starting at the
-beginning, executing *statement* each iteration. On each iteration, if
-the `&` is present in *foreach-value*, the variable designated by the
-corresponding *expression* is made an alias to the current element. If
-the `&` is omitted, the value of the current element is assigned to the
-corresponding variable. The loop body, *statement*, is executed zero or
+beginning, executing *statement* each iteration. On each iteration, the value of the current element is assigned to the
+corresponding variable designated by *foreach-value*, provided *foreach-value*’s *expression* is not ([`$_`](§09-lexical-structure.md#names); otherwise, the value of the current element is ignored. The loop body, *statement*, is executed zero or
 more times.
 
-If *foreach-key* is present, the variable designated by its *expression*
+If *foreach-key* is present and its *expression* is `$_`, the current element's key value is ignored. If *foreach-key* is present and *expression* is not `$_`,  the variable designated by its *expression*
 is assigned the current element's key value.
 
 In the *list-intrinsic* case, a value that is an array is split into
@@ -555,11 +552,10 @@ foreach ($colors as $color) {
   $color = "black";
 }
 // -----------------------------------------
-// Modify the the actual element itself
-
-foreach ($colors as &$color) {  // note the &
-  $color = "black";
-}
+  $a = array('a' => 10, 'f' => 30);
+  foreach ($a as $key => $_) { // 10 and 30 are ignored
+    …
+  }
 // -----------------------------------------
 async function countdown1(int $start): AsyncIterator<int> {
   for ($i = $start; $i >= 0; --$i) {
