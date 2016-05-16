@@ -351,6 +351,8 @@ target variable, and so on, until all target variables have been
 assigned. Any elements having an `int` key outside the range 0–(*n*-1),
 where *n* is the number of target variables, are ignored.
 
+If ([`$_`](09-lexical-structure.md#names) is used as a target variable, the value of the corresponding source element is ignored; no assignment takes place. Multiple target variables in the same list-expression-list may be `$_`.
+
 When the source is an instance of the classes `Vector`, `ImmVector`, or `Pair`, the
 elements in the source are assigned to the target variables in lexical order,
 until all target variables have been assigned.
@@ -369,6 +371,8 @@ $v = list($a[0], $a[2], $a[4]) = array(50, 5100, 567);
   // $a[0] is 50, $a[2] is 5100, $a[4] is 567
 list($min, $max, ) = array(10, 1100, 167);
   // $min is 10, $max is 1100
+$v = Vector {1, 2, 3};
+list($_, $b, $_) = $v; // $b is assigned 2; 1 and 3 are ignored
 ```
 
 ###Collection Literals
