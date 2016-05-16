@@ -1001,7 +1001,7 @@ octal-digit
     <i>expression</i>  =>
 
   <i>foreach-value:<i>
-    &amp;<sub>opt</sub>  <i>expression</i>
+    <i>expression</i>
     <i>list-intrinsic</i>
 
 </pre>
