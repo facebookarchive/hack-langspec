@@ -297,7 +297,7 @@ octal-digit
     [   ]    (   )   {    }   .   -&gt;   ++   --   **   *   +   -   ~   !
     $   /   %   &lt;&lt;   &gt;&gt;   &lt;   &gt;   &lt;=   &gt;=   ==   ===   !=   !==   ^   |
     &amp;   &amp;&amp;   ||   ?   ??   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
-    &gt;&gt;=   &amp;=   ^=   |=   ,   @   ::   =>   ==>   ?->   \   ...
+    &gt;&gt;=   &amp;=   ^=   |=   ,   @   ::   =>   ==>   ?->   \   ...   |>   $$
 </pre>
 
 ##Syntactic Grammar
@@ -352,7 +352,7 @@ octal-digit
   this
   <i>classname-type-specifier</i>
   <i>type-constant-type-name</i>
-  
+
 <i>alias-type-specifier:</i>
   <i>qualified-name</i>
 
@@ -480,6 +480,7 @@ octal-digit
     <i>awaitable-creation-expression</i>
     (  <i>expression</i>  )
     $this
+    $$
 
   <i>intrinsic:</i>
     <i>array-intrinsic</i>
@@ -585,12 +586,12 @@ octal-digit
 
   <i>awaitable-creation-expression:</i>
     async   {   <i>async-statement-list<sub>opt</sub></i>   }
-    
+
   <i>async-statement-list:</i>
     <i>statement</i>
     <i>async-statement-list   statement</i>
 </pre>
- 
+
 ####Postfix Operators
 
 <pre>
@@ -823,11 +824,19 @@ octal-digit
     <i>logical-inc-OR-expression</i>  ?  <i>expression<sub>opt</sub></i>  :  <i>conditional-expression</i>
 </pre>
 
+####Pipe Operator
+
+<pre>
+  <i>piped-expression:</i>
+    <i>coalesce-expression</i>
+    <i>piped-expression</i>   |>   <i>coalesce-expression</i>
+</pre>
+
 ####Lambda Expressions
 
 <pre>
 <i>lambda-expression:</i>
-  <i>conditional-expression</i>
+  <i>piped-expression</i>
   async<sub>opt</sub>  <i>lambda-function-signature</i>  ==>  <i>anonymous-function-body</i>
 
 <i>lambda-function-signature:</i>
