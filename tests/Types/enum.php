@@ -1,6 +1,6 @@
 <?hh // strict
 
-namespace NS_enum;
+namespace NS_enum_in_types_dir;
 
 enum ControlStatus: int {
   Stopped = 0;

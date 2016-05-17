@@ -42,7 +42,7 @@ Hack treats comments of the forms `// strict` and `// FALLTHROUGH` in a special 
 In Hack, function and method names are case-sensitive.
 
 ###Keywords
-The following PHP identifiers are keywords in Hack: `arraykey`, `async`, `enum`, `mixed`, `newtype`, `num`, `shape`, `tuple`, and `type`.
+The following PHP identifiers are keywords in Hack: `arraykey`, `async`, `enum`, `mixed`, `newtype`, `num`, `parent`, `self`, `shape`, `tuple`, and `type`.
 
 ##Expressions
 
@@ -105,7 +105,7 @@ Hack does not allow casts to `array`, `binary`, `boolean`, `double`, `integer`, 
 
 ####Variable-Name Creation Operator
 
-This operator is not supported.
+PHP allows variables to reference each other by means of a "variable variable". There are two syntaxes in PHP; if `$y` is equal to the string `"x"` then `$$y` and `${$y}` are both aliases for `$x`. This operator is not supported.
 
 ###`instanceof` Operator
 The right-hand operand cannot be a string.
@@ -134,6 +134,10 @@ This is not supported.
 
 ###Logical `AND`, `OR`, `XOR` Operators (Alternate Forms)
 The `and`, `xor`, and `or` alternate forms are not supported.
+
+###String Literals
+
+PHP allows the syntax `"${ expression }"` in a double-quoted string literal, where the expression can be the name of a variable, or any expression which evaluates to a string naming a variable. This is an invalid string interpolation syntax in Hack.
 
 ##Statements
 

@@ -47,6 +47,7 @@ class C2 extends C1 {
   }
 }
 
+/*
 // --------------------------------------------------------
 // use UNSAFE_Construct attribute
 
@@ -69,7 +70,7 @@ class Derived2 extends Base2 {
     parent::__construct();
   }
 }
-
+*/
 // --------------------------------------------------------
 
 //<<__ConsistentConstruct, Attr2(3, true)>>	// hmmm! accepted

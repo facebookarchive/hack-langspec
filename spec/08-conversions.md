@@ -4,7 +4,7 @@
 
 Some operators implicitly convert automatically the values of operands
 from one type to another. Explicit conversion is performed using the
-cast operator ([§§](10-expressions.md#cast-operator)).
+[cast operator](10-expressions.md#cast-operator).
 
 If an expression is converted to its own type, the type and value of the
 result are the same as the type and value of the expression.
@@ -16,13 +16,12 @@ When an expression of type `arraykey` is converted, if that expression is
 currently an `int`, then `int` conversion rules apply; otherwise, `string` 
 conversion rules apply.
 
-
 ##Converting to Boolean Type
 
 No non-`bool` type can be converted implicitly to `bool`. All other conversions 
 must be explicit.
 
-The [result type] (http://docs.hhvm.com/manual/en/language.types.boolean.php#language.types.boolean.casting) is `bool`.
+The [result type](http://docs.hhvm.com/manual/en/language.types.boolean.php#language.types.boolean.casting) is `bool`.
 
 If the source type is `int` or `float`, then if the source value tests equal
 to 0, the result value is `false`; otherwise, the result value is `true`.
@@ -39,14 +38,14 @@ If the source is an object, the result value is `true`.
 
 If the source is a resource, the result value is `false`.
 
-The library function `boolval` (§xx) allows values to be converted to
+The library function [`boolval`](http://www.php.net/boolval) allows values to be converted to
 `bool`.
 
 ##Converting to Integer Type
 
 No non-`int` type can be converted implicitly to `int`. All other conversions must be explicit.
 
-The [result type](http://docs.hhvm.com/manual/en/language.types.integer.php#language.types.integer.casting)  is `int`.
+The [result type](http://docs.hhvm.com/manual/en/language.types.integer.php#language.types.integer.casting) is `int`.
 
 If the source type is `bool`, then if the source value is `false`, the
 result value is 0; otherwise, the result value is 1.
@@ -58,7 +57,7 @@ and the result is well defined; otherwise, the result is undefined.
 
 If the source value is `null`, the result value is 0.
 
-If the source is a numeric string or leading-numeric string ([§§](05-types.md#the-string-type))
+If the source is a [numeric string or leading-numeric string](05-types.md#the-string-type)
 having integer format, if the precision can be preserved the result
 value is that string's integer value; otherwise, the result is
 undefined. If the source is a numeric string or leading-numeric string
@@ -72,8 +71,7 @@ otherwise, the result value is 1.
 
 If the source is a resource, the result is the resource's unique ID.
 
-The library function [`intva`l
-(§xx)](http://docs.hhvm.com/manual/en/function.intval.php) allows values
+The library function [`intval`](http://docs.hhvm.com/manual/en/function.intval.php) allows values
 to be converted to `int`.
 
 ##Converting to Floating-Point Type
@@ -87,7 +85,7 @@ If the source type is `int`, if the precision can be preserved the result
 value is the closest approximation to the source value; otherwise, the
 result is undefined.
 
-If the source is a numeric string or leading-numeric string ([§§](05-types.md#the-string-type))
+If the source is a [numeric string or leading-numeric string](05-types.md#the-string-type)
 having integer format, the string's integer value is treated as
 described above for a conversion from `int`. If the source is a numeric
 string or leading-numeric string having floating-point format, the
@@ -100,7 +98,7 @@ otherwise, the result value is 1.0.
 
 If the source is a resource, the result is the resource's unique ID.
 
-The library function `floatval` (§xx) allows values to be converted to
+The library function [`floatval`](http://www.php.net/floatval) allows values to be converted to
 float.
 
 ##Converting to Number Type
@@ -110,10 +108,9 @@ The only implicit conversions to type `num` are from the types `int` and
 
 The result type is `num`.
 
-
 ##Converting to String Type
 
-Except for the classname type ([§§](05-types.md#the-classname-type)), no non-`string` type can be converted implicitly to `string`. All other conversions must be explicit.
+Except for the [`classname` type](05-types.md#the-classname-type), no non-`string` type can be converted implicitly to `string`. All other conversions must be explicit.
 
 The [result type](http://docs.hhvm.com/manual/en/language.types.string.php#language.types.string.casting) is `string`.
 
@@ -122,20 +119,20 @@ result value is the empty string; otherwise, the result value is "1".
 
 If the source type is `int` or `float`, then the result value is a string
 containing the textual representation of the source value (as specified
-by the library function `sprintf` (§xx)).
+by the library function [`sprintf`](http://www.php.net/sprintf).
 
 If the source value is `null`, the result value is an empty string.
 
 If the source is an object, then if that object's class has a
-`__toString` method ([§§](16-classes.md#method-__tostring)), the result value is the string returned
+[`__toString` method](16-classes.md#method-__tostring), the result value is the string returned
 by that method; otherwise, the conversion is invalid.
 
 If the source is a resource, the result value is an
 implementation-defined string.
 
-If the source type is the classname type ([§§](05-types.md#the-classname-type)), the result value is a string containing the corresponding fully qualified class or interface name without any leading `\`.
+If the source type is the [`classname` type](05-types.md#the-classname-type), the result value is a string containing the corresponding fully qualified class or interface name without any leading `\`.
 
-The library function `strval` (§xx) allows values to be converted to
+The library function [`strval`](http://www.php.net/strval) allows values to be converted to
 `string`.
 
 ##Converting to Array Key Type
@@ -167,11 +164,11 @@ There are no other implicit or explicit conversions.
 
 ##Converting to Resource Type
 
-The predefined resource-like constants ([§§](05-types.md#interface-types)) `STDIN`, `STDOUT`, and 
+The [predefined resource-like constants](05-types.md#resource-types)) `STDIN`, `STDOUT`, and 
 `STDERR`, can be converted implicitly to resource. No other non-resource type 
 can be so converted. No explicit conversions exist.
 
 ##Converting to Mixed Type
 
-Any type can be converted implicitly to mixed ([§§](05-types.md#nullable-types)). No explicit conversions
+Any type can be converted implicitly to [`mixed`](05-types.md#nullable-types). No explicit conversions
 exist.

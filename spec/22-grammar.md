@@ -77,19 +77,6 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
   <i>variable-name::</i>
     $   <i>name</i>
 
-  <i>namespace-name::</i>
-    <i>name </i>
-    <i>namespace-name   \   name</i>
-
-  <i>namespace-name-as-a-prefix::</i>
-    \
-    \<sub>opt</sub>   <i>namespace-name</i>   \
-    namespace   \
-    namespace   \   <i>namespace-name</i>   \
-
-  <i>qualified-name::</i>
-    <i>namespace-name-as-a-prefix<sub>opt</sub>   name</i>
-
   <i>name::</i>
     <i>name-nondigit</i>
     <i>name   name-nondigit</i>
@@ -113,8 +100,8 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
   <i>keyword::</i> one of
     abstract  arraykey  as  async  break  case  catch  class  classname clone  const  continue  default  do
     echo  else  elseif  enum  extends  final  finally  for  foreach  function  if  implements
-    instanceof  insteadof  interface  mixed  namespace  new  newtype  noreturn   num  private
-    protected  public  require  require_once  return  shape  static  switch  throw  trait  try
+    instanceof  insteadof  interface  mixed  namespace  new  newtype  noreturn   num  parent  private
+    protected  public  require  require_once  return  self  shape  static  switch  throw  trait  try
     tuple  type  use  while  yield
 </pre>
 
@@ -309,8 +296,8 @@ octal-digit
   <i>operator-or-punctuator:: one of</i>
     [   ]    (   )   {    }   .   -&gt;   ++   --   **   *   +   -   ~   !
     $   /   %   &lt;&lt;   &gt;&gt;   &lt;   &gt;   &lt;=   &gt;=   ==   ===   !=   !==   ^   |
-    &amp;   &amp;&amp;   ||   ?   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
-    &gt;&gt;=   &amp;=   ^=   |=   ,   @   ::   =>   ==>   ?->   |>   $$
+    &amp;   &amp;&amp;   ||   ?   ??   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
+    &gt;&gt;=   &amp;=   ^=   |=   ,   @   ::   =>   ==>   ?->   \   ...   |>   $$
 </pre>
 
 ##Syntactic Grammar
@@ -365,7 +352,7 @@ octal-digit
   this
   <i>classname-type-specifier</i>
   <i>type-constant-type-name</i>
-  
+
 <i>alias-type-specifier:</i>
   <i>qualified-name</i>
 
@@ -599,12 +586,12 @@ octal-digit
 
   <i>awaitable-creation-expression:</i>
     async   {   <i>async-statement-list<sub>opt</sub></i>   }
-    
+
   <i>async-statement-list:</i>
     <i>statement</i>
     <i>async-statement-list   statement</i>
 </pre>
- 
+
 ####Postfix Operators
 
 <pre>
@@ -719,7 +706,7 @@ octal-digit
     <i>unary-operator cast-expression</i>
 
   <i>unary-operator: one of</i>
-    +  -  !  \
+    +  -  !  ~
 
   <i>error-control-expression:</i>
     @  <i>expression</i>
@@ -1065,7 +1052,7 @@ octal-digit
 <pre>
   <i>inclusion-directive:</i>
     <i>require-multiple-directive</i>
-    <i>require-once-expression</i>
+    <i>require-once-directive</i>
 
   <i>require-multiple-directive:</i>
     require  (  <i>include-filename</i>  )  ;
@@ -1156,7 +1143,7 @@ octal-digit
   <i>default-argument-specifier:</i>
     =  <i>const-expression</i>
 
-  <i>return type:</i>
+  <i>return-type:</i>
     <i>type-specifier</i>
 </pre>
 
@@ -1353,6 +1340,19 @@ octal-digit
 
   <i>namespace-aliasing-clause:</i>
     as  <i>name</i>
+
+  <i>namespace-name:</i>
+    <i>name </i>
+    <i>namespace-name   \   name</i>
+
+  <i>namespace-name-as-a-prefix:</i>
+    \
+    \<sub>opt</sub>   <i>namespace-name</i>   \
+    namespace   \
+    namespace   \   <i>namespace-name</i>   \
+
+  <i>qualified-name:</i>
+    <i>namespace-name-as-a-prefix<sub>opt</sub>   name</i>
 </pre>
 
 ###Attributes

@@ -4,16 +4,12 @@
 
 The meaning of a value is decided by its *type*. Hack's types are
 categorized as *scalar types* and *composite types*. The scalar types
-are Boolean ([§§](#the-boolean-type)), integer ([§§](#the-integer-type)), floating-point ([§§](#the-floating-point-type)), numeric ([§§](05-types.md#the-numeric-type)), string
-([§§](#the-string-type)), array key ([§§](05-types.md#the-array-key-type)), null ([§§](#the-null-type)), and
-enumerated ([§§](05-types.md#enumerated-types)). The non-scalar types are array ([§§](05-types.md#array-types)), class ([§§](05-types.md#class-types)),
-interface ([§§](05-types.md#interface-types)), tuple ([§§](05-types.md#tuple-types)), shape ([§§](05-types.md#shape-types)), closure ([§§](05-types.md#closure-types)), resource
-([§§](05-types.md#resource-types)), and nullable ([§§](05-types.md#nullable-types)). The void type ([§§](05-types.md#the-void-type)) is neither scalar nor
+are [Boolean](#the-boolean-type), [integer](#the-integer-type), [floating-point](#the-floating-point-type), [numeric](05-types.md#the-numeric-type), [string](#the-string-type), [array key](05-types.md#the-array-key-type), [null](#the-null-type), and
+[enumerated](05-types.md#enumerated-types). The non-scalar types are [array](05-types.md#array-types), [class](05-types.md#class-types), [interface](05-types.md#interface-types), [tuple](05-types.md#tuple-types), [shape](05-types.md#shape-types), [closure](05-types.md#closure-types), [resource](05-types.md#resource-types), and [nullable](05-types.md#nullable-types). The [void type](05-types.md#the-void-type) is neither scalar nor
 non-scalar.
 
 The integer, floating-point, and numeric types are known collectively as
-arithmetic types. (Note carefully, that the library function is_numeric (§xx
-indicates if a given value is an int, a float, or a numeric string ([§§](05-types.md#the-string-type)).)
+arithmetic types. (Note carefully, that the library function [is_numeric](http://www.php.net/is_numeric) indicates if a given value is an int, a float, or a [numeric string](05-types.md#the-string-type).)
 
 The scalar types are *value types*. That is, a variable of scalar type
 behaves as though it contains its own value. On the
@@ -32,37 +28,36 @@ Variables are not declared to have a particular type. Instead, a
 variable's type is decided at runtime by the context in which it is
 used.
 
-A *type constraint* indicates a requirement that a type must fulfill in order to be accepted in a given context. Type constraints are used in type aliasing ([§§](05-types.md#type-aliases)), enum declarations ([§§](13-enums.md#enum-declarations)), type parameters ([§§](14-generic-types,-methods,-and-functions.md#type-parameters)), and type constants ([§§](16-classes.md#type-constants)).
+A *type constraint* indicates a requirement that a type must fulfill in order to be accepted in a given context. Type constraints are used in [type aliasing](05-types.md#type-aliases), [enum declarations](13-enums.md#enum-declarations), [type parameters](14-generic-types-methods-and-functions.md#type-parameters), and [type constants](16-classes.md#type-constants).
 
-The library function `is_scalar` (§xx) indicates if a given value has a scalar
+The library function [`is_scalar`](http://www.php.net/is_scalar) indicates if a given value has a scalar
 type. However, that function does not consider `null` to be scalar. To test
-for `null`, use `is_null` (§xx). Useful library functions for interrogating and using type information include `gettype` (§xx), `is_type` (§xx), `settype` (§xx), and `var_dump` (§xx).
+for `null`, use [`is_null`](http://www.php.net/is_null). Useful library functions for interrogating and using type information include [`gettype`](http://www.php.net/gettype), [`is_type`](http://www.php.net/is_type), [`settype`](http://www.php.net/settype), and [`var_dump`](http://www.php.net/var_dump).
 
 **Syntax**
 <pre>
 <i>type-specifier:</i>
-  bool
-  int
-  float
-  num
-  string
   arraykey
-  void
+  bool
+  float
+  int
+  num
   resource
-  <i>alias-type-specifier</i>
-  <i>vector-like-array-type-specifier</i>
-  <i>map-like-array-type-specifier</i>
-  <i>enum-specifier</i>
-  <i>class-interface-trait-specifier</i>
-  <i>tuple-type-specifier</i>
-  <i>shape-specifier</i>
-  <i>closure-type-specifier</i>
-  <i>nullable-type-specifier</i>
-  <i>generic-type-parameter-name</i>
-<<<<<<< HEAD
+  string
   this
+  void
+  <i>alias-type-specifier</i>
+  <i>class-interface-trait-specifier</i>
   <i>classname-type-specifier</i>
+  <i>closure-type-specifier</i>
+  <i>enum-specifier</i>
+  <i>generic-type-parameter-name</i>
+  <i>map-like-array-type-specifier</i>
+  <i>nullable-type-specifier</i>
+  <i>shape-specifier</i>
+  <i>tuple-type-specifier</i>
   <i>type-constant-type-name</i>
+  <i>vector-like-array-type-specifier</i>
 
 <i>alias-type-specifier:</i>
   <i>qualified-name</i>
@@ -83,32 +78,40 @@ for `null`, use `is_null` (§xx). Useful library functions for interrogating and
 <i>type-constant-type-name:</i>
   <i>name</i>  ::  <i>name</i>
   self  ::  <i>name</i>
-  this  ::  <i>name
+  this  ::  <i>name</i>
   <i>type-constant-type-name</i>  ::  <i>name</i>
 </pre>
 
-*vector-like-array-type-specifier* is defined in [§§](05-types.md#array-types);
-*map-like-array-type-specifier* is defined in [§§](05-types.md#array-types); *tuple-type-specifier* is
-defined in [§§](05-types.md#tuple-types); *shape-type-specifier* is defined in [§§](05-types.md#shape-types); *closure-type-specifier* is defined in [§§](05-types.md#closure-types);
-*nullable-type-specifier* is defined in [§§](05-types.md#nullable-types); *generic-type-parameter-name*
-is defined in [§§](14-generic-types-methods-and-functions.md#type-parameters); *generic-type-argument-list* is defined in [§§](14-generic-types-methods-and-functions.md#type-arguments); *classname-type-specifier* is defined in [§§](05-types.md#the-classname-type); and *name* and *qualified-name* are defined in [§§](09-lexical-structure.md#names).
+**Defined elsewhere**
+
+* [*classname-type-specifier*](05-types.md#the-classname-type)
+* [*closure-type-specifier*](05-types.md#closure-types)
+* [*generic-type-argument-list*](14-generic-types-methods-and-functions.md#type-arguments)
+* [*generic-type-parameter-name*](14-generic-types-methods-and-functions.md#type-parameters)
+* [*map-like-array-type-specifier*](05-types.md#array-types)
+* [*name*](09-lexical-structure.md#names)
+* [*nullable-type-specifier*](05-types.md#nullable-types)
+* [*qualified-name*](20-namespaces.md#defining-namespaces)
+* [*shape-type-specifier*](05-types.md#shape-types)
+* [*tuple-type-specifier*](05-types.md#tuple-types)
+* [*vector-like-array-type-specifier*](05-types.md#array-types)
 
 **Constraints**
 
 The *qualified-name* in *alias-type-specifier* must qualify the *name* of a
-type alias declared in an *alias-declaration* ([§§](05-types.md#type-aliases)).
+type alias declared in an [*alias-declaration*](05-types.md#type-aliases).
 
-The *qualified-name* in *enum-specifier* must qualify the *name* of an enumerated type declared in an *enum-declaration* ([§§](13-enums.md#enum-declarations)).
+The *qualified-name* in *enum-specifier* must qualify the *name* of an enumerated type declared in an [*enum-declaration*](13-enums.md#enum-declarations).
 
 The *qualified-name* in *class-interface-trait-specifier* must qualify the
-*name* of a class type declared in a *class-declaration* ([§§](16-classes.md#class-declarations)), of an
-interface type declared in an *interface-declaration* ([§§](17-interfaces.md#interface-declarations)), or of a trait
-type declared in a *trait-declaration* ([§§](18-traits.md#trait-declarations)).
+*name* of a class type declared in a [*class-declaration*](16-classes.md#class-declarations), of an
+interface type declared in an [*interface-declaration*](17-interfaces.md#interface-declarations), or of a trait
+type declared in a [*trait-declaration*](18-traits.md#trait-declarations).
 
 The *name* of a trait type declared in a *trait-declaration* can only be used
-as a type-specifier in the context of a *trait-use-clauses* ([§§](18-traits.md#trait-declarations)).
+as a type-specifier in the context of a [*trait-use-clauses*](18-traits.md#trait-declarations).
 
-For *name* `::` *name*, the left-hand *name* must be the name of a class or interface that directly or indirectly has a type-constant member ([§§](16-classes.md#type-constants)) whose name is the right-hand *name*.
+For *name* `::` *name*, the left-hand *name* must be the name of a class or interface that directly or indirectly has a [type-constant member](16-classes.md#type-constants) whose name is the right-hand *name*.
 
 For `self` `::` *name*, *name* must be the name of a type-constant member in the current class (including any implemented interfaces).
 
@@ -154,17 +157,17 @@ function test10(C::self::this $x): void {}
 
 For some examples, see [§§](16-classes.md#type-constants).
 
-###The Boolean Type
+##The Boolean Type
 
 The Boolean type is `bool`. This
 type is capable of storing two distinct values, which correspond to the
 Boolean values `true` and `false`, respectively. The representation of
 this type and its values is unspecified.
 
-The library function `is_bool` (§xx) indicates if a given value has type
+The library function [`is_bool`](http://www.php.net/is_bool) indicates if a given value has type
 `bool`.
 
-###The Integer Type
+##The Integer Type
 
 There is one integer type, `int`.
 This type is binary, signed, and uses twos-complement representation for
@@ -191,35 +194,35 @@ but must be one of the following:
 The constants [`PHP_INT_SIZE`, `PHP_INT_MIN` and `PHP_INT_MAX`](06-constants.md#core-predefined-constants) define certain
 characteristics about type `int`.
 
-The library function `is_int` (§xx) indicates if a given value has type
+The library function [`is_int`](http://www.php.net/is_int) indicates if a given value has type
 int.
 
-###The Floating-Point Type
+##The Floating-Point Type
 
 There is one floating-point type, `float`. The `float` type must support at least the range and
 precision of IEEE 754 64-bit double-precision representation.
 
-The library function `is_float` (§xx) indicates if a given value has type
-`float`. The library function `is_finite` (§xx) indicates if a given
-floating-point value is finite. The library function `is_infinite` (§xx)
+The library function [`is_float`](http://www.php.net/is_float) indicates if a given value has type
+`float`. The library function [`is_finite`](http://www.php.net/is_finite) indicates if a given
+floating-point value is finite. The library function [`is_infinite`](http://www.php.net/is_infinite)
 indicates if a given floating-point value is infinite. The library
-function `is_nan` (§xx) indicates if a given floating-point value is a
+function [`is_nan`](http://www.php.net/is_nan) indicates if a given floating-point value is a
 `NaN`.
 
-###The Numeric Type
+##The Numeric Type
 
 The type `num` can represent any integer or floating-point value.
 
-See the discussion of type side effects ([§§](05-types.md#type-side-effects)).
+See the discussion of [type side effects](05-types.md#type-side-effects).
 
-###The String Type
+##The String Type
 
 There is one string type, `string`.
 
 A string is a set of contiguous bytes that represents a sequence of zero
 or more characters.
 
-Conceptually, a string can be considered as an array ([§§](05-types.md#array-types)) of
+Conceptually, a string can be considered as an [array](05-types.md#array-types) of
 bytes—the *elements*—whose keys are the `int` values starting at zero. The
 type of each element is `string`. However, a string is *not* considered a
 collection, so it cannot be iterated over.
@@ -261,36 +264,44 @@ string.
     <i>floating-literal</i>
 </pre>
 
-*new-line* is defined in [§§](09-lexical-structure.md#comments), and *digit-sequence*, *floating-literal*, and *sign* are defined in [§§](09-lexical-structure.md#floating-point-literals).
+**Defined elsewhere**
+
+* [*digit-sequence*](09-lexical-structure.md#floating-point-literals)
+* [*floating-literal*](09-lexical-structure.md#floating-point-literals)
+* [*new-line*](09-lexical-structure.md#comments)
+* [*sign*](09-lexical-structure.md#floating-point-literals)
+
+Note that *digit-sequence* is interpreted as having base-10 (so `"0377"` is treated as 377 decimal with a redundant
+leading zero, rather than as octal 377).
 
 Only one mutation operation may be performed on a string, offset
-assignment, which involves the simple assignment operator = ([§§](10-expressions.md#simple-assignment)).
+assignment, which involves the [simple assignment operator `=`](10-expressions.md#simple-assignment).
 
-The library function `is_string` (§xx) indicates if a given value has
+The library function [`is_string`](http://www.php.net/is_string) indicates if a given value has
 type `string`.
 
-###The Array Key Type
+##The Array Key Type
 The type `arraykey` can represent any integer or string value.
 
-See the discussion of type side effects ([§§](05-types.md#type-side-effects)).
+See the discussion of [type side effects](05-types.md#type-side-effects).
 
-###The Null Type
+##The Null Type
 
-The null type has only one possible value, `NULL` ([§§](06-constants.md#core-predefined-constants)). The representation
+The null type has only one possible value, [`null`](06-constants.md#core-predefined-constants). The representation
 of this type and its value is unspecified.
 
-The library function `is_null` (§xx) indicates if a given value is `NULL`.
+The library function [`is_null`](http://www.php.net/is_null) indicates if a given value is `null`.
 
-###Enumerated Types
+##Enumerated Types
 
 Enumerated types are described in [§§](13-enums.md#enums).
 
-###The Void Type
+##The Void Type
 
 The type `void` indicates the absence of a value. Its primary use is as the
 return type of a function.
 
-###Array Types
+##Array Types
 
 **Syntax**
 <pre>
@@ -307,7 +318,9 @@ return type of a function.
   <i>type-specifier</i>
 </pre>
 
-<i>type-specifier</i> is defined in [§§](05-types.md#general).
+**Defined elsewhere**
+
+* [*type-specifier*](05-types.md#general).
 
 **Constraints**
 
@@ -334,7 +347,7 @@ indicated by *array-key-type-specifier*, and an explicit value type as
 indicated by *array-value-type-specifier*.
 
 Each element in an array must have a type that is the exact type indicated by
-*array-value-type-specifier*, or a subtype ([§§](05-types.md#supertypes-and-subtypes)) of that type. For example,
+*array-value-type-specifier*, or a [subtype](05-types.md#supertypes-and-subtypes) of that type. For example,
 an array of `num` can contain a mixture of `int` elements and `float` elements.
 
 An array element can have any type (which allows for arrays of arrays).
@@ -347,7 +360,7 @@ the array with a corresponding key. An array is *extended* by initializing a
 previously non-existent element using a new key. Elements cannot be removed
 from an array.
 
-The `foreach` statement ([§§](11-statements.md#the-foreach-statement)) can be used to iterate over the collection
+The [`foreach` statement](11-statements.md#the-foreach-statement) can be used to iterate over the collection
 of elements in an array, in the order in which the elements were inserted.
 This statement provides a way to access the key and value for each element.
 
@@ -361,13 +374,12 @@ the subscript index need not be an integer (so there is no concept of a base
 index of zero or 1), and there is no concept of consecutive elements occupying
 physically adjacent memory locations.]
 
-An array is created and initialized by one of two equivalent ways: via the array-creation operator `[]` ([§§](10-expressions.md#array-creation-operator)) or the intrinsic `array` ([§§](10-expressions.md#array)).
+An array is created and initialized by one of two equivalent ways: via the [array-creation operator `[]`](10-expressions.md#array-creation-operator) or the intrinsic [`array`](10-expressions.md#array).
 
 The value (and possibly the type) of an existing element is obtained or
-changed, and new elements are inserted, using the subscript operator `[]`
-([§§](10-expressions.md#subscript-operator)).
+changed, and new elements are inserted, using the [subscript operator `[]`](10-expressions.md#subscript-operator).
 
-The library function `is_array` (§xx) indicates if a given value is an array.
+The library function [`is_array`](http://www.php.net/is_array) indicates if a given value is an array.
 Numerous other library functions are available to create and/or manipulate
 arrays.
 
@@ -382,37 +394,37 @@ function f(array<?Button> $buttons): void { … }
 function getProcesses(): array<?(function (string): int)> { … }
 ```
 
-###Class Types
+##Class Types
 
 Class types are described in [§§](16-classes.md#classes).
 
-See the discussion of type side effects ([§§](05-types.md#type-side-effects)).
+See the discussion of [type side effects](05-types.md#type-side-effects).
 
-The library function `is_object` (§xx) indicates if a given value is an
+The library function [`is_object`] (http://www.php.net/is_object) indicates if a given value is an
 instance of any class, and the library function
 [`get_class`](http://docs.hhvm.com/manual/en/function.get-class.php)
-(§xx) indicates the name of an object's class. See also the `instanceof`
-operator ([§§](10-expressions.md#instanceof-operator)).
+(§xx) indicates the name of an object's class. See also the [`instanceof`
+operator](10-expressions.md#instanceof-operator).
 
-###Interface Types
+##Interface Types
 
 Interface types are described in [§§](17-interfaces.md#interfaces).
 
-See the discussion of type side effects ([§§](05-types.md#type-side-effects)).
+See the discussion of [type side effects](05-types.md#type-side-effects).
 
-###Trait Types
+##Trait Types
 
 Trait types are described in [§§](18-traits.md#traits).
 
 Although traits are used to declare class and interface types, a trait type
-cannot be used in the usual context of a type name (see Constraints in [§§](05-types.md#general)).
-That said, for the purposes of subtyping ([§§](05-types.md#supertypes-and-subtypes)), traits are considered types.
+cannot be used in the usual context of a type name (see [Constraints](05-types.md#general).
+That said, for the purposes of [subtyping](05-types.md#supertypes-and-subtypes), traits are considered types.
 
-###The `this` Type
+##The `this` Type
 
-The type name `this` refers to “the current class type at run time”. As such, it can only be used from within a class, an interface, or a trait. (`this` should not be confused with `$this` [§§](10-expressions.md#primary-expressions), which refers to “the current instance”, whose type is `this`.)
+The type name `this` refers to “the current class type at run time”. As such, it can only be used from within a class, an interface, or a trait. (`this` should not be confused with [`$this`](10-expressions.md#primary-expressions), which refers to “the current instance”, whose type is `this`.)
 
-###Tuple Types
+##Tuple Types
 
 **Syntax**
 <pre>
@@ -420,8 +432,10 @@ The type name `this` refers to “the current class type at run time”. As such
   ( <i>type-specifier</i>  ,  <i>type-specifier-list</i>  )
 </pre>
 
-*type-specifier* is defined in [§§](05-types.md#general); and *type-specifier-list* is defined in
-[§§](05-types.md#general).
+**Defined elsewhere**
+
+* [*type-specifier*](05-types.md#general)
+* [*type-specifier-list*](05-types.md#general)
 
 **Semantics**
 
@@ -432,13 +446,13 @@ However, the value of any existing element can be changed. Each element can
 have any type, and each unique, lexically ordered combination of element types
 designates a distinct tuple type.
 
-A tuple can be indexed with the subscript operator ([§§](10-expressions.md#subscript-operator)). The index of the
+A tuple can be indexed with the [subscript operator](10-expressions.md#subscript-operator). The index of the
 first element is zero, with subsequent elements having index values one more
 than their predecessor. Specifically, for a tuple having n elements, their
 indices are 0–*n*-1.
 
-Note: Although a tuple of only one element can be created using a tuple
-literal ([§§](10-expressions.md#tuple-literals)), a *tuple-type-specifier* must contain at least two elements.
+Note: Although a tuple of only one element can be created using a [tuple
+literal](10-expressions.md#tuple-literals), a *tuple-type-specifier* must contain at least two elements.
 While this disallows a function to take an argument or to return a value of
 type (*T*), for example, one could simply declare that function to take or
 return a value of type *T* directly instead.
@@ -455,7 +469,7 @@ function f2(): (bool, array<int>, float) {
 private ?(int, (string, float)) $prop = null;
 ```
 
-###Shape Types
+##Shape Types
 
 **Syntax**
 <pre>
@@ -471,12 +485,15 @@ private ?(int, (string, float)) $prop = null;
   <i>qualified-name</i>  =>  <i>type-specifier</i>
 </pre>
 
-*single-quoted-string-literal* is defined in [§§](09-lexical-structure.md#single-quoted-string-literals); *qualified-name* is defined in [§§](09-lexical-structure.md#names); and
-*type-specifier* is defined in [§§](05-types.md#general).
+**Defined elsewhere**
+
+* [*qualified-name*](20-namespaces.md#defining-namespaces)
+* [*single-quoted-string-literal*](09-lexical-structure.md#single-quoted-string-literals)
+* [*type-specifier*](05-types.md#general)
 
 **Constraints**
 
-*qualified-name* must designate a class constant ([§§](16-classes.md#constants)) of type `int` or
+*qualified-name* must designate a [class constant](16-classes.md#constants) of type `int` or
 `string`.
 
 Each string in the set of strings designated by all the
@@ -499,10 +516,10 @@ construct is sometimes referred to as a "lightweight class".
 A *shape-specifier* defines a shape type as having an unordered set of fields
 each of which has a name (indicated by *single-quoted-string-literal* or *qualified-name*) and a type (indicated by
 *type-specifier*). A field in a shape is accessed using its name as the key in
-a *subscript-expression* ([§§](10-expressions.md#subscript-operator)) that operates on a shape of the
+a [*subscript-expression*](10-expressions.md#subscript-operator) that operates on a shape of the
 corresponding shape type.
 
-A field that has a nullable type ([§§](05-types.md#nullable-types)) need not be mentioned in any initializer of, or assignment to, a variable of that type; however, until its value is set explicitly, that field does not actually exist in the shape. Consider the following:
+A field that has a [nullable type](05-types.md#nullable-types) need not be mentioned in any initializer of, or assignment to, a variable of that type; however, until its value is set explicitly, that field does not actually exist in the shape. Consider the following:
 
 ```Hack
 function f3(shape('a' => int, 'n' => ?string) $p): void {
@@ -511,7 +528,7 @@ function f3(shape('a' => int, 'n' => ?string) $p): void {
 }
 ```
 
-Given the call `f3(shape('a' => 10, 'n' => null))`, field `n` has its value set explicitly, and `f3` works fine. However, given the call `f3(shape('a' => 10))`, field `n` does not have its value set explicitly, in which case, attempting to access that field using `$p['n']` results in an “undefined index” error at runtime. To be certain such accesses succeed, first call `Shapes::keyExists` ([§§](16-classes.md#class-shapes)).
+Given the call `f3(shape('a' => 10, 'n' => null))`, field `n` has its value set explicitly, and `f3` works fine. However, given the call `f3(shape('a' => 10))`, field `n` does not have its value set explicitly, in which case, attempting to access that field using `$p['n']` results in an “undefined index” error at runtime. To be certain such accesses succeed, first call [`Shapes::keyExists`](16-classes.md#class-shapes).
 
 Consider a shape type *S2* whose field set is a superset of that in shape type *S1*. As such, *S2* is a subtype of *S1*. (See the banking example below.) However, when an *S2* is used as an *S1*, only the *S1* fields in that *S2* are accessible.
 
@@ -559,7 +576,7 @@ function processTransaction(Transaction $t): void {
 
 Note carefully, that inside function `processTransaction`, even though the transaction passed in might have been a `Deposit`, a `Withdrawal`, or a `Transfer`, it always appears as a `Transaction`, so the only field you can access in `$t` is `trtype`. However, using `Shapes::toArray`, we can convert the `Transaction` to an array, and then get read-access to the field values we know that array must contain by indexing it using the field names, as shown.
 
-###Closure Types
+##Closure Types
 
 **Syntax**
 <pre>
@@ -567,16 +584,18 @@ Note carefully, that inside function `processTransaction`, even though the trans
 ( function ( <i>type-specifier-list<sub>opt</sub></i> ) : <i>type-specifier</i> )
 </pre>
 
-*type-specifier-list* is defined in [§§](05-types.md#general); *type-specifier* is defined in [§§](05-types.md#general).
+**Defined elsewhere**
+
+* [*type-specifier*](05-types.md#general)
+* [*type-specifier-list*](05-types.md#general)
 
 **Semantics**
 
 A *closure* is an object that encapsulates a function with a given argument
 list and return type. The function can then be called through that object by
-using the function-call operator ([§§](10-expressions.md#function-call-operator)).
+using the [function-call operator](10-expressions.md#function-call-operator).
 
-Note: The library functions `class_meth` (§xx), `fun` (§xx), `inst_meth`
-(§xx), and `meth_caller` (§xx) allow a string constant containing the name of
+Note: The library functions [`class_meth`](http://www.php.net/class_meth), [`fun1](http://www.php.net/fun), [`inst_meth`](http://www.php.net/inst_meth), and [`meth_caller`](http://www.php.net/meth_caller) allow a string constant containing the name of
 a function to be turned into a closure.
 
 **Examples**
@@ -593,7 +612,7 @@ $result = doit(5, function (int $p) { return $p * 2; });    // doubles 5
 $result = doit(5, function (int $p) { return $p * $p; });   // squares 5
 ```
 
-###Resource Types
+##Resource Types
 
 A [*resource*](http://docs.hhvm.com/manual/en/language.types.resource.php)
 is a descriptor to some sort of external entity. (Examples include
@@ -616,12 +635,12 @@ are automatically opened at program start-up:
 These constants have some unspecified type, which behaves like a subtype of
 type `resource`.
 
-The library function `is_resource` (§xx) indicates if a given value is a
+The library function [`is_resource`](http://www.php.net/is_resource) indicates if a given value is a
 resource, and the library function
 [`get_resource_type`](http://docs.hhvm.com/manual/en/function.get-resource-type.php)
 (§xx) indicates the type of a resource.
 
-###Nullable Types
+##Nullable Types
 
 **Syntax**
 <pre>
@@ -630,7 +649,9 @@ resource, and the library function
   mixed
 </pre>
 
-*type-specifier* is defined in [§§](05-types.md#general).
+**Defined elsewhere**
+
+* [*type-specifier*](05-types.md#general)
 
 **Constraints**
 
@@ -645,7 +666,7 @@ variable of type `?bool` can contain the values `true`, `false`, or `null`.
 A variable of type `mixed` can represent the values of any other type, including any nullable type, which makes mixed a nullable type. (As such,
 there is no type `?mixed`.)
 
-See the discussion of type side effects ([§§](05-types.md#type-side-effects)).
+See the discussion of [type side effects](05-types.md#type-side-effects).
 
 **Examples**
 ```Hack
@@ -659,12 +680,12 @@ private ?(int, ?string, ?(bool, int)) $pr;      // nullable tuple whose
     // has type "nullable tuple of bool and int"
 ```
 
-###Generic Types
+##Generic Types
 Hack contains a mechanism to define generic (that is, type-less) classes,
 interfaces, and traits, and to create type-specific instances of them via
 parameters. See [§§](14-generic-types-methods-and-functions.md#generic-types-methods-and-functions).
 
-###The Classname Type
+##The Classname Type
 
 **Syntax**
 <pre>
@@ -672,7 +693,9 @@ parameters. See [§§](14-generic-types-methods-and-functions.md#generic-types-m
   classname  <  <i>qualified-name</i>  >
 </pre>
 
-*qualified-name* is defined in [§§](09-lexical-structure.md#names).
+**Defined elsewhere**
+
+* [*qualified-name*](20-namespaces.md#defining-namespaces)
 
 **Constraints**
 
@@ -680,9 +703,9 @@ parameters. See [§§](14-generic-types-methods-and-functions.md#generic-types-m
 
 **Semantics**
 
-This type gets around some limitations Hack has that its ancestor, PHP, does not. Specifically, the use of type-name strings as operands to `new` ([§§](10-expressions.md#the-new-operator)), `instanceof` ([§§](10-expressions.md#instanceof-operator)), and `::` ([§§](10-expressions.md#scope-resolution-operator)), is prohibited in Hack. However, equivalent functionality is possible via an instance of this type (which can only be created via `::`).
+This type gets around some limitations Hack has that its ancestor, PHP, does not. Specifically, the use of type-name strings as operands to [`new`](10-expressions.md#the-new-operator), [`instanceof`](10-expressions.md#instanceof-operator), and [`::`](10-expressions.md#scope-resolution-operator), is prohibited in Hack. However, equivalent functionality is possible via an instance of this type (which can only be created via `::`).
 
-The value of an expression of the classname type can be converted implicitly or explicitly to type `string` ([§§](08-conversions.md#converting-to-string-type)). The classname type is not assignment-compatible with any other type.
+The value of an expression of the classname type can be converted implicitly or explicitly to type [`string`](08-conversions.md#converting-to-string-type). The classname type is not assignment-compatible with any other type.
 
 The representation of a value having the classname type is unspecified.
 
@@ -698,7 +721,7 @@ class C2 {
 }
 ```
 
-###Type Aliases
+##Type Aliases
 
 **Syntax**
 <pre>
@@ -711,17 +734,21 @@ class C2 {
   <i>qualified-name</i>
 </pre>
 
-*name* is defined in [§§](09-lexical-structure.md#names); *type-constraint* is defined in [§§](05-types.md#general); *qualified-name* is defined in [§§](09-lexical-structure.md#names);
-*type-specifier* is defined in [§§](05-types.md#general); and *shape-specifier* is defined in [§§](05-types.md#general)6.
+**Defined elsewhere**
+
+* [*name*](09-lexical-structure.md#names)
+* [*qualified-name*](20-namespaces.md#defining-namespaces)
+* [*type-constraint*](05-types.md#general)
+* [*type-specifier*](05-types.md#general)
 
 **Constraints**
 
-*type-specifier* in *type-to-be-aliased* must not be *enum-specifier* ([§§](05-types.md#general))
-or *class-interface-trait-specifier* ([§§](05-types.md#general)).
+*type-specifier* in *type-to-be-aliased* must not be [*enum-specifier*](05-types.md#general)
+or [*class-interface-trait-specifier*](05-types.md#general).
 
 *qualified-name* in *type-to-be-aliased* must be defined the *name* in an
-*enum-declaration* ([§§](13-enums.md#enum-declarations)), in a *class-declaration* ([§§](16-classes.md#class-declarations)), or in an
-*interface-declaration* ([§§](17-interfaces.md#interface-declarations)).
+[*enum-declaration*](13-enums.md#enum-declarations), in a [*class-declaration*](16-classes.md#class-declarations), or in an
+[*interface-declaration*](17-interfaces.md#interface-declarations).
 
 *qualified-name* in *alias-type-specifier* must be defined as the *name* for a
 type via an *alias-declaration*.
@@ -779,8 +806,6 @@ of the alias' opaqueness. Note: Although the presence of a constraint allows
 the alias type to be converted implicitly to that constraint type, there is no
 conversion in the opposite direction.
 
-Note: A shape type can only be used via an alias to it ([§§](05-types.md#shape-types)).
-
 **Examples**
 
 ```Hack
@@ -803,7 +828,7 @@ newtype Matrix<T> = Vector<Vector<T>>;
 type Serialized<T> = string;    // T is not used
 ```
 
-###Supertypes and Subtypes
+##Supertypes and Subtypes
 
 The set of built-in and user-defined types in Hack can be represented as a
 directed graph in which each vertex designates a distinct type. Each directed
@@ -834,13 +859,13 @@ For types in Hack, the following rules apply:
 10. If A is an alias for a type T created using type, then A is a subtype of T, and T is a subtype of A.
 11. If A is an alias for a type T created using `newtype`, inside the file containing the `newtype` definition, A is a subtype of T, and T is a subtype of A. Outside that file, A and T have no relationship, except that given `newtype` A as C = T, outside the file with the `newtype` definition, A is a subtype of C.
 12. Any class, interface, or trait having a public instance method `__toString` taking no arguments and returning string, is a subtype of `Stringish`.
-13. A class type is a subtype of all its direct and indirect base-class types, including those resulting from *require-extends-clauses* ([§§](17-interfaces.md#interface-members)).
-14. A class type is a subtype of all the interfaces it and its direct and indirect base-class types implement, including those resulting from *require-implements-clauses* ([§§](18-traits.md#trait-members)).
+13. A class type is a subtype of all its direct and indirect base-class types, including those resulting from [*require-extends-clauses*](17-interfaces.md#interface-members).
+14. A class type is a subtype of all the interfaces it and its direct and indirect base-class types implement, including those resulting from [*require-implements-clauses*](18-traits.md#trait-members).
 15. An interface type is a subtype of all its direct and indirect base interfaces.
 16. A shape type *S2* whose field set is a superset of that in shape type *S1*, is a subtype of *S1*.
-17. Although this specification doesn’t treat the *return-type* `noreturn` ([§§](15-functions.md#function-definitions)) as a type, per se, `noreturn` is regarded as a subtype of all other types, and a supertype of none.
+17. Although this specification doesn’t treat the *return-type* [`noreturn`](15-functions.md#function-definitions) as a type, per se, `noreturn` is regarded as a subtype of all other types, and a supertype of none.
 
-###Type Side Effects
+##Type Side Effects
 
 As stated in [§§](05-types.md#supertypes-and-subtypes), a supertype has one or more subtypes, and while any
 operation permitted on a value of some supertype is also permitted on a value
@@ -852,7 +877,7 @@ such, a `num` cannot be bit-shifted directly. (Similar situations occur with
 
 Certain program elements are capable of changing the type of an expression
 using what is called a *type side effect* (which is not to be confused with a
-*value side effect*; [§§](10-expressions.md#general)).
+[*value side effect*](10-expressions.md#general).
 
 Consider the following function:
 
@@ -931,9 +956,9 @@ function F_n_class_hier(?Button $p1): void {
 
 The following constructs involve type side effects:
 
-* When used as the controlling expression in an `if`, `while`, or `for`statement, the operators `==`, `!=`, `===`, and `!==` ([§§](10-expressions.md#equality-operators)) when used with one operand of `null`, `instanceof` ([§§](10-expressions.md#instanceof-operator)), and simple assignment `=` ([§§](10-expressions.md#simple-assignment)). [Note that if `$x` is an expression of some nullable type, the logical test `if ($x)` is equivalent to `if ($x !== null)`.]
+* When used as the controlling expression in an `if`, `while`, or `for`statement, the operators [`==`, `!=`, `===`, and `!==`](10-expressions.md#equality-operators) when used with one operand of `null`, [`instanceof`](10-expressions.md#instanceof-operator), and [simple assignment `=`](10-expressions.md#simple-assignment). [Note that if `$x` is an expression of some nullable type, the logical test `if ($x)` is equivalent to `if ($x !== null)`.]
 * The operators `&&`, `||`, and `?:`.
-* The intrinsic `invariant` ([§§](10-expressions.md#invariant)).
+* The intrinsic [`invariant`](10-expressions.md#invariant).
 * The library functions `is_array`, `is_bool`, `is_float`, `is_int`, `is_null`, `is_resource`, and `is_string`.
 
 Thus far, all the examples use the value of an expression that designates a
@@ -960,12 +985,12 @@ called, the implementation must assume that method could have caused a type side
 effect on anything currently in scope. As a result, the second attempt to left
 shift is rejected.
 
-###Type Inferencing
+##Type Inferencing
 
 While certain kinds of variables must have their type declared explicitly, others can have their type inferred by having the implementation perform static analysis of the context in which those variables are used. Specifically,
-* Types **must be declared** for properties ([§§](16-classes.md#properties)) and for the parameters and the return type of a named function ([§§](15-functions.md#function-definitions)).
-* Types **must be inferred** for local variables ([§§](07-variables.md#local-variables)), which includes function statics ([§§](07-variables.md#function-statics)) and parameters.
-* Types **can be declared or inferred** for constants ([§§](16-classes.md#constants)) and for the parameters and return type of an unnamed function ([§§](15-functions.md#anonymous-functions)).
+* Types **must be declared** for [properties](16-classes.md#properties) and for the parameters and the return type of a [named  function](15-functions.md#function-definitions).
+* Types **must be inferred** for [local variables](07-variables.md#local-variables), which includes [function statics](07-variables.md#function-statics) and parameters.
+* Types **can be declared or inferred** for [constants](16-classes.md#constants) and for the parameters and return type of an [unnamed function](15-functions.md#anonymous-functions).
 
 The process of type inferencing does not cross function boundaries.
 
@@ -1057,5 +1082,4 @@ While all three of these cases allow a call such as `$doubler(3)`, none of
 them allows a call such as `$doubler(4.2)`. So, the fact that type information
 can be provided explicitly in these cases doesn’t mean it's necessarily a good idea to do so.
 
-Other considerations apply to type inferencing in the context of generic types
-([§§](14-generic-types-methods-and-functions.md#type-inferencing-revisited)).
+Other considerations apply to type inferencing in the context of [generic types](14-generic-types-methods-and-functions.md#type-inferencing-revisited).

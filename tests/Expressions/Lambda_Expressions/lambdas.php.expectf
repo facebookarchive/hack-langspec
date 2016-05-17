@@ -13,7 +13,6 @@ int(80)
 
 -------------- empty compound statement ----------------
 
-NULL
 
 -------------- single parameter, type inferred ----------------
 
@@ -58,9 +57,9 @@ int(24)
 
 -------------- lambdas can be async ----------------
 
-object(HH\StaticWaitHandle)#16 (0) {
+object(HH\StaticWaitHandle)#17 (0) {
 }
-object(HH\StaticWaitHandle)#16 (0) {
+object(HH\StaticWaitHandle)#17 (0) {
 }
 
 -------------- specifying a return type ----------------
@@ -75,7 +74,7 @@ Result is 17
 
 -------------- comparing brief lambdas with equivalent anonymous functions ----------------
 
-object(Closure$NS_lambdas\NS_lambdas\main#19;653878126)#20 (1) {
+object(Closure$NS_lambdas\NS_lambdas\main#%d;%d)#%d (1) {
   ["parameter"]=>
   array(1) {
     ["$p"]=>
@@ -84,7 +83,7 @@ object(Closure$NS_lambdas\NS_lambdas\main#19;653878126)#20 (1) {
 }
 int(20)
 float(11.2)
-object(Closure$NS_lambdas\NS_lambdas\main#20;653878126)#21 (1) {
+object(Closure$NS_lambdas\NS_lambdas\main#%d;%d)#%d (1) {
   ["parameter"]=>
   array(1) {
     ["$p"]=>

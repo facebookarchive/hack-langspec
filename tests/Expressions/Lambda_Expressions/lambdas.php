@@ -48,7 +48,7 @@ function main(): void {
   echo "\n-------------- empty compound statement ----------------\n\n";
 
   $fn = $a ==> {};
-  var_dump($fn(123));
+//  var_dump($fn(123));		// can't use the resturn value form a void function
 
   echo "\n-------------- single parameter, type inferred ----------------\n\n";
 

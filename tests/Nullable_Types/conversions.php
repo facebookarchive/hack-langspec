@@ -1,6 +1,6 @@
 <?hh // strict
 
-namespace NS_conversions;
+namespace NS_conversions_in_nullable_dir;
 
 class Button {
   private string $label;
@@ -128,7 +128,7 @@ class C1 {
     $this->pr_bool = (bool)new Button();
     echo "(bool)new Button(): pr_bool = >" . ($this->pr_bool ? "true" : "false") . "<\n";
 
-    $this->pr_bool = STDOUT;		// Uh-oh!! resource IS compatible with bool
+    //$this->pr_bool = STDOUT;		// Uh-oh!! resource IS compatible with bool
     $this->pr_bool = (bool)STDOUT;
     echo "(bool)STDOUT: pr_bool = >" . ($this->pr_bool ? "true" : "false") . "<\n";
 
@@ -190,7 +190,7 @@ class C1 {
     $this->pr_int = (int)new Button();
     echo "(int)new Button(): pr_int = >" . $this->pr_int . "<\n";
 
-    $this->pr_int = STDOUT;		// Uh-oh!! resource IS compatible with int
+    //$this->pr_int = STDOUT;		// Uh-oh!! resource IS compatible with int
     $this->pr_int = (int)STDOUT;
     echo "(int)STDOUT: pr_int = >" . $this->pr_int . "<\n";
 
@@ -260,7 +260,7 @@ class C1 {
     $this->pr_float = (float)new Button();
     echo "(float)new Button(): pr_float = >" . $this->pr_float . "<\n";
 
-    $this->pr_float = STDOUT;		// Uh-oh!! resource IS compatible with float
+    //$this->pr_float = STDOUT;		// Uh-oh!! resource IS compatible with float
     $this->pr_float = (float)STDOUT;
     echo "(float)STDOUT: pr_float = >" . $this->pr_float . "<\n";
 
@@ -338,7 +338,7 @@ class C1 {
     $this->pr_num = (float)new Button();
     echo "(float)new Button(): pr_num = >" . $this->pr_num . "<\n";
 
-    $this->pr_num = STDOUT;		// Uh-oh!! resource IS compatible with num
+    //$this->pr_num = STDOUT;		// Uh-oh!! resource IS compatible with num
     $this->pr_num = (int)STDOUT;
     echo "(int)STDOUT: pr_num = >" . $this->pr_num . "<\n";
     $this->pr_num = (float)STDOUT;
@@ -404,13 +404,13 @@ class C1 {
     $this->pr_string = (string)new Button();
     echo "(string)new Button(): pr_string = >" . $this->pr_string . "<\n";
 
-    $this->pr_string = STDOUT;		// Uh-oh!! resource IS compatible with string
+    //$this->pr_string = STDOUT;		// Uh-oh!! resource IS compatible with string
     $this->pr_string = (string)STDOUT;
     echo "(string)STDOUT: pr_string = >" . $this->pr_string . "<\n";
 
     echo "\n================ setting pr_resource ===================\n\n";
 
-//    $this->pr_resource = false;		// bool is incompatible with resource 
+//    $this->pr_resource = false;		// bool is incompatible with resource
 //    $this->pr_resource = (resource)false;	// cast to resource is not permitted
 
 //    $this->pr_resource = 0;		// int is incompatible with resource
@@ -430,7 +430,7 @@ class C1 {
 
     echo "\n================ setting pr_Button ===================\n\n";
 
-//    $this->pr_Button = false;		// bool is incompatible with Button 
+//    $this->pr_Button = false;		// bool is incompatible with Button
 //    $this->pr_Button = (Button)false;	// cast to Button is not permitted
 //    $this->pr_Button = (object)false;	// cast to object is not permitted
 
@@ -446,36 +446,36 @@ class C1 {
 //    $this->pr_Button = array();	// array() is incompatible with Button
 //    $this->pr_Button = array(10,20,30);// array(...) is incompatible with Button
 
-    $this->pr_Button = new Button("STOP"); 
+    $this->pr_Button = new Button("STOP");
     echo "new Button(\"STOP\"): pr_Button = >" . $this->pr_Button . "<\n";
 
-    $this->pr_Button = new CustomButton("RAISE"); 
+    $this->pr_Button = new CustomButton("RAISE");
     echo "new CustomButton(\"RAISE\"): pr_Button = >" . $this->pr_Button . "<\n";
 
-    $this->pr_Button = STDOUT;		// Uh-oh!! resource IS compatible with Button
+    //$this->pr_Button = STDOUT;		// Uh-oh!! resource IS compatible with Button
     echo "STDOUT: pr_Button = >" . $this->pr_Button . "<\n";
 
     echo "\n================ setting pr_CustomButton===================\n\n";
 
-    $this->pr_CustomButton = new CustomButton("LOWER"); 
+    $this->pr_CustomButton = new CustomButton("LOWER");
     echo "new CustomButton(\"LOWER\"): pr_CustomButton= >" . $this->pr_CustomButton. "<\n";
 
-    $this->pr_CustomButton = STDOUT;	// Uh-oh!! resource IS compatible with CustomButton 
+    //$this->pr_CustomButton = STDOUT;	// Uh-oh!! resource IS compatible with CustomButton
     echo "STDOUT: pr_CustomButton = >" . $this->pr_CustomButton . "<\n";
 
     echo "\n================ setting pr_MyCollection ===================\n\n";
 
-//    $this->pr_MyCollection = false;		// bool is incompatible with MyCollection 
+//    $this->pr_MyCollection = false;		// bool is incompatible with MyCollection
 //    $this->pr_MyCollection = (MyCollection)false;	// cast to MyCollection is not permitted
 
-    $this->pr_MyCollection = new MyList(); 
+    $this->pr_MyCollection = new MyList();
     echo "new MyList(): pr_MyCollection = >" . $this->pr_MyCollection . "<\n";
 
-    $this->pr_MyCollection = new MyQueue(); 
+    $this->pr_MyCollection = new MyQueue();
     echo "new MyQueue(): pr_MyCollection = >" . $this->pr_MyCollection . "<\n";
 
-    $this->pr_MyCollection = STDOUT;	// Uh-oh!! resource IS compatible with MyCollection 
-    echo "STDOUT: pr_MyCollection = >" . $this->pr_MyCollection . "<\n";
+    //$this->pr_MyCollection = STDOUT;	// Uh-oh!! resource IS compatible with MyCollection
+    //echo "STDOUT: pr_MyCollection = >" . $this->pr_MyCollection . "<\n";
 
     echo "\n================ converting non-nullable to corresponding nullable ===================\n\n";
 
@@ -587,12 +587,12 @@ class C1 {
 
     echo "\n================ setting pr_mixed ===================\n\n";
 
-    $this->pr_mixed = false; 
+    $this->pr_mixed = false;
 //    $this->pr_mixed = (mixed)false;	// cast to mixed is not permitted
     echo "false: pr_mixed = >" . $this->pr_mixed . "<\n";
-    $this->pr_mixed = $this->pr_bool; 
+    $this->pr_mixed = $this->pr_bool;
     echo "pr_bool: pr_mixed = >" . $this->pr_mixed . "<\n";
-    $this->pr_mixed = $this->pr_nbool; 
+    $this->pr_mixed = $this->pr_nbool;
     echo "pr_nbool: pr_mixed = >" . $this->pr_mixed . "<\n";
 
     $this->pr_mixed = true;
@@ -600,9 +600,9 @@ class C1 {
 
     $this->pr_mixed = 0;
     echo "0: pr_mixed = >" . $this->pr_mixed . "<\n";
-    $this->pr_mixed = $this->pr_int; 
+    $this->pr_mixed = $this->pr_int;
     echo "pr_int: pr_mixed = >" . $this->pr_mixed . "<\n";
-    $this->pr_mixed = $this->pr_nint; 
+    $this->pr_mixed = $this->pr_nint;
     echo "pr_nint: pr_mixed = >" . $this->pr_mixed . "<\n";
 
     $this->pr_mixed = 100;
@@ -610,9 +610,9 @@ class C1 {
 
     $this->pr_mixed = 0.0;
     echo "0.0: pr_mixed = >" . $this->pr_mixed . "<\n";
-    $this->pr_mixed = $this->pr_float; 
+    $this->pr_mixed = $this->pr_float;
     echo "pr_float: pr_mixed = >" . $this->pr_mixed . "<\n";
-    $this->pr_mixed = $this->pr_nfloat; 
+    $this->pr_mixed = $this->pr_nfloat;
     echo "pr_nfloat: pr_mixed = >" . $this->pr_mixed . "<\n";
 
     $this->pr_mixed = 123.45;
@@ -620,9 +620,9 @@ class C1 {
 
     $this->pr_mixed = "";
     echo "\"\": pr_mixed = >" . $this->pr_mixed . "<\n";
-    $this->pr_mixed = $this->pr_string; 
+    $this->pr_mixed = $this->pr_string;
     echo "pr_string: pr_mixed = >" . $this->pr_mixed . "<\n";
-    $this->pr_mixed = $this->pr_nstring; 
+    $this->pr_mixed = $this->pr_nstring;
     echo "pr_nstring: pr_mixed = >" . $this->pr_mixed . "<\n";
 
     $this->pr_mixed = "0";
@@ -645,37 +645,37 @@ class C1 {
 
     $this->pr_mixed = new Button();
     echo "new Button(): pr_mixed = >" . $this->pr_mixed . "<\n";
-    $this->pr_mixed = $this->pr_Button; 
+    $this->pr_mixed = $this->pr_Button;
     echo "pr_Button: pr_mixed = >" . $this->pr_mixed . "<\n";
-    $this->pr_mixed = $this->pr_nButton; 
+    $this->pr_mixed = $this->pr_nButton;
     echo "pr_nButton: pr_mixed = >" . $this->pr_mixed . "<\n";
 
     $this->pr_mixed = new CustomButton();
     echo "new CustomButton(): pr_mixed = >" . $this->pr_mixed . "<\n";
-    $this->pr_mixed = $this->pr_CustomButton; 
+    $this->pr_mixed = $this->pr_CustomButton;
     echo "pr_CustomButton: pr_mixed = >" . $this->pr_mixed . "<\n";
-    $this->pr_mixed = $this->pr_nCustomButton; 
+    $this->pr_mixed = $this->pr_nCustomButton;
     echo "pr_nCustomButton: pr_mixed = >" . $this->pr_mixed . "<\n";
 
     $this->pr_mixed = new MyList();
     echo "new MyList(): pr_mixed = >" . $this->pr_mixed . "<\n";
     $this->pr_mixed = new MyQueue();
     echo "new MyQueue(): pr_mixed = >" . $this->pr_mixed . "<\n";
-    $this->pr_mixed = $this->pr_MyCollection; 
+    $this->pr_mixed = $this->pr_MyCollection;
 
 // next line disable 'cos of probably bug in that property currently contains a resource when that
 // assignment shouldn't have been allowed.
 //    echo "pr_MyCollection: pr_mixed = >" . $this->pr_mixed . "<\n";
-    $this->pr_mixed = $this->pr_nMyCollection; 
+    $this->pr_mixed = $this->pr_nMyCollection;
 // next line disable 'cos of probably bug in that property currently contains a resource when that
 // assignment shouldn't have been allowed.
 //    echo "pr_nMyCollection: pr_mixed = >" . $this->pr_mixed . "<\n";
 
     $this->pr_mixed = STDOUT;
     echo "STDOUT: pr_mixed = >" . $this->pr_mixed . "<\n";
-    $this->pr_mixed = $this->pr_resource; 
+    $this->pr_mixed = $this->pr_resource;
     echo "pr_resource: pr_mixed = >" . $this->pr_mixed . "<\n";
-    $this->pr_mixed = $this->pr_nresource; 
+    $this->pr_mixed = $this->pr_nresource;
     echo "pr_nresource: pr_mixed = >" . $this->pr_mixed . "<\n";
 
   }
@@ -687,4 +687,3 @@ function main(): void {
 
 /* HH_FIXME[1002] call to main in strict*/
 main();
-

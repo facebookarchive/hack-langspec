@@ -21,7 +21,7 @@ array(2) {
   [0]=>
   array(4) {
     ["file"]=>
-    string(82) "%s/tests/Exception_Handling/set_exception_handler.php"
+    string(%d) "%s/tests/Exception_Handling/set_exception_handler.php"
     ["line"]=>
     int(68)
     ["function"]=>
@@ -37,7 +37,7 @@ array(2) {
   [1]=>
   array(4) {
     ["file"]=>
-    string(82) "%s/tests/Exception_Handling/set_exception_handler.php"
+    string(%d) "%s/tests/Exception_Handling/set_exception_handler.php"
     ["line"]=>
     int(73)
     ["function"]=>

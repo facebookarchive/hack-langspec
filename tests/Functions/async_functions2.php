@@ -1,13 +1,13 @@
 <?hh // strict
 
-namespace NS_test;
+namespace NS_async_functions2;
 
 async function f(): Awaitable<int> {
 
   echo 'Inside ' . __FUNCTION__ . "\n";
 
   // ...
- 
+
   echo "Enter await\n";
   $r1 = await g();	// $r1 = int($r1); that is, the int is unwrapped from the Awaitable object
   echo "Exit await; \$r1 = ";

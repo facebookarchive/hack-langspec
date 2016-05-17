@@ -19,16 +19,16 @@ HH\Vector Object
     [1] => 100
     [2] => 67
 )
-object(HH\Vector)#3 (2) {
+object(HH\Vector)#5 (2) {
   [0]=>
-  object(HH\Vector)#4 (2) {
+  object(HH\Vector)#3 (2) {
     [0]=>
     bool(true)
     [1]=>
     bool(false)
   }
   [1]=>
-  object(HH\Pair)#5 (2) {
+  object(HH\Pair)#4 (2) {
     [0]=>
     int(10)
     [1]=>
@@ -37,14 +37,14 @@ object(HH\Vector)#3 (2) {
 }
 object(HH\Vector)#6 (2) {
   [0]=>
-  object(HH\Vector)#4 (2) {
+  object(HH\Vector)#3 (2) {
     [0]=>
     bool(true)
     [1]=>
     bool(false)
   }
   [1]=>
-  object(HH\Pair)#5 (2) {
+  object(HH\Pair)#4 (2) {
     [0]=>
     int(10)
     [1]=>

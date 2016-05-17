@@ -36,7 +36,7 @@ When an existing name is used in source code, the Engine must decide
 how that name is found with respect to namespace lookup. For this
 purpose, names can have one of the three following forms:
 
-* Unqualified name: Such names are just simple names without any prefix, as in the class name `Point` in the following expression: `$p = new Point(3,5)`. If the current namespace is `NS1`, the name `Point` resolves to `NS1\Point`. If the current namespace is the default namespace ([§§](20-namespaces.md#general)), the name `Point` resolves to `Point`. In the case of an unqualified function or constant name, if that name does not exist in the current namespace, a global function or constant by that name is used.
+* Unqualified name: Such names are just simple names without any prefix, as in the class name `Point` in the following expression: `$p = new Point(3,5)`. If the current namespace is `NS1`, the name `Point` resolves to `NS1\Point`. If the current namespace is the [default namespace](20-namespaces.md#general), the name `Point` resolves to `Point`. In the case of an unqualified function or constant name, if that name does not exist in the current namespace, a global function or constant by that name is used.
 * Qualified name: Such names have a prefix consisting of a namespace name and/or one or more levels of sub-namespace names, and, possibly, a class, interface, trait, function, or constant name. Such names are relative. For example, `D2\Point` could be used to refer to the class Point in the sub-namespace `D2` of the current namespace. One special case of this is when the first component of the name is the keyword `namespace`. This means "the current namespace".
 * Fully qualified name: Such names begin with a backslash (`\`) and are followed optionally by a namespace name and one or more levels of sub-namespace names, and, finally, a class, interface, trait, function, or constant name. Such names are absolute. For example, `\Graphics\D2\Point` could be used to refer unambiguously to the class `Point` in namespace `Graphics`, sub-namespace `D2`.
    
@@ -53,10 +53,25 @@ with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`. The
   <i>namespace-definition:</i>
     namespace  <i>namespace-name</i>  ;
     namespace  <i>namespace-name<sub>opt</sub>  compound-statement</i>
+
+  <i>namespace-name:</i>
+    <i>name </i>
+    <i>namespace-name</i>   \   </i>name</i>
+
+  <i>namespace-name-as-a-prefix:</i>
+    \
+    \<sub>opt</sub>   <i>namespace-name</i>   \
+    namespace   \
+    namespace   \   <i>namespace-name</i>   \
+
+  <i>qualified-name:</i>
+    <i>namespace-name-as-a-prefix<sub>opt</sub>   name</i>
 </pre>
 
-*namespace-name* is defined in [§§](09-lexical-structure.md#names), and *compound-statement* is
-defined in [§§](11-statements.md#compound-statements).
+**Defined elsewhere**
+
+* [*compound-statement*](11-statements.md#compound-statements)
+* [*name*](09-lexical-structure.md#names)
 
 **Constraints**
 
@@ -76,9 +91,9 @@ use the *compound-statement* form of *namespace-definition*.
 
 **Semantics**
 
-Namespace and sub-namespace names are case-preserved ([§§](03-terms-and-definitions.md).
+Namespace and sub-namespace names are [case-preserved](03-terms-and-definitions.md).
 
-The pre-defined constant `__NAMESPACE__` ([§§](06-constants.md#context-dependent-constants)) contains the name of
+The pre-defined constant [`__NAMESPACE__`](06-constants.md#context-dependent-constants) contains the name of
 the current namespace.
 
 When the same namespace is defined in multiple scripts, and those
@@ -135,7 +150,10 @@ namespace NS3\Sub1;
     as  <i>name</i>
 </pre>
 
-*qualified-name* and *name* are defined in [§§](09-lexical-structure.md#names).
+**Defined elsewhere**
+
+* [*name*](09-lexical-structure.md#names)
+* [*qualified-name*](#defining-namespaces)
 
 **Constraints**
 

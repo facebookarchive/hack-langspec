@@ -40,7 +40,7 @@ function addVector(Vector<int> $v1, Vector<int> $v2): Vector<int> {
 }
 
 function main(): void {
-  var_dump(f1());	// call f1, default return value is null
+//  var_dump(f1());	// call f1, default return value is null
 //  $f = f1;	// PHP: assign this string to a variable; Hack disallows
 //  $f();		// PHP: call f1 indirectly via $f; Hack disallows
 

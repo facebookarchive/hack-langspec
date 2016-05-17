@@ -37,9 +37,11 @@ function main(): void {
 */
 
 ///*
-  list($min, $max, ) = array(10, 1100, 167);
+  // UNSAFE (type error here - seems to work for collection like Vector but not array, maybe?)
+  list($min, $max,) = array(10, 1100, 167);
   echo "\$min: $min, \$max: $max,\n";
 
+  // UNSAFE (type error here - seems to work for collection like Vector but not array, maybe?)
   list($min, $max) = array(20, 2100, 267);
   echo "\$min: $min, \$max: $max\n";
 

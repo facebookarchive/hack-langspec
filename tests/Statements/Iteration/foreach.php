@@ -103,7 +103,8 @@ function main(): void {
   echo "=========== Modify the the actual element itself =============\n";
 
   $colors = array("red", "white", "blue");
-  foreach ($colors as & $color) {  // note the & 
+  // UNSAFE (can't really use a & in strict mode)
+  foreach ($colors as & $color) {  // note the &
     echo $color . "<-->";
     $color = "black";
     echo $color . "\n";

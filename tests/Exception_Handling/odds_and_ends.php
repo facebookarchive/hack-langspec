@@ -21,9 +21,11 @@ function main(): void {
     echo "L0: In catch-block int\n";
   }
 */
-  catch (X $e) {			// Not diagnosed; bad
+/*
+  catch (X $e) {		// diagnosed; good
     echo "L0: In catch-block int\n";
   }
+*/
 ///*
   catch (\Exception $e) {
     echo "L0: In catch-block Exception\n";

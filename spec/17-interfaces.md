@@ -28,7 +28,13 @@ inherits all members from its *base interface(s)*.
     <i>interface-base-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
 </pre>
 
-*attribute-specification* is defined in [§§](21-attributes.md#attribute-specification); *name* and *qualified-name* are defined in [§§](09-lexical-structure.md#names); *generic-type-parameter-list* is defined in [§§](14-generic-types-methods-and-functions.md#type-parameters); and *interface-member-declarations* is defined in [§§](17-interfaces.md#interface-members).
+**Defined elsewhere**
+
+* [*attribute-specification*](21-attributes.md#attribute-specification)
+* [*generic-type-parameter-list*](14-generic-types-methods-and-functions.md#type-parameters)
+* [*interface-member-declarations*](17-interfaces.md#interface-members)
+* [*name*](09-lexical-structure.md#names)
+* [*qualified-name*](20-namespaces.md#defining-namespaces)
 
 **Constraints**
 
@@ -89,8 +95,12 @@ processCollection(new MyQueue(…));
     <i>type-constant-declaration</i>
 </pre>
 
-*require-extends-clause* is defined in [§§](18-traits.md#trait-members); *const-declaration* is defined in [§§](16-classes.md#constants); *method-declaration* is
-defined in [§§](16-classes.md#methods); and *type-constant-declaration* is defined in [§§](16-classes.md#type-constants).
+**Defined elsewhere**
+
+* [*const-declaration*](16-classes.md#constants)
+* [*method-declaration*](16-classes.md#methods)
+* [*require-extends-clause*](18-traits.md#trait-members)
+* [*type-constant-declaration*](16-classes.md#type-constants)
 
 **Constraints**
 
@@ -105,9 +115,9 @@ interfaces.
 An interface may contain the following members:
 
 * *require-extends-clauses* each of which requires the class implementing this interface to directly or indirectly extend the class type designated by *qualified-name*.
-* Constants – the constant values associated with the interface ([§§](17-interfaces.md#constants)).
-* Methods – placeholders for the computations and actions that can be performed by implementers of the interface ([§§](17-interfaces.md#methods)).
-*	Type constants – a way of parameterizing class types without using generics.
+* [Constants](17-interfaces.md#constants) – the constant values associated with the interface.
+* [Methods](17-interfaces.md#methods) – placeholders for the computations and actions that can be performed by implementers of the interface.
+*	[Type constants](16-classes.md#type-constants) – a way of parameterizing class types without using generics.
 
 An *interface-member-declarations* may contain multiple *require-extends-clause*s that designate the same class, in which case, the duplicates are redundant. 
 
@@ -115,7 +125,7 @@ An *interface-member-declarations* may contain multiple *require-extends-clause*
 
 **Semantics**
 
-An interface constant is just like a class constant ([§§](16-classes.md#constants)), except that
+An interface constant is just like a [class constant](16-classes.md#constants), except that
 an interface constant cannot be overridden by a class that implements it
 nor by an interface that extends it.
 
@@ -139,7 +149,7 @@ An interface method must not also be asynchronous. However, a method can have a 
 
 **Semantics:**
 
-An interface method is just like an abstract method ([§§](16-classes.md#methods)).
+An interface method is just like an [abstract method](16-classes.md#methods).
 
 **Examples:**
 
@@ -172,13 +182,13 @@ The interface members are defined below:
 Name	|   Purpose
 ----    |   -------
 `offsetExists`  |	This instance method returns `true` if the instance contains an element with key `$offset`, otherwise, `false`.
-`offsetGet`	|  This instance method gets the value having key `$offset`. This method is called when an instance of a class that implements this interface is subscripted ([§§](10-expressions.md#subscript-operator)) in a non-lvalue context.
-`offsetSet`	| This instance method sets the value having key `$offset` to $value. This method is called when an instance of a class that implements this interface is subscripted ([§§](10-expressions.md#subscript-operator)) in a modifiable-lvalue context.
+`offsetGet`	|  This instance method gets the value having key `$offset`. This method is called when an instance of a class that implements this interface is [subscripted](10-expressions.md#subscript-operator) in a non-lvalue context.
+`offsetSet`	| This instance method sets the value having key `$offset` to $value. This method is called when an instance of a class that implements this interface is [subscripted](10-expressions.md#subscript-operator) in a modifiable-lvalue context.
 `offsetUnset`	| This instance method removes the value having key `$offset`.
 
 ###Interface `AsyncIterator`
 
-This interface supports iteration over the values returned from an asynchronous generator function ([§§](10-expressions.md#yield-operator)). It is defined, as follows:
+This interface supports iteration over the values returned from an [asynchronous generator function](10-expressions.md#yield-operator). It is defined, as follows:
 
 ```Hack
 interface AsyncIterator<Tv> {
@@ -194,7 +204,7 @@ Name  |  Purpose
 
 ###Interface `AsyncKeyedIterator`
 
-This interface supports iteration over the keys and values returned from an asynchronous generator function ([§§](10-expressions.md#yield-operator)). It is defined, as follows:
+This interface supports iteration over the keys and values returned from an [asynchronous generator function](10-expressions.md#yield-operator). It is defined, as follows:
 
 ```Hack
 interface AsyncKeyedIterator<Tk,Tv> implements AsyncIterator<Tv> {
@@ -210,7 +220,7 @@ Name  |  Purpose
 
 ###Interface `Awaitable`
 
-An instance of this interface is an awaitable object. Such objects are used in support of asynchronous functions ([§§](15-functions.md#asynchronous-functions)) and await ([§§](10-expressions.md#await-operator)). This interface is defined, as follows:
+An instance of this interface is an awaitable object. Such objects are used in support of [asynchronous functions](15-functions.md#asynchronous-functions) and [await](10-expressions.md#await-operator). This interface is defined, as follows:
 
 ```Hack
 interface Awaitable<T> {
@@ -233,7 +243,7 @@ This interface has no members.
 
 ###Interface `IMemoizeParam`
 
-Instances of classes that implement this interface can be passed to `serialize_memoize_param` and to functions having the `__Memoize attribute` ([§§](21-attributes.md#Attribute-__Memoize)). It is defined, as follows:
+Instances of classes that implement this interface can be passed to `serialize_memoize_param` and to functions having the [`__Memoize` attribute](21-attributes.md#Attribute-__Memoize). It is defined, as follows:
 
 ```Hack
 interface IMemoizeParam implements AsyncIterator<Tv> {

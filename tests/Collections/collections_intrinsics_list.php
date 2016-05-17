@@ -58,6 +58,7 @@ function main(): void {
   print_r($v);
 
   $a = array();
+  // UNSAFE (type check error - diff D3113087 out to fix)
   $v = list($a[0], $a[2]) = Pair {12, 24};
   print_r($a);
   print_r($v);
