@@ -1530,7 +1530,7 @@ values and the result can be represented as an `int`, the result has type
 **Defined elsewhere**
 
 * [*await-expression*](10-expressions.md#await-operator)
-* [*cast-expression*](10-expressions.md#anonymous-function-creation)
+* [*cast-expression*](10-expressions.md#cast-operator)
 * [*error-control-expression*](10-expressions.md#error-control-operator)
 * [*postfix-expression*](10-expressions.md#general-3)
 * [*prefix-decrement-expression*](10-expressions.md#prefix-increment-and-decrement-operators)
