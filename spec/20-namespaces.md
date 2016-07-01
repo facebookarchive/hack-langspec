@@ -52,7 +52,7 @@ with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`. The
 <pre>
   <i>namespace-definition:</i>
     namespace  <i>namespace-name</i>  ;
-    namespace  <i>namespace-name<sub>opt</sub>  compound-statement</i>
+    namespace  <i>namespace-name<sub>opt</sub></i>  { <i>declaration-list<sub>opt</sub></i> }
 
   <i>namespace-name:</i>
     <i>name </i>
@@ -70,7 +70,7 @@ with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`. The
 
 **Defined elsewhere**
 
-* [*compound-statement*](11-statements.md#compound-statements)
+* [*declaration-list*](04-basic-concepts.md)
 * [*name*](09-lexical-structure.md#names)
 
 **Constraints**
@@ -80,14 +80,14 @@ first occurrence of a *namespace-definition* in a script must be the
 first thing in that script.
 
 All occurrence of a *namespace-definition* in a script must have the
-*compound-statement* form or must not have that form; the two forms
+*declaration-list* form or must have the "semicolon" form; the two forms
 cannot be mixed.
 
 When a script contains source code that is not inside a namespace, and
 source code that is inside one or namespaces, the namespaced code must
-use the *compound-statement* form of *namespace-definition*.
+use the *declaration-list* form of *namespace-definition*.
 
-*compound-statement* must not contain a *namespace-definition*.
+The *declaration-list* must not contain a *namespace-definition*.
 
 **Semantics**
 
@@ -100,10 +100,10 @@ When the same namespace is defined in multiple scripts, and those
 scripts are combined into the same program, the namespace is considered
 the merger of its individual contributions.
 
-The scope of the non-*compound-statement* form of *namespace-definition*
-runs until the end of the script, or until the lexically next
-*namespace-definition*, whichever comes first. The scope of the
-*compound-statement* form is the *compound-statement*.
+In the "semicolon" form of *namespace-definition* the given 
+namespace extends until the end of the script, or until the lexically next
+*namespace-definition*, whichever comes first. In the *declaration-list*
+form the namespace extends from the opening brace to the closing brace.
 
 **Examples**
 

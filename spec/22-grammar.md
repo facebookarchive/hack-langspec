@@ -1326,7 +1326,7 @@ octal-digit
 <pre>
   <i>namespace-definition:</i>
     namespace  <i>namespace-name</i>  ;
-    namespace  <i>namespace-name<sub>opt</sub>  compound-statement</i>
+    namespace  <i>namespace-name<sub>opt</sub></i> { <i>declaration-list<sub>opt</sub></i> }
 
   <i>namespace-use-declaration:</i>
     use  <i>namespace-use-clauses</i>  ;
