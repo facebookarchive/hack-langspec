@@ -576,6 +576,7 @@ octal-digit
 
   <i>anonymous-function-return:</i>
     : <i>type-specifier</i>
+    : noreturn
 
   <i>anonymous-function-use-clause:</i>
     use  (  <i>use-variable-name-list</i>  )
