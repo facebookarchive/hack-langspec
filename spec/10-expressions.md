@@ -587,8 +587,7 @@ shape('id' => null, 'url' => null, 'count' => 0)
   <i>attribute-specification<sub>opt</sub>  type-specifier<sub>opt</sub> variable-name  default-argument-specifier<sub>opt</sub></i>
 
 <i>anonymous-function-return:</i>
-  : <i>type-specifier</i>
-  : noreturn
+  : <i>return-type</i>
 
 <i>anonymous-function-use-clause:</i>
   use  (  <i>use-variable-name-list</i>  )
@@ -603,6 +602,7 @@ shape('id' => null, 'url' => null, 'count' => 0)
 * [*attribute-specification*](20-namespaces.md#name-lookup)
 * [*compound-statement*](11-statements.md#compound-statements)
 * [*default-argument-specifier*](15-functions.md#function-definitions)
+* [*return-type*](15-functions.md#function-definitions)
 * [*type-specifier*](05-types.md#general)
 * [*variable-name*](09-lexical-structure.md#names)
 

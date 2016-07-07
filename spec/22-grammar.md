@@ -575,8 +575,7 @@ octal-digit
     <i>attribute-specification<sub>opt</sub>  type-specifier<sub>opt</sub> variable-name  default-argument-specifier<sub>opt</sub></i>
 
   <i>anonymous-function-return:</i>
-    : <i>type-specifier</i>
-    : noreturn
+    : <i>return-type</i>
 
   <i>anonymous-function-use-clause:</i>
     use  (  <i>use-variable-name-list</i>  )
@@ -1146,6 +1145,7 @@ octal-digit
 
   <i>return-type:</i>
     <i>type-specifier</i>
+    noreturn
 </pre>
 
 ###Classes
