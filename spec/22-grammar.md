@@ -1078,10 +1078,10 @@ octal-digit
 
   <i>enumerator-list:</i>
     <i>enumerator</i>
-    <i>enumerator-list</i>  ;  <i>enumerator</i>
+    <i>enumerator-list</i>  <i>enumerator</i>
 
   <i>enumerator:</i>
-    <i>enumerator-constant</i>  =  <i>constant-expression</i>
+    <i>enumerator-constant</i>  =  <i>constant-expression</i>  ;
 
   <i>enumerator-constant:</i>
     <i>name</i>
