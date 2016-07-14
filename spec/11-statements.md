@@ -241,6 +241,9 @@ There must be at most one default label.
 
 Each label expression's type must be a subtype of the switch *expression* type.
 
+The compound statement may be empty; if it is not, then the first statement in 
+it must be a labeled statement.
+
 **Semantics**
 
 Based on the value of its *expression*, a `switch` statement transfers
