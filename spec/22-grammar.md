@@ -1123,10 +1123,13 @@ octal-digit
 
 <pre>
   <i>function-definition:</i>
+    <i>attribute-specification<sub>opt</sub>   function-definition-no-attribute</i>
+
+  <i>function-definition-no-attribute:</i>
     <i>function-definition-header  compound-statement</i>
 
   <i>function-definition-header:</i>
-    <i>attribute-specification<sub>opt</sub></i>  async<sub>opt</sub>  function <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  (  <i>parameter-list<sub>opt</sub></i>  ) :  <i>return-type</i>
+    async<sub>opt</sub>  function <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  (  <i>parameter-list<sub>opt</sub></i>  ) :  <i>return-type</i>
 
   <i>parameter-list:</i>
     ...
@@ -1218,8 +1221,8 @@ octal-digit
     =  <i>expression</i>
 
   <i>method-declaration:</i>
-    <i>method-modifiers</i>  <i>function-definition</i>
-    <i>method-modifiers</i>  <i>function-definition-header</i>  ;
+    <i>attribute-specification<sub>opt</sub></i> <i>method-modifiers</i>  <i>function-definition-no-attribute</i>
+    <i>attribute-specification<sub>opt</sub></i> <i>method-modifiers</i>  <i>function-definition-header</i>  ;
 
   <i>method-modifiers:</i>
     <i>method-modifier</i>
