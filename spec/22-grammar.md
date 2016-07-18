@@ -1319,10 +1319,10 @@ octal-digit
     <i>destructor-declaration</i>
 
   <i>require-extends-clause:</i>
-    require  extends  <i>qualified-name</i>
+    require  extends  <i>qualified-name</i>  ;
 
   <i>require-implements-clause:</i>
-    require  implements  <i>qualified-name</i>
+    require  implements  <i>qualified-name</i>  ;
 </pre>
 
 ###Namespaces
