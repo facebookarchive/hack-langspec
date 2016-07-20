@@ -1236,7 +1236,7 @@ octal-digit
 
   <i>constructor-declaration:</i>
   <i>attribute-specification<sub>opt</sub></i>  <i>constructor-modifiers</i>  function  __construct  (
-    <i>constructor-parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
+    <i>constructor-parameter-declaration-list<sub>opt</sub></i>  )  <i>void-return<sub>opt</sub></i>  <i>compound-statement</i>
 
   <i>constructor-parameter-declaration-list:</i>
     <i>constructor-parameter-declaration</i>
@@ -1255,7 +1255,10 @@ octal-digit
     final
 
   <i>destructor-declaration:</i>
-    <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __destruct  ( )  <i>compound-statement</i>
+    <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __destruct  ( )  <i>void-return<sub>opt</sub></i>  <i>compound-statement</i>
+
+  <i>void-return</i>:
+    : void 
 
   <i>type-constant-declaration:</i>
     <i>abstract-type-constant-declaration</i>

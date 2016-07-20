@@ -500,7 +500,7 @@ examples of abstract methods and their subsequent definitions.
 <pre>
   <i>constructor-declaration:</i>
     <i>attribute-specification<sub>opt</sub></i>  <i>constructor-modifiers</i>  function  __construct  (
-      <i>constructor-parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
+      <i>constructor-parameter-declaration-list<sub>opt</sub></i>  ) <i>void-return<sub>opt</sub></i>  <i>compound-statement</i>
   <i>constructor-parameter-declaration-list:</i>
     <i>constructor-parameter-declaration</i>
     <i>constructor-parameter-declaration-list</i>  ,  <i>constructor-parameter-declaration</i>
@@ -564,6 +564,8 @@ need have a constructor.
 
 When a *constructor-parameter-declaration* contains a *visibility-modifier*, a property called *variable-name* with visibility *visibility-modifier* is added to the current class. When that constructor is called, the value of the argument for that parameter is assigned to the added property. Note: This feature simply provides a programming shortcut by having the implementation declare and initialize such properties.
 
+A constructor does not require a return type annotation; if one is included, it must be void.
+
 **Examples**
 
 ```Hack
@@ -595,7 +597,11 @@ class MyRangeException extends Exception {
 
 <pre>
   <i>destructor-declaration:</i>
-    <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __destruct  ( )  <i>compound-statement</i>
+    <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __destruct  ( )  <i>void-return<sub>opt</sub></i>  <i>compound-statement</i>
+
+  <i>void-return:</i>
+    : void
+
 </pre>
 
 **Defined elsewhere**
@@ -632,6 +638,8 @@ base-class destructor more than once. A call to a base-class destructor
 searches for the nearest destructor in the class hierarchy. Not every
 level of the hierarchy need have a destructor. A `private` destructor
 inhibits destructor calls from derived classes.
+
+A destructor does not require a return type annotation; if one is included, it must be void.
 
 **Examples**
 
