@@ -1134,6 +1134,7 @@ octal-digit
   <i>parameter-list:</i>
     ...
     <i>parameter-declaration-list</i>
+    <i>parameter-declaration-list</i>  ,
     <i>parameter-declaration-list</i>  ,  ...
 
   <i>parameter-declaration-list:</i>
