@@ -577,7 +577,13 @@ shape('id' => null, 'url' => null, 'count' => 0)
 
 <pre>
 <i>anonymous-function-creation-expression:</i>
-  async<sub>opt</sub>  function  (  <i>anonymous-function-parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>  <i>anonymous-function-use-clause<sub>opt</sub></i>  <i>compound-statement</i>
+  async<sub>opt</sub>  function  (  <i>anonymous-function-parameter-list<sub>opt<sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>  <i>anonymous-function-use-clause<sub>opt</sub></i>  <i>compound-statement</i>
+
+<i>anonymous-function-parameter-list:</i>
+  ...
+  <i>anonymous-function-parameter-declaration-list</i>
+  <i>anonymous-function-parameter-declaration-list</i>  ,
+  <i>anonymous-function-parameter-declaration-list</i>  ,  ...
 
 <i>anonymous-function-parameter-declaration-list:</i>
   <i>anonymous-function-parameter-declaration</i>
@@ -2481,7 +2487,7 @@ function pipe_operator_example(array<Widget> $arr): int {
 
 <i>lambda-function-signature:</i>
   <i>variable-name</i>
-  (  <i>anonymous-function-parameter-declaration-list<sub>opt</sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>
+  (  <i>anonymous-function-parameter-list<sub>opt</sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>
 
 <i>anonymous-function-body:</i>
   <i>expression</i>
@@ -2490,7 +2496,7 @@ function pipe_operator_example(array<Widget> $arr): int {
 
 **Defined elsewhere**
 
-* [*anonymous-function-parameter-declaration-list*](10-expressions.md#anonymous-function-creation)
+* [*anonymous-function-parameter-list*](10-expressions.md#anonymous-function-creation)
 * [*anonymous-function-return*](10-expressions.md#anonymous-function-creation)
 * [*coalesce-expression*](10-expressions.md#coalesce-operator)
 * [*compound-statement*](11-statements.md#compound-statements)
@@ -2501,7 +2507,7 @@ function pipe_operator_example(array<Widget> $arr): int {
 
 **Constraints**
 
-Each variable-name in an *anonymous-function-parameter-declaration-list* must be distinct.
+Each variable-name in an *anonymous-function-parameter-list* must be distinct.
 
 If any *anonymous-function-parameter-declaration* has a *default-argument-specifier*, then all subsequent *anonymous-function-parameter-declarations* in the same *anonymous-function-parameter-declaration-list* must also have a *default-argument-specifier*.
 
