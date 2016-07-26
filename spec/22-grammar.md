@@ -843,13 +843,13 @@ octal-digit
 <pre>
 <i>lambda-expression:</i>
   <i>piped-expression</i>
-  async<sub>opt</sub>  <i>lambda-function-signature</i>  ==>  <i>anonymous-function-body</i>
+  async<sub>opt</sub>  <i>lambda-function-signature</i>  ==>  <i>lambda-body</i>
 
 <i>lambda-function-signature:</i>
   <i>variable-name</i>
   (  <i>anonymous-function-parameter-declaration-list<sub>opt</sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>
 
-<i>anonymous-function-body:</i>
+<i>lambda-body:</i>
   <i>expression</i>
   <i>compound-statement</i>
 </pre>

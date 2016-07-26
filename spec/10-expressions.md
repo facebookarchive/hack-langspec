@@ -692,7 +692,7 @@ function compute(array<int> $values): void {
 
 **Constraints**
 
-*awaitable-creation-expression* must not be used as the *anonymous-function-body* in a [*lambda-expression*](10-expressions.md#lambda-expressions).
+*awaitable-creation-expression* must not be used as the *lambda-body* in a [*lambda-expression*](10-expressions.md#lambda-expressions).
 
 **Semantics**
 
@@ -2483,13 +2483,13 @@ function pipe_operator_example(array<Widget> $arr): int {
 <pre>
 <i>lambda-expression:</i>
   <i>piped-expression</i>
-  async<sub>opt</sub>  <i>lambda-function-signature</i>  ==>  <i>anonymous-function-body</i>
+  async<sub>opt</sub>  <i>lambda-function-signature</i>  ==>  <i>lambda-body</i>
 
 <i>lambda-function-signature:</i>
   <i>variable-name</i>
   (  <i>anonymous-function-parameter-list<sub>opt</sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>
 
-<i>anonymous-function-body:</i>
+<i>lambda-body:</i>
   <i>expression</i>
   <i>compound-statement</i>
 </pre>
@@ -2511,7 +2511,7 @@ Each variable-name in an *anonymous-function-parameter-list* must be distinct.
 
 If any *anonymous-function-parameter-declaration* has a *default-argument-specifier*, then all subsequent *anonymous-function-parameter-declarations* in the same *anonymous-function-parameter-declaration-list* must also have a *default-argument-specifier*.
 
-If the *type-specifier* in *anonymous-function-return* is `void`, the *compound-statement* must not contain any [`return` statements](11-statements.md#the-return-statement) having an *expression*. Otherwise, if that *type-specifier* is not omitted, the *expression* in *anonymous-function-body*, or all `return` statements in *compound-statement* must contain an *expression* whose type is a subtype of the type indicated by the return type's *type-specifier*.
+If the *type-specifier* in *anonymous-function-return* is `void`, the *compound-statement* must not contain any [`return` statements](11-statements.md#the-return-statement) having an *expression*. Otherwise, if that *type-specifier* is not omitted, the *expression* in *lambda-body*, or all `return` statements in *compound-statement* must contain an *expression* whose type is a subtype of the type indicated by the return type's *type-specifier*.
 
 If `async` is present, *return-type* must be a type that implements [`Awaitable<T>`](17-interfaces.md#interface-awaitable).
 
