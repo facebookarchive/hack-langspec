@@ -656,8 +656,11 @@ octal-digit
     <i>postfix-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>argument-expression-list:</i>
-    <i>assignment-expression</i>
-    <i>argument-expression-list</i>  ,  <i>assignment-expression</i>
+    <i>argument-expressions</i>  ,<sub>opt</sub>
+
+  <i>argument-expressions:</i>
+    <i>expression</i>
+    <i>argument-expressions</i>  ,  <i>expression</i>
 
   <i>member-selection-expression:</i>
     <i>postfix-expression</i>  ->  <i>member-selection-designator</i>
@@ -1139,8 +1142,7 @@ octal-digit
 
   <i>parameter-list:</i>
     ...
-    <i>parameter-declaration-list</i>
-    <i>parameter-declaration-list</i>  ,
+    <i>parameter-declaration-list</i>  ,<sub>opt</sub>
     <i>parameter-declaration-list</i>  ,  ...
 
   <i>parameter-declaration-list:</i>

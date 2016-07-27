@@ -30,8 +30,7 @@ A function is called via the [function-call operator `()`](10-expressions.md#fun
 
   <i>parameter-list:</i>
     ...
-    <i>parameter-declaration-list</i>
-    <i>parameter-declaration-list</i>  ,
+    <i>parameter-declaration-list</i>  ,<sub>opt</sub>
     <i>parameter-declaration-list</i>  ,  ...
 
   <i>parameter-declaration-list:</i>

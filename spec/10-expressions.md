@@ -1169,8 +1169,11 @@ echo "\$p1[0] = " . $p1[0] . "\n";  // outputs '$p1[0] = 55'
     <i>postfix-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>argument-expression-list:</i>
+    <i>argument-expressions</i>  ,<sub>opt</sub>
+
+  <i>argument-expressions:</i>
     <i>expression</i>
-    <i>argument-expression-list</i>  ,  <i>expression</i>
+    <i>argument-expressions</i>  ,  <i>expression</i>
 </pre>
 
 **Defined elsewhere**
