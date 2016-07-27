@@ -55,14 +55,15 @@ that trait is used.
     use  <i>trait-name-list</i>  ;
 
   <i>trait-name-list:</i>
-    <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
-    <i>trait-name-list</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
+    <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
+    <i>trait-name-list</i>  ,  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
 </pre>
 
 **Defined elsewhere**
 
 * [*attribute-specification*](21-attributes.md#attribute-specification)
 * [*class-interface-clause*](16-classes.md#class-declarations)
+* [*generic-type-argument-list*](14-generic-types-methods-and-functions.md#type-parameters)
 * [*generic-type-parameter-list*](14-generic-types-methods-and-functions.md#type-parameters)
 * [*name*](09-lexical-structure.md#names)
 * [*trait-member-declarations*](18-traits.md#trait-members)

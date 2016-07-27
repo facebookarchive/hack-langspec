@@ -1171,11 +1171,11 @@ octal-digit
     abstract final
 
   <i>class-base-clause:</i>
-    extends  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
+    extends  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
 
   <i>class-interface-clause:</i>
-    implements  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
-    <i>class-interface-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
+    implements  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
+    <i>class-interface-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
 
   <i>class-member-declarations:</i>
     <i>class-member-declaration</i>
@@ -1284,8 +1284,8 @@ octal-digit
       <i>interface-member-declarations<sub>opt</sub></i>  }
 
   <i>interface-base-clause:</i>
-    extends  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
-    <i>interface-base-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
+    extends  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
+    <i>interface-base-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
 
   <i>interface-member-declarations:</i>
     <i>interface-member-declaration</i>
@@ -1313,8 +1313,8 @@ octal-digit
     use  <i>trait-name-list</i>  ;
 
   <i>trait-name-list:</i>
-    <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
-    <i>trait-name-list</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
+    <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
+    <i>trait-name-list</i>  ,  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
 
   <i>trait-member-declarations:</i>
     <i>trait-member-declaration</i>

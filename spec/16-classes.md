@@ -62,17 +62,18 @@ object. As such, assignment of a handle does not copy the object itself.
     abstract final
 
   <i>class-base-clause:</i>
-    extends  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
+    extends  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
 
   <i>class-interface-clause:</i>
-    implements  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
-    <i>class-interface-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
+    implements  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
+    <i>class-interface-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
 </pre>
 
 **Defined elsewhere**
 
 * [*attribute-specification*](21-attributes.md#attribute-specification)
 * [*class-member-declarations*](16-classes.md#class-members)
+* [*generic-type-argument-list*](14-generic-types-methods-and-functions.md#type-parameters)
 * [*generic-type-parameter-list*](14-generic-types-methods-and-functions.md#type-parameters)
 * [*name*](09-lexical-structure.md#names)
 * [*qualified-name*](20-namespaces.md#defining-namespaces)
