@@ -363,11 +363,14 @@ octal-digit
   <i>qualified-name generic-type-argument-list<sub>opt</sub></i>
 
 <i>type-specifier-list:</i>
-  <i>type-specifier</i>
-  <i>type-specifier-list</i> , <i>type-specifier</i>
+  <i>type-specifiers</i>  ,<sub>opt</sub>
 
-  <i>type-constraint:</i>
-    as  <i>type-specifier</i>
+<i>type-specifiers:</i>
+  <i>type-specifier</i>
+  <i>type-specifiers</i>  ,  <i>type-specifier</i>
+
+<i>type-constraint:</i>
+  as  <i>type-specifier</i>
 
 <i>type-constant-type-name:</i>
   <i>name</i>  ::  <i>name</i>

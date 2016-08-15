@@ -69,8 +69,11 @@ for `null`, use [`is_null`](http://www.php.net/is_null). Useful library function
   <i>qualified-name generic-type-argument-list<sub>opt</sub></i>
 
 <i>type-specifier-list:</i>
+  <i>type-specifiers</i>  ,<sub>opt</sub>
+
+<i>type-specifiers</i>
   <i>type-specifier</i>
-  <i>type-specifier-list</i> , <i>type-specifier</i>
+  <i>type-specifiers</i> , <i>type-specifier</i>
 
 <i>type-constraint:</i>
   as  <i>type-specifier</i>
