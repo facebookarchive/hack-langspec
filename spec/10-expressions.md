@@ -1371,7 +1371,7 @@ $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 <pre>
   <i>scope-resolution-expression:</i>
     <i>scope-resolution-qualifier</i>  ::  <i>name</i>
-    <i>scope-resolution-qualifier</i>  ::  <i>class</i>
+    <i>scope-resolution-qualifier</i>  ::  class
 
   <i>scope-resolution-qualifier:</i>
     <i>qualified-name</i>
