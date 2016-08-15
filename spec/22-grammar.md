@@ -1117,7 +1117,7 @@ octal-digit
     -
 
   <i>generic-type-argument-list:</i>
-    &lt;  <i>generic-type-arguments</i>  &gt;
+    &lt;  <i>generic-type-arguments</i>  ,<sub>opt</sub>  &gt;
 
   <i>generic-type-arguments:</i>
     <i>generic-type-argument</i>
