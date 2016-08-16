@@ -683,6 +683,7 @@ octal-digit
 
   <i>scope-resolution-expression:</i>
     <i>scope-resolution-qualifier</i>  ::  <i>name</i>
+    <i>scope-resolution-qualifier</i>  ::  <i>variable-name</i>
     <i>scope-resolution-qualifier</i>  ::  class
 
   <i>scope-resolution-qualifier:</i>

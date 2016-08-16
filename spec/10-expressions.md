@@ -1371,6 +1371,7 @@ $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 <pre>
   <i>scope-resolution-expression:</i>
     <i>scope-resolution-qualifier</i>  ::  <i>name</i>
+    <i>scope-resolution-qualifier</i>  ::  <i>variable-name</i>
     <i>scope-resolution-qualifier</i>  ::  class
 
   <i>scope-resolution-qualifier:</i>
@@ -1389,9 +1390,13 @@ $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 
 **Constraints**
 
-If *name* is present, *qualified-name* must be the name of an enum, a class, or an interface type, and *name* must designate an enumeration constant or member within that type. Otherwise, *qualified-name* must be the name of a class or interface type.
+Scope resolution expressions of the form <i>qualified-name</i>`::`<i>name</i> must have the name of an enum, class or interface type on the left of the `::`, and an enumeration constant or type member on the right.
 
-*variable-name* must name a value having the [`classname` type](05-types.md#the-classname-type).
+Scope resolution expressions of the form <i>qualified-name</i>`::`<i>variable-name</i> must have the name of a class or interface type on the left of the `::`, and a static property of that type on the right.
+
+Scope resolution expressions of the form <i>qualified-name</i>`::`class must have the name of a class or interface type on the left of the `::`.
+
+Scope resolution expressions with a *variable-name* to the left of the `::` must name a variable having the [`classname` type](05-types.md#the-classname-type).
 
 *variable-name* `:: class` is not permitted.
 
