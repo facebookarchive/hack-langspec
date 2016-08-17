@@ -811,8 +811,11 @@ $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
     new  <i>class-type-designator</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>class-type-designator:</i>
+    parent
+    self
     static
     <i>qualified-name</i>
+    <i>scope-resolution-expression</i>
     <i>variable-name</i>
 </pre>
 
@@ -820,19 +823,20 @@ $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
 
 * [*argument-expression-list*](10-expressions.md#function-call-operator)
 * [*qualified-name*](20-namespaces.md#defining-namespaces)
+* [*scope-resolution-expression*](10-expressions.md#scope-resolution-operator)
 * [*variable-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
-*qualified-name* must name a class.
+If the *class-type-designator* is a *scope-resolution-expression* then it must not have `class` as the right hand side of the `::` operator.
 
-*variable-name* must name a value having the [`classname` type](05-types.md#the-classname-type).
+If the *class-type-designator* is a *qualified-name* or *scope-resolution-expression* which resolves a qualified name, or `self`, or `parent`, then it must designate a class.
 
-*variable-name* must designate a class that has the attribute  [`__ConsistentConstruct`](21-attributes.md#attribute-__consistentconstruct), or that has an abstract constructor or a final constructor.
+If the *class-type-designator* is a *variable-name* or *scope-resolution-expression* which resolves to the name of a property, then it must name a value having the [`classname` type](05-types.md#the-classname-type).  Furthermore, it must designate a class that has the attribute  [`__ConsistentConstruct`](21-attributes.md#attribute-__consistentconstruct), or that has an abstract constructor or a final constructor.
 
-*class-type-designator* must not designate an [abstract class](16-classes.md#general).
+The *class-type-designator* must not designate an [abstract class](16-classes.md#general).
 
-*class-type-designator* must not be a [generic type parameter](14-generic-types-methods-and-functions.md#type-parameters).
+The *class-type-designator* must not be a [generic type parameter](14-generic-types-methods-and-functions.md#type-parameters).
 
 *argument-expression-list* must contain an argument for each parameter in the
 [constructor's definition](15-functions.md#function-definitions) not having a default value, and each
@@ -844,7 +848,7 @@ than there are corresponding parameters.
 **Semantics**
 
 The `new` operator allocates memory for an object that is an instance of
-the class specified by *class-type-designator* or *variable-name*.
+the class specified by the *class-type-designator*.
 
 The object is initialized by calling the class's constructor (16.8)
 passing it the optional *argument-expression-list*. If the class has no
@@ -853,7 +857,7 @@ Otherwise, each instance property having any nullable type takes on the value
 `null`.
 
 The result of an *object-creation-expression* is a handle to an object
-of the type specified by *class-type-designator* or *variable-name*.
+of the type specified by the *class-type-designator*.
 
 From within a method, the use of `static` corresponds to the class in the
 inheritance context in which the method is called. The type of the object created by an expression of the form `new static` is [`this`](05-types.md#the-this-type).

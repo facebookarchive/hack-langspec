@@ -626,9 +626,12 @@ octal-digit
     new  <i>class-type-designator</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>class-type-designator:</i>
+    parent
+    self
     static
     <i>qualified-name</i>
     <i>variable-name</i>
+    <i>scope-resolution-expression</i>
 
   <i>array-creation-expression:</i>
     array  (  <i>array-initializer<sub>opt</sub></i>  )
