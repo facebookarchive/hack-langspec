@@ -1279,12 +1279,14 @@ $anon();  // call the anonymous function
 <pre>
   <i>member-selection-expression:</i>
     <i>postfix-expression</i>  ->  <i>name</i>
+    <i>postfix-expression</i>  ->  <i>variable-name</i>
 </pre>
 
 **Defined elsewhere**
 
 * [*name*](09-lexical-structure.md#names)
 * [*postfix-expression*](10-expressions.md#general-3)
+* [*variable-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
@@ -1292,6 +1294,11 @@ $anon();  // call the anonymous function
 
 *name* must designate an instance property, or an instance
 method of the class designated by *postfix-expression*.
+
+*variable-name* must name a variable which when evaluated produces a string
+containing an instance property or an instance method of the class 
+designated by *postfix-expression*.
+
 
 **Semantics**
 
@@ -1325,12 +1332,14 @@ $p1->move(3, 9);  // calls public instance method move by name
 <pre>
 <i>null-safe-member-selection-expression:</i>
   <i>postfix-expression</i>  ?->  <i>name</i>
+  <i>postfix-expression</i>  ?->  <i>variable-name</i>
 </pre>
 
 **Defined elsewhere**
 
 * [*name*](09-lexical-structure.md#names)
 * [*postfix-expression*](10-expressions.md#general-3)
+* [*variable-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
@@ -1338,9 +1347,16 @@ $p1->move(3, 9);  // calls public instance method move by name
 
 *name* must designate an instance property or an instance method of the class designated by *postﬁx-expression*.
 
+*variable-name* must name a variable which when evaluated produces a string
+containing an instance property or an instance method of the class 
+designated by *postfix-expression*.
+
 **Semantics**
 
-If *postﬁx-expression* is `null`, no property or method is selected and the resulting value is `null`. Otherwise, the behavior is like that of the [member-selection operator `->`](10-expressions.md#member-selection-operator), except that when *name* designates an instance property of the object designated by *postﬁx-expression*, the resulting value is not an lvalue.
+If *postﬁx-expression* is `null`, no property or method is selected and the 
+resulting value is `null`. Otherwise, the behavior is like that of the 
+[member-selection operator `->`](10-expressions.md#member-selection-operator), 
+except that the resulting value is not an lvalue.
 
 ###Postfix Increment and Decrement Operators
 

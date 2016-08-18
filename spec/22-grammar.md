@@ -672,14 +672,12 @@ octal-digit
     <i>argument-expressions</i>  ,  <i>expression</i>
 
   <i>member-selection-expression:</i>
-    <i>postfix-expression</i>  ->  <i>member-selection-designator</i>
-
-  <i>member-selection-designator:</i>
-    <i>name</i>
-    <i>expression</i>
+    <i>postfix-expression</i>  ->  <i>name</i>
+    <i>postfix-expression</i>  ->  <i>variable-name</i>
 
   <i>null-safe-member-selection-expression:</i>
     <i>postfix-expression</i>  ?->  <i>name</i>
+    <i>postfix-expression</i>  ?->  <i>variable-name</i>
 
   <i>postfix-increment-expression:</i>
     <i>unary-expression</i>  ++
