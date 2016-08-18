@@ -629,9 +629,12 @@ octal-digit
     parent
     self
     static
+    <i>member-selection-expression</i>
+    <i>null-safe-member-selection-expression</i>
     <i>qualified-name</i>
-    <i>variable-name</i>
     <i>scope-resolution-expression</i>
+    <i>subscript-expression</i>
+    <i>variable-name</i>
 
   <i>array-creation-expression:</i>
     array  (  <i>array-initializer<sub>opt</sub></i>  )

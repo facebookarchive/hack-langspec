@@ -814,29 +814,37 @@ $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
     parent
     self
     static
+    <i>member-selection-expression<i>
+    <i>null-safe-member-selection-expression<i>
     <i>qualified-name</i>
     <i>scope-resolution-expression</i>
+    <i>subscript-expression<i>
     <i>variable-name</i>
 </pre>
 
 **Defined elsewhere**
 
 * [*argument-expression-list*](10-expressions.md#function-call-operator)
+* [*member-selection-expression*](10-expressions.md#member-selection-operator)
+* [*null-safe-member-selection-expression*](10-expressions.md#null-safe-member-selection-operator)
 * [*qualified-name*](20-namespaces.md#defining-namespaces)
 * [*scope-resolution-expression*](10-expressions.md#scope-resolution-operator)
+* [*subscript-expression*](10-expressions.md#subscript-operator)
 * [*variable-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
 If the *class-type-designator* is a *scope-resolution-expression* then it must not have `class` as the right hand side of the `::` operator.
 
-If the *class-type-designator* is a *qualified-name* or *scope-resolution-expression* which resolves a qualified name, or `self`, or `parent`, then it must designate a class.
+Otherwise, if the *class-type-designator* is a *qualified-name* or *scope-resolution-expression* which resolves a qualified name, or `self`, or `parent`, then it must designate a class.
 
-If the *class-type-designator* is a *variable-name* or *scope-resolution-expression* which resolves to the name of a property, then it must name a value having the [`classname` type](05-types.md#the-classname-type).  Furthermore, it must designate a class that has the attribute  [`__ConsistentConstruct`](21-attributes.md#attribute-__consistentconstruct), or that has an abstract constructor or a final constructor.
+Otherwise,the *class-type-designator* must be an expression evaluating to a value having the [`classname` type](05-types.md#the-classname-type).  Furthermore, it must designate a class that has the attribute  [`__ConsistentConstruct`](21-attributes.md#attribute-__consistentconstruct), or that has an abstract constructor or a final constructor.
 
 The *class-type-designator* must not designate an [abstract class](16-classes.md#general).
 
 The *class-type-designator* must not be a [generic type parameter](14-generic-types-methods-and-functions.md#type-parameters).
+
+The *object-creation-expression* will invoke the constructor of the class designated by the *class-type-designator*. 
 
 *argument-expression-list* must contain an argument for each parameter in the
 [constructor's definition](15-functions.md#function-definitions) not having a default value, and each
