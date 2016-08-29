@@ -137,7 +137,9 @@ namespace NS3\Sub1;
 
 <pre>
   <i>namespace-use-declaration:</i>
-    use  <i>namespace-use-clauses</i>  ;
+    use <i>namespace-use-kind<sub>opt</sub></i>  <i>namespace-use-clauses</i>  ;
+    use <i>namespace-use-kind</i>  <i>namespace-name-as-a-prefix</i>  { <i>namespace-use-clauses</i>  }  ;
+    use <i>namespace-name-as-a-prefix</i>  { <i>namespace-use-kind-clauses</i>  }  ;
 
   <i>namespace-use-clauses:</i>
     <i>namespace-use-clause</i>
@@ -146,8 +148,19 @@ namespace NS3\Sub1;
   <i>namespace-use-clause:</i>
     <i>qualified-name  namespace-aliasing-clause<sub>opt</sub></i>
 
+  <i>namespace-use-kind-clauses:</i>
+    <i>namespace-use-kind-clause</i>
+    <i>namespace-use-kind-clauses</i>  ,  <i>namespace-use-kind-clause</i>
+
+  <i>namespace-use-kind-clause:</i>
+    <i>namespace-use-kind<sub>opt</sub></i>  <i>qualified-name  namespace-aliasing-clause<sub>opt</sub></i>
+
   <i>namespace-aliasing-clause:</i>
     as  <i>name</i>
+
+  <i>namespace-use-kind</i>:
+    function
+    const
 </pre>
 
 **Defined elsewhere**
@@ -165,10 +178,13 @@ scope, each occurrence must have a different alias.
 
 **Semantics**
 
-*qualified-name* is always interpreted as referring to a class,
-interface, or trait by that name. *namespace-use-clauses* can only
-create aliases for classes, interfaces, or traits; it is not possible to
-use them to create aliases to functions or constants.
+If a *namespace-use-kind* is specified before the clauses or group prefix, 
+then all subsequent clauses must name constants or functions, as appropriate.
+
+Otherwise, if a *namespace-use-kind* is specified in a *namespace-use-kind-clause*
+then the clause must name a constant or function, as appropriate.
+
+Otherwise, the clause must name a namespace, class, interface or trait.
 
 A *namespace-use-declaration* *imports*—that is, makes available—one or
 more names into a scope, optionally giving them each an alias. Each of
@@ -176,6 +192,11 @@ those names may designate a namespace, a sub-namespace, a class, an
 interface, or a trait. If a namespace-alias-clause is present, its
 *name* is the alias for *qualified-name*. Otherwise, the right-most name
 in *qualified-name* is the implied alias for *qualified-name*.
+
+The "group" form of a *namespace-use-declaration* is a convenient syntax when
+importing many members of a given namespace. The "group" form logically concatenates
+the prefix onto the *qualified-name* in each clause. See the following section for 
+an example.
 
 **Examples**
 
@@ -198,4 +219,9 @@ namespace NS2 {
   $c2 = new C2;
 }
 ```
+The *namespace-use-declaration* in the example above could also be written in 
+"group" form as:
 
+```
+  use \NS1\ { C, I, T };
+```

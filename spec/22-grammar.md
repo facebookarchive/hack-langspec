@@ -1353,7 +1353,9 @@ octal-digit
     namespace  <i>namespace-name<sub>opt</sub></i> { <i>declaration-list<sub>opt</sub></i> }
 
   <i>namespace-use-declaration:</i>
-    use  <i>namespace-use-clauses</i>  ;
+    use <i>namespace-use-kind<sub>opt</sub></i>  <i>namespace-use-clauses</i>  ;
+    use <i>namespace-use-kind</i>  <i>namespace-name-as-a-prefix</i>  { <i>namespace-use-clauses</i>  }  ;
+    use <i>namespace-name-as-a-prefix</i>  { <i>namespace-use-kind-clauses</i>  }  ;
 
   <i>namespace-use-clauses:</i>
     <i>namespace-use-clause</i>
@@ -1362,8 +1364,19 @@ octal-digit
   <i>namespace-use-clause:</i>
     <i>qualified-name  namespace-aliasing-clause<sub>opt</sub></i>
 
+  <i>namespace-use-kind-clauses:</i>
+    <i>namespace-use-kind-clause</i>
+    <i>namespace-use-kind-clauses</i>  ,  <i>namespace-use-kind-clause</i>
+
+  <i>namespace-use-kind-clause:</i>
+    <i>namespace-use-kind<sub>opt</sub></i>  <i>qualified-name  namespace-aliasing-clause<sub>opt</sub></i>
+
   <i>namespace-aliasing-clause:</i>
     as  <i>name</i>
+
+  <i>namespace-use-kind</i>:
+    function
+    const
 
   <i>namespace-name:</i>
     <i>name </i>
