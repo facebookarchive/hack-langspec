@@ -566,6 +566,7 @@ octal-digit
     <i>single-quoted-string-literal</i>  =>  <i>expression</i>
     <i>integer-literal</i>  =>  <i>expression</i>
     <i>qualified-name</i>  =>  <i>expression</i>
+    <i>scope-resolution-expression</i>  =>  <i>expression</i>
 
   <i>anonymous-function-creation-expression:</i>
     async<sub>opt</sub>  function  (  <i>anonymous-function-parameter-list<sub>opt<sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>  <i>anonymous-function-use-clause<sub>opt</sub></i>  <i>compound-statement</i>

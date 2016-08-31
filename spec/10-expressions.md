@@ -531,6 +531,7 @@ in *field-initializer* need not be compile-time constants.
     <i>single-quoted-string-literal</i>  =>  <i>expression</i>
     <i>integer-literal</i>  =>  <i>expression</i>
     <i>qualified-name</i>  =>  <i>expression</i>
+    <i>scope-resolution-expression</i>  =>  <i>expression</i>
 </pre>
 
 **Defined elsewhere**
@@ -538,16 +539,17 @@ in *field-initializer* need not be compile-time constants.
 * [*expression*](10-expressions.md#yield-operator)
 * [*integer-literal*](09-lexical-structure.md#integer-literals)
 * [*qualified-name*](20-namespaces.md#defining-namespaces)
+* [*scope-resolution-expression*](10-expressions.md#scope-resolution-operator)
 * [*single-quoted-string-literal*](09-lexical-structure.md#single-quoted-string-literals)
 
 **Constraints**
 
 Each string in the set of strings designated by all the
-*single-quoted-string-literals* and *qualified-names* in a
+*single-quoted-string-literals*, *qualified-names* and *scope-resolution-expressions* in a
 *field-initializer-list* must have a distinct value, and each string must
 match exactly a field name in the shape type's [*shape-specifier*](05-types.md#shape-types).
 
-Each integer in the set of *integer-literals* and *qualified-names* in a
+Each integer in the set of *integer-literals*, *qualified-names* and *scope-resolution-expressions* in a
 *field-initializer-list* must have a distinct value, and each integer must
 match exactly a field name in the shape type's *shape-specifier*.
 
