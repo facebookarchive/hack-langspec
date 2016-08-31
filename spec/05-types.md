@@ -486,29 +486,33 @@ private ?(int, (string, float)) $prop = null;
 <i>field-specifier:</i>
   <i>single-quoted-string-literal</i>  =>  <i>type-specifier</i>
   <i>qualified-name</i>  =>  <i>type-specifier</i>
+  <i>scope-resolution-expression</i>  =>  <i>type-specifier</i>
 </pre>
 
 **Defined elsewhere**
 
 * [*qualified-name*](20-namespaces.md#defining-namespaces)
+* [*scope-resolution-expression*](10-expressions.md#scope-resolution-operator)
 * [*single-quoted-string-literal*](09-lexical-structure.md#single-quoted-string-literals)
 * [*type-specifier*](05-types.md#general)
 
 **Constraints**
-
-*qualified-name* must designate a [class constant](16-classes.md#constants) of type `int` or
-`string`.
+The *qualified-name* or *scope-resolution-expression* must designate 
+a [class constant](16-classes.md#constants) of type `int` or `string`.
 
 Each string in the set of strings designated by all the
-*single-quoted-string-literals* and *qualified-names* in a
+*single-quoted-string-literals*, *qualified-names* and
+*scope-resolution-expressions* in a
 *field-specifier-list* must have a distinct value.
 
-Each integer in the set of all the *qualified-names*
+Each integer in the set of all the *qualified-names* and 
+*scope-resolution-expressions* 
 in a *field-specifier-list* must have a distinct value.
 
 The *field-specifiers* in a *field-specifier-list* must all have the
 *single-quoted-string-literal* form, or all
-have the *qualified-name* form; the forms must not be mixed.
+have the *qualified-name* or *scope-resolution-expression* form; 
+the forms must not be mixed.
 
 **Semantics**
 
@@ -517,7 +521,8 @@ a whole. [It takes on the role of what C and C# call a struct.] Such a
 construct is sometimes referred to as a "lightweight class".
 
 A *shape-specifier* defines a shape type as having an unordered set of fields
-each of which has a name (indicated by *single-quoted-string-literal* or *qualified-name*) and a type (indicated by
+each of which has a name (indicated by *single-quoted-string-literal*, 
+*qualified-name* or *scope-resolution-operator*) and a type (indicated by
 *type-specifier*). A field in a shape is accessed using its name as the key in
 a [*subscript-expression*](10-expressions.md#subscript-operator) that operates on a shape of the
 corresponding shape type.

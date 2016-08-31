@@ -415,6 +415,7 @@ octal-digit
 <i>field-specifier:</i>
   <i>single-quoted-string-literal</i>  =>  <i>type-specifier</i>
   <i>qualified-name</i>  =>  <i>type-specifier</i>
+  <i>scope-resolution-expression</i>  =>  <i>type-specifier</i>
 </pre>
 
 ####Closure Types
