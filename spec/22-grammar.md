@@ -1110,7 +1110,7 @@ octal-digit
 
 <pre>
   <i>generic-type-parameter-list:</i>
-    &lt;  <i>generic-type-parameters</i>  &gt;
+    &lt;  <i>generic-type-parameters</i>  ,<sub>opt</sub>  &gt;
 
   <i>generic-type-parameters:</i>
     <i>generic-type-parameter</i>
