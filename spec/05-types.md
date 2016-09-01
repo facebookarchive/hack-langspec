@@ -734,40 +734,26 @@ class C2 {
 **Syntax**
 <pre>
 <i>alias-declaration:</i>
-  type  <i>name</i>  =  <i>type-to-be-aliased</i>  ;
-  newtype  <i>name</i>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-to-be-aliased</i>  ;
-
-<i>type-to-be-aliased:</i>
-  <i>type-specifier</i>
-  <i>qualified-name</i>
-</pre>
+  type  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  =  <i>type-specifier</i>  ;
+  newtype  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-specifier</i>  ;
 
 **Defined elsewhere**
 
+* [*generic-type-parameter-list*](14-generic-types-methods-and-functions.md#type-parameters)
 * [*name*](09-lexical-structure.md#names)
-* [*qualified-name*](20-namespaces.md#defining-namespaces)
 * [*type-constraint*](05-types.md#general)
 * [*type-specifier*](05-types.md#general)
 
 **Constraints**
 
-*type-specifier* in *type-to-be-aliased* must not be [*enum-specifier*](05-types.md#general)
-or [*class-interface-trait-specifier*](05-types.md#general).
-
-*qualified-name* in *type-to-be-aliased* must be defined the *name* in an
-[*enum-declaration*](13-enums.md#enum-declarations), in a [*class-declaration*](16-classes.md#class-declarations), or in an
-[*interface-declaration*](17-interfaces.md#interface-declarations).
-
-*qualified-name* in *alias-type-specifier* must be defined as the *name* for a
-type via an *alias-declaration*.
-
-*type-specifier* in *type-constraint* must be a subtype of *type-to-be-aliased*.
+The *type-specifier* in the optional *type-constraint* must be a subtype 
+of the *type-specifier* to the right of the equals.
 
 **Semantics**
 
-An *alias-declaration* creates an alias *name* for the type specified by
-*type-to-be-aliased*. Once such a type alias has been defined, that alias can
-be used in any context in which *type-specifier* is permitted.
+An *alias-declaration* creates an alias *name* for the specified type.
+Once such a type alias has been defined, that alias can
+be used in any context in which a *type-specifier* is permitted.
 
 Any given type can have multiple aliases, and a type alias can itself have
 aliases.
@@ -780,7 +766,11 @@ implementation.
 
 An alias created using `newtype` is an *opaque type alias*. In the absence of
 a *type-constraint*, each opaque alias type is distinct from its
-underlying type and from any other types aliasing it or its underlying type. Only source code in the file that contains the definition of the opaque type alias is allowed access to the underlying implementation. As such, opaque type aliasing is an abstraction mechanism. Consider the following file, which contains an opaque alias definition:
+underlying type and from any other types aliasing it or its underlying type. 
+Only source code in the file that contains the definition of the opaque type 
+alias is allowed access to the underlying implementation. As such, opaque type 
+aliasing is an abstraction mechanism. Consider the following file, which 
+contains an opaque alias definition:
 
 ```Hack
 newtype Point = (int, int);

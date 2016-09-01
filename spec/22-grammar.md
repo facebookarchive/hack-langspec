@@ -444,12 +444,8 @@ octal-digit
 
 <pre>
 <i>alias-declaration:</i>
-  type  <i>name</i>  =  <i>type-to-be-aliased</i>  ;
-  newtype  <i>name</i>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-to-be-aliased</i>  ;
-
-<i>type-to-be-aliased:</i>
-  <i>type-specifier</i>
-  <i>qualified-name</i>
+  type  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  =  <i>type-specifier</i>  ;
+  newtype  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-specifier</i>  ;
 </pre>
 
 ###Variables
