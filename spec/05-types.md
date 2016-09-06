@@ -734,11 +734,12 @@ class C2 {
 **Syntax**
 <pre>
 <i>alias-declaration:</i>
-  type  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  =  <i>type-specifier</i>  ;
-  newtype  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-specifier</i>  ;
+  <i>attribute-specification<sub>opt</sub>  type  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  =  <i>type-specifier</i>  ;
+  <i>attribute-specification<sub>opt</sub>  newtype  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-specifier</i>  ;
 
 **Defined elsewhere**
 
+* [*attribute-specification*](21-attributes.md#attribute-specification)
 * [*generic-type-parameter-list*](14-generic-types-methods-and-functions.md#type-parameters)
 * [*name*](09-lexical-structure.md#names)
 * [*type-constraint*](05-types.md#general)

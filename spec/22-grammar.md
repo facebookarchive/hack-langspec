@@ -444,8 +444,8 @@ octal-digit
 
 <pre>
 <i>alias-declaration:</i>
-  type  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  =  <i>type-specifier</i>  ;
-  newtype  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-specifier</i>  ;
+  <i>attribute-specification<sub>opt</sub>  type  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  =  <i>type-specifier</i>  ;
+  <i>attribute-specification<sub>opt</sub>  newtype  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-specifier</i>  ;
 </pre>
 
 ###Variables
