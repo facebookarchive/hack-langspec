@@ -1070,14 +1070,12 @@ octal-digit
     <i>require-once-directive</i>
 
   <i>require-multiple-directive:</i>
-    require  (  <i>include-filename</i>  )  ;
     require  <i>include-filename</i>  ;
 
   <i>include-filename:</i>
     <i>expression</i>  
 
   <i>require-once-directive:</i>
-    require_once  (  <i>include-filename</i>  )  ;
     require_once  <i>include-filename</i>  ;
 </pre>  
 
