@@ -585,7 +585,7 @@ octal-digit
     : <i>return-type</i>
 
   <i>anonymous-function-use-clause:</i>
-    use  (  <i>use-variable-name-list</i>  )
+    use  (  <i>use-variable-name-list</i>  ,<sub>opt</sub> )
 
   <i>use-variable-name-list:</i>
     <i>variable-name</i>
