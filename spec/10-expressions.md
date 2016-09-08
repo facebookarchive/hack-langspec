@@ -525,8 +525,10 @@ in *field-initializer* need not be compile-time constants.
   <i>shape-literal:</i>
     <i>shape  (  <i>field-initializer-list<sub>opt</sub></i>  )</i>
   <i>field-initializer-list:</i>
+    <i>field-initializers</i>  ,<sub>opt</sub>
+  <i>field-initializers</i>:
     <i>field-initializer</i>
-    <i>field-initializer-list  </i>  ,  <i>field-initializer</i>
+    <i>field-initializers</i>  ,  <i>field-initializer</i>
   <i>field-initializer:</i>
     <i>single-quoted-string-literal</i>  =>  <i>expression</i>
     <i>integer-literal</i>  =>  <i>expression</i>

@@ -556,8 +556,11 @@ octal-digit
     <i>shape</i>  (  <i>field-initializer-list<sub>opt</sub></i>  )
 
   <i>field-initializer-list:</i>
+    <i>field-initializers</i>  ,<sub>opt</sub>
+
+  <i>field-initializers</i>:
     <i>field-initializer</i>
-    <i>field-initializer-list</i>  ,  <i>field-initializer</i>
+    <i>field-initializers</i>  ,  <i>field-initializer</i>
 
   <i>field-initializer:</i>
     <i>single-quoted-string-literal</i>  =>  <i>expression</i>
