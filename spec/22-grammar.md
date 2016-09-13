@@ -437,7 +437,7 @@ octal-digit
 
 <pre>
 <i>classname-type-specifier:</i>
-  classname   <   <i>qualified-name<i>   >
+  classname   <   <i>qualified-name<i>  <i>generic-type-argument-list<sub>opt</sub></i>  >
 </pre>
 
 ####Type Aliases

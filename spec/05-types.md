@@ -698,7 +698,7 @@ parameters. See [§§](14-generic-types-methods-and-functions.md#generic-types-m
 **Syntax**
 <pre>
 <i>classname-type-specifier:</i>
-  classname  <  <i>qualified-name</i>  >
+  classname  <  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>  >
 </pre>
 
 **Defined elsewhere**
