@@ -83,7 +83,7 @@ script. Each script must conform to this production.
 **Syntax**
 
 <pre>
-  <i>input-file::
+  <i>input-file::</i>
     <i>input-element</i>
     <i>input-file   input-element</i>
   <i>input-element::</i>
