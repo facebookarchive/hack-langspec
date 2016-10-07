@@ -20,15 +20,17 @@ A function is called via the [function-call operator `()`](10-expressions.md#fun
 
 <pre>
   <i>function-definition:</i>
+    <i>attribute-specification<sub>opt</sub>   function-definition-no-attribute</i>
+
+  <i>function-definition-no-attribute:</i>
     <i>function-definition-header  compound-statement</i>
 
   <i>function-definition-header:</i>
-    <i>attribute-specification<sub>opt</sub></i>  async<sub>opt</sub>  function <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  (  <i>parameter-list<sub>opt</sub></i>  )
-      :  <i>return-type</i>
+    async<sub>opt</sub>  function <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  (  <i>parameter-list<sub>opt</sub></i>  ) :  <i>return-type</i>
 
   <i>parameter-list:</i>
     ...
-    <i>parameter-declaration-list</i>
+    <i>parameter-declaration-list</i>  ,<sub>opt</sub>
     <i>parameter-declaration-list</i>  ,  ...
 
   <i>parameter-declaration-list:</i>

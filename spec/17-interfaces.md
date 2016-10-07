@@ -24,14 +24,15 @@ inherits all members from its *base interface(s)*.
       <i>interface-member-declarations<sub>opt</sub></i>  }
 
   <i>interface-base-clause:</i>
-    extends  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
-    <i>interface-base-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
+    extends  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
+    <i>interface-base-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
 </pre>
 
 **Defined elsewhere**
 
 * [*attribute-specification*](21-attributes.md#attribute-specification)
 * [*generic-type-parameter-list*](14-generic-types-methods-and-functions.md#type-parameters)
+* [*generic-type-argument-list*](14-generic-types-methods-and-functions.md#type-parameters)
 * [*interface-member-declarations*](17-interfaces.md#interface-members)
 * [*name*](09-lexical-structure.md#names)
 * [*qualified-name*](20-namespaces.md#defining-namespaces)

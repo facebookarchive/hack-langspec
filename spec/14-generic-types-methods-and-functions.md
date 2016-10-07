@@ -67,7 +67,7 @@ Type parameters are discussed further in [§§](14-generic-types-methods-and-fun
 **Syntax**
 <pre>
 <i>generic-type-parameter-list:</i>
-  &lt;  <i>generic-type-parameters</i>  &gt;
+  &lt;  <i>generic-type-parameters</i>  ,<sub>opt</sub>  &gt;
 <i>generic-type-parameters:</i>
   <i>generic-type-parameter</i>
   <i>generic-type-parameters</i>  ,  <i>generic-type-parameter</i>
@@ -179,7 +179,7 @@ echo "\$c3 + \$c4 = " . Complex::add($c3, $c4) . "\n";
 **Syntax**
 <pre>
 <i>generic-type-argument-list:</i>
-  &lt;  <i>generic-type-arguments</i>  &gt;
+  &lt;  <i>generic-type-arguments</i>  ,<sub>opt</sub>  &gt;
 <i>generic-type-arguments:</i>
   <i>generic-type-argument</i>
   <i>generic-type-arguments</i>  ,  <i>generic-type-argument</i>

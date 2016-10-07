@@ -69,8 +69,11 @@ for `null`, use [`is_null`](http://www.php.net/is_null). Useful library function
   <i>qualified-name generic-type-argument-list<sub>opt</sub></i>
 
 <i>type-specifier-list:</i>
+  <i>type-specifiers</i>  ,<sub>opt</sub>
+
+<i>type-specifiers</i>
   <i>type-specifier</i>
-  <i>type-specifier-list</i> , <i>type-specifier</i>
+  <i>type-specifiers</i> , <i>type-specifier</i>
 
 <i>type-constraint:</i>
   as  <i>type-specifier</i>
@@ -483,29 +486,33 @@ private ?(int, (string, float)) $prop = null;
 <i>field-specifier:</i>
   <i>single-quoted-string-literal</i>  =>  <i>type-specifier</i>
   <i>qualified-name</i>  =>  <i>type-specifier</i>
+  <i>scope-resolution-expression</i>  =>  <i>type-specifier</i>
 </pre>
 
 **Defined elsewhere**
 
 * [*qualified-name*](20-namespaces.md#defining-namespaces)
+* [*scope-resolution-expression*](10-expressions.md#scope-resolution-operator)
 * [*single-quoted-string-literal*](09-lexical-structure.md#single-quoted-string-literals)
 * [*type-specifier*](05-types.md#general)
 
 **Constraints**
-
-*qualified-name* must designate a [class constant](16-classes.md#constants) of type `int` or
-`string`.
+The *qualified-name* or *scope-resolution-expression* must designate 
+a [class constant](16-classes.md#constants) of type `int` or `string`.
 
 Each string in the set of strings designated by all the
-*single-quoted-string-literals* and *qualified-names* in a
+*single-quoted-string-literals*, *qualified-names* and
+*scope-resolution-expressions* in a
 *field-specifier-list* must have a distinct value.
 
-Each integer in the set of all the *qualified-names*
+Each integer in the set of all the *qualified-names* and 
+*scope-resolution-expressions* 
 in a *field-specifier-list* must have a distinct value.
 
 The *field-specifiers* in a *field-specifier-list* must all have the
 *single-quoted-string-literal* form, or all
-have the *qualified-name* form; the forms must not be mixed.
+have the *qualified-name* or *scope-resolution-expression* form; 
+the forms must not be mixed.
 
 **Semantics**
 
@@ -514,7 +521,8 @@ a whole. [It takes on the role of what C and C# call a struct.] Such a
 construct is sometimes referred to as a "lightweight class".
 
 A *shape-specifier* defines a shape type as having an unordered set of fields
-each of which has a name (indicated by *single-quoted-string-literal* or *qualified-name*) and a type (indicated by
+each of which has a name (indicated by *single-quoted-string-literal*, 
+*qualified-name* or *scope-resolution-operator*) and a type (indicated by
 *type-specifier*). A field in a shape is accessed using its name as the key in
 a [*subscript-expression*](10-expressions.md#subscript-operator) that operates on a shape of the
 corresponding shape type.
@@ -690,7 +698,7 @@ parameters. See [§§](14-generic-types-methods-and-functions.md#generic-types-m
 **Syntax**
 <pre>
 <i>classname-type-specifier:</i>
-  classname  <  <i>qualified-name</i>  >
+  classname  <  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>  >
 </pre>
 
 **Defined elsewhere**
@@ -726,40 +734,27 @@ class C2 {
 **Syntax**
 <pre>
 <i>alias-declaration:</i>
-  type  <i>name</i>  =  <i>type-to-be-aliased</i>  ;
-  newtype  <i>name</i>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-to-be-aliased</i>  ;
-
-<i>type-to-be-aliased:</i>
-  <i>type-specifier</i>
-  <i>qualified-name</i>
-</pre>
+  <i>attribute-specification<sub>opt</sub>  type  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  =  <i>type-specifier</i>  ;
+  <i>attribute-specification<sub>opt</sub>  newtype  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-specifier</i>  ;
 
 **Defined elsewhere**
 
+* [*attribute-specification*](21-attributes.md#attribute-specification)
+* [*generic-type-parameter-list*](14-generic-types-methods-and-functions.md#type-parameters)
 * [*name*](09-lexical-structure.md#names)
-* [*qualified-name*](20-namespaces.md#defining-namespaces)
 * [*type-constraint*](05-types.md#general)
 * [*type-specifier*](05-types.md#general)
 
 **Constraints**
 
-*type-specifier* in *type-to-be-aliased* must not be [*enum-specifier*](05-types.md#general)
-or [*class-interface-trait-specifier*](05-types.md#general).
-
-*qualified-name* in *type-to-be-aliased* must be defined the *name* in an
-[*enum-declaration*](13-enums.md#enum-declarations), in a [*class-declaration*](16-classes.md#class-declarations), or in an
-[*interface-declaration*](17-interfaces.md#interface-declarations).
-
-*qualified-name* in *alias-type-specifier* must be defined as the *name* for a
-type via an *alias-declaration*.
-
-*type-specifier* in *type-constraint* must be a subtype of *type-to-be-aliased*.
+The *type-specifier* in the optional *type-constraint* must be a subtype 
+of the *type-specifier* to the right of the equals.
 
 **Semantics**
 
-An *alias-declaration* creates an alias *name* for the type specified by
-*type-to-be-aliased*. Once such a type alias has been defined, that alias can
-be used in any context in which *type-specifier* is permitted.
+An *alias-declaration* creates an alias *name* for the specified type.
+Once such a type alias has been defined, that alias can
+be used in any context in which a *type-specifier* is permitted.
 
 Any given type can have multiple aliases, and a type alias can itself have
 aliases.
@@ -772,7 +767,11 @@ implementation.
 
 An alias created using `newtype` is an *opaque type alias*. In the absence of
 a *type-constraint*, each opaque alias type is distinct from its
-underlying type and from any other types aliasing it or its underlying type. Only source code in the file that contains the definition of the opaque type alias is allowed access to the underlying implementation. As such, opaque type aliasing is an abstraction mechanism. Consider the following file, which contains an opaque alias definition:
+underlying type and from any other types aliasing it or its underlying type. 
+Only source code in the file that contains the definition of the opaque type 
+alias is allowed access to the underlying implementation. As such, opaque type 
+aliasing is an abstraction mechanism. Consider the following file, which 
+contains an opaque alias definition:
 
 ```Hack
 newtype Point = (int, int);

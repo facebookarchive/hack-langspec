@@ -363,11 +363,14 @@ octal-digit
   <i>qualified-name generic-type-argument-list<sub>opt</sub></i>
 
 <i>type-specifier-list:</i>
-  <i>type-specifier</i>
-  <i>type-specifier-list</i> , <i>type-specifier</i>
+  <i>type-specifiers</i>  ,<sub>opt</sub>
 
-  <i>type-constraint:</i>
-    as  <i>type-specifier</i>
+<i>type-specifiers:</i>
+  <i>type-specifier</i>
+  <i>type-specifiers</i>  ,  <i>type-specifier</i>
+
+<i>type-constraint:</i>
+  as  <i>type-specifier</i>
 
 <i>type-constant-type-name:</i>
   <i>name</i>  ::  <i>name</i>
@@ -412,6 +415,7 @@ octal-digit
 <i>field-specifier:</i>
   <i>single-quoted-string-literal</i>  =>  <i>type-specifier</i>
   <i>qualified-name</i>  =>  <i>type-specifier</i>
+  <i>scope-resolution-expression</i>  =>  <i>type-specifier</i>
 </pre>
 
 ####Closure Types
@@ -433,19 +437,15 @@ octal-digit
 
 <pre>
 <i>classname-type-specifier:</i>
-  classname   <   <i>qualified-name<i>   >
+  classname   <   <i>qualified-name<i>  <i>generic-type-argument-list<sub>opt</sub></i>  >
 </pre>
 
 ####Type Aliases
 
 <pre>
 <i>alias-declaration:</i>
-  type  <i>name</i>  =  <i>type-to-be-aliased</i>  ;
-  newtype  <i>name</i>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-to-be-aliased</i>  ;
-
-<i>type-to-be-aliased:</i>
-  <i>type-specifier</i>
-  <i>qualified-name</i>
+  <i>attribute-specification<sub>opt</sub>  type  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  =  <i>type-specifier</i>  ;
+  <i>attribute-specification<sub>opt</sub>  newtype  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-specifier</i>  ;
 </pre>
 
 ###Variables
@@ -556,17 +556,27 @@ octal-digit
     <i>shape</i>  (  <i>field-initializer-list<sub>opt</sub></i>  )
 
   <i>field-initializer-list:</i>
+    <i>field-initializers</i>  ,<sub>opt</sub>
+
+  <i>field-initializers</i>:
     <i>field-initializer</i>
-    <i>field-initializer-list</i>  ,  <i>field-initializer</i>
+    <i>field-initializers</i>  ,  <i>field-initializer</i>
 
   <i>field-initializer:</i>
     <i>single-quoted-string-literal</i>  =>  <i>expression</i>
     <i>integer-literal</i>  =>  <i>expression</i>
     <i>qualified-name</i>  =>  <i>expression</i>
+    <i>scope-resolution-expression</i>  =>  <i>expression</i>
 
   <i>anonymous-function-creation-expression:</i>
-    async<sub>opt</sub>  function  (  <i>anonymous-function-parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>  <i>anonymous-function-use-clause<sub>opt</sub></i>  <i>compound-statement</i>
+    async<sub>opt</sub>  function  (  <i>anonymous-function-parameter-list<sub>opt<sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>  <i>anonymous-function-use-clause<sub>opt</sub></i>  <i>compound-statement</i>
 
+  <i>anonymous-function-parameter-list:</i>
+    ...
+    <i>anonymous-function-parameter-declaration-list</i>
+    <i>anonymous-function-parameter-declaration-list</i>  ,
+    <i>anonymous-function-parameter-declaration-list</i>  ,  ...
+  
   <i>anonymous-function-parameter-declaration-list:</i>
     <i>anonymous-function-parameter-declaration</i>
     <i>anonymous-function-parameter-declaration-list</i>  ,  <i>anonymous-function-parameter-declaration</i>
@@ -575,10 +585,10 @@ octal-digit
     <i>attribute-specification<sub>opt</sub>  type-specifier<sub>opt</sub> variable-name  default-argument-specifier<sub>opt</sub></i>
 
   <i>anonymous-function-return:</i>
-    : <i>type-specifier</i>
+    : <i>return-type</i>
 
   <i>anonymous-function-use-clause:</i>
-    use  (  <i>use-variable-name-list</i>  )
+    use  (  <i>use-variable-name-list</i>  ,<sub>opt</sub> )
 
   <i>use-variable-name-list:</i>
     <i>variable-name</i>
@@ -617,8 +627,14 @@ octal-digit
     new  <i>class-type-designator</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>class-type-designator:</i>
+    parent
+    self
     static
+    <i>member-selection-expression</i>
+    <i>null-safe-member-selection-expression</i>
     <i>qualified-name</i>
+    <i>scope-resolution-expression</i>
+    <i>subscript-expression</i>
     <i>variable-name</i>
 
   <i>array-creation-expression:</i>
@@ -650,18 +666,19 @@ octal-digit
     <i>postfix-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>argument-expression-list:</i>
-    <i>assignment-expression</i>
-    <i>argument-expression-list</i>  ,  <i>assignment-expression</i>
+    <i>argument-expressions</i>  ,<sub>opt</sub>
+
+  <i>argument-expressions:</i>
+    <i>expression</i>
+    <i>argument-expressions</i>  ,  <i>expression</i>
 
   <i>member-selection-expression:</i>
-    <i>postfix-expression</i>  ->  <i>member-selection-designator</i>
-
-  <i>member-selection-designator:</i>
-    <i>name</i>
-    <i>expression</i>
+    <i>postfix-expression</i>  ->  <i>name</i>
+    <i>postfix-expression</i>  ->  <i>variable-name</i>
 
   <i>null-safe-member-selection-expression:</i>
     <i>postfix-expression</i>  ?->  <i>name</i>
+    <i>postfix-expression</i>  ?->  <i>variable-name</i>
 
   <i>postfix-increment-expression:</i>
     <i>unary-expression</i>  ++
@@ -671,7 +688,8 @@ octal-digit
 
   <i>scope-resolution-expression:</i>
     <i>scope-resolution-qualifier</i>  ::  <i>name</i>
-    <i>scope-resolution-qualifier</i>  ::  <i>class</i>
+    <i>scope-resolution-qualifier</i>  ::  <i>variable-name</i>
+    <i>scope-resolution-qualifier</i>  ::  class
 
   <i>scope-resolution-qualifier:</i>
     <i>qualified-name</i>
@@ -837,13 +855,13 @@ octal-digit
 <pre>
 <i>lambda-expression:</i>
   <i>piped-expression</i>
-  async<sub>opt</sub>  <i>lambda-function-signature</i>  ==>  <i>anonymous-function-body</i>
+  async<sub>opt</sub>  <i>lambda-function-signature</i>  ==>  <i>lambda-body</i>
 
 <i>lambda-function-signature:</i>
   <i>variable-name</i>
   (  <i>anonymous-function-parameter-declaration-list<sub>opt</sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>
 
-<i>anonymous-function-body:</i>
+<i>lambda-body:</i>
   <i>expression</i>
   <i>compound-statement</i>
 </pre>
@@ -1041,7 +1059,7 @@ octal-digit
     <i>catch-clauses   catch-clause</i>
 
   <i>catch-clause:</i>
-    catch  (  <i>parameter-declaration-list</i>  )  <i>compound-statement</i>
+    catch  (  <i>type-specifier</i>  <i>variable-name</i>  )  <i>compound-statement</i>
 
   <i>finally-clause:</i>
     finally   <i>compound-statement</i>
@@ -1055,14 +1073,12 @@ octal-digit
     <i>require-once-directive</i>
 
   <i>require-multiple-directive:</i>
-    require  (  <i>include-filename</i>  )  ;
     require  <i>include-filename</i>  ;
 
   <i>include-filename:</i>
     <i>expression</i>  
 
   <i>require-once-directive:</i>
-    require_once  (  <i>include-filename</i>  )  ;
     require_once  <i>include-filename</i>  ;
 </pre>  
 
@@ -1078,10 +1094,10 @@ octal-digit
 
   <i>enumerator-list:</i>
     <i>enumerator</i>
-    <i>enumerator-list</i>  ;  <i>enumerator</i>
+    <i>enumerator-list</i>  <i>enumerator</i>
 
   <i>enumerator:</i>
-    <i>enumerator-constant</i>  =  <i>constant-expression</i>
+    <i>enumerator-constant</i>  =  <i>constant-expression</i>  ;
 
   <i>enumerator-constant:</i>
     <i>name</i>
@@ -1091,7 +1107,7 @@ octal-digit
 
 <pre>
   <i>generic-type-parameter-list:</i>
-    &lt;  <i>generic-type-parameters</i>  &gt;
+    &lt;  <i>generic-type-parameters</i>  ,<sub>opt</sub>  &gt;
 
   <i>generic-type-parameters:</i>
     <i>generic-type-parameter</i>
@@ -1108,7 +1124,7 @@ octal-digit
     -
 
   <i>generic-type-argument-list:</i>
-    &lt;  <i>generic-type-arguments</i>  &gt;
+    &lt;  <i>generic-type-arguments</i>  ,<sub>opt</sub>  &gt;
 
   <i>generic-type-arguments:</i>
     <i>generic-type-argument</i>
@@ -1123,14 +1139,17 @@ octal-digit
 
 <pre>
   <i>function-definition:</i>
+    <i>attribute-specification<sub>opt</sub>   function-definition-no-attribute</i>
+
+  <i>function-definition-no-attribute:</i>
     <i>function-definition-header  compound-statement</i>
 
   <i>function-definition-header:</i>
-    <i>attribute-specification<sub>opt</sub></i>  async<sub>opt</sub>  function <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  (  <i>parameter-list<sub>opt</sub></i>  ) :  <i>return-type</i>
+    async<sub>opt</sub>  function <i>name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>  (  <i>parameter-list<sub>opt</sub></i>  ) :  <i>return-type</i>
 
   <i>parameter-list:</i>
     ...
-    <i>parameter-declaration-list</i>
+    <i>parameter-declaration-list</i>  ,<sub>opt</sub>
     <i>parameter-declaration-list</i>  ,  ...
 
   <i>parameter-declaration-list:</i>
@@ -1145,6 +1164,7 @@ octal-digit
 
   <i>return-type:</i>
     <i>type-specifier</i>
+    noreturn
 </pre>
 
 ###Classes
@@ -1160,11 +1180,11 @@ octal-digit
     abstract final
 
   <i>class-base-clause:</i>
-    extends  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
+    extends  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
 
   <i>class-interface-clause:</i>
-    implements  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
-    <i>class-interface-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
+    implements  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
+    <i>class-interface-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
 
   <i>class-member-declarations:</i>
     <i>class-member-declaration</i>
@@ -1217,8 +1237,8 @@ octal-digit
     =  <i>expression</i>
 
   <i>method-declaration:</i>
-    <i>method-modifiers</i>  <i>function-definition</i>
-    <i>method-modifiers</i>  <i>function-definition-header</i>  ;
+    <i>attribute-specification<sub>opt</sub></i> <i>method-modifiers</i>  <i>function-definition-no-attribute</i>
+    <i>attribute-specification<sub>opt</sub></i> <i>method-modifiers</i>  <i>function-definition-header</i>  ;
 
   <i>method-modifiers:</i>
     <i>method-modifier</i>
@@ -1232,7 +1252,7 @@ octal-digit
 
   <i>constructor-declaration:</i>
   <i>attribute-specification<sub>opt</sub></i>  <i>constructor-modifiers</i>  function  __construct  (
-    <i>constructor-parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
+    <i>constructor-parameter-declaration-list<sub>opt</sub></i>  )  <i>void-return<sub>opt</sub></i>  <i>compound-statement</i>
 
   <i>constructor-parameter-declaration-list:</i>
     <i>constructor-parameter-declaration</i>
@@ -1251,7 +1271,10 @@ octal-digit
     final
 
   <i>destructor-declaration:</i>
-    <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __destruct  ( )  <i>compound-statement</i>
+    <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __destruct  ( )  <i>void-return<sub>opt</sub></i>  <i>compound-statement</i>
+
+  <i>void-return</i>:
+    : void 
 
   <i>type-constant-declaration:</i>
     <i>abstract-type-constant-declaration</i>
@@ -1270,8 +1293,8 @@ octal-digit
       <i>interface-member-declarations<sub>opt</sub></i>  }
 
   <i>interface-base-clause:</i>
-    extends  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
-    <i>interface-base-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
+    extends  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
+    <i>interface-base-clause</i>  ,  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
 
   <i>interface-member-declarations:</i>
     <i>interface-member-declaration</i>
@@ -1299,8 +1322,8 @@ octal-digit
     use  <i>trait-name-list</i>  ;
 
   <i>trait-name-list:</i>
-    <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
-    <i>trait-name-list</i>  ,  <i>qualified-name</i>  <i>generic-type-parameter-list<sub>opt</sub></i>
+    <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
+    <i>trait-name-list</i>  ,  <i>qualified-name</i>  <i>generic-type-argument-list<sub>opt</sub></i>
 
   <i>trait-member-declarations:</i>
     <i>trait-member-declaration</i>
@@ -1315,10 +1338,10 @@ octal-digit
     <i>destructor-declaration</i>
 
   <i>require-extends-clause:</i>
-    require  extends  <i>qualified-name</i>
+    require  extends  <i>qualified-name</i>  ;
 
   <i>require-implements-clause:</i>
-    require  implements  <i>qualified-name</i>
+    require  implements  <i>qualified-name</i>  ;
 </pre>
 
 ###Namespaces
@@ -1326,10 +1349,12 @@ octal-digit
 <pre>
   <i>namespace-definition:</i>
     namespace  <i>namespace-name</i>  ;
-    namespace  <i>namespace-name<sub>opt</sub>  compound-statement</i>
+    namespace  <i>namespace-name<sub>opt</sub></i> { <i>declaration-list<sub>opt</sub></i> }
 
   <i>namespace-use-declaration:</i>
-    use  <i>namespace-use-clauses</i>  ;
+    use <i>namespace-use-kind<sub>opt</sub></i>  <i>namespace-use-clauses</i>  ;
+    use <i>namespace-use-kind</i>  <i>namespace-name-as-a-prefix</i>  { <i>namespace-use-clauses</i>  }  ;
+    use <i>namespace-name-as-a-prefix</i>  { <i>namespace-use-kind-clauses</i>  }  ;
 
   <i>namespace-use-clauses:</i>
     <i>namespace-use-clause</i>
@@ -1338,8 +1363,19 @@ octal-digit
   <i>namespace-use-clause:</i>
     <i>qualified-name  namespace-aliasing-clause<sub>opt</sub></i>
 
+  <i>namespace-use-kind-clauses:</i>
+    <i>namespace-use-kind-clause</i>
+    <i>namespace-use-kind-clauses</i>  ,  <i>namespace-use-kind-clause</i>
+
+  <i>namespace-use-kind-clause:</i>
+    <i>namespace-use-kind<sub>opt</sub></i>  <i>qualified-name  namespace-aliasing-clause<sub>opt</sub></i>
+
   <i>namespace-aliasing-clause:</i>
     as  <i>name</i>
+
+  <i>namespace-use-kind</i>:
+    function
+    const
 
   <i>namespace-name:</i>
     <i>name </i>

@@ -241,6 +241,9 @@ There must be at most one default label.
 
 Each label expression's type must be a subtype of the switch *expression* type.
 
+The compound statement may be empty; if it is not, then the first statement in 
+it must be a labeled statement.
+
 **Semantics**
 
 Based on the value of its *expression*, a `switch` statement transfers
@@ -834,7 +837,7 @@ throw new MyException;
     <i>catch-clauses   catch-clause</i>
 
   <i>catch-clause:</i>
-    catch  (  <i>parameter-declaration-list</i>  )  <i>compound-statement</i>
+    catch  (  <i>type-specifier</i>  <i>variable-name</i>  )  <i>compound-statement</i>
 
   <i>finally-clause:</i>
     finally   <i>compound-statement</i>
@@ -843,17 +846,18 @@ throw new MyException;
 **Defined elsewhere**
 
 * [*compound-statement*](#compound-statements)
-* [*parameter-declaration-list*](15-functions.md#function-definitions)
+* [*type-specifier*](05-types.md#general).
+* [*variable-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
-In a *catch-clause*, *parameter-declaration-list* must contain only one
-parameter, and its type must be [`\Exception`](19-exception-handling.md#class-exception) or a type derived from
+In a *catch-clause* the type referred to by the *type-specifier* 
+must be [`\Exception`](19-exception-handling.md#class-exception) or a type derived from
 that class.
 
 **Semantics**
 
-In a *catch-clause*, *identifier* designates an *exception variable*
+In a *catch-clause*, the *variable-name* designates an *exception variable*
 passed in by value. This variable corresponds to a local variable with a
 scope that extends over the catch-block. During execution of the
 catch-block, the exception variable represents the exception currently

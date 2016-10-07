@@ -52,7 +52,7 @@ with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`. The
 <pre>
   <i>namespace-definition:</i>
     namespace  <i>namespace-name</i>  ;
-    namespace  <i>namespace-name<sub>opt</sub>  compound-statement</i>
+    namespace  <i>namespace-name<sub>opt</sub></i>  { <i>declaration-list<sub>opt</sub></i> }
 
   <i>namespace-name:</i>
     <i>name </i>
@@ -70,7 +70,7 @@ with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`. The
 
 **Defined elsewhere**
 
-* [*compound-statement*](11-statements.md#compound-statements)
+* [*declaration-list*](04-basic-concepts.md)
 * [*name*](09-lexical-structure.md#names)
 
 **Constraints**
@@ -80,14 +80,14 @@ first occurrence of a *namespace-definition* in a script must be the
 first thing in that script.
 
 All occurrence of a *namespace-definition* in a script must have the
-*compound-statement* form or must not have that form; the two forms
+*declaration-list* form or must have the "semicolon" form; the two forms
 cannot be mixed.
 
 When a script contains source code that is not inside a namespace, and
 source code that is inside one or namespaces, the namespaced code must
-use the *compound-statement* form of *namespace-definition*.
+use the *declaration-list* form of *namespace-definition*.
 
-*compound-statement* must not contain a *namespace-definition*.
+The *declaration-list* must not contain a *namespace-definition*.
 
 **Semantics**
 
@@ -100,10 +100,10 @@ When the same namespace is defined in multiple scripts, and those
 scripts are combined into the same program, the namespace is considered
 the merger of its individual contributions.
 
-The scope of the non-*compound-statement* form of *namespace-definition*
-runs until the end of the script, or until the lexically next
-*namespace-definition*, whichever comes first. The scope of the
-*compound-statement* form is the *compound-statement*.
+In the "semicolon" form of *namespace-definition* the given 
+namespace extends until the end of the script, or until the lexically next
+*namespace-definition*, whichever comes first. In the *declaration-list*
+form the namespace extends from the opening brace to the closing brace.
 
 **Examples**
 
@@ -137,7 +137,9 @@ namespace NS3\Sub1;
 
 <pre>
   <i>namespace-use-declaration:</i>
-    use  <i>namespace-use-clauses</i>  ;
+    use <i>namespace-use-kind<sub>opt</sub></i>  <i>namespace-use-clauses</i>  ;
+    use <i>namespace-use-kind</i>  <i>namespace-name-as-a-prefix</i>  { <i>namespace-use-clauses</i>  }  ;
+    use <i>namespace-name-as-a-prefix</i>  { <i>namespace-use-kind-clauses</i>  }  ;
 
   <i>namespace-use-clauses:</i>
     <i>namespace-use-clause</i>
@@ -146,8 +148,19 @@ namespace NS3\Sub1;
   <i>namespace-use-clause:</i>
     <i>qualified-name  namespace-aliasing-clause<sub>opt</sub></i>
 
+  <i>namespace-use-kind-clauses:</i>
+    <i>namespace-use-kind-clause</i>
+    <i>namespace-use-kind-clauses</i>  ,  <i>namespace-use-kind-clause</i>
+
+  <i>namespace-use-kind-clause:</i>
+    <i>namespace-use-kind<sub>opt</sub></i>  <i>qualified-name  namespace-aliasing-clause<sub>opt</sub></i>
+
   <i>namespace-aliasing-clause:</i>
     as  <i>name</i>
+
+  <i>namespace-use-kind</i>:
+    function
+    const
 </pre>
 
 **Defined elsewhere**
@@ -165,10 +178,13 @@ scope, each occurrence must have a different alias.
 
 **Semantics**
 
-*qualified-name* is always interpreted as referring to a class,
-interface, or trait by that name. *namespace-use-clauses* can only
-create aliases for classes, interfaces, or traits; it is not possible to
-use them to create aliases to functions or constants.
+If a *namespace-use-kind* is specified before the clauses or group prefix, 
+then all subsequent clauses must name constants or functions, as appropriate.
+
+Otherwise, if a *namespace-use-kind* is specified in a *namespace-use-kind-clause*
+then the clause must name a constant or function, as appropriate.
+
+Otherwise, the clause must name a namespace, class, interface or trait.
 
 A *namespace-use-declaration* *imports*—that is, makes available—one or
 more names into a scope, optionally giving them each an alias. Each of
@@ -176,6 +192,11 @@ those names may designate a namespace, a sub-namespace, a class, an
 interface, or a trait. If a namespace-alias-clause is present, its
 *name* is the alias for *qualified-name*. Otherwise, the right-most name
 in *qualified-name* is the implied alias for *qualified-name*.
+
+The "group" form of a *namespace-use-declaration* is a convenient syntax when
+importing many members of a given namespace. The "group" form logically concatenates
+the prefix onto the *qualified-name* in each clause. See the following section for 
+an example.
 
 **Examples**
 
@@ -198,4 +219,9 @@ namespace NS2 {
   $c2 = new C2;
 }
 ```
+The *namespace-use-declaration* in the example above could also be written in 
+"group" form as:
 
+```
+  use \NS1\ { C, I, T };
+```

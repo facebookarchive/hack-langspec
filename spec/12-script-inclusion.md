@@ -49,8 +49,8 @@ to resolve the include file's location.
 
 <pre>
 <i>require-multiple-directive:</i>
-  require  (  <i>include-filename</i>  )  ;
   require  <i>include-filename</i>  ;
+
 <i>include-filename:</i>
   <i>expression</i>
 </pre>
@@ -85,7 +85,6 @@ require ('Circle.php');
 
 <pre>
   <i>require-once-directive:</i>
-    require_once  (  <i>include-filename</i>  )  ;
     require_once  <i>include-filename</i>  ;
 </pre>
 

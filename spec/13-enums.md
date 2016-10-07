@@ -14,10 +14,10 @@ An *enumeration* consists of a set of zero or more named, constant values called
   :  int
   :  string
 <i>enumerator-list:</i>
-  <i>enumerator</i>
-  <i>enumerator-list</i>  ;  <i>enumerator</i>
+  <i>enumerator</i> 
+  <i>enumerator-list</i>  <i>enumerator</i> 
 <i>enumerator:</i>
-  <i>enumerator-constant</i>  =  <i>constant-expression</i>
+  <i>enumerator-constant</i>  =  <i>constant-expression</i> ;
 <i>enumerator-constant:</i>
   <i>name</i>
 </pre>

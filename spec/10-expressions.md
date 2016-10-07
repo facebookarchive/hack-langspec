@@ -525,12 +525,15 @@ in *field-initializer* need not be compile-time constants.
   <i>shape-literal:</i>
     <i>shape  (  <i>field-initializer-list<sub>opt</sub></i>  )</i>
   <i>field-initializer-list:</i>
+    <i>field-initializers</i>  ,<sub>opt</sub>
+  <i>field-initializers</i>:
     <i>field-initializer</i>
-    <i>field-initializer-list  </i>  ,  <i>field-initializer</i>
+    <i>field-initializers</i>  ,  <i>field-initializer</i>
   <i>field-initializer:</i>
     <i>single-quoted-string-literal</i>  =>  <i>expression</i>
     <i>integer-literal</i>  =>  <i>expression</i>
     <i>qualified-name</i>  =>  <i>expression</i>
+    <i>scope-resolution-expression</i>  =>  <i>expression</i>
 </pre>
 
 **Defined elsewhere**
@@ -538,16 +541,17 @@ in *field-initializer* need not be compile-time constants.
 * [*expression*](10-expressions.md#yield-operator)
 * [*integer-literal*](09-lexical-structure.md#integer-literals)
 * [*qualified-name*](20-namespaces.md#defining-namespaces)
+* [*scope-resolution-expression*](10-expressions.md#scope-resolution-operator)
 * [*single-quoted-string-literal*](09-lexical-structure.md#single-quoted-string-literals)
 
 **Constraints**
 
 Each string in the set of strings designated by all the
-*single-quoted-string-literals* and *qualified-names* in a
+*single-quoted-string-literals*, *qualified-names* and *scope-resolution-expressions* in a
 *field-initializer-list* must have a distinct value, and each string must
 match exactly a field name in the shape type's [*shape-specifier*](05-types.md#shape-types).
 
-Each integer in the set of *integer-literals* and *qualified-names* in a
+Each integer in the set of *integer-literals*, *qualified-names* and *scope-resolution-expressions* in a
 *field-initializer-list* must have a distinct value, and each integer must
 match exactly a field name in the shape type's *shape-specifier*.
 
@@ -577,7 +581,13 @@ shape('id' => null, 'url' => null, 'count' => 0)
 
 <pre>
 <i>anonymous-function-creation-expression:</i>
-  async<sub>opt</sub>  function  (  <i>anonymous-function-parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>  <i>anonymous-function-use-clause<sub>opt</sub></i>  <i>compound-statement</i>
+  async<sub>opt</sub>  function  (  <i>anonymous-function-parameter-list<sub>opt<sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>  <i>anonymous-function-use-clause<sub>opt</sub></i>  <i>compound-statement</i>
+
+<i>anonymous-function-parameter-list:</i>
+  ...
+  <i>anonymous-function-parameter-declaration-list</i>
+  <i>anonymous-function-parameter-declaration-list</i>  ,
+  <i>anonymous-function-parameter-declaration-list</i>  ,  ...
 
 <i>anonymous-function-parameter-declaration-list:</i>
   <i>anonymous-function-parameter-declaration</i>
@@ -587,11 +597,10 @@ shape('id' => null, 'url' => null, 'count' => 0)
   <i>attribute-specification<sub>opt</sub>  type-specifier<sub>opt</sub> variable-name  default-argument-specifier<sub>opt</sub></i>
 
 <i>anonymous-function-return:</i>
-  : <i>type-specifier</i>
-  : noreturn
+  : <i>return-type</i>
 
 <i>anonymous-function-use-clause:</i>
-  use  (  <i>use-variable-name-list</i>  )
+  use  (  <i>use-variable-name-list</i>  ,<sub>opt</sub> )
 
 <i>use-variable-name-list:</i>
   <i>variable-name</i>
@@ -603,6 +612,7 @@ shape('id' => null, 'url' => null, 'count' => 0)
 * [*attribute-specification*](20-namespaces.md#name-lookup)
 * [*compound-statement*](11-statements.md#compound-statements)
 * [*default-argument-specifier*](15-functions.md#function-definitions)
+* [*return-type*](15-functions.md#function-definitions)
 * [*type-specifier*](05-types.md#general)
 * [*variable-name*](09-lexical-structure.md#names)
 
@@ -686,7 +696,7 @@ function compute(array<int> $values): void {
 
 **Constraints**
 
-*awaitable-creation-expression* must not be used as the *anonymous-function-body* in a [*lambda-expression*](10-expressions.md#lambda-expressions).
+*awaitable-creation-expression* must not be used as the *lambda-body* in a [*lambda-expression*](10-expressions.md#lambda-expressions).
 
 **Semantics**
 
@@ -805,28 +815,40 @@ $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
     new  <i>class-type-designator</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>class-type-designator:</i>
+    parent
+    self
     static
+    <i>member-selection-expression<i>
+    <i>null-safe-member-selection-expression<i>
     <i>qualified-name</i>
+    <i>scope-resolution-expression</i>
+    <i>subscript-expression<i>
     <i>variable-name</i>
 </pre>
 
 **Defined elsewhere**
 
 * [*argument-expression-list*](10-expressions.md#function-call-operator)
+* [*member-selection-expression*](10-expressions.md#member-selection-operator)
+* [*null-safe-member-selection-expression*](10-expressions.md#null-safe-member-selection-operator)
 * [*qualified-name*](20-namespaces.md#defining-namespaces)
+* [*scope-resolution-expression*](10-expressions.md#scope-resolution-operator)
+* [*subscript-expression*](10-expressions.md#subscript-operator)
 * [*variable-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
-*qualified-name* must name a class.
+If the *class-type-designator* is a *scope-resolution-expression* then it must not have `class` as the right hand side of the `::` operator.
 
-*variable-name* must name a value having the [`classname` type](05-types.md#the-classname-type).
+Otherwise, if the *class-type-designator* is a *qualified-name* or *scope-resolution-expression* which resolves a qualified name, or `self`, or `parent`, then it must designate a class.
 
-*variable-name* must designate a class that has the attribute  [`__ConsistentConstruct`](21-attributes.md#attribute-__consistentconstruct), or that has an abstract constructor or a final constructor.
+Otherwise,the *class-type-designator* must be an expression evaluating to a value having the [`classname` type](05-types.md#the-classname-type).  Furthermore, it must designate a class that has the attribute  [`__ConsistentConstruct`](21-attributes.md#attribute-__consistentconstruct), or that has an abstract constructor or a final constructor.
 
-*class-type-designator* must not designate an [abstract class](16-classes.md#general).
+The *class-type-designator* must not designate an [abstract class](16-classes.md#general).
 
-*class-type-designator* must not be a [generic type parameter](14-generic-types-methods-and-functions.md#type-parameters).
+The *class-type-designator* must not be a [generic type parameter](14-generic-types-methods-and-functions.md#type-parameters).
+
+The *object-creation-expression* will invoke the constructor of the class designated by the *class-type-designator*. 
 
 *argument-expression-list* must contain an argument for each parameter in the
 [constructor's definition](15-functions.md#function-definitions) not having a default value, and each
@@ -838,7 +860,7 @@ than there are corresponding parameters.
 **Semantics**
 
 The `new` operator allocates memory for an object that is an instance of
-the class specified by *class-type-designator* or *variable-name*.
+the class specified by the *class-type-designator*.
 
 The object is initialized by calling the class's constructor (16.8)
 passing it the optional *argument-expression-list*. If the class has no
@@ -847,7 +869,7 @@ Otherwise, each instance property having any nullable type takes on the value
 `null`.
 
 The result of an *object-creation-expression* is a handle to an object
-of the type specified by *class-type-designator* or *variable-name*.
+of the type specified by the *class-type-designator*.
 
 From within a method, the use of `static` corresponds to the class in the
 inheritance context in which the method is called. The type of the object created by an expression of the form `new static` is [`this`](05-types.md#the-this-type).
@@ -1163,8 +1185,11 @@ echo "\$p1[0] = " . $p1[0] . "\n";  // outputs '$p1[0] = 55'
     <i>postfix-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>argument-expression-list:</i>
+    <i>argument-expressions</i>  ,<sub>opt</sub>
+
+  <i>argument-expressions:</i>
     <i>expression</i>
-    <i>argument-expression-list</i>  ,  <i>expression</i>
+    <i>argument-expressions</i>  ,  <i>expression</i>
 </pre>
 
 **Defined elsewhere**
@@ -1258,12 +1283,14 @@ $anon();  // call the anonymous function
 <pre>
   <i>member-selection-expression:</i>
     <i>postfix-expression</i>  ->  <i>name</i>
+    <i>postfix-expression</i>  ->  <i>variable-name</i>
 </pre>
 
 **Defined elsewhere**
 
 * [*name*](09-lexical-structure.md#names)
 * [*postfix-expression*](10-expressions.md#general-3)
+* [*variable-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
@@ -1271,6 +1298,11 @@ $anon();  // call the anonymous function
 
 *name* must designate an instance property, or an instance
 method of the class designated by *postfix-expression*.
+
+*variable-name* must name a variable which when evaluated produces a string
+containing an instance property or an instance method of the class 
+designated by *postfix-expression*.
+
 
 **Semantics**
 
@@ -1304,12 +1336,14 @@ $p1->move(3, 9);  // calls public instance method move by name
 <pre>
 <i>null-safe-member-selection-expression:</i>
   <i>postfix-expression</i>  ?->  <i>name</i>
+  <i>postfix-expression</i>  ?->  <i>variable-name</i>
 </pre>
 
 **Defined elsewhere**
 
 * [*name*](09-lexical-structure.md#names)
 * [*postfix-expression*](10-expressions.md#general-3)
+* [*variable-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
@@ -1317,9 +1351,16 @@ $p1->move(3, 9);  // calls public instance method move by name
 
 *name* must designate an instance property or an instance method of the class designated by *postﬁx-expression*.
 
+*variable-name* must name a variable which when evaluated produces a string
+containing an instance property or an instance method of the class 
+designated by *postfix-expression*.
+
 **Semantics**
 
-If *postﬁx-expression* is `null`, no property or method is selected and the resulting value is `null`. Otherwise, the behavior is like that of the [member-selection operator `->`](10-expressions.md#member-selection-operator), except that when *name* designates an instance property of the object designated by *postﬁx-expression*, the resulting value is not an lvalue.
+If *postﬁx-expression* is `null`, no property or method is selected and the 
+resulting value is `null`. Otherwise, the behavior is like that of the 
+[member-selection operator `->`](10-expressions.md#member-selection-operator), 
+except that the resulting value is not an lvalue.
 
 ###Postfix Increment and Decrement Operators
 
@@ -1362,7 +1403,8 @@ $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 <pre>
   <i>scope-resolution-expression:</i>
     <i>scope-resolution-qualifier</i>  ::  <i>name</i>
-    <i>scope-resolution-qualifier</i>  ::  <i>class</i>
+    <i>scope-resolution-qualifier</i>  ::  <i>variable-name</i>
+    <i>scope-resolution-qualifier</i>  ::  class
 
   <i>scope-resolution-qualifier:</i>
     <i>qualified-name</i>
@@ -1380,9 +1422,13 @@ $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 
 **Constraints**
 
-If *name* is present, *qualified-name* must be the name of an enum, a class, or an interface type, and *name* must designate an enumeration constant or member within that type. Otherwise, *qualified-name* must be the name of a class or interface type.
+Scope resolution expressions of the form <i>qualified-name</i>`::`<i>name</i> must have the name of an enum, class or interface type on the left of the `::`, and an enumeration constant or type member on the right.
 
-*variable-name* must name a value having the [`classname` type](05-types.md#the-classname-type).
+Scope resolution expressions of the form <i>qualified-name</i>`::`<i>variable-name</i> must have the name of a class or interface type on the left of the `::`, and a static property of that type on the right.
+
+Scope resolution expressions of the form <i>qualified-name</i>`::`class must have the name of a class or interface type on the left of the `::`.
+
+Scope resolution expressions with a *variable-name* to the left of the `::` must name a variable having the [`classname` type](05-types.md#the-classname-type).
 
 *variable-name* `:: class` is not permitted.
 
@@ -1530,7 +1576,7 @@ values and the result can be represented as an `int`, the result has type
 **Defined elsewhere**
 
 * [*await-expression*](10-expressions.md#await-operator)
-* [*cast-expression*](10-expressions.md#anonymous-function-creation)
+* [*cast-expression*](10-expressions.md#cast-operator)
 * [*error-control-expression*](10-expressions.md#error-control-operator)
 * [*postfix-expression*](10-expressions.md#general-3)
 * [*prefix-decrement-expression*](10-expressions.md#prefix-increment-and-decrement-operators)
@@ -2477,20 +2523,20 @@ function pipe_operator_example(array<Widget> $arr): int {
 <pre>
 <i>lambda-expression:</i>
   <i>piped-expression</i>
-  async<sub>opt</sub>  <i>lambda-function-signature</i>  ==>  <i>anonymous-function-body</i>
+  async<sub>opt</sub>  <i>lambda-function-signature</i>  ==>  <i>lambda-body</i>
 
 <i>lambda-function-signature:</i>
   <i>variable-name</i>
-  (  <i>anonymous-function-parameter-declaration-list<sub>opt</sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>
+  (  <i>anonymous-function-parameter-list<sub>opt</sub></i>  )  <i>anonymous-function-return<sub>opt</sub></i>
 
-<i>anonymous-function-body:</i>
+<i>lambda-body:</i>
   <i>expression</i>
   <i>compound-statement</i>
 </pre>
 
 **Defined elsewhere**
 
-* [*anonymous-function-parameter-declaration-list*](10-expressions.md#anonymous-function-creation)
+* [*anonymous-function-parameter-list*](10-expressions.md#anonymous-function-creation)
 * [*anonymous-function-return*](10-expressions.md#anonymous-function-creation)
 * [*coalesce-expression*](10-expressions.md#coalesce-operator)
 * [*compound-statement*](11-statements.md#compound-statements)
@@ -2501,11 +2547,11 @@ function pipe_operator_example(array<Widget> $arr): int {
 
 **Constraints**
 
-Each variable-name in an *anonymous-function-parameter-declaration-list* must be distinct.
+Each variable-name in an *anonymous-function-parameter-list* must be distinct.
 
 If any *anonymous-function-parameter-declaration* has a *default-argument-specifier*, then all subsequent *anonymous-function-parameter-declarations* in the same *anonymous-function-parameter-declaration-list* must also have a *default-argument-specifier*.
 
-If the *type-specifier* in *anonymous-function-return* is `void`, the *compound-statement* must not contain any [`return` statements](11-statements.md#the-return-statement) having an *expression*. Otherwise, if that *type-specifier* is not omitted, the *expression* in *anonymous-function-body*, or all `return` statements in *compound-statement* must contain an *expression* whose type is a subtype of the type indicated by the return type's *type-specifier*.
+If the *type-specifier* in *anonymous-function-return* is `void`, the *compound-statement* must not contain any [`return` statements](11-statements.md#the-return-statement) having an *expression*. Otherwise, if that *type-specifier* is not omitted, the *expression* in *lambda-body*, or all `return` statements in *compound-statement* must contain an *expression* whose type is a subtype of the type indicated by the return type's *type-specifier*.
 
 If `async` is present, *return-type* must be a type that implements [`Awaitable<T>`](17-interfaces.md#interface-awaitable).
 
