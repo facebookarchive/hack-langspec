@@ -1088,7 +1088,7 @@ octal-digit
 
 <pre>
   <i>enum-declaration:</i>
-  enum  <i>name</i>  <i>enum-base</i>  <i>type-constraint<sub>opt</sub></i>  {  <i>enumerator-list<sub>opt</sub></i>  }
+    <i>attribute-specification</i><sub>opt</sub>  enum  <i>name</i>  <i>enum-base</i>  <i>type-constraint<sub>opt</sub></i>  {  <i>enumerator-list<sub>opt</sub></i>  }
 
   <i>enum-base:</i>
     :  int

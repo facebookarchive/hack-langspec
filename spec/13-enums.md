@@ -9,7 +9,7 @@ An *enumeration* consists of a set of zero or more named, constant values called
 **Syntax**
 <pre>
 <i>enum-declaration:</i>
-  enum  <i>name</i>  <i>enum-base</i>  <i>type-constraint<sub>opt</sub></i>  {  <i>enumerator-list<sub>opt</sub></i>  }
+  <i>attribute-specification</i><sub>opt</sub>   enum  <i>name</i>  <i>enum-base</i>  <i>type-constraint<sub>opt</sub></i>  {  <i>enumerator-list<sub>opt</sub></i>  }
 <i>enum-base:</i>
   :  int
   :  string
@@ -22,7 +22,12 @@ An *enumeration* consists of a set of zero or more named, constant values called
   <i>name</i>
 </pre>
 
-*name* is defined in [§§](09-lexical-structure.md#names); *type-constraint* is defined in [§§](05-types.md#general); and *constant-expression* is defined in [§§](10-expressions.md#constant-expressions).
+**Defined elsewhere**
+
+* [*attribute-specification*](21-attributes.md#attribute-specification)
+* [*constant-expression*](10-expressions.md#constant-expressions)
+* [*name*](09-lexical-structure.md#names)
+* [*type-constraint*](05-types.md#general)
 
 **Constraints**
 
