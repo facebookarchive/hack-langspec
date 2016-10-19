@@ -252,13 +252,16 @@ octal-digit
     \X  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
 
   <i>heredoc-string-literal::</i>
-    &lt;&lt;&lt; <i>hd-start-identifier   new-line   hd-char-sequence<sub>opt</sub>  new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
+    &lt;&lt;&lt; <i>hd-start-identifier   new-line   hd-body<sub>opt</sub>   hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
 
   <i>hd-start-identifier::</i>
     <i>name</i>
 
   <i>hd-end-identifier::</i>
     <i>name</i>
+
+  <i>hd-body::</i>
+    <i>hd-char-sequence</i><sub>opt</sub>   new-line
 
   <i>hd-char-sequence::</i>
     <i>hd-char</i>
@@ -278,9 +281,8 @@ octal-digit
   <i>hd-simple-escape-sequence:: one of</i>
     \\   \$   \e   \f   \n   \r   \t   \v
 
-
   <i>nowdoc-string-literal::</i>
-    &lt;&lt;&lt; '  <i>hd-start-identifier</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>     
+    &lt;&lt;&lt; '  <i>hd-start-identifier</i>  '  <i>new-line   hd-body<sub>opt</sub>   hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>     
 </pre>
 
 ####The Null Literal
