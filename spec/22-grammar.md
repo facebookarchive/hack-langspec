@@ -886,9 +886,6 @@ octal-digit
   <i>simple-assignment-expression:</i>
     <i>unary-expression</i>  =  <i>assignment-expression</i>
 
-  <i>byref-assignment-expression:</i>
-    <i>unary-expression</i>  =  &  <i>assignment-expression</i>
-
   <i>compound-assignment-expression:</i>
     <i>unary-expression   compound-assignment-operator   assignment-expression</i>
 
