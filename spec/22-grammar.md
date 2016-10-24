@@ -578,7 +578,7 @@ octal-digit
     <i>anonymous-function-parameter-declaration-list</i>
     <i>anonymous-function-parameter-declaration-list</i>  ,
     <i>anonymous-function-parameter-declaration-list</i>  ,  ...
-  
+
   <i>anonymous-function-parameter-declaration-list:</i>
     <i>anonymous-function-parameter-declaration</i>
     <i>anonymous-function-parameter-declaration-list</i>  ,  <i>anonymous-function-parameter-declaration</i>
@@ -734,8 +734,15 @@ octal-digit
   <i>cast-expression:</i>
     (  <i>cast-type</i>  ) <i>unary-expression</i>
 
-  <i>cast-type: one of</i>
-    bool  int  float  string
+  <i>cast-type:</i>
+    array
+    bool
+    double
+    float
+    int
+    object
+    string
+    <i>name</i>
 
   <i>await-expression:</i>
     await  <i>expression</i>
@@ -1276,7 +1283,7 @@ octal-digit
     <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __destruct  ( )  <i>void-return<sub>opt</sub></i>  <i>compound-statement</i>
 
   <i>void-return</i>:
-    : void 
+    : void
 
   <i>type-constant-declaration:</i>
     <i>abstract-type-constant-declaration</i>
