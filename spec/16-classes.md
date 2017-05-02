@@ -1,6 +1,6 @@
-#Classes
+# Classes
 
-##General
+## General
 
 A class is a type that may contain zero or more explicitly declared
 *members*, which can be any combination of [*class constants*](16-classes.md#constants);
@@ -47,7 +47,7 @@ When an instance is allocated, new returns a handle that points to that
 object. As such, assignment of a handle does not copy the object itself.
 (See [§§](04-basic-concepts.md#cloning-objects) for a discussion of shallow and deep copying.)
 
-##Class Declarations
+## Class Declarations
 
 **Syntax**
 
@@ -176,7 +176,7 @@ class MyList implements MyCollection {
 }
 ```
 
-##Class Members
+## Class Members
 
 **Syntax**
 
@@ -274,7 +274,7 @@ $cName = 'Point';
 echo "Point count = " . $cName::getPointCount() . "\n";
 ```
 
-##Dynamic Methods
+## Dynamic Methods
 
 Ordinarily, all of the instance methods of a class are
 declared explicitly in that class's definition. However, under certain circumstances, *dynamic
@@ -310,7 +310,7 @@ and the call to `sMethod` is treated as if it were
 Widget::__callStatic('sMethod', array(null, 1.234))
 ```
 
-##Constants
+## Constants
 
 **Syntax**
 
@@ -363,7 +363,7 @@ class Automobile {
 $col = Automobile::DEFAULT_COLOR;
 ```
 
-##Properties
+## Properties
 
 **Syntax**
 
@@ -428,7 +428,7 @@ class Point {
 }
 ```
 
-##Methods
+## Methods
 
 **Syntax**
 
@@ -494,7 +494,7 @@ derived class.
 See [§§](16-classes.md#class-members) for examples of instance and static methods. See [§§](16-classes.md#class-declarations) for
 examples of abstract methods and their subsequent definitions.
 
-##Constructors
+## Constructors
 
 **Syntax**
 
@@ -592,7 +592,7 @@ class MyRangeException extends Exception {
 }
 ```
 
-##Destructors
+## Destructors
 
 **Syntax**
 
@@ -646,7 +646,7 @@ A destructor does not require a return type annotation; if one is included, it m
 
 See [§§](#constructors) for an example of a constructor and destructor.
 
-##Type Constants
+## Type Constants
 
 **Syntax**
 
@@ -749,9 +749,9 @@ function run2(): void {
 }
 ```
 
-##Methods with Special Semantics
+## Methods with Special Semantics
 
-###General
+### General
 
 If a class contains a definition for a method having one of the
 following names, that method must have the prescribed visibility,
@@ -768,7 +768,7 @@ Method Name	| Description
 [`__toString`](16-classes.md#method-__tostring) | Returns a string representation of the instance on which it is called
 [`__wakeup`](16-classes.md#method-__wakeup) | Executed after [unserialization](16-classes.md#serialization) of an instance of this class
 
-###Method `__call`
+### Method `__call`
 
 **Syntax**
 
@@ -807,7 +807,7 @@ $obj = new Widget;
 $obj->iMethod(10, true, "abc"); // $obj->__call('iMethod', array(…))
 ```
 
-###Method `__callStatic`
+### Method `__callStatic`
 
 **Syntax**
 
@@ -863,7 +863,7 @@ class Widget {
 Widget::sMethod(null, 1.234); // Widget::__callStatic('sMethod', array(…))
 ```
 
-###Method `__clone`
+### Method `__clone`
 
 **Syntax**
 
@@ -937,7 +937,7 @@ $p1 = new Point();  // created using the constructor
 $p2 = clone $p1;  // created by cloning
 ```
 
-###Method `__sleep`
+### Method `__sleep`
 
 **Syntax**
 
@@ -1007,7 +1007,7 @@ $s = serialize($p);   // serialize Point(-1,0)
 $v = unserialize($s);   // unserialize Point(-1,0)
 ```
 
-###Method `__toString`
+### Method `__toString`
 
 **Syntax**
 
@@ -1061,7 +1061,7 @@ class MyRangeException extends Exception {
 }
 ```
 
-###Method `__wakeup`
+### Method `__wakeup`
 
 **Syntax**
 
@@ -1097,7 +1097,7 @@ by `__wakeup` when that `Point` is unserialized. This means that
 
 See [§§](16-classes.md#method-__sleep).
 
-##Serialization
+## Serialization
 
 In Hack, variables can be converted into some external form suitable for
 use in file storage or inter-program communication. The process of
@@ -1240,9 +1240,9 @@ $s = serialize($cp);
 $v = unserialize($s);
 ```
 
-##Predefined Classes
+## Predefined Classes
 
-###Class `AsyncGenerator`
+### Class `AsyncGenerator`
 
 This class supports the `yield` operator when dealing with asynchronous operations. This class cannot be instantiated directly. It is defined, as follows:
 
@@ -1262,7 +1262,7 @@ Name | Purpose
 `raise` | Raises exception *$e* to the async generator. (This function cannot be called without having the value returned from a previous call to `next`, `send`, or `raise` having first been the subject of an `await`.)
 `send` | Sends value *$v* to the async generator and resumes execution of that generator. (This function cannot be called without having the value returned from a previous call to `next`, `send`, or `raise` having first been the subject of an `await`.) If *$v* is `null`, the call is equivalent to calling `next`.
 
-###Class `Generator`
+### Class `Generator`
 
 This class supports the [`yield` operator](10-expressions.md#yield-operator). This class cannot be
 instantiated directly. It is defined, as follows:
@@ -1293,7 +1293,7 @@ Name | Purpose
 `valid` |  An implementation of the instance method [`Iterator::valid`](17-interfaces.md#interface-Iterator).
 `__wakeup` | An implementation of the special instance method [`__wakeup`](16-classes.md#method-__wakeup). As a generator can't be serialized, this method throws an exception of an unspecified type. It returns no value.
 
-###Class `__PHP_Incomplete_Class`
+### Class `__PHP_Incomplete_Class`
 
 There are certain circumstances in which a program can generate an
 instance of this class, which on its own contains no members. One
@@ -1335,7 +1335,7 @@ The three properties contain the name of the unknown
 class, and the name, visibility, and value of each property that was
 serialized, in order of serialization.
 
-###Class `Shapes`
+### Class `Shapes`
 
 This class provides some shape-related methods. It is defined, as follows:
 
@@ -1360,7 +1360,7 @@ Name | Purpose
 `removeKey` | Given a shape `$shape` and a field name `$index`, this method removes the specified field from that shape. If the field specified does not exist, the removal request is ignored. `$index` must be a single-quoted string or a class constant of type `string` or `int`.
 `toArray` | This method returns an array of type `array<arraykey, mixed>` containing one element for each field in the shape `$shape`. Each element's key and value are the name and value, respectively, of the corresponding field.
 
-###Class `stdClass`
+### Class `stdClass`
 
 This class contains no members. It can be instantiated and used as a
 base class.

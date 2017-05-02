@@ -1,10 +1,10 @@
-#Enums
+# Enums
 
-##General
+## General
 
 An *enumeration* consists of a set of zero or more named, constant values called *enumeration* constants having type `int` or `string`. Each distinct enumeration constitutes a different *enumerated* type. An instance of an enumerated type is called an `enum`. Each enumerated type has a corresponding type called the *underlying type* of that enumerated type. That underlying type is limited to `int` or `string`.
 
-##Enum Declarations
+## Enum Declarations
 
 **Syntax**
 <pre>
@@ -98,7 +98,7 @@ enum Colors: int {
 }
 ```
 
-##The Predefined Enumerated Type Methods
+## The Predefined Enumerated Type Methods
 
 All enumerated types behave as if they contained the following family of public, static methods.
 

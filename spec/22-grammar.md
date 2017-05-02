@@ -1,12 +1,12 @@
-#Grammar
+# Grammar
 
-##General
+## General
 
 The grammar notation is described in [§§](09-lexical-structure.md#grammars).
 
-##Lexical Grammar
+## Lexical Grammar
 
-###General
+### General
 
 <pre>
   <i>input-file::
@@ -18,7 +18,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
     <i>token</i>
 </pre>
 
-###Comments
+### Comments
 
 <pre>
   <i>comment::</i>
@@ -45,7 +45,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
     /*   No characters or any source character sequence except /*   */
 </pre>
 
-###White Space
+### White Space
 
 <pre>
   <i>white-space::</i>
@@ -58,9 +58,9 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
     Horizontal-tab character (U+0009)
 </pre>
 
-###Tokens
+### Tokens
 
-####General
+#### General
 
 <pre>
   <i>token::</i>
@@ -71,7 +71,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
     <i>operator-or-punctuator</i>
 </pre>
 
-####Names
+#### Names
 
 <pre>
   <i>variable-name::</i>
@@ -94,7 +94,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
     N   O   P   Q   R   S   T   U   V   W   X   Y   Z
 </pre>
 
-###Keywords
+### Keywords
 
 <pre>
   <i>keyword::</i> one of
@@ -105,9 +105,9 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
     tuple  type  use  while  yield
 </pre>
 
-###Literals
+### Literals
 
-####General
+#### General
 
 <pre>
   <i>literal::
@@ -118,7 +118,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
     <i>null-literal</i>
 </pre>
 
-####Boolean Literals
+#### Boolean Literals
 
 <pre>
   <i>boolean-literal::</i>
@@ -126,7 +126,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
     false
 </pre>
 
-####Integer Literals
+#### Integer Literals
 
 <pre>
   <i>integer-literal::</i>
@@ -175,7 +175,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
         0  1
 </pre>
 
-####Floating-Point Literals
+#### Floating-Point Literals
 
 <pre>
   <i>ﬂoating-literal::</i>
@@ -198,7 +198,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
     <i>digit-sequence   digit</i>
 </pre>
 
-####String Literals
+#### String Literals
 
 <pre>
   <i>string-literal::</i>
@@ -283,14 +283,14 @@ octal-digit
     &lt;&lt;&lt; '  <i>hd-start-identifier</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>     
 </pre>
 
-####The Null Literal
+#### The Null Literal
 
 <pre>
   <i>null-literal::</i>
     null
 </pre>
 
-###Operators and Punctuators
+### Operators and Punctuators
 
 <pre>
   <i>operator-or-punctuator:: one of</i>
@@ -300,9 +300,9 @@ octal-digit
     &gt;&gt;=   &amp;=   ^=   |=   ,   @   ::   =>   ==>   ?->   \   ...   |>   $$
 </pre>
 
-##Syntactic Grammar
+## Syntactic Grammar
 
-###Program Structure
+### Program Structure
 
 <pre>
 <i>script:
@@ -325,9 +325,9 @@ octal-digit
   <i>alias-declaration</i>
 </pre>
 
-###Types
+### Types
 
-####General
+#### General
 
 <pre>
 <i>type-specifier:</i>
@@ -379,7 +379,7 @@ octal-digit
   <i>type-constant-type-name</i>  ::  <i>name</i>
 </pre>
 
-####Array Types
+#### Array Types
 
 <pre>
 <i>vector-like-array-type-specifier:</i>
@@ -395,14 +395,14 @@ octal-digit
   <i>type-specifier</i>
 </pre>
 
-####Tuple Types
+#### Tuple Types
 
 <pre>
 <i>tuple-type-specifier:</i>
   ( <i>type-specifier</i>  ,  <i>type-specifier-list</i>  )
 </pre>
 
-####Shape Types
+#### Shape Types
 
 <pre>
 <i>shape-specifier:</i>
@@ -418,14 +418,14 @@ octal-digit
   <i>scope-resolution-expression</i>  =>  <i>type-specifier</i>
 </pre>
 
-####Closure Types
+#### Closure Types
 
 <pre>
 <i>closure-type-specifier:</i>
 ( function ( <i>type-specifier-list<sub>opt</sub></i> ) : <i>type-specifier</i> )
 </pre>
 
-####Nullable Types
+#### Nullable Types
 
 <pre>
 <i>nullable-type-specifier:</i>
@@ -433,14 +433,14 @@ octal-digit
   mixed
 </pre>
 
-####The Classname Type
+#### The Classname Type
 
 <pre>
 <i>classname-type-specifier:</i>
   classname   <   <i>qualified-name<i>  <i>generic-type-argument-list<sub>opt</sub></i>  >
 </pre>
 
-####Type Aliases
+#### Type Aliases
 
 <pre>
 <i>alias-declaration:</i>
@@ -448,7 +448,7 @@ octal-digit
   <i>attribute-specification<sub>opt</sub>  newtype  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-specifier</i>  ;
 </pre>
 
-###Variables
+### Variables
 
 <pre>
   <i>function-static-declaration:</i>
@@ -462,9 +462,9 @@ octal-digit
     = <i>const-expression</i>
 </pre>
 
-###Expressions
+### Expressions
 
-####Primary Expressions
+#### Primary Expressions
 
 <pre>
   <i>primary-expression:</i>
@@ -602,7 +602,7 @@ octal-digit
     <i>async-statement-list   statement</i>
 </pre>
 
-####Postfix Operators
+#### Postfix Operators
 
 <pre>
   <i>postfix-expression:</i>
@@ -702,7 +702,7 @@ octal-digit
     <i>expression  **  expression</i>                   
 </pre>
 
-####Unary Operators
+#### Unary Operators
 
 <pre>
   <i>unary-expression:</i>
@@ -740,7 +740,7 @@ octal-digit
 
 </pre>
 
-####instanceof Operator
+#### instanceof Operator
 
 <pre>
   <i>instanceof-expression:</i>
@@ -755,7 +755,7 @@ octal-digit
     <i>variable-name</i>
 </pre>
 
-####Multiplicative Operators
+#### Multiplicative Operators
 
 <pre>
   <i>multiplicative-expression:</i>
@@ -765,7 +765,7 @@ octal-digit
     <i>multiplicative-expression</i>  %  <i>instanceof-expression</i>
 </pre>
 
-####Additive Operators
+#### Additive Operators
 
 <pre>
   <i>additive-expression:</i>
@@ -775,7 +775,7 @@ octal-digit
     <i>additive-expression</i>  .  <i>multiplicative-expression</i>
 </pre>
 
-####Bitwise Shift Operators
+#### Bitwise Shift Operators
 
 <pre>
   <i>shift-expression:</i>
@@ -784,7 +784,7 @@ octal-digit
     <i>shift-expression</i>  &gt;&gt;  <i>additive-expression</i>
 </pre>
 
-####Relational Operators
+#### Relational Operators
 
 <pre>
   <i>relational-expression:</i>
@@ -795,7 +795,7 @@ octal-digit
     <i>relational-expression</i>  &gt;=  <i>shift-expression</i>
 </pre>
 
-####Equality Operators
+#### Equality Operators
 
 <pre>
   <i>equality-expression:</i>
@@ -806,7 +806,7 @@ octal-digit
     <i>equality-expression</i>  !==  <i>relational-expression</i>
 </pre>
 
-####Bitwise Logical Operators
+#### Bitwise Logical Operators
 
 <pre>
   <i>bitwise-AND-expression:</i>
@@ -822,7 +822,7 @@ octal-digit
     <i>bitwise-inc-OR-expression</i>  |  <i>bitwise-exc-OR-expression</i>
 </pre>
 
-####Logical Operators
+#### Logical Operators
 
 <pre>
   <i>logical-AND-expression:</i>
@@ -834,7 +834,7 @@ octal-digit
     <i>logical-inc-OR-expression</i>  ||  <i>logical-AND-expression</i>
 </pre>
 
-####Conditional Operator
+#### Conditional Operator
 
 <pre>
   <i>conditional-expression:</i>
@@ -842,7 +842,7 @@ octal-digit
     <i>logical-inc-OR-expression</i>  ?  <i>expression<sub>opt</sub></i>  :  <i>conditional-expression</i>
 </pre>
 
-####Pipe Operator
+#### Pipe Operator
 
 <pre>
   <i>piped-expression:</i>
@@ -850,7 +850,7 @@ octal-digit
     <i>piped-expression</i>   |>   <i>coalesce-expression</i>
 </pre>
 
-####Lambda Expressions
+#### Lambda Expressions
 
 <pre>
 <i>lambda-expression:</i>
@@ -866,7 +866,7 @@ octal-digit
   <i>compound-statement</i>
 </pre>
 
-####Assignment Operators
+#### Assignment Operators
 
 <pre>
   <i>assignment-expression:</i>
@@ -887,7 +887,7 @@ octal-digit
     **=  *=  /=  %=  +=  -=  .=  &lt;&lt;=  >>=  &amp;=  ^=  |=
 </pre>
 
-####yield Operator
+#### yield Operator
 
 <pre>
   <i>expression:</i>
@@ -895,7 +895,7 @@ octal-digit
     yield  <i>array-element-initializer</i>
 </pre>
 
-####Constant Expressions
+#### Constant Expressions
 
 <pre>
   <i>constant-expression:</i>
@@ -909,9 +909,9 @@ octal-digit
     <i>expression</i>
 </pre>
 
-###Statements
+### Statements
 
-####General
+#### General
 
 <pre>
   <i>statement:</i>
@@ -925,7 +925,7 @@ octal-digit
     <i>try-statement</i>
 </pre>
 
-####Compound Statements
+#### Compound Statements
 
 <pre>
   <i>compound-statement:</i>
@@ -936,7 +936,7 @@ octal-digit
     <i>statement-list   statement</i>
 </pre>
 
-####Labeled Statements
+#### Labeled Statements
 
 <pre>
   <i>labeled-statement:</i>
@@ -950,7 +950,7 @@ octal-digit
     default  :  <i>statement</i>
 </pre>
 
-####Expression Statements
+#### Expression Statements
 
 <pre>
    <i>expression-statement:</i>
@@ -977,7 +977,7 @@ octal-digit
     switch  (  <i>expression</i>  )  <i>compound-statement</i>     
 </pre>
 
-####Iteration Statements
+#### Iteration Statements
 
 <pre>
   <i>iteration-statement:</i>
@@ -1024,7 +1024,7 @@ octal-digit
 
 </pre>
 
-####Jump Statements
+#### Jump Statements
 
 <pre>
   <i>jump-statement:</i>
@@ -1046,7 +1046,7 @@ octal-digit
     throw  <i>expression</i>  ;
 </pre>
 
-####The try Statement
+#### The try Statement
 
 <pre>
   <i>try-statement:</i>
@@ -1065,7 +1065,7 @@ octal-digit
     finally   <i>compound-statement</i>
 </pre>
 
-###Script Inclusion
+### Script Inclusion
 
 <pre>
   <i>inclusion-directive:</i>
@@ -1082,7 +1082,7 @@ octal-digit
     require_once  <i>include-filename</i>  ;
 </pre>  
 
-###Enums
+### Enums
 
 <pre>
   <i>enum-declaration:</i>
@@ -1103,7 +1103,7 @@ octal-digit
     <i>name</i>
 </pre>
 
-###Generic Types, Methods and Functions
+### Generic Types, Methods and Functions
 
 <pre>
   <i>generic-type-parameter-list:</i>
@@ -1135,7 +1135,7 @@ octal-digit
     <i>name</i>
 </pre>
 
-###Functions
+### Functions
 
 <pre>
   <i>function-definition:</i>
@@ -1167,7 +1167,7 @@ octal-digit
     noreturn
 </pre>
 
-###Classes
+### Classes
 
 <pre>
   <i>class-declaration:</i>
@@ -1285,7 +1285,7 @@ octal-digit
     const  type  name  <i>type-constraint<sub>opt</sub><i>  =  <i>type-specifier</i>  ;
 </pre>
 
-###Interfaces
+### Interfaces
 
 <pre>
   <i>interface-declaration:</i>
@@ -1307,7 +1307,7 @@ octal-digit
     <i>type-constant-declaration</i>
 </pre>
 
-###Traits
+### Traits
 
 <pre>
   <i>trait-declaration:</i>
@@ -1344,7 +1344,7 @@ octal-digit
     require  implements  <i>qualified-name</i>  ;
 </pre>
 
-###Namespaces
+### Namespaces
 
 <pre>
   <i>namespace-definition:</i>
@@ -1391,7 +1391,7 @@ octal-digit
     <i>namespace-name-as-a-prefix<sub>opt</sub>   name</i>
 </pre>
 
-###Attributes
+### Attributes
 <pre>
 
 <i>attribute-specification:</i>

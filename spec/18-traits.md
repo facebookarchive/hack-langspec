@@ -1,6 +1,6 @@
-#Traits
+# Traits
 
-##General
+## General
 
 Hack's class model allows [single inheritance](16-classes.md#general) with contracts
 being enforced separately via [interfaces](17-interfaces.md#general). A *trait* can provide
@@ -38,7 +38,7 @@ each class using that trait has its own instance of that property.
 Methods in a trait have full access to all members of any class in which
 that trait is used.
 
-##Trait Declarations
+## Trait Declarations
 
 **Syntax**
 
@@ -100,7 +100,7 @@ trait T4 {
 }
 ```
 
-##Trait Members
+## Trait Members
 
 **Syntax**
 

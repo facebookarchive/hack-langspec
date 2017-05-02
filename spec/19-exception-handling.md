@@ -1,6 +1,6 @@
-#Exception Handling
+# Exception Handling
 
-##General
+## General
 
 An *exception* is some unusual condition in that it is outside the
 ordinary expected behavior. (Examples include dealing with situations in
@@ -31,7 +31,7 @@ exception object contains an *exception message* and an *exception
 code*, both of which can be used by a handler to decide how to handle
 the situation.
 
-##Class `Exception`
+## Class `Exception`
 
 Class `Exception` is the base class of all exception types. This class is
 defined, as follows:
@@ -85,7 +85,7 @@ Name	| Purpose
 `getTrace`	| Retrieves the function stack trace information (see [§§](19-exception-handling.md#tracing-exceptions))
 `getTraceAsString`	| Retrieves the function stack trace information formatted as a single string in some unspecified format
 
-##Tracing Exceptions
+## Tracing Exceptions
 
 When an exception is caught, the `get*` functions in class `\Exception`
 provide useful information. If one or more nested function calls were
@@ -145,7 +145,7 @@ site have their values recorded in array-argument. 
 See also, library functions [`debug_backtrace`](http://www.php.net/debug_backtrace) and
 [`debug_print_backtrace`](http://www.php.net/debug_print_backtrace).
 
-##User-Defined Exception Classes
+## User-Defined Exception Classes
 
 An exception class is defined simply by having it extend class [`\Exception`](19-exception-handling.md#class-exception). However, as that class's `__clone` method is declared [`final`](16-classes.md#methods), exception objects cannot be cloned.
 

@@ -1,6 +1,6 @@
-#Functions
+# Functions
 
-##General
+## General
 
 When a function is called, information may be passed to it by the caller
 via an *argument list*, which contains one or more *argument
@@ -10,11 +10,11 @@ definition](15-functions.md#function-definitions). Hack supports *variadic funct
 
 Any function containing [`yield`](10-expressions.md#yield-operator) is a *generator function*.
 
-##Function Calls
+## Function Calls
 
 A function is called via the [function-call operator `()`](10-expressions.md#function-call-operator).
 
-##Function Definitions
+## Function Definitions
 
 **Syntax**
 
@@ -140,7 +140,7 @@ function f7c(int $p): noreturn {
 }                         // implicit return nothing is allowed
 ```
 
-##Anonymous Functions
+## Anonymous Functions
 
 An *anonymous function*, also known as a *closure*, is a function
 defined with no name. As such, it must be defined in the context of an
@@ -152,7 +152,7 @@ For both [`__FUNCTION__` and `__METHOD__`](06-constants.md#context-dependent-con
 function's name is `{closure}`. All anonymous functions created in the
 same scope have the same name.
 
-##Asynchronous Functions
+## Asynchronous Functions
 
 The term *asynchronous programming* generally refers to design patterns that allow for cooperative transfer of control between several distinct tasks on a given thread of execution (or possibly a pool of threads) in a manner that isolates tasks from each other and minimizes unnecessary dependencies and interactions between tasks. Asynchronous programming is often used in the context of I/O, and with tasks that depend on I/O. Using asynchronous programming can make it significantly easier for a program to batch work together when calling synchronous I/O APIs (APIs that cause the thread to block until the I/O operation is complete) and it can make it easier to use asynchronous APIs (APIs that allow a thread to continue executing while the I/O operation is in progress).
 

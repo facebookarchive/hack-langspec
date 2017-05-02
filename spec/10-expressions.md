@@ -1,6 +1,6 @@
-#Expressions
+# Expressions
 
-##General
+## General
 
 An *expression* involves one or more terms and zero or more operators.
 
@@ -81,19 +81,19 @@ of return `$a++`; and return `++$a`;, it is obvious what value must be
 returned in each case, but if `$a` is a variable local to the enclosing
 function, `$a` need not actually be incremented.
 
-##Restrictions on Arithmetic Operations
+## Restrictions on Arithmetic Operations
 
 No arithmetic operation can be performed on the value `null` or on a value of
 type `bool`, `string` (not even if the string is numeric), or any nullable type (including nullable arithmetic types).
 
-##Operations on Operands Having One or More Subtypes
+## Operations on Operands Having One or More Subtypes
 
 None of the subclauses in this Expressions clause discuss the use of operands
 of supertypes such as `num`, `arraykey`, or `?int`. Refer to [§§](05-types.md#type-side-effects) for a discussion of type side effects.
 
-##Primary Expressions
+## Primary Expressions
 
-###General
+### General
 
 **Syntax**
 
@@ -145,9 +145,9 @@ The *pipe variable* `$$` is predefined only within the
 `$$` is the type and value of that *coalesce-expression*. `$$` is a
 non-modifiable lvalue.
 
-###Intrinsics
+### Intrinsics
 
-####General
+#### General
 
 **Syntax**
 <pre>
@@ -177,7 +177,7 @@ which has an intrinsic called `empty`. And even though an intrinsic by that
 name is not supported by Hack strict mode, the case-indistinct name `empty` is
 reserved in Hack as well.
 
-####array
+#### array
 
 **Syntax**
 
@@ -195,7 +195,7 @@ reserved in Hack as well.
 This intrinsic creates and initializes an array. It is equivalent to the
 [array-creation operator `[]`](10-expressions.md#array-creation-operator).
 
-####echo
+#### echo
 
 **Syntax**
 
@@ -240,7 +240,7 @@ $v3 = "qqq{$v2}zzz";
 echo "$v3\n";
 ```
 
-####exit
+#### exit
 
 **Syntax**
 
@@ -284,7 +284,7 @@ exit (1);
 exit;
 ```
 
-####invariant
+#### invariant
 
 **Syntax**
 
@@ -326,7 +326,7 @@ $max = 100;
 invariant(!is_null($p) && $p <= $max, "Value %d must be <= %d", $p, $max);
 ```
 
-####list
+#### list
 
 **Syntax**
 
@@ -395,7 +395,7 @@ $v = Vector {1, 2, 3};
 list($_, $b, $_) = $v; // $b is assigned 2; 1 and 3 are ignored
 ```
 
-###Collection Literals
+### Collection Literals
 
 Note: The term *literal* as used here is a misnomer; *cl-element-keys* and
 *cl-element-values* need not be compile-time constants.
@@ -477,7 +477,7 @@ ImmSet {1, 1, 1, 5, 10, 1, 'red', 1}            // size 4; 1, 5, 10, 'red'
 Pair {55, new C()}
 ```
 
-###Tuple Literals
+### Tuple Literals
 
 Note: The term *literal* as used here is a misnomer; the *expression*s in
 *expression-list* need not be compile-time constants.
@@ -515,7 +515,7 @@ $t1 = tuple(10, true, 2.3, 'abc', null, $p1, Vector {$p2 + 3, 12}, new C());
 $t2 = tuple(100, tuple('abc', false));
 ```
 
-###Shape Literals
+### Shape Literals
 
 Note: The term *literal* as used here is a misnomer; the *expression*s
 in *field-initializer* need not be compile-time constants.
@@ -575,7 +575,7 @@ shape('x' => $prevX, 'y' => getY())
 shape('id' => null, 'url' => null, 'count' => 0)
 ```
 
-###Anonymous Function-Creation
+### Anonymous Function-Creation
 
 **Syntax**
 
@@ -677,7 +677,7 @@ function compute(array<int> $values): void {
 }
 ```
 
-###Async Blocks
+### Async Blocks
 
 **Syntax**
 
@@ -714,9 +714,9 @@ $x = await async {
 };
 ```
 
-##Postfix Operators
+## Postfix Operators
 
-###General
+### General
 
 **Syntax**
 
@@ -755,7 +755,7 @@ $x = await async {
 
 These operators associate left-to-right.
 
-###The `clone` Operator
+### The `clone` Operator
 
 **Syntax**
 
@@ -806,7 +806,7 @@ $obj1 = new Manager("Smith", 23);
 $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
 ```
 
-###The `new` Operator
+### The `new` Operator
 
 **Syntax**
 
@@ -898,7 +898,7 @@ function f(classname<C> $clsname): void {
 }
 ```
 
-###Array Creation Operator
+### Array Creation Operator
 
 An array is created and initialized by one of two equivalent ways: via
 the array-creation operator `[]`, as described below, or the [intrinsic
@@ -994,7 +994,7 @@ foreach($v as $e) { … } // iterates over keys 2, 0, 1, -1
 for ($i = -1; $i <= 2; ++$i) { … $v[$i] } // retrieves via keys -1, 0, 1, 2
 ```
 
-###Subscript Operator
+### Subscript Operator
 
 **Syntax**
 
@@ -1176,7 +1176,7 @@ $p1 = Pair {55, 'auto'};
 echo "\$p1[0] = " . $p1[0] . "\n";  // outputs '$p1[0] = 55'
 ```
 
-###Function Call Operator
+### Function Call Operator
 
 **Syntax**
 
@@ -1276,7 +1276,7 @@ $anon = function (): void { … };  // store a closure in $anon
 $anon();  // call the anonymous function
 ```
 
-###Member-Selection Operator
+### Member-Selection Operator
 
 **Syntax**
 
@@ -1330,7 +1330,7 @@ $p1 = new Point();
 $p1->move(3, 9);  // calls public instance method move by name
 ```
 
-###Null-Safe Member-Selection Operator
+### Null-Safe Member-Selection Operator
 
 **Syntax**
 <pre>
@@ -1362,7 +1362,7 @@ resulting value is `null`. Otherwise, the behavior is like that of the
 [member-selection operator `->`](10-expressions.md#member-selection-operator), 
 except that the resulting value is not an lvalue.
 
-###Postfix Increment and Decrement Operators
+### Postfix Increment and Decrement Operators
 
 **Syntax**
 
@@ -1396,7 +1396,7 @@ $i = 10; $j = $i-- + 100;   // old value of $i (10) is added to 100
 $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 ```
 
-###Scope-Resolution Operator
+### Scope-Resolution Operator
 
 **Syntax**
 
@@ -1524,7 +1524,7 @@ class Point {
 }
 ```
 
-###Exponentiation Operator
+### Exponentiation Operator
 
 **Syntax**
 
@@ -1556,9 +1556,9 @@ values and the result can be represented as an `int`, the result has type
 "2.0"**"3"; // float with value 8.0
 ```
 
-##Unary Operators
+## Unary Operators
 
-###General
+### General
 
 **Syntax**
 
@@ -1587,7 +1587,7 @@ values and the result can be represented as an `int`, the result has type
 
 These operators associate right-to-left.
 
-###Prefix Increment and Decrement Operators
+### Prefix Increment and Decrement Operators
 
 **Syntax**
 
@@ -1634,7 +1634,7 @@ $i = 10; $j = --$i + 100;   // new value of $i (9) is added to 100
 $a = array(100, 200); $v = ++$a[1]; // new value of $ia[1] (201) is assigned
 ```
 
-###Unary Arithmetic Operators
+### Unary Arithmetic Operators
 
 **Syntax**
 
@@ -1690,7 +1690,7 @@ if (!$t) ...
 $v = ~0b1010101;
 ```
 
-###Error Control Operator
+### Error Control Operator
 
 **Syntax**
 
@@ -1722,7 +1722,7 @@ On open failure, the value returned by `fopen` is `false`, which is
 sufficient to know to handle the error. There is no need to have any
 error message displayed.
 
-###Cast Operator
+### Cast Operator
 
 **Syntax**
 
@@ -1767,7 +1767,7 @@ Note that *cast-type* cannot be a [generic type parameter](14-generic-types-meth
 (int)(10/3)          // results in the int 3 rather than the float 3.333...
 ```
 
-###Await Operator
+### Await Operator
 
 **Syntax**
 
@@ -1830,7 +1830,7 @@ function main (): void {
 
 Function `main` calls async function `f`, which in turn awaits on async function `g`. When `g` terminates normally, the `int` value returned is automatically wrapped in an object of type `Awaitable<int>`. Back in function `f`, that object is unwrapped, and the `int` it contained is extracted and assigned to local variable `$r1`. When `f` terminates normally, the `int` value returned is automatically wrapped in an object of type `Awaitable<int>`. Back in function `main`, that object is assigned to local variable `$v`.
 
-##`instanceof` Operator
+## `instanceof` Operator
 
 **Syntax**
 
@@ -1892,7 +1892,7 @@ $e1 = new E1();
 $e1 instanceof I1     // true
 ```
 
-##Multiplicative Operators
+## Multiplicative Operators
 
 **Syntax**
 
@@ -1951,7 +1951,7 @@ These operators associate left-to-right.
 123 % 100 → int with value 23
 ```
 
-##Additive Operators
+## Additive Operators
 
 **Syntax**
 
@@ -2016,7 +2016,7 @@ true . null → string with value "1"
 10 + 5 . 12 . 100 - 50 → int with value 1512050; ((((10 + 5).12).100)-50)
 ```
 
-##Bitwise Shift Operators
+## Bitwise Shift Operators
 
 **Syntax**
 
@@ -2063,7 +2063,7 @@ These operators associate left-to-right.
 123 << 33   // For a 32-bit int, adjusted shift count = 1; otherwise, 33
 ```
 
-##Relational Operators
+## Relational Operators
 
 **Syntax**
 
@@ -2123,7 +2123,7 @@ These operators associate left-to-right.
 
 Ideally, one might expect some constraints on the combination of operand types. However, for historical reasons, other behaviors from PHP have been retained, as documented.
 
-##Equality Operators
+## Equality Operators
 
 **Syntax**
 
@@ -2255,7 +2255,7 @@ $lLetter = 0x73;          // letter 's'
 $uLetter = $lLetter & ~0x20;  // clear the 6th bit to make letter 'S'
 ```
 
-##Bitwise Exclusive OR Operator
+## Bitwise Exclusive OR Operator
 
 **Syntax**
 
@@ -2290,7 +2290,7 @@ $v2 = $v1 ^ $v2;
 $v1 = $v1 ^ $v2;    // $v1 is now -987, and $v2 is now 1234
 ```
 
-##Bitwise Inclusive OR Operator
+## Bitwise Inclusive OR Operator
 
 **Syntax**
 
@@ -2323,7 +2323,7 @@ $uLetter = 0x41;      // letter 'A'
 $lLetter = $upCaseLetter | 0x20;  // set the 6th bit to make letter 'a'
 ```
 
-##Logical AND Operator
+## Logical AND Operator
 
 **Syntax**
 
@@ -2356,7 +2356,7 @@ This operator associates left-to-right.
 if ($month > 1 && $month <= 12) ...
 ```
 
-##Logical Inclusive OR Operator
+## Logical Inclusive OR Operator
 
 **Syntax**
 
@@ -2389,7 +2389,7 @@ This operator associates left-to-right.
 if ($month < 1 || $month > 12) ...
 ```
 
-##Conditional Operator
+## Conditional Operator
 
 **Syntax**
 
@@ -2437,7 +2437,7 @@ function factorial(int $int): int
 }
 ```
 
-##Coalesce Operator
+## Coalesce Operator
 
 **Syntax**
 
@@ -2482,7 +2482,7 @@ function main(): void {
 }
 ```
 
-##Pipe Operator
+## Pipe Operator
 
 **Syntax**
 <pre>
@@ -2517,7 +2517,7 @@ function pipe_operator_example(array<Widget> $arr): int {
 }
 ```
 
-##Lambda Expressions
+## Lambda Expressions
 
 **Syntax**
 <pre>
@@ -2594,9 +2594,9 @@ $fn1 = $x ==> $y ==> $x + $y;
 $fn2 = $fn1(10); $res = $fn2(7);  // result is 17
 ```
 
-##Assignment Operators
+## Assignment Operators
 
-###General
+### General
 
 **Syntax**
 
@@ -2622,7 +2622,7 @@ lvalue.
 
 These operators associate right-to-left.
 
-###Simple Assignment
+### Simple Assignment
 
 **Syntax**
 
@@ -2693,7 +2693,7 @@ class C { … }
 $a = new C();   // make $a point to the allocated object  
 ```
 
-###Compound Assignment
+### Compound Assignment
 
 **Syntax**
 
@@ -2732,7 +2732,7 @@ $i = 1;
 $a[$i++] += 50; // $a[1] = 250, $i → 2
 ```
 
-##`yield` Operator
+## `yield` Operator
 
 **Syntax**
 
@@ -2816,7 +2816,7 @@ function series(int $start, int $end, string $keyPrefix = ""):
 foreach (series(1, 5, "X") as $key => $val) { /* process each key/val pair */ }
 ```
 
-##Constant Expressions
+## Constant Expressions
 
 **Syntax**
 

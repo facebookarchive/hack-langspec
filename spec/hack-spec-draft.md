@@ -1,4 +1,4 @@
-#Specification for PHP
+# Specification for PHP
 Facebook has dedicated all copyright to this specification to the public
 domain worldwide under the CC0 Public Domain Dedication located at
 <http://creativecommons.org/publicdomain/zero/1.0/>. This specification
@@ -308,7 +308,7 @@ is distributed without any warranty.
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-#Introduction
+# Introduction
 This specification is intended to provide a complete and concise
 definition of the syntax and semantics of the PHP language, suitable for
 use by the following:
@@ -320,7 +320,7 @@ use by the following:
 For now, the runtime library has been excluded, as that is documented at
 [www.php.net](http://www.php.net). As such, all forward references to library facilities have placeholders of the form (§xx).
 
-#Conformance
+# Conformance
 In this specification, "must" is to be interpreted as a requirement on
 an implementation or on a program; conversely, "must not" is to be
 interpreted as a prohibition.
@@ -375,7 +375,7 @@ been superseded by new ones, and use of the old approach is discouraged.
 (Examples of this include the use of braces ({ }) for subscripting, and
 the use of old-style constructor names.)
 
-#Terms and Definitions
+# Terms and Definitions
 For the purposes of this document, the following terms and definitions
 apply:
 
@@ -425,8 +425,8 @@ Other terms are defined throughout this specification, as needed, with
 the first usage being typeset *like this*.
 
 
-#Basic Concepts
-##Program Structure
+# Basic Concepts
+## Program Structure
 A PHP *program* consists of one or more source files, known formally as
 *scripts*.
 
@@ -452,7 +452,7 @@ A script can import another script via a script inclusion operator ([§§](#scri
 
 The top level of a script is simply referred to as the *top level*.
 
-##Program Start-Up
+## Program Start-Up
 A program begins execution at the start of a script ([§§](#program-structure)) designated in
 some unspecified manner. This script is called the *start-up script*.
 
@@ -474,7 +474,7 @@ variable environment or some local variable environment. It depends on how the
 pseudo-main is invoked and it depends on the runtime state of the program
 when it's invoked.
 
-##Program Termination
+## Program Termination
 A program may terminate normally in the following ways:
 
 -   Execution reaches the end of the start-up script ([§§](#program-start-up)).
@@ -495,8 +495,8 @@ registered by `set_exception_handler`, that is equivalent to exit(0). It
 is unspecified whether object destructors ([§§](#destructors)) are run. In all other cases, the
 behavior is unspecified.
 
-##The Memory Model
-###General
+## The Memory Model
+### General
 This subclause and those immediately following it describe the abstract
 memory model used by PHP for storing variables. A conforming
 implementation may use whatever approach is desired as long as from any
@@ -610,7 +610,7 @@ of which (except unset) use the & punctuator:
 -   byRef variable-use list in an anonymous function ([§§](#anonymous-function-creation))
 -   unset ([§§](#unset))
 
-###Reclamation and Automatic Memory Management
+### Reclamation and Automatic Memory Management
 The Engine is required to manage the lifetimes of VStores and HStores
 using some form of automatic memory management.
 
@@ -653,8 +653,8 @@ a VSlot, this indicates that the VSlot has been reclaimed or, in the case
 of a VSlot contained with an HStore, that the containing HStore has been
 reclaimed or is eligible for reclamation.
 
-###Assignment
-####General
+### Assignment
+#### General
 This subclause and those immediately following it describe the abstract
 model’s implementation of *value assignment* and *byRef assignment*.
 Value assignment of non-array types to local variables is described
@@ -667,7 +667,7 @@ Value assignment and byRef assignment are core to the PHP language, and
 many other operations in this specification are described in terms of
 value assignment and byRef assignment.
 
-####Value Assignment of Scalar Types to a Local Variable
+#### Value Assignment of Scalar Types to a Local Variable
 Value assignment is the primary means by which the programmer can create
 local variables. If a local variable appears on the left-hand side of
 value assignment does not exist, the engine will bring a new local
@@ -803,7 +803,7 @@ defer copying a string’s contents for value assignment so long as it has
 no observable effect on behavior from any testable viewpoint (excluding
 performance and resource consumption).
 
-####Value Assignment of Object and Resource Types to a Local Variable
+#### Value Assignment of Object and Resource Types to a Local Variable
 
 To demonstrate value assignment of objects to local variables, consider
 the case in which we have a Point class that supports a two-dimensional
@@ -895,7 +895,7 @@ though they can have an arbitrarily large number of instance properties
 of arbitrary type. Likewise, the same mechanics apply to value
 assignment of all resource types.
 
-####ByRef Assignment for Scalar Types with Local Variables
+#### ByRef Assignment for Scalar Types with Local Variables
 Let's begin with the same value assignment ([§§](#simple-assignment)) as in the previous
 subclause, `$a = 123` and `$b = false`:
 
@@ -1013,7 +1013,7 @@ Note that literals, constants, and other expressions that don’t
 designate a modifiable lvalue cannot be used on the left- or right-hand
 side of byRef assignment.
 
-####Byref Assignment of Non-Scalar Types with Local Variables
+#### Byref Assignment of Non-Scalar Types with Local Variables
 byRef assignment of non-scalar types works using the same mechanism as
 byRef assignment for scalar types. Nevertheless, it is worthwhile to
 describe a few examples to clarify the semantics of byRef assignment.
@@ -1082,7 +1082,7 @@ Once all the aliases to the VStores are gone, the VStores can be
 destroyed, in which case, there are no more pointers to the HStore, and
 its destructor ([§§]estructors](#Destructors)) can be run.
 
-####Value Assignment of Array Types to Local Variables
+#### Value Assignment of Array Types to Local Variables
 The semantics of value assignment of array types is different from value
 assignment of other types. Recall the `Point` class from the examples in [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable), and consider the following value assignments ([§§](#simple-assignment)) and their abstract implementation:
 
@@ -1231,7 +1231,7 @@ arrays even though they can have an arbitrarily large number
 of elements. As to how an HStore accommodates all of them, is
 unspecified and unimportant to the abstract model.
 
-####Deferred Array Copying
+#### Deferred Array Copying
 As mentioned in the previous subclause ([§§](#value-assignment-of-array-types-to-local-variables)), an implementation may
 choose to use a deferred copy mechanism instead of eagerly making a copy
 for value assignment of arrays. An implementation may use any deferred
@@ -1453,7 +1453,7 @@ difference, php.net’s implementation produces behavior that is
 compatible with the abstract model’s definition of deferred array copy
 mechanisms.
 
-####General Value Assignment
+#### General Value Assignment
 The subclauses above thus far have described the mechanics of value assignment
 to a local variable. This subclause describes how value assignment works
 when general modifiable lvalue expressions are used on the left hand side.
@@ -1462,7 +1462,7 @@ when general modifiable lvalue expressions are used on the left hand side.
 instance properties. Describe how new array elements and object instance
 properties can be created via value assignment.]**
 
-####General ByRef Assignment
+#### General ByRef Assignment
 The subclauses above thus far have described the mechanics of byref assignment
 with local variables. This subclause describes how byref assignment works when
 general modifiable lvalue expressions are used on the left hand side and/or
@@ -1472,14 +1472,14 @@ the right hand side.
 object instance properties. Describe how new array elements and object
 instance properties can be created via byref assignment.]**
 
-###Argument Passing
+### Argument Passing
 Argument passing is defined in terms of simple assignment ([§§](#value-assignment-of-scalar-types-to-a-local-variable), [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable), [§§](#value-assignment-of-array-types-to-local-variables), and [§§](#simple-assignment)) or byRef assignment ([§§]), [§§](#byref-assignment-of-non-scalar-types-with-local-variables), and [§§](#byref-assignment)), depending on how the parameter is declared. 
 That is, passing an argument to a function having a corresponding
 parameter is like assigning that argument to that parameter. The
 function-call situations involving missing arguments or
 undefined-variable arguments are discussed in ([§§](#function-call-operator)).
 
-###Value Returning
+### Value Returning
 Returning a value from a function is defined in terms of simple
 assignment ([§§](#value-assignment-of-scalar-types-to-a-local-variable), [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable), [§§](#value-assignment-of-array-types-to-local-variables), and [§§](#simple-assignment)) or byRef assignment ([§§](#byref-assignment-for-scalar-types-with-local-variables), [§§](#byref-assignment-of-non-scalar-types-with-local-variables), and [§§](#byref-assignment)) depending on how the
 function is declared.  That is, returning a value from a function to its
@@ -1488,7 +1488,7 @@ value. The function-return situations involving a missing return value
 are discussed in ([§§](#function-call-operator)).
 
 
-###Cloning objects
+### Cloning objects
 When an instance is allocated, operator `new` ([§§](#the-new-operator)) returns a handle
 that points to that object. As described in [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable)), value assignment of a handle to an object does not copy the object HStore itself. Instead, it creates a copy of the handle. How then to make a copy of the object itself? Our only access to it is
 via the handle. The PHP language allows us to do this via operator `clone` ([§§](#the-clone-operator)).
@@ -1532,7 +1532,7 @@ copy*. If a *deep copy* of an object is desired, the programmer must
 achieve this manually by using the method `__clone` ([§§](#method-__clone)) or by
 other means.
 
-##Scope
+## Scope
 
 The same name can designate different things at different places in a
 program. For each different thing that a name designates, that name is
@@ -1579,7 +1579,7 @@ When a trait ([§§](#general-26)) is used by a class or an interface, the trait
 members ([§§](#trait-members)) take on the scope of a member of that class or
 interface.
 
-##Storage Duration
+## Storage Duration
 
 The lifetime of a variable is the time during program execution that
 storage for that variable is guaranteed to exist. This lifetime is
@@ -1674,9 +1674,9 @@ lifetime of an HStore ends when no VStores have a handle to it.
 
 
 
-#Types
+# Types
 
-##General
+## General
 
 The meaning of a value is determined by its *type*. PHP's types are
 categorized as *scalar types* and *composite types*. The scalar types
@@ -1703,9 +1703,9 @@ Useful library functions for interrogating and using type information
 include `gettype` (§xx), `is_type` (§xx), `settype` (§xx), and `var_dump`
 (§xx).
 
-##Scalar Types
+## Scalar Types
 
-###General
+### General
 
 The integer and floating-point types are collectively known as
 *arithmetic types*. The library function `is_numeric` (§xx) indicates if
@@ -1715,7 +1715,7 @@ The library function `is_scalar` (§xx) indicates if a given value has a
 scalar type. However, that function does not consider `NULL` to be scalar.
 To test for `NULL`, use `is_null` (§xx).
 
-###The Boolean Type
+### The Boolean Type
 
 The Boolean type is `bool`, for which the name boolean is a synonym. This
 type is capable of storing two distinct values, which correspond to the
@@ -1725,7 +1725,7 @@ this type and its values is unspecified.
 The library function `is_bool` (§xx) indicates if a given value has type
 bool.
 
-###The Integer Type
+### The Integer Type
 
 There is one integer type, `int`, for which the name integer is a synonym.
 This type is binary, signed, and uses twos-complement representation for
@@ -1757,7 +1757,7 @@ characteristics about type `int`.
 The library function `is_int` (§xx) indicates if a given value has type
 int.
 
-###The Floating-Point Type
+### The Floating-Point Type
 
 There is one floating-point type, `float`, for which the names `double` and
 `real` are synonyms. The `float` type must support at least the range and
@@ -1770,7 +1770,7 @@ indicates if a given floating-point value is infinite. The library
 function `is_nan` (§xx) indicates if a given floating-point value is a
 `NaN`.
 
-###The String Type
+### The String Type
 
 A string is a set of contiguous bytes that represents a sequence of zero
 or more characters.
@@ -1807,16 +1807,16 @@ assignment, which involves the simple assignment operator = ([§§](#simple-ass
 The library function `is_string` (§xx) indicates if a given value has
 type string.
 
-###The Null Type
+### The Null Type
 
 The null type has only one possible value, `NULL` ([§§](#core-predefined-constants)). The representation
 of this type and its value is unspecified.
 
 The library function `is_null` (§xx) indicates if a given value is `NULL`.
 
-##Composite Types
+## Composite Types
 
-###Array Types
+### Array Types
 
 An array is a data structure that contains a collection of zero or more
 elements whose values are accessed through keys that are of type `int` or
@@ -1825,7 +1825,7 @@ elements whose values are accessed through keys that are of type `int` or
 The library function `is_array` (§xx) indicates if a given value is an
 array.
 
-###Object Types
+### Object Types
 
 An *object* is an instance of a class ([§§](#classes)). Each distinct
 *class-declaration* ([§§](#class-declarations)) defines a new class type, and each class
@@ -1837,7 +1837,7 @@ object, and the library function
 [`get_class`](http://us2.php.net/manual/en/function.get-class.php)
 (§xx) indicates the name of an object's class.
 
-###Resource Types
+### Resource Types
 
 A [*resource*](http://www.php.net/manual/en/language.types.resource.php)
 is a descriptor to some sort of external entity. (Examples include
@@ -1864,9 +1864,9 @@ resource, and the library function
 
 
 
-#Constants
+# Constants
 
-##General
+## General
 
 A *constant* is a name ([§§](#names)) for a value that once given its
 initial value, cannot be changed.
@@ -1898,7 +1898,7 @@ define('COEFFICIENT_1', 2.345, TRUE); // define a case-insensitive d-constant
 define('FAILURE', TRUE, FALSE);       // define a case-sensitive d-constant
 ```
 
-##Context-Dependent Constants
+## Context-Dependent Constants
 
 The following constants—sometimes referred to as *magic constants*—are
 automatically available to all scripts; their values are not fixed:
@@ -1916,7 +1916,7 @@ automatically available to all scripts; their values are not fixed:
 
 Constants beginning with __ are reserved for future use by the Engine.
 
-##Core Predefined Constants
+## Core Predefined Constants
 
 The following constants are automatically available to all scripts:
 
@@ -1994,16 +1994,16 @@ Constant Name | Description
 The members of the `E_\*` family have values that are powers of 2, so
 they can be combined meaningfully using bitwise operators.
 
-##User-Defined Constants
+## User-Defined Constants
 
 A constant may be defined inside or outside of functions ([§§](#constants-2)), inside
 a class ([§§](#constants-2)), or inside an interface ([§§](#constants-3)).
 
 
 
-#Variables
+# Variables
 
-##General
+## General
 
 A *variable* is a named area of data storage that has a type and a
 value, both of which can change. A variable is represented by a VSlot
@@ -2033,9 +2033,9 @@ The following kinds of variable may exist in a script:
 -   Static property ([§§](#static-properties))
 -   Class and interface constant ([§§](#class-and-interface-constants))
 
-##Kinds of Variables
+## Kinds of Variables
 
-###Constants
+### Constants
 
 **Syntax:**
 
@@ -2066,7 +2066,7 @@ define('COEFFICIENT_1', 2.345); // define two d-constants
 define('FAILURE', TRUE);
 ```
 
-###Local Variables
+### Local Variables
 
 **Syntax:**
 
@@ -2112,7 +2112,7 @@ Unlike the function static equivalent in [§§](#function-statics), function `f
 
 See the recursive function example in [§§](#storage-duration).
 
-###Array Elements
+### Array Elements
 
 **Syntax:**
 
@@ -2135,7 +2135,7 @@ $colors = ["red", "white", "blue"]; // create array with 3 elements
 $colors[] = "green";                // insert a new element
 ```
 
-###Function Statics
+### Function Statics
 
 **Syntax:**
 
@@ -2185,7 +2185,7 @@ Unlike the local variable equivalent in [§§](#local-variables), function `f` 
 = 1`", "`$fs = 2`", and "`$fs = 3`", as `$fs` retains its value across
 calls.
 
-###Global Variables
+### Global Variables
 
 **Syntax:**
 
@@ -2266,22 +2266,22 @@ function f()
 }
 ```
 
-###Instance Properties
+### Instance Properties
 
 These are described in ([§§](#properties)). They have class scope ([§§](#scope)) and
 allocated storage duration ([§§](#storage-duration)).
 
-###Static Properties
+### Static Properties
 
 These are described in ([§§](#properties)). They have class scope ([§§](#scope)) and static
 storage duration ([§§](#storage-duration)).
 
-###Class and Interface Constants
+### Class and Interface Constants
 
 These are described in [§§](#constants-2) and [§§](#constants-3). They have class or interface
 scope ([§§](#scope)) and static storage duration ([§§](#storage-duration)).
 
-##Predefined Variables
+## Predefined Variables
 
 The following variables are automatically available to all scripts:
 
@@ -2300,9 +2300,9 @@ Variable Name |   Description
 `$_SESSION` | `array`; The session variables available to the current script.
 
 
-#Conversions
+# Conversions
 
-##General
+## General
 
 Some operators implicitly convert automatically the values of operands
 from one type to another. Explicit conversion is performed using the
@@ -2311,7 +2311,7 @@ cast operator ([§§](#cast-operator)).
 If an expression is converted to its own type, the type and value of the
 result are the same as the type and value of the expression.
 
-##Converting to Boolean Type
+## Converting to Boolean Type
 
 The [result type] (http://www.php.net/manual/en/language.types.boolean.php#language.types.boolean.casting) is `bool`.
 
@@ -2333,7 +2333,7 @@ If the source is a resource, the result value is `TRUE`.
 The library function `boolval` (§xx) allows values to be converted to
 `bool`.
 
-##Converting to Integer Type
+## Converting to Integer Type
 
 The [result type](http://www.php.net/manual/en/language.types.integer.php#language.types.integer.casting)  is `int`.
 
@@ -2367,7 +2367,7 @@ The library function [`intva`l
 (§xx)](http://www.php.net/manual/en/function.intval.php) allows values
 to be converted to `int`.
 
-##Converting to Floating-Point Type
+## Converting to Floating-Point Type
 
 The [result type](http://www.php.net/manual/en/language.types.float.php#language.types.float.casting) is `float`.
 
@@ -2394,7 +2394,7 @@ If the source is a resource, the result is the resource's unique ID.
 The library function `floatval` (§xx) allows values to be converted to
 float.
 
-##Converting to String Type
+## Converting to String Type
 
 The [result type](http://www.php.net/manual/en/language.types.string.php#language.types.string.casting) is string.
 
@@ -2419,7 +2419,7 @@ implementation-defined string.
 The library function `strval` (§xx) allows values to be converted to
 string.
 
-##Converting to Array Type
+## Converting to Array Type
 
 The [result type](http://www.php.net/manual/en/language.types.array.php#language.types.array.casting) is `array`.
 
@@ -2448,7 +2448,7 @@ exists, else `NULL`.
 If the source is a resource, the result is an array of one element
 containing the implementation-defined value of the resource.
 
-##Converting to Object Type
+## Converting to Object Type
 
 The [result type](http://www.php.net/manual/en/language.types.object.php#language.types.object.casting) is `object`.
 
@@ -2464,9 +2464,9 @@ elements.
 
 
 
-#Lexical Structure
+# Lexical Structure
 
-##Scripts
+## Scripts
 
 A script ([§§](#program-structure)) is an ordered sequence of characters. Typically, a
 script has a one-to-one correspondence with a file in a file system, but
@@ -2488,7 +2488,7 @@ encoding form (as defined by the Unicode standard), and transform them
 into a sequence of characters. Implementations can choose to accept and
 transform additional character encoding schemes.
 
-##Grammars
+## Grammars
 
 This specification shows the syntax of the PHP programming language
 using two grammars. The *lexical grammar* defines how source
@@ -2530,9 +2530,9 @@ expansions given on a single line. For example,
     A   B   C   D   E   F
 </pre>
 
-##Lexical analysis
+## Lexical analysis
 
-##General
+## General
 
 The production *input-file* is the root of the lexical structure for a
 script. Each script must conform to this production.
@@ -2565,7 +2565,7 @@ Lexical processing always results in the creation of the longest
 possible lexical element. (For example, `$a+++++$b` must be parsed as
 `$a++ ++ +$b`, which syntactically is invalid.)
 
-##Comments
+## Comments
 
 Two forms of comments are supported: *delimited comments* and
 *single-line comments*. 
@@ -2617,7 +2617,7 @@ space ([§§](#white-space)) can occur. (For example;
 During tokenizing, an implementation can treat a delimited comment as
 though it was white space.
 
-###White Space
+### White Space
 
 White space consists of an arbitrary combination of one or more
 new-line, space, horizontal tab, vertical tab, and form-feed characters.
@@ -2642,9 +2642,9 @@ new-line, space, horizontal tab, vertical tab, and form-feed characters.
 The space and horizontal tab characters are considered *horizontal
 white-space characters*.
 
-###Tokens
+### Tokens
 
-####General
+#### General
 
 There are several kinds of source *token*s:
 
@@ -2663,7 +2663,7 @@ There are several kinds of source *token*s:
 in [§§](#keywords); *literal* is defined in [§§](#general-9); and
 *operator-or-punctuator* is defined in [§§](#operators-and-punctuators).
 
-####Names
+#### Names
 
 **Syntax:**
 
@@ -2742,7 +2742,7 @@ interface ICollection { ... }
 An implementation is discouraged from placing arbitrary restrictions on
 name length or length of significance.
 
-####Keywords
+#### Keywords
 
 A *keyword* is a name-like sequence of characters that is reserved, and
 cannot be used as a name.
@@ -2765,9 +2765,9 @@ cannot be used as a name.
 
 Keywords are not case-sensitive.
 
-####Literals
+#### Literals
 
-#####General
+##### General
 
 The source code representation of a value is called a *literal*.
 
@@ -2787,7 +2787,7 @@ in [§§](#integer-literals); *floating-literal* is defined in [§§](#floating-
 *string-literal* is defined in [§§](#string-literals); and *null-literal* is defined
 in [§§](#the-null-literal).
 
-#####Boolean Literals
+##### Boolean Literals
 
 **Syntax:**
 
@@ -2809,7 +2809,7 @@ $done = FALSE;
 computeValues($table, TRUE);
 ```
 
-#####Integer Literals
+##### Integer Literals
 
 **Syntax:**
 
@@ -2902,7 +2902,7 @@ On an implementation using 32-bit int representation
 0x80000000 -> 2147483648 (too big for int, so is a float)
 ```
 
-#####Floating-Point Literals
+##### Floating-Point Literals
 
 **Syntax:**
 
@@ -2946,7 +2946,7 @@ point values for infinity and Not-a-Number, respectively.
 $values = array(1.23, 3e12, 543.678E-23);
 ```
 
-#####String Literals
+##### String Literals
 
 **Syntax:**
 
@@ -2973,7 +2973,7 @@ some fashion. The delimiters are not part of the literal's content.
 
 The type of a string literal is string.
 
-######Single-Quoted String Literals
+###### Single-Quoted String Literals
 
 **Syntax:**
 
@@ -3013,7 +3013,7 @@ A single-quoted string literal is a c-constant ([§§](#general-4)).
 'Can embed a single quote (\') and a backslash (\\) like this'
 ```
 
-######Double-Quoted String Literals
+###### Double-Quoted String Literals
 
 **Syntax:**
 
@@ -3144,7 +3144,7 @@ $myC = new C();
 echo "\$myC->p1 = >$myC->p1<\n";  // → $myC->p1 = >2<
 ```
 
-######Heredoc String Literals
+###### Heredoc String Literals
 
 **Syntax:**
 
@@ -3217,7 +3217,7 @@ echo ">$s<";
 Some more text<
 ```
 
-######Nowdoc String Literals
+###### Nowdoc String Literals
 
 **Syntax:**
 
@@ -3257,7 +3257,7 @@ echo ">$s<\n\n";
 Some more text<
 ```
 
-#####The Null Literal
+##### The Null Literal
 
 There is one null-literal value, `NULL`. Its spelling is case-insensitive.
 (Note: Throughout this specification, the convention is to use all
@@ -3270,7 +3270,7 @@ uppercase.)
 
 A *null-literal* has the null type.
 
-####Operators and Punctuators
+#### Operators and Punctuators
 
 **Syntax**
 
@@ -3291,9 +3291,9 @@ resulting value, produce a side effect, or some combination thereof.
 *Punctuators* are used for grouping and separating.
 
 
-#Expressions
+# Expressions
 
-##General
+## General
 
 An *expression* involves one or more terms and zero or more operators.
 
@@ -3375,9 +3375,9 @@ of return `$a++`; and return `++$a`;, it is obvious what value must be
 returned in each case, but if `$a` is a variable local to the enclosing
 function, `$a` need not actually be incremented.
 
-##Primary Expressions
+## Primary Expressions
 
-###General
+### General
 
 **Syntax**
 
@@ -3416,9 +3416,9 @@ class within which the usage of `$this` occurs. However, at run time, the
 type of the object referred to by `$this` may be the type of the
 enclosing class or any type derived from that class.
 
-###Intrinsics
+### Intrinsics
 
-####General
+#### General
 
 **Syntax**
 <pre>
@@ -3446,7 +3446,7 @@ is defined in [§§](#list); *print-intrinsic* is defined in [§§](#print); and
 The names in this series of subclauses have special meaning and are
 called *intrinsics*, but they are not keywords; nor are they functions.
 
-####array
+#### array
 
 **Syntax**
 
@@ -3462,7 +3462,7 @@ called *intrinsics*, but they are not keywords; nor are they functions.
 This intrinsic creates and initializes an array. It is equivalent to the
 array-creation operator `[]` ([§§](#array-creation-operator)).
 
-####echo
+#### echo
 
 **Syntax**
 
@@ -3506,7 +3506,7 @@ $v3 = "qqq{$v2}zzz";
 echo "$v3\n"; 
 ```
 
-####empty
+#### empty
 
 **Syntax**
 
@@ -3539,7 +3539,7 @@ $v = [10, 20];
 empty($v)   // results in FALSE
 ```
 
-####eval
+#### eval
 
 **Syntax**
 
@@ -3579,7 +3579,7 @@ $str = "Hello";
 eval("echo \$str . \"\\n\";");  // → echo $str . "\n";
 ```
 
-####exit/die
+#### exit/die
 
 **Syntax**
 
@@ -3625,7 +3625,7 @@ exit (1);
 exit;
 ```
 
-####isset
+#### isset
 
 **Syntax**
 
@@ -3665,7 +3665,7 @@ $v1 = TRUE; $v2 = 12.3; $v1 = NULL;
 isset($v1, $v2, $v3)  // results in FALSE
 ```
 
-####list
+#### list
 
 **Syntax**
 
@@ -3732,7 +3732,7 @@ list($min, list($max, $avg)) = [0, [1 => 67, 99, 0 => 100], 33];
   // $min is 0, $max is 100, $avg is 67
 ```
 
-####print
+#### print
 
 **Syntax**
 
@@ -3771,7 +3771,7 @@ print "$v3\n";            // outputs "qqq123zzz"
 $a > $b ? print "..." : print "...";
 ```
 
-####unset
+#### unset
 
 **Syntax**
 
@@ -3824,7 +3824,7 @@ unset($v1, $v2, $v3);
 unset($x->m); // if m is a dynamic property, $x's __unset("m") is called
 ```
 
-###Anonymous Function-Creation
+### Anonymous Function-Creation
 
 **Syntax**
 
@@ -3896,9 +3896,9 @@ class C
 }
 ```
 
-##Postfix Operators
+## Postfix Operators
 
-###General
+### General
 
 **Syntax**
 
@@ -3929,7 +3929,7 @@ and *exponentiation-expression* is defined in [§§](#exponentiation-operator)..
 
 These operators associate left-to-right.
 
-###The `clone` Operator
+### The `clone` Operator
 
 **Syntax**
 
@@ -3979,7 +3979,7 @@ $obj1 = new Manager("Smith", 23);
 $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
 ```
 
-###The `new` Operator
+### The `new` Operator
 
 **Syntax**
 
@@ -4045,7 +4045,7 @@ $cName = 'Point';
 $p1 = new $cName(-1, 1); // create Point(-1, 1)
 ```
 
-###Array Creation Operator
+### Array Creation Operator
 
 An array is created and initialized by one of two equivalent ways: via
 the array-creation operator `[]`, as described below, or the intrinsic
@@ -4139,7 +4139,7 @@ foreach($v as $e) { ... } // iterates over keys 2, 0, 1, -1
 for ($i = -1; $i <= 2; ++$i) { ... $v[$i] } // retrieves via keys -1, 0, 1, 2
 ```
 
-###Subscript Operator
+### Subscript Operator
 
 **Syntax**
 
@@ -4288,7 +4288,7 @@ $vect1[] = "xxx"; // calls Vector::offsetSet(NULL, "xxx")
 $x = $vect1[1];   // calls Vector::offsetGet(1)
 ```
 
-###Function Call Operator
+### Function Call Operator
 
 **Syntax**
 
@@ -4400,7 +4400,7 @@ $anon = function () { ... };  // store a Closure in $anon
 $anon();  // call the anonymous function encapsulated by that object
 '''
 
-###Member-Selection Operator
+### Member-Selection Operator
 
 **Syntax**
 
@@ -4479,7 +4479,7 @@ $p1->color = "red"; // turned into $p1->__set("color", "red");
 $c = $p1->color;  // turned into $c = $p1->__get("color");
 ```
 
-###Postfix Increment and Decrement Operators
+### Postfix Increment and Decrement Operators
 
 **Syntax**
 
@@ -4511,7 +4511,7 @@ $i = 10; $j = $i-- + 100;   // old value of $i (10) is added to 100
 $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 ```
 
-###Scope-Resolution Operator
+### Scope-Resolution Operator
 
 **Syntax**
 
@@ -4610,7 +4610,7 @@ class Point
 }
 ```
 
-###Exponentiation Operator
+### Exponentiation Operator
 
 **Syntax**
 
@@ -4638,9 +4638,9 @@ values and the result can be represented as an `int`, the result has type
 "2.0"**"3"; // float with value 8.0
 ```
 
-##Unary Operators
+## Unary Operators
 
-###General
+### General
 
 **Syntax**
 
@@ -4668,7 +4668,7 @@ defined in [§§](#cast-operator) and *variable-name-creation-expression* is def
 
 These operators associate right-to-left.
 
-###Prefix Increment and Decrement Operators
+### Prefix Increment and Decrement Operators
 
 **Syntax**
 
@@ -4770,7 +4770,7 @@ $i = 10; $j = --$i + 100;   // new value of $i (9) is added to 100
 $a = array(100, 200); $v = ++$a[1]; // new value of $ia[1] (201) is assigned
 ```
 
-###Unary Arithmetic Operators
+### Unary Arithmetic Operators
 
 **Syntax**
 
@@ -4860,7 +4860,7 @@ if (!$t) ...
 $v = ~0b1010101;
 ```
 
-###Error Control Operator
+### Error Control Operator
 
 **Syntax**
 
@@ -4915,7 +4915,7 @@ if ($curER === 0) error_reporting($origER);
 $x = $tmp;
 ```
 
-###Shell Command Operator
+### Shell Command Operator
 
 **Syntax**
 
@@ -4951,7 +4951,7 @@ $d = "dir"; $f = "*.*";
 $result = `$d {$f}`;      // result is the output of command dir *.*
 ```
 
-###Cast Operator
+### Cast Operator
 
 **Syntax**
 
@@ -5013,7 +5013,7 @@ A *cast-type* of `unset` always results in a value of `NULL`. (This use of
 (int)(float)"123.87E3" // results in the int 123870
 ```
 
-###Variable-Name Creation Operator
+### Variable-Name Creation Operator
 
 **Syntax**
 
@@ -5077,7 +5077,7 @@ $v = array(10, 20); $a = 'v';
 ${$a}[0] = 5;   // $ gets first shot at $a
 ```
 
-##`instanceof` Operator
+## `instanceof` Operator
 
 **Syntax**
 
@@ -5145,7 +5145,7 @@ $iName = "I2";
 $e1 instanceof $iName     // TRUE
 ```
 
-##Multiplicative Operators
+## Multiplicative Operators
 
 **Syntax**
 
@@ -5204,7 +5204,7 @@ These operators associate left-to-right.
 "123" % 100;     // int with value 23
 ```
 
-##Additive Operators
+## Additive Operators
 
 **Syntax**
 
@@ -5271,7 +5271,7 @@ TRUE . NULL;      // string with value "1"
 10 + 5 . 12 . 100 - 50;  // int with value 1512050; ((((10 + 5).12).100)-50)
 ```
 
-##Bitwise Shift Operators
+## Bitwise Shift Operators
 
 **Syntax**
 
@@ -5319,7 +5319,7 @@ These operators associate left-to-right.
 123 << 33   // For a 32-bit int, adjusted shift count = 1; otherwise, 33
 ```
 
-##Relational Operators
+## Relational Operators
 
 **Syntax**
 
@@ -5413,7 +5413,7 @@ FALSE < "abc"   // result has value TRUE
 ["red"=>0,"green"=>0] >= ["green"=>0,"red"=>0] // result has value TRUE (order is irrelevant)
 ```
 
-##Equality Operators
+## Equality Operators
 
 **Syntax**
 
@@ -5542,7 +5542,7 @@ $lLetter = 0x73;          // letter 's'
 $uLetter = $lLetter & ~0x20;  // clear the 6th bit to make letter 'S'
 ```
 
-##Bitwise Exclusive OR Operator
+## Bitwise Exclusive OR Operator
 
 **Syntax**
 
@@ -5578,7 +5578,7 @@ $v2 = $v1 ^ $v2;
 $v1 = $v1 ^ $v2;    // $v1 is now -987, and $v2 is now 1234
 ```
 
-##Bitwise Inclusive OR Operator
+## Bitwise Inclusive OR Operator
 
 **Syntax**
 
@@ -5612,7 +5612,7 @@ $uLetter = 0x41;      // letter 'A'
 $lLetter = $upCaseLetter | 0x20;  // set the 6th bit to make letter 'a'
 ```
 
-##Logical AND Operator (form 1)
+## Logical AND Operator (form 1)
 
 **Syntax**
 
@@ -5646,7 +5646,7 @@ same semantics as operator `and` ([§§](#logical-and-operator-form-2)).
 if ($month > 1 && $month <= 12) ...
 ```
 
-##Logical Inclusive OR Operator (form 1)
+## Logical Inclusive OR Operator (form 1)
 
 **Syntax**
 
@@ -5677,7 +5677,7 @@ This operator associates left-to-right.
 if ($month < 1 || $month > 12) ...
 ```
 
-##Conditional Operator
+## Conditional Operator
 
 **Syntax**
 
@@ -5725,9 +5725,9 @@ function factorial($int)
 }
 ```
 
-##Assignment Operators
+## Assignment Operators
 
-###General
+### General
 
 **Syntax**
 
@@ -5753,7 +5753,7 @@ lvalue.
 
 These operators associate right-to-left.
 
-###Simple Assignment
+### Simple Assignment
 
 **Syntax**
 
@@ -5819,7 +5819,7 @@ class C { ... }
 $a = new C; // make $a point to the allocated object
 ```
 
-###byRef Assignment
+### byRef Assignment
 
 **Syntax**
 
@@ -5861,7 +5861,7 @@ function &g2() { $t = "xxx"; return $t; } // return byRef
 $b = &g2();     // make $b an alias to "xxx"
 ```
 
-##Compound Assignment
+## Compound Assignment
 
 **Syntax**
 
@@ -5898,7 +5898,7 @@ $i = 1;
 $a[$i++] += 50; // $a[1] = 250, $i → 2
 ```
 
-##Logical AND Operator (form 2)
+## Logical AND Operator (form 2)
 
 **Syntax**
 
@@ -5919,7 +5919,7 @@ Each of the operands must have scalar type.
 Except for the difference in precedence, operator and has exactly the
 same semantics as operator `&&` ([§§](#logical-and-operator-form-1)).
 
-##Logical Exclusive OR Operator
+## Logical Exclusive OR Operator
 
 **Syntax**
 
@@ -5953,7 +5953,7 @@ This operator associates left-to-right.
 f($i++) XOR g($i) // the sequence point makes this well-defined
 ```
 
-##Logical Inclusive OR Operator (form 2)
+## Logical Inclusive OR Operator (form 2)
 
 **Syntax**
 
@@ -6060,9 +6060,9 @@ function series($start, $end, $keyPrefix = "")
 foreach (series(1, 5, "X") as $key => $val) { /* process each key/val pair */ }
 ```
 
-##Script Inclusion Operators
+## Script Inclusion Operators
 
-###General
+### General
 
 **Syntax**
 
@@ -6136,7 +6136,7 @@ configuration directive
 [`include_path`](http://www.php.net/manual/en/ini.core.php#ini.include-path)
 (§xx) to resolve the include file's location.
 
-###The `include` Operator
+### The `include` Operator
 
 **Syntax**
 
@@ -6189,7 +6189,7 @@ $inc = include('limits.php');
 If ((include 'Positions.php') == 1) ...
 ```
 
-###The `include_once` Operator
+### The `include_once` Operator
 
 **Syntax**
 
@@ -6231,7 +6231,7 @@ $p1 = new Point(10, 20);
 $c1 = new Circle(9, 7, 2.4);
 ```
 
-###The `require` Operator
+### The `require` Operator
 
 **Syntax**
 
@@ -6252,7 +6252,7 @@ terminates program execution.
 The library function `get_included_files` (§xx) provides the names of
 all files included or required.
 
-###The `require_once` Operator
+### The `require_once` Operator
 
 **Syntax**
 
@@ -6273,7 +6273,7 @@ program execution.
 Once an include file has been included, a subsequent use of
 `require_once` on that include file results in a return value of TRUE.
 
-##Constant Expressions
+## Constant Expressions
 
 **Syntax**
 
@@ -6309,9 +6309,9 @@ than one in a *const-declaration*.
 
 
 
-#Statements
+# Statements
 
-##General
+## General
 
 **Syntax**
 
@@ -6348,7 +6348,7 @@ defined in [§§](#defining-namespaces); *namespace-use-declaration* is defined 
 *global-declaration* is defined in [§§](#global-variables); and
 *function-static-declaration* is defined in [§§](#function-statics). 
 
-##Compound Statements
+## Compound Statements
 
 **Syntax**
 
@@ -6387,7 +6387,7 @@ while (condition)
 }
 ```
 
-##Labeled Statements
+## Labeled Statements
 
 **Syntax**
 
@@ -6430,7 +6430,7 @@ Any statement may be preceded by a token sequence that declares a name
 as a label name. The presence of a label does not alter the ﬂow of
 execution.
 
-##Expression Statements
+## Expression Statements
 
 **Syntax**
 
@@ -6479,9 +6479,9 @@ done:
 }
 ```
 
-##Selection Statements
+## Selection Statements
 
-###General
+### General
 
 **Syntax**
 
@@ -6499,7 +6499,7 @@ in [§§](#the-switch-statement).
 Based on the value of a controlling expression, a selection statement
 selects among a set of statements.
 
-###The `if` Statement
+### The `if` Statement
 
 **Syntax**
 
@@ -6591,7 +6591,7 @@ else 	// this else does go with the outer if
 		...
 ```
 
-###The `switch` Statement
+### The `switch` Statement
 
 **Syntax**
 
@@ -6689,9 +6689,9 @@ case $v < $a: 	// non-constant expression
 }
 ```
 
-##Iteration Statements
+## Iteration Statements
 
-###General
+### General
 
 **Syntax**
 
@@ -6707,7 +6707,7 @@ case $v < $a: 	// non-constant expression
 [§§](#the-do-statement); *for-statement* is defined in [§§](#the-for-statement); and *foreach-statement*
 is defined in [§§](#the-foreach-statement).
 
-##The `while` Statement
+## The `while` Statement
 
 **Syntax**
 
@@ -6754,7 +6754,7 @@ while (TRUE)
 }
 ```
 
-##The `do` Statement
+## The `do` Statement
 
 **Syntax**
 
@@ -6791,7 +6791,7 @@ do
 while ($i <= 10);
 ```
 
-##The `for` Statement
+## The `for` Statement
 
 **Syntax**
 
@@ -6885,7 +6885,7 @@ for ($a = 100, $i = 1; ++$i, $i <= 10; ++$i, $a -= 10)
 }
 ```
 
-##The `foreach` Statement
+## The `foreach` Statement
 
 **Syntax**
 
@@ -6965,9 +6965,9 @@ foreach ($colors as &$color)	// note the &
 }
 ```
 
-##Jump Statements
+## Jump Statements
 
-###General
+### General
 
 **Syntax**
 
@@ -6984,7 +6984,7 @@ foreach ($colors as &$color)	// note the &
 in [§§](#the-continue-statement); *break-statement* is defined in [§§](#the-break-statement); *return-statement*
 is defined in [§§](#the-return-statement); and *throw-statement* is defined in [§§](#the-throw-statement).
 
-###The `goto` Statement
+### The `goto` Statement
 
 **Syntax**
 
@@ -7035,7 +7035,7 @@ done:
 }
 ```
 
-###The `continue` Statement
+### The `continue` Statement
 
 **Syntax**
 
@@ -7085,7 +7085,7 @@ for ($i = 1; $i <= 5; ++$i)
 }
 ```
 
-##The `break` Statement
+## The `break` Statement
 
 **Syntax**
 
@@ -7149,7 +7149,7 @@ for ($i = 10; $i <= 40; $i +=10)
 }
 ```
 
-###The `return` Statement
+### The `return` Statement
 
 **Syntax**
 
@@ -7258,7 +7258,7 @@ the cases of `return $a++;` and `return ++$a;`, it is obvious what value
 must be returned in each case, but if `$a` is a variable local to the
 enclosing function, `$a` need not actually be incremented.
 
-###The `throw` Statement
+### The `throw` Statement
 
 **Syntax**
 
@@ -7296,7 +7296,7 @@ class MyException extends Exception { ... }
 throw new MyException;
 ```
 
-##The `try` Statement
+## The `try` Statement
 
 **Syntax**
 
@@ -7390,7 +7390,7 @@ catch (DeviceException $dve) { ... }
 finally { ... }
 ```
 
-##The `declare` Statement
+## The `declare` Statement
 
 **Syntax**
 
@@ -7459,9 +7459,9 @@ declare(encoding = 'ISO-8859-1'); // Latin-1 Western European
 declare(encoding = 'ISO-8859-5'); // Latin/Cyrillic
 ```
 
-#Arrays
+# Arrays
 
-##General
+## General
 
 An *array* is a data structure that contains a collection of zero or
 more *elements*. The elements of an array need not have the same type,
@@ -7498,21 +7498,21 @@ the same type, the subscript index need not be an integer (so there is
 no concept of a base index of zero or 1), and there is no concept of
 consecutive elements occupying physically adjacent memory locations.)
 
-##Array Creation and Initialization
+## Array Creation and Initialization
 
 An array is created and initialized by one of two equivalent ways: via
 the array-creation operator `[]` ([§§](#array-creation-operator)) or the intrinsic array
 ([§§](#array)).
 
-##Element Access and Insertion
+## Element Access and Insertion
 
 The value (and possibly the type) of an existing element is changed, and
 new elements are inserted, using the subscript operator `[]` ([§§](#subscript-operator)).
 
 
-#Functions
+# Functions
 
-##General
+## General
 
 When a function is called, information may be passed to it by the caller
 via an *argument list*, which contains one or more *argument
@@ -7550,11 +7550,11 @@ ucf2(); // now cf2 exists
 cf2(); // so we can call it
 ```
 
-##Function Calls
+## Function Calls
 
 A function is called via the function-call operator `()` ([§§](#function-call-operator)).
 
-##Function Definitions
+## Function Definitions
 
 **Syntax**
 
@@ -7634,7 +7634,7 @@ of a class having that type, or being derived from that type, are
 accepted, or only an instance of a class that implements that interface
 type directly or indirectly is accepted.    
 
-##Variable Functions
+## Variable Functions
 
 If a variable name is followed by the function-call operator `()`
 ([§§](#function-call-operator)), and the value of that variable is a string containing the
@@ -7644,7 +7644,7 @@ executed.
 The library function `is_callable` (§xx) reports whether the contents of
 a variable can be called as a function.
 
-##Anonymous Functions
+## Anonymous Functions
 
 An *anonymous function*, also known as a *closure*, is a function
 defined with no name. As such, it must be defined in the context of an
@@ -7657,9 +7657,9 @@ function's name is `{closure}`. All anonymous functions created in the
 same scope have the same name.
 
 
-#Classes
+# Classes
 
-##General
+## General
 
 A class is a type that may contain zero or more explicitly declared
 *members*, which can be any combination of *class constants* ([§§](#constants-2));
@@ -7709,7 +7709,7 @@ When an instance is allocated, new returns a handle that points to that
 object. As such, assignment of a handle does not copy the object itself.
 (See [§§](#cloning-objects) for a discussion of shallow and deep copying.)
 
-##Class Declarations
+## Class Declarations
 
 **Syntax**
 
@@ -7832,7 +7832,7 @@ class MyList implements MyCollection
 }
 ```
 
-##Class Members
+## Class Members
 
 **Syntax**
 
@@ -7932,7 +7932,7 @@ $cName = 'Point';
 echo "Point count = " . $cName::getPointCount() . "\n";
 ```
 
-##Dynamic Members
+## Dynamic Members
 
 Ordinarily, all of the instance properties and methods of a class are
 declared explicitly in that class's definition. However, other
@@ -8009,7 +8009,7 @@ and the call to `sMethod` is treated as if it were
 Widget::__callStatic('sMethod', array(NULL, 1.234))
 ```
 
-##Constants
+## Constants
 
 **Syntax**
 
@@ -8055,7 +8055,7 @@ class Automobile
 $col = Automobile::DEFAULT_COLOR;
 ```
 
-##Properties
+## Properties
 
 **Syntax**
 
@@ -8112,7 +8112,7 @@ class Point 
 }
 ```
 
-##Methods
+## Methods
 
 **Syntax**
 
@@ -8176,7 +8176,7 @@ If *visibility-modifier* is omitted, `public` is assumed.
 See [§§](#class-members) for examples of instance and static methods. See [§§](#class-declarations) for
 examples of abstract methods and their subsequent definitions.
 
-##Constructors
+## Constructors
 
 **Syntax**
 
@@ -8274,7 +8274,7 @@ class MyRangeException extends Exception
 }
 ```
 
-##Destructors
+## Destructors
 
 **Syntax**
 
@@ -8331,9 +8331,9 @@ destructor defined.
 
 See [§§](#constructors) for an example of a constructor and destructor.
 
-##Methods with Special Semantics
+## Methods with Special Semantics
 
-###General
+### General
 
 If a class contains a definition for a method having one of the
 following names, that method must have the prescribed visibility,
@@ -8356,7 +8356,7 @@ __clone |Typically used to make a deep copy ([§§](#)) of an object | [§§](#m
 `__unset` | Removes a given dynamic property |	[§§](#method-__unset)
 `__wakeup` | Executed after unserialization ([§§](#serialization)) of an instance of this class | [§§](#method-__wakeup)
 
-###Method `__call`
+### Method `__call`
 
 **Syntax**
 
@@ -8418,7 +8418,7 @@ $obj = new Widget;
 $obj->iMethod(10, TRUE, "abc");	// $obj->__call('iMethod', array(...))
 ```
 
-###Method `__callStatic`
+### Method `__callStatic`
 
 **Syntax**
 
@@ -8481,7 +8481,7 @@ class Widget
 Widget::sMethod(NULL, 1.234); // Widget::__callStatic('sMethod', array(...))
 ```
 
-###Method `__clone`
+### Method `__clone`
 
 **Syntax**
 
@@ -8564,7 +8564,7 @@ $p1 = new Point;	// created using the constructor
 $p2 = clone $p1; 	// created by cloning
 ```
 
-###Method `__get`
+### Method `__get`
 
 **Syntax**
 
@@ -8654,7 +8654,7 @@ situation. However, the implementation must not allow that. The same
 applies to seemingly self-referential implementations of `__set`
 ([§§](#method-__set)), `__isset` ([§§](#method-__isset)), and `__unset` ([§§](#method-__unset)).
 
-###Method `__invoke`
+### Method `__invoke`
 
 **Syntax**
 
@@ -8692,7 +8692,7 @@ is_callable($c)		// returns TRUE
 $r = $c(123);		// becomes $r = $c->__invoke(123);	
 ```
 
-###Method `__isset`
+### Method `__isset`
 
 **Syntax**
 
@@ -8746,7 +8746,7 @@ class Point
 
 See the Implementation Notes for `__get` ([§§](#method-__get)).
 
-###Method `__set`
+### Method `__set`
 
 **Syntax**
 
@@ -8825,7 +8825,7 @@ $p->thing = new X;  // set dynamic property "thing" to instance with destructor
 
 See the Implementation Notes for `__get` ([§§](#method-__get)).
 
-###Method `__set_state`
+### Method `__set_state`
 
 **Syntax**
 
@@ -8941,7 +8941,7 @@ $v = var_export($d, TRUE);
 eval('$z = ' . $v . ";");
 ```
 
-###Method `__sleep`
+### Method `__sleep`
 
 **Syntax**
 
@@ -9015,7 +9015,7 @@ $s = serialize($p);		// serialize Point(-1,0)
 $v = unserialize($s);		// unserialize Point(-1,0)
 ```
 
-###Method `__toString`
+### Method `__toString`
 
 **Syntax**
 
@@ -9077,7 +9077,7 @@ class MyRangeException extends Exception
 }
 ```
 
-###Method `__unset`
+### Method `__unset`
 
 **Syntax**
 
@@ -9131,7 +9131,7 @@ class Point
 
 See the Implementation Notes for `__get` ([§§](#method-__get)).
 
-###Method `__wakeup`
+### Method `__wakeup`
 
 **Syntax**
 
@@ -9171,7 +9171,7 @@ by `__wakeup` when that `Point` is unserialized. This means that
 
 See [§§](#method-__sleep).
 
-##Serialization
+## Serialization
 
 In PHP, variables can be converted into some external form suitable for
 use in file storage or inter-program communication. The process of
@@ -9325,7 +9325,7 @@ $s = serialize($cp);
 $v = unserialize($s);
 ```
 
-##Predefined Classes
+## Predefined Classes
 
 ### Class `Closure`
 
@@ -9421,7 +9421,7 @@ $property = array("$p1" => ???, "$p2" => ???)
 It is possible for all three dynamic properties to be absent, in which
 case, the `Closure` object is empty.
 
-###Class `Generator`
+### Class `Generator`
 
 This class supports the `yield` operator ([§§](#yield-operator)). This class cannot be
 instantiated directly. It is defined, as follows:
@@ -9455,7 +9455,7 @@ next | An implementation of the instance method Iterator::next ([§§](#interfac
 `valid` |  An implementation of the instance method `Iterator::valid` ([§§](#interface-iterator)).
 `__wakeup` | An implementation of the special instance method `__wakeup` ([§§](#method-__wakeup)). As a generator can't be serialized, this method throws an exception of an unspecified type. It returns no value.
 
-###Class `__PHP_Incomplete_Class`
+### Class `__PHP_Incomplete_Class`
 
 There are certain circumstances in which a program can generate an
 instance of this class, which on its own contains no members. One
@@ -9499,7 +9499,7 @@ The three dynamic properties ([§§](#dynamic-members)) contain the name of the 
 class, and the name, visibility, and value of each property that was
 serialized, in order of serialization.
 
-###Class `stdClass`
+### Class `stdClass`
 
 This class contains no members. It can be instantiated and used as a
 base class. An instance of this type is automatically created when a
@@ -9507,9 +9507,9 @@ non-object is converted to an object ([§§](#converting-to-object-type)), or th
 operator ([§§](#member-selection-operator)) is applied to `NULL`, `FALSE`, or an empty string.
 
 
-#Interfaces
+# Interfaces
 
-##General
+## General
 
 A class can implement a set of capabilities—herein called a
 *contract*—through what is called an interface. An *interface* is a set
@@ -9523,7 +9523,7 @@ requiring those classes to share a common base class.
 An interface can extend one or more other interfaces, in which case, it
 inherits all members from its *base interface(s)*.
 
-##Interface Declarations
+## Interface Declarations
 
 **Syntax**
 
@@ -9585,7 +9585,7 @@ processCollection(new MyList(...));
 processCollection(new MyQueue(...));
 ```
 
-##Interface Members
+## Interface Members
 
 **Syntax**
 
@@ -9615,7 +9615,7 @@ An interface may contain the following members:
 -   Methods – placeholders for the computations and actions that can be
     performed by implementers of the interface ([§§](#methods-1)).
 
-##Constants
+## Constants
 
 **Semantics:**
 
@@ -9634,7 +9634,7 @@ interface MyCollection
 }
 ```
 
-##Methods
+## Methods
 
 **Constraints**
 
@@ -9656,9 +9656,9 @@ interface MyCollection
 }
 ```
 
-##Predefined Interfaces
+## Predefined Interfaces
 
-###Interface `ArrayAccess`
+### Interface `ArrayAccess`
 
 This interface allows an instance of an implementing class to be
 accessed using array-like notation. This interface is defined, as
@@ -9683,7 +9683,7 @@ Name	|   Purpose
 `offsetSet`	| This instance method sets the value having key `$offset` to $value. It returns no value. This method is called when an instance of a class that implements this interface is subscripted ([§§](#subscript-operator)) in a modifiable-lvalue context.
 `offsetUnset`	| This instance method unsets the value having key `$offset`. It returns no value.
 
-###Interface `Iterator`
+### Interface `Iterator`
 
 This interface allows instances of an implementing class to be treated
 as a collection. This interface is defined, as follows:
@@ -9710,7 +9710,7 @@ Name | Purpose
 `rewind` |  This instance method resets the current position to the first element. It returns no value. From within a `foreach` statement, this method is called once, at the beginning.
 `valid` | This instance method checks if the current position is valid. It takes no arguments. It returns a bool value of `TRUE` to indicate the current position is valid; `FALSE`, otherwise. This method is called after each call to [`Iterator::rewind()`](http://us2.php.net/manual/en/iterator.rewind.php) and [`Iterator::next()`](http://us2.php.net/manual/en/iterator.next.php).
 
-###Interface `IteratorAggregate`
+### Interface `IteratorAggregate`
 
 This interface allows the creation of an external iterator. This
 interface is defined, as follows:
@@ -9728,7 +9728,7 @@ Name	|   Purpose
 ----    |   -------
 `getIterator` | This instance method retrieves an iterator, which implements `Iterator` or `Traversable`. It throws an `Exception` on failure.
 
-###Interface `Traversable`
+### Interface `Traversable`
 
 This interface is intended as the base interface for all traversable
 classes. This interface is defined, as follows:
@@ -9741,7 +9741,7 @@ Traversable
 
 This interface has no members.
 
-###Interface  `Serializable`
+### Interface  `Serializable`
 
 This interface provides support for custom serialization. It is defined,
 as follows:
@@ -9764,9 +9764,9 @@ Name |	Purpose
 
 
 
-#Traits
+# Traits
 
-##General
+## General
 
 PHP's class model allows single inheritance only ([§§](#general-23)) with contracts
 being enforced separately via interfaces ([§§](#general-25)). A *trait* can provide
@@ -9804,7 +9804,7 @@ each class using that trait has its own instance of that property.
 Methods in a trait have full access to all members of any class in which
 that trait is used.
 
-##Trait Declarations
+## Trait Declarations
 
 **Syntax**
 
@@ -9908,7 +9908,7 @@ trait T4
 }
 ```
 
-##Trait Members
+## Trait Members
 
 **Syntax**
 
@@ -9961,9 +9961,9 @@ trait T
 ```
 
 
-#Exception Handling
+# Exception Handling
 
-##General
+## General
 
 An *exception* is some unusual condition in that it is outside the
 ordinary expected behavior. (Examples include dealing with situations in
@@ -10007,7 +10007,7 @@ translated to exceptions via the class
 [`ErrorException`](http://www.php.net/manual/en/class.errorexception.php)
 (which is not part of this specification).
 
-##Class `Exception`
+## Class `Exception`
 
 Class `Exception` is the base class of all exception types. This class is
 defined, as follows:
@@ -10065,7 +10065,7 @@ Name	| Purpose
 `getTrace`	| `array`; retrieves the function stack trace information as an array (see [§§](#tracing-exceptions))
 `getTraceAsString`	| `string`; retrieves the function stack trace information formatted as a single string in some unspecified format
 
-##Tracing Exceptions
+## Tracing Exceptions
 
 When an exception is caught, the `get*` functions in class `Exception`
 provide useful information. If one or more nested function calls were
@@ -10125,7 +10125,7 @@ site have their values recorded in array-argument. 
 See also, library functions `debug_backtrace` (§xx) and
 `debug_print_backtrace` (§xx).
 
-##User-Defined Exception Classes
+## User-Defined Exception Classes
 
 An exception class is defined simply by having it extend class `Exception`
 ([§§](#class-exception)). However, as that class's `__clone` method is declared `final`
@@ -10139,9 +10139,9 @@ often also provide an augmented implementation of
 ([§§](#method-__tostring)).
 
 
-#Namespaces
+# Namespaces
 
-##General
+## General
 
 A problem encountered when managing large projects is that of avoiding
 the use of the same name in the same scope for different purposes. This
@@ -10172,7 +10172,7 @@ classes, interfaces, traits, functions, and constants are in the
 The namespaces PHP, php, and sub-namespaces beginning with those
 prefixes are reserved for use by PHP.
 
-##Name Lookup
+## Name Lookup
 
 When an existing name is used in source code, the Engine must determine
 how that name is found with respect to namespace lookup. For this
@@ -10206,7 +10206,7 @@ The names of the standard types (such as `Exception`), constants (such as
 any namespace. To refer unambiguously to such names, one can prefix them
 with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`.
 
-##Defining Namespaces
+## Defining Namespaces
 
 **Syntax**
 
@@ -10281,7 +10281,7 @@ namespace NS3\Sub1;
 }
 ```
 
-##Namespace Use Declarations**
+## Namespace Use Declarations**
 
 **Syntax**
 
@@ -10351,15 +10351,15 @@ namespace NS2
 }
 ```
 
-#Grammar
+# Grammar
 
-##General
+## General
 
 The grammar notation is described in [§§](#grammars).
 
-##Lexical Grammar
+## Lexical Grammar
 
-###General
+### General
 
 <pre>
   <i>input-file::
@@ -10371,7 +10371,7 @@ The grammar notation is described in [§§](#grammars).
     <i>token</i>
 </pre>
 
-###Comments
+### Comments
 
 <pre>
   <i>comment::</i>
@@ -10398,7 +10398,7 @@ The grammar notation is described in [§§](#grammars).
     /*   No characters or any source character sequence except /*   */
 </pre>
 
-###White Space
+### White Space
 
 <pre>
   <i>white-space::</i>
@@ -10411,9 +10411,9 @@ The grammar notation is described in [§§](#grammars).
     Horizontal-tab character (U+0009)
 </pre>
 
-###Tokens
+### Tokens
 
-####General
+#### General
 
 <pre>
   <i>token::</i>
@@ -10424,7 +10424,7 @@ The grammar notation is described in [§§](#grammars).
     <i>operator-or-punctuator</i>
 </pre>
 
-####Names
+#### Names
 
 <pre>
   <i>variable-name::</i>
@@ -10460,7 +10460,7 @@ The grammar notation is described in [§§](#grammars).
     N   O   P   Q   R   S   T   U   V   W   X   Y   Z
 </pre>
 
-###Keywords
+### Keywords
 
 <pre>
   <i>keyword::</i> one of
@@ -10474,9 +10474,9 @@ The grammar notation is described in [§§](#grammars).
     throw   trait   try   use   var   while   xor   yield
 </pre>
 
-###Literals
+### Literals
 
-####General
+#### General
 
 <pre>
   <i>literal::
@@ -10487,7 +10487,7 @@ The grammar notation is described in [§§](#grammars).
     <i>null-literal</i>
 </pre>
 
-####Boolean Literals
+#### Boolean Literals
 
 <pre>
   <i>boolean-literal::</i>
@@ -10495,7 +10495,7 @@ The grammar notation is described in [§§](#grammars).
     FALSE (written in any case combination)
 </pre>
 
-####Integer Literals
+#### Integer Literals
 
 <pre>
   <i>integer-literal::</i>
@@ -10544,7 +10544,7 @@ The grammar notation is described in [§§](#grammars).
         0  1
 </pre>
 
-####Floating-Point Literals
+#### Floating-Point Literals
 
 <pre>
   <i>ﬂoating-literal::</i>
@@ -10567,7 +10567,7 @@ The grammar notation is described in [§§](#grammars).
     <i>digit-sequence   digit</i>
 </pre>
 
-####String Literals
+#### String Literals
 
 <pre>
   <i>string-literal::</i>
@@ -10652,14 +10652,14 @@ octal-digit
     <<<  '  <i>hd-start-identifier</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>     
 </pre>
 
-####The Null Literal
+#### The Null Literal
 
 <pre>
   <i>null-literal::</i>
     NULL (written in any case combination)
 </pre>
 
-###Operators and Punctuators
+### Operators and Punctuators
 
 <pre>
   <i>operator-or-punctuator:: one of</i>
@@ -10669,9 +10669,9 @@ octal-digit
     >>=   &=   ^=   |=   ,
 </pre>
 
-##Syntactic Grammar
+## Syntactic Grammar
 
-###Program Structure
+### Program Structure
 
 <pre>
 <i>script:</i>
@@ -10685,7 +10685,7 @@ octal-digit
   arbitrary text not containing the sequence &lt;?php
 </pre>
 
-###Variables
+### Variables
 
 <pre>
   <i>function-static-declaration:</i>
@@ -10702,9 +10702,9 @@ octal-digit
     <i>variable-name-list  , expression</i>
 </pre>
     
-###Expressions
+### Expressions
 
-####Primary Expressions
+#### Primary Expressions
 
 <pre>
   <i>primary-expression:</i>
@@ -10791,7 +10791,7 @@ octal-digit
                 
 </pre>
 
-####Postfix Operators
+#### Postfix Operators
 
 <pre>
   <i>postfix-expression:</i>
@@ -10880,7 +10880,7 @@ octal-digit
     <i>expression  **  expression</i>                    
 </pre>
 
-####Unary Operators
+#### Unary Operators
 
 <pre>
   <i>unary-expression:</i>
@@ -10925,7 +10925,7 @@ octal-digit
                         
 </pre>
 
-####instanceof Operator
+#### instanceof Operator
 
 <pre>
   <i>instanceof-expression:</i>
@@ -10940,7 +10940,7 @@ octal-digit
     <i>expression</i>
 </pre>
 
-####Multiplicative Operators
+#### Multiplicative Operators
 
 <pre>
   <i>multiplicative-expression:</i>
@@ -10950,7 +10950,7 @@ octal-digit
     <i>multiplicative-expression</i>  %  <i>multiplicative-expression</i>
 </pre>
 
-####Additive Operators
+#### Additive Operators
 
 <pre>
   <i>additive-expression:</i>
@@ -10960,7 +10960,7 @@ octal-digit
     <i>additive-expression</i>  .  <i>multiplicative-expression</i>
 </pre>
 
-####Bitwise Shift Operators
+#### Bitwise Shift Operators
 
 <pre>
   <i>shift-expression:</i>
@@ -10969,7 +10969,7 @@ octal-digit
     <i>shift-expression</i>  >>  <i>additive-expression</i>
 </pre>
 
-####Relational Operators
+#### Relational Operators
 
 <pre>
   <i>relational-expression:</i>
@@ -10980,7 +10980,7 @@ octal-digit
     <i>relational-expression</i>  >=  <i>shift-expression</i>
 </pre>
 
-####Equality Operators
+#### Equality Operators
 
 <pre>
   <i>equality-expression:</i>
@@ -10992,7 +10992,7 @@ octal-digit
     <i>equality-expression</i>  !==  <i>relational-expression</i>
 </pre>
 
-####Bitwise Logical Operators
+#### Bitwise Logical Operators
 
 <pre>
   <i>bitwise-AND-expression:</i>
@@ -11008,7 +11008,7 @@ octal-digit
     <i>bitwise-inc-OR-expression</i>  |  <i>bitwise-exc-OR-expression</i>
 </pre>
 
-####Logical Operators (form 1)
+#### Logical Operators (form 1)
 
 <pre>
   <i>logical-AND-expression-1:</i>
@@ -11020,7 +11020,7 @@ octal-digit
     <i>logical-inc-OR-expression-1</i>  ||  <i>logical-AND-expression-1</i>
 </pre>
 
-####Conditional Operator
+#### Conditional Operator
 
 <pre>
   <i>conditional-expression:</i>
@@ -11028,7 +11028,7 @@ octal-digit
     <i>logical-inc-OR-expression-1</i>  ?  <i>expression<sub>opt</sub></i>  :  <i>conditional-expression</i>
 </pre>
 
-####Assignment Operators
+#### Assignment Operators
 
 <pre>
   <i>assignment-expression:</i>
@@ -11050,7 +11050,7 @@ octal-digit
     **=  *=  /=  %=  +=  -=  .=  <<=  >>=  &=  ^=  |=    
 </pre>
 
-####Logical Operators (form 2)
+#### Logical Operators (form 2)
 
 <pre>
   <i>logical-AND-expression-2:</i>
@@ -11068,7 +11068,7 @@ octal-digit
 </pre>
 
 
-####yield Operator
+#### yield Operator
 
 <pre>
   <i>yield-expression:</i>
@@ -11076,7 +11076,7 @@ octal-digit
     yield  <i>array-element-initializer</i>
 </pre>
 
-####Script Inclusion Operators
+#### Script Inclusion Operators
 
 <pre>
   <i>expression:</i>
@@ -11106,7 +11106,7 @@ octal-digit
     require_once  <i>include-filename</i>
 </pre>
 
-####Constant Expressions
+#### Constant Expressions
 
 <pre>
   <i>constant-expression:</i>
@@ -11117,9 +11117,9 @@ octal-digit
     <i>expression</i>
 </pre>
   
-###Statements
+### Statements
 
-####General
+#### General
 
 <pre>
 
@@ -11142,7 +11142,7 @@ octal-digit
     <i>function-static-declaration</i>
 </pre>
 
-####Compound Statements
+#### Compound Statements
 
 <pre>
   <i>compound-statement:</i>
@@ -11153,7 +11153,7 @@ octal-digit
     <i>statement-list   statement</i>
 </pre>
 
-####Labeled Statements
+#### Labeled Statements
 
 <pre>
   <i>labeled-statement:</i>
@@ -11175,7 +11175,7 @@ octal-digit
     ;
 </pre>
 
-####Expression Statements
+#### Expression Statements
 
 <pre>
    <i>expression-statement:</i>
@@ -11215,7 +11215,7 @@ octal-digit
         
 </pre>
 
-####Iteration Statements
+#### Iteration Statements
 
 <pre>
   <i>iteration-statement:</i>
@@ -11265,7 +11265,7 @@ octal-digit
             
 </pre>
 
-####Jump Statements
+#### Jump Statements
 
 <pre>
   <i>jump-statement:</i>
@@ -11294,7 +11294,7 @@ octal-digit
     throw  <i>expression</i>  ;
 </pre>
 
-####The try Statement
+#### The try Statement
 
 <pre>
   <i>try-statement:</i>
@@ -11313,7 +11313,7 @@ octal-digit
     finally   <i>compound-statement</i>
 </pre>
 
-####The declare Statement
+#### The declare Statement
 
 <pre>
   <i>declare-statement:</i>
@@ -11332,7 +11332,7 @@ octal-digit
     <i>expression</i>
 </pre>
 
-###Functions
+### Functions
 
 <pre>
   <i>function-definition:</i>
@@ -11357,7 +11357,7 @@ octal-digit
     =  <i>const-expression</i>
 </pre>
 
-###Classes
+### Classes
 
 <pre>
   <i>class-declaration:</i>
@@ -11430,7 +11430,7 @@ octal-digit
     
 </pre>
 
-###Interfaces
+### Interfaces
 
 <pre>
   <i>interface-declaration:</i>
@@ -11449,7 +11449,7 @@ octal-digit
     <i>method-declaration</i>
 </pre>
 
-###Traits
+### Traits
 
 <pre>
   <i>trait-declaration:</i>
@@ -11497,7 +11497,7 @@ octal-digit
     
 </pre>    
 
-###Namespaces
+### Namespaces
 
 <pre>
   <i>namespace-definition:</i>
@@ -11518,7 +11518,7 @@ octal-digit
     as  <i>name</i>
 </pre>
 
-#Bibliography
+# Bibliography
 
 The following documents are useful references for implementers and users
 of this specification:
