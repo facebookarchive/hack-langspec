@@ -225,7 +225,7 @@ All properties of non-nullable type must be initialized explicitly either by a *
 ### Methods
 Hack requires parameter and return-type type specifiers.
 
-## #  Constructors
+###  Constructors
 The deprecated form of constructor name (using the name of the class) is not supported.
 
 ### Methods with Special Semantics
