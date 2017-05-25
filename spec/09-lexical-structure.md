@@ -1,6 +1,6 @@
-#Lexical Structure
+# Lexical Structure
 
-##Scripts
+## Scripts
 
 A [script](04-basic-concepts.md#program-structure) is an ordered sequence of characters. Typically, a
 script has a one-to-one correspondence with a file in a file system, but
@@ -22,7 +22,7 @@ encoding form (as defined by the Unicode standard), and transform them
 into a sequence of characters. Implementations can choose to accept and
 transform additional character encoding schemes.
 
-##Grammars
+## Grammars
 
 This specification shows the syntax of the Hack programming language
 using two grammars. The *lexical grammar* defines how source
@@ -64,7 +64,7 @@ expansions given on a single line. For example,
     A   B   C   D   E   F
 </pre>
 
-##Grammar ambiguities
+## Grammar ambiguities
 
 In general, lexical processing results in the creation of the longest possible
 lexical element. However, in certain cases involving generic type specifiers
@@ -73,9 +73,9 @@ For example, in type specifiers like `X<Y<int>>` and `array<array<int>>`, the
 source characters `>` and `>` are treated as two separate tokens rather than
 as the right-shift operator `>>`.
 
-##Lexical Analysis
+## Lexical Analysis
 
-###General
+### General
 
 The production *input-file* is the root of the lexical structure for a
 script. Each script must conform to this production.
@@ -111,7 +111,7 @@ Apart from the exception noted in [§§](09-lexical-structure.md#grammar-ambigui
 possible lexical element. (For example, `$a+++++$b` must be parsed as
 `$a++ ++ +$b`, which syntactically is invalid.)
 
-###Comments
+### Comments
 
 Two forms of comments are supported: *delimited comments* and
 *single-line comments*. 
@@ -172,7 +172,7 @@ the comment text.
 During tokenizing, an implementation can treat a delimited comment as
 though it was white space.
 
-###White Space
+### White Space
 
 White space consists of an arbitrary combination of one or more
 new-line, space, and horizontal tab characters.
@@ -199,9 +199,9 @@ new-line, space, and horizontal tab characters.
 The space and horizontal tab characters are considered *horizontal
 white-space characters*.
 
-###Tokens
+### Tokens
 
-####General
+#### General
 
 There are several kinds of source tokens:
 
@@ -224,7 +224,7 @@ There are several kinds of source tokens:
 * [*operator-or-punctuator*](09-lexical-structure.md#operators-and-punctuators)
 * [*variable-name*](09-lexical-structure.md#names)
 
-####Names
+#### Names
 
 **Syntax**
 
@@ -285,7 +285,7 @@ interface ICollection { ... }
 An implementation is discouraged from placing arbitrary restrictions on
 name length or length of significance.
 
-####Keywords
+#### Keywords
 
 A *keyword* is a name-like sequence of characters that is reserved, and
 cannot be used as a name.
@@ -309,9 +309,9 @@ Note: Strictly speaking, `false`, `null`, and `true` are not keywords;
 however, they do have predefined meanings, and can be thought of as keywords.
 Likewise for the names of the [intrinsics](10-expressions.md#general-2).
 
-####Literals
+#### Literals
 
-#####General
+##### General
 
 The source code representation of a value is called a *literal*.
 
@@ -334,7 +334,7 @@ The source code representation of a value is called a *literal*.
 * [*null-literal*](09-lexical-structure.md#the-null-literal)
 * [*string-literal*](09-lexical-structure.md#string-literals)
 
-#####Boolean Literals
+##### Boolean Literals
 
 **Syntax**
 
@@ -356,7 +356,7 @@ $done = false;
 computeValues($table, true);
 ```
 
-#####Integer Literals
+##### Integer Literals
 
 **Syntax**
 
@@ -438,7 +438,7 @@ $count = 10      // decimal 10
 0XAF << 023      // hexadecimal AF and octal 23
 ```
 
-#####Floating-Point Literals
+##### Floating-Point Literals
 
 **Syntax**
 
@@ -484,7 +484,7 @@ point values for infinity and Not-a-Number, respectively.
 $values = array(1.23, 3e12, 543.678E-23);
 ```
 
-#####String Literals
+##### String Literals
 
 **Syntax**
 
@@ -514,7 +514,7 @@ some fashion. The delimiters are not part of the literal's content.
 
 The type of a string literal is `string`.
 
-######Single-Quoted String Literals
+###### Single-Quoted String Literals
 
 **Syntax**
 
@@ -551,7 +551,7 @@ A single-quoted string literal is a [c-constant](06-constants.md#general).
 'Can embed a single quote (\') and a backslash (\\) like this'
 ```
 
-######Double-Quoted String Literals
+###### Double-Quoted String Literals
 
 **Syntax**
 
@@ -713,7 +713,7 @@ $myC = new C();
 echo "\$myC->p1 = >$myC->p1<\n";  // → $myC->p1 = >2<
 ```
 
-######Heredoc String Literals
+###### Heredoc String Literals
 
 **Syntax**
 
@@ -791,7 +791,7 @@ echo ">$s<";
 Some more text<
 ```
 
-######Nowdoc String Literals
+###### Nowdoc String Literals
 
 **Syntax**
 
@@ -834,7 +834,7 @@ echo ">$s<\n\n";
 Some more text<
 ```
 
-#####The Null Literal
+##### The Null Literal
 
 <pre>
   <i>null-literal::</i>
@@ -847,7 +847,7 @@ There is one null-literal value, `null`.
 
 A *null-literal* has the null type.
 
-####Operators and Punctuators
+#### Operators and Punctuators
 
 **Syntax**
 

@@ -1,6 +1,6 @@
-#Namespaces
+# Namespaces
 
-##General
+## General
 
 A problem encountered when managing large projects is that of avoiding
 the use of the same name in the same scope for different purposes. This
@@ -30,7 +30,7 @@ classes, interfaces, traits, functions, and constants are in the
 The namespaces HH, PHP, php, and sub-namespaces beginning with those
 prefixes are reserved for use by Hack.
 
-##Name Lookup
+## Name Lookup
 
 When an existing name is used in source code, the Engine must decide
 how that name is found with respect to namespace lookup. For this
@@ -45,7 +45,7 @@ The names of the standard types that come with PHP (such as `Exception`), consta
 any namespace. To refer unambiguously to such names, one can prefix them
 with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`. The names of the standard types that are introduced with Hack (such as `Vector` and `Map`), are treated implicitly as belonging to namespace HH. Such names are resolved through a process known as *auto importation*.
 
-##Defining Namespaces
+## Defining Namespaces
 
 **Syntax**
 
@@ -131,7 +131,7 @@ namespace NS3\Sub1;
 }
 ```
 
-##Namespace Use Declarations**
+## Namespace Use Declarations**
 
 **Syntax**
 
