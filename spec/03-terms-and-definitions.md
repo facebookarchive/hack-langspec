@@ -2,57 +2,67 @@
 For the purposes of this document, the following terms and definitions
 apply:
 
-<dl>
-    <dt>argument</dt>
-    <dd>a value passed to a function, that is intended to map to a corresponding parameter.</dd>
+<pre>
 
-    <dt>behavior</dt>
-    <dd>external appearance or action.</dd>
+  <b>argument:</b>
+    a value passed to a function, that is intended to map to a
+    corresponding parameter.
+      
+  <b>behavior:</b>
+    external appearance or action.
 
-    <dt>behavior, implementation-defined</dt>
-    <dd>behavior specific to an implementation, where that implementation must document that behavior.</dd>
+  <b>behavior, implementation-defined:</b>
+    behavior specific to an implementation, where that implementation
+    must document that behavior.
 
-    <dt>behavior, undefined</dt>
-    <dd>behavior which is not guaranteed to produce any specific result. Usually follows an erroneous program construct or data.</dd>
+  <b>behavior, undefined:</b>
+    behavior which is not guaranteed to
+    produce any specific result. Usually follows an erroneous program
+    construct or data.
 
-    <dt>behavior, unspecified</dt>
-    <dd>behavior for which this specification provides no requirements.</dd>
+  <b>behavior, unspecified:</b>
+    behavior for which this specification provides no requirements.
 
-    <dt>case-preserved</dt>
-    <dd>a construct which is case-insensitive upon declaration, but case-sensitive upon subsequent usage.</dd>
+  <b>case-preserved:</b>
+    a construct which is case-insensitive upon declaration, but
+    case-sensitive upon subsequent usage.
 
-    <dt>constraint</dt>
-    <dd>restriction, either syntactic or semantic, on how language elements can be used.</dd>
+  <b>constraint:</b>
+    restriction, either syntactic or semantic, on how language elements
+    can be used.
 
-    <dt>error, fatal</dt>
-    <dd>a translation or runtime condition from which the translator or engine cannot recover.</dd>
+  <b>error, fatal:</b>
+    a translation or runtime condition from which the translator or
+    engine cannot recover.
 
-    <dt>error, fatal, catchable</dt>
-    <dd>a fatal error that can be caught by a user-defined handler.</dd>
+  <b>error, fatal, catchable:</b>
+    a fatal error that can be caught by a user-defined handler.
 
-    <dt>error, non-fatal</dt>
-    <dd>an error that is not fatal.</dd>
+  <b>error, non-fatal:</b>
+    an error that is not fatal.
 
-    <dt>lvalue</dt>
-    <dd>an expression that designates a memory location having a type.</dd>
+  <b>lvalue:</b>
+    an expression that designates a memory location having a type.
 
-    <dt>lvalue, modifiable</dt>
-    <dd>an lvalue whose value can be changed.</dd>
+  <b>lvalue, modifiable:</b>
+    an lvalue whose value can be changed.
 
-    <dt>lvalue, non-modifiable</dt>
-    <dd>an lvalue whose value cannot be changed.</dd>
+  <b>lvalue, non-modifiable:</b>
+    an lvalue whose value cannot be changed.
 
-    <dt>parameter</dt>
-    <dd>a variable declared in the parameter list of a function that is intended to map to a corresponding argument in a call to that function.</dd>
+  <b>parameter:</b>
+    a variable declared in the parameter list of a function that is
+    intended to map to a corresponding argument in a call to that
+    function.
 
-    <dt>Hack Run-Time Engine</dt>
-    <dd>the machinery that executes a Hack program. Referred to as *the Engine* throughout this specification.</dd>
+  <b>Hack Run-Time Engine:</b>
+    the machinery that executes a Hack program. Referred to as *the
+    Engine* throughout this specification.
 
-    <dt>value</dt>
-    <dd>precise meaning of the contents of a memory location when interpreted as having a specific type.</dd>
-</dl>
+  <b>value:</b>
+    precise meaning of the contents of a memory location when
+    interpreted as having a specific type.
+</pre>
 
 Other terms are defined throughout this specification, as needed, with
 the first usage being typeset *like this*.
-
-
