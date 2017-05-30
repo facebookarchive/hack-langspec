@@ -1,6 +1,6 @@
-#Statements
+# Statements
 
-##General
+## General
 
 **Syntax**
 
@@ -27,7 +27,7 @@
 * [*selection-statement*](#general-1)
 * [*try-statement*](11-statements.md#the-try-statement)
 
-##Compound Statements
+## Compound Statements
 
 **Syntax**
 
@@ -68,7 +68,7 @@ while (condition)
 }
 ```
 
-##Labeled Statements
+## Labeled Statements
 
 **Syntax**
 
@@ -97,7 +97,7 @@ while (condition)
 
 See the `switch` statement.
 
-##Expression Statements
+## Expression Statements
 
 **Syntax**
 
@@ -130,9 +130,9 @@ $i;   // no side effects, result is discarded. Vacuous but permitted
 true;
 ```
 
-##Selection Statements
+## Selection Statements
 
-###General
+### General
 
 **Syntax**
 
@@ -152,7 +152,7 @@ true;
 Based on the value of a controlling expression, a selection statement
 selects among a set of statements.
 
-###The `if` Statement
+### The `if` Statement
 
 **Syntax**
 
@@ -219,7 +219,7 @@ if (1) {
   …
 ```
 
-###The `switch` Statement
+### The `switch` Statement
 
 **Syntax**
 
@@ -327,9 +327,9 @@ case ControlStatus::Started:
 }
 ```
 
-##Iteration Statements
+## Iteration Statements
 
-###General
+### General
 
 **Syntax**
 
@@ -348,7 +348,7 @@ case ControlStatus::Started:
 * [*foreach-statement*§](#the-foreach-statement)
 * [*while-statement*](#the-while-statement)
 
-###The `while` Statement
+### The `while` Statement
 
 **Syntax**
 
@@ -392,7 +392,7 @@ while (true) {
 }
 ```
 
-###The `do` Statement
+### The `do` Statement
 
 **Syntax**
 
@@ -431,7 +431,7 @@ do {
 while ($i <= 10);
 ```
 
-###The `for` Statement
+### The `for` Statement
 
 **Syntax**
 
@@ -520,7 +520,7 @@ for ($a = 100, $i = 1; ++$i, $i <= 10; ++$i, $a -= 10) {
 }
 ```
 
-###The `foreach` Statement
+### The `foreach` Statement
 
 **Syntax**
 
@@ -622,9 +622,9 @@ async function use_countdown2(): Awaitable<void> {
 }
 ```
 
-##Jump Statements
+## Jump Statements
 
-###General
+### General
 
 **Syntax**
 
@@ -643,7 +643,7 @@ async function use_countdown2(): Awaitable<void> {
 * [*return-statement*](#the-return-statement)
 * [*throw-statement*](#the-throw-statement)
 
-###The `continue` Statement
+### The `continue` Statement
 
 **Syntax**
 
@@ -674,7 +674,7 @@ for ($i = 1; $i <= 5; ++$i) {
 }
 ```
 
-###The `break` Statement
+### The `break` Statement
 
 **Syntax**
 
@@ -707,7 +707,7 @@ for (;;) {
 }
 ```
 
-###The `return` Statement
+### The `return` Statement
 
 **Syntax**
 
@@ -782,7 +782,7 @@ the cases of `return $a++;` and `return ++$a;`, it is obvious what value
 must be returned in each case, but if `$a` is a variable local to the
 enclosing function, `$a` need not actually be incremented.
 
-###The `throw` Statement
+### The `throw` Statement
 
 **Syntax**
 
@@ -822,7 +822,7 @@ class MyException extends Exception { ... }
 throw new MyException;
 ```
 
-##The `try` Statement
+## The `try` Statement
 
 **Syntax**
 

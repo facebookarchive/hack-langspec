@@ -1,6 +1,6 @@
-#Variables
+# Variables
 
-##General
+## General
 
 A *variable* is a named area of data storage that has a type and a
 value. A variable is represented by a 
@@ -24,9 +24,9 @@ The following kinds of variable may exist in a script:
 -   [Static property](07-variables.md#static-properties)
 -   [Class and interface constant](07-variables.md#class-and-interface-constants)
 
-##Kinds of Variables
+## Kinds of Variables
 
-###Local Variables
+### Local Variables
 
 **Syntax**
 
@@ -66,7 +66,7 @@ Unlike the [function static equivalent](07-variables.md#function-statics), funct
 
 See the [recursive function example](04-basic-concepts.md#storage-duration).
 
-###Array Elements
+### Array Elements
 
 **Syntax**
 
@@ -88,7 +88,7 @@ $colors = ["red", "white", "blue"]; // create array with 3 elements
 $colors[] = "green";                // insert a new element
 ```
 
-###Function Statics
+### Function Statics
 
 **Syntax:**
 
@@ -139,14 +139,14 @@ Unlike the [local variable equivalent](07-variables.md#local-variables), functio
 = 1`", "`$fs = 2`", and "`$fs = 3`", as `$fs` retains its value across
 calls.
 
-###Instance Properties
+### Instance Properties
 
 These are described in [class instance properties section](16-classes.md#properties). They have [class scope](04-basic-concepts.md#scope) and [allocated storage duration](04-basic-concepts.md#storage-duration).
 
-###Static Properties
+### Static Properties
 
 These are described in [class static properties section](16-classes.md#properties). They have [class scope](04-basic-concepts.md#scope) and [static storage duration](04-basic-concepts.md#storage-duration).
 
-###Class and Interface Constants
+### Class and Interface Constants
 
 These are described in [class constants section](16-classes.md#constants) and [interface constants section](17-interfaces.md#constants). They have [class or interface scope](04-basic-concepts.md#scope) and [static storage duration](04-basic-concepts.md#storage-duration).

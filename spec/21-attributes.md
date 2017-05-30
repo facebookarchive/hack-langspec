@@ -1,6 +1,6 @@
-#Attributes
+# Attributes
 
-##General
+## General
 
 Programmers can invent a new kind of declarative information, called an *attribute*. Attributes can be attached to various program entities, and information about those attribute can be retrieved at run-time via reflection (see library class `Reflection`, et al).
 
@@ -20,7 +20,7 @@ The method `getAttribute` returns an array containing the values corresponding t
 
 A number of predefined attributes ([§§](21-attributes.md#predefined-attributes)) affect the way in which source code is compiled.
 
-##Attribute Specification
+## Attribute Specification
 
 **Syntax**
 <pre>
@@ -68,16 +68,16 @@ class C {
 }
 ```
 
-##Predefined Attributes
+## Predefined Attributes
 
-###General
+### General
 
 The following attributes are recognized by a conforming implementation:
 * `__ConsistentConstruct` ([§§](21-attributes.md#attribute-__consistentconstruct))
 * `__Memoize` ([§§](21-attributes.md#attribute-__memoize))
 * `__Override` ([§§](21-attributes.md#attribute-__override))
 
-###Attribute `__ConsistentConstruct`
+### Attribute `__ConsistentConstruct`
 
 This attribute can be applied to classes; it has no attribute values.
 
@@ -107,7 +107,7 @@ $v2 = Derived::make();
 
 When `make` is called on a `Derived` object, `new static` results in `Derived`'s constructor being called knowing only the parameter list of `Base`'s constructor. As such, `Derived`'s constructor must either have the exact same signature as `Base`'s constructor, or the same plus an ellipses ([§§](15-functions.md#function-definitions)) indicating a trailing variable-argument list.
 
-###Attribute `__Memoize`
+### Attribute `__Memoize`
 
 This attribute can be applied to functions and static or instance methods; it has no attribute values.
 
@@ -134,7 +134,7 @@ The types of the parameters are restricted to the following: `null`, `bool`, `in
 
 The interface type `IMemoizeParam` ([§§](17-interfaces.md#interface-IMemoizeParam)) assists with memorizing objects passed to async functions.
 
-###Attribute `__Override`
+### Attribute `__Override`
 
 This attribute can be applied to static or instance methods; it has no attribute values.
 
