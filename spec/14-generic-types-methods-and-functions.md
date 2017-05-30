@@ -1,6 +1,6 @@
-#Generic Types, Methods, and Functions
+# Generic Types, Methods, and Functions
 
-##General
+## General
 
 Certain types (classes, interfaces, and traits) and their methods can be *parameterized*; that is, their declarations can have one or more placeholder names—called *type parameters*—that are associated with types via *type arguments* when a class is instantiated or a method is called. A type or method having such placeholder names is called a *generic type* or *generic method*, respectively. Top-level functions can also be parameterized giving rise to *generic functions*.
 
@@ -62,7 +62,7 @@ The function returns the larger of the two arguments passed to it. In the case o
 
 Type parameters are discussed further in [§§](14-generic-types-methods-and-functions.md#type-parameters), and type arguments are discussed further in [§§](14-generic-types-methods-and-functions.md#type-arguments).
 
-##Type Parameters
+## Type Parameters
 
 **Syntax**
 <pre>
@@ -133,7 +133,7 @@ In the following case, function `maxValue` has one type parameter, `T`.
 function maxValue<T>(T $p1, T $p2): T { … }
 ```
 
-##Type Constraints
+## Type Constraints
 
 A *type-constraint* ([§§](05-types.md#general)) in a *generic-type-parameter* indicates a requirement that a type must fulfill in order to be accepted as a type argument for a given type parameter. (For example, it might have to be a given class type or a subtype of that class type, or it might have to implement a given interface.)
 
@@ -174,7 +174,7 @@ $c3 = new Complex(5, 6);
 echo "\$c3 + \$c4 = " . Complex::add($c3, $c4) . "\n";
 ```
 
-##Type Arguments
+## Type Arguments
 
 **Syntax**
 <pre>
@@ -212,7 +212,7 @@ final class Pair<Tv1, Tv2> implements ConstVector<mixed> {
 
 In this case, the type specifiers `ConstVector<mixed>`, `KeyedIterator<int, mixed>`, `Vector<int>`, `Map<int, mixed>`, `Traversable<Tu>`, `Vector<Pair<mixed, Tu>>`, and `Tu`, and are type arguments.
 
-##Open and Closed Generic Types
+## Open and Closed Generic Types
 
 A type parameter is introduced in the corresponding type, method, or function declaration. All other uses of that type parameter occur in *type-specifiers* ([§§](05-types.md#general)) for the declaration of properties, function parameters, and function returns. Each such use can be classified as follows: An *open generic type* is a type that contains one or more type parameters; a *closed generic type* is a type that is not an open generic type.
 
@@ -262,7 +262,7 @@ function main(): void {
 
 Since the static `$x` is part of the open generic type, there is no way to bind `$x` to a particular type (in this case an `int` or `string`).
 
-##Type Inferencing Revisited
+## Type Inferencing Revisited
 
 See [§§](05-types.md#type-inferencing) for an introduction to type inferencing.
 

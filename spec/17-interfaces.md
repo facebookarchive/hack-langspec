@@ -1,6 +1,6 @@
-#Interfaces
+# Interfaces
 
-##General
+## General
 
 A class can implement a set of capabilities—herein called a
 *contract*—through what is called an interface. An *interface* is a set
@@ -14,7 +14,7 @@ requiring those classes to share a common base class.
 An interface can extend one or more other interfaces, in which case, it
 inherits all members from its *base interface(s)*.
 
-##Interface Declarations
+## Interface Declarations
 
 **Syntax**
 
@@ -81,7 +81,7 @@ processCollection(new MyList(…));
 processCollection(new MyQueue(…));
 ```
 
-##Interface Members
+## Interface Members
 
 **Syntax**
 
@@ -122,7 +122,7 @@ An interface may contain the following members:
 
 An *interface-member-declarations* may contain multiple *require-extends-clause*s that designate the same class, in which case, the duplicates are redundant. 
 
-##Constants
+## Constants
 
 **Semantics**
 
@@ -140,7 +140,7 @@ interface MyCollection<T> {
 }
 ```
 
-##Methods
+## Methods
 
 **Constraints**
 
@@ -162,9 +162,9 @@ interface MyCollection<T> {
 }
 ```
 
-##Predefined Interfaces
+## Predefined Interfaces
 
-###Interface `ArrayAccess`
+### Interface `ArrayAccess`
 
 This interface allows an instance of an implementing class to be
 accessed using array-like notation. This interface is defined, as
@@ -187,7 +187,7 @@ Name	|   Purpose
 `offsetSet`	| This instance method sets the value having key `$offset` to $value. This method is called when an instance of a class that implements this interface is [subscripted](10-expressions.md#subscript-operator) in a modifiable-lvalue context.
 `offsetUnset`	| This instance method removes the value having key `$offset`.
 
-###Interface `AsyncIterator`
+### Interface `AsyncIterator`
 
 This interface supports iteration over the values returned from an [asynchronous generator function](10-expressions.md#yield-operator). It is defined, as follows:
 
@@ -203,7 +203,7 @@ Name  |  Purpose
 ----  |  -------
 `next` | This instance method moves the async iterator to the next `Awaitable` position.
 
-###Interface `AsyncKeyedIterator`
+### Interface `AsyncKeyedIterator`
 
 This interface supports iteration over the keys and values returned from an [asynchronous generator function](10-expressions.md#yield-operator). It is defined, as follows:
 
@@ -219,7 +219,7 @@ Name  |  Purpose
 ----  |  -------
 `next` | This instance method moves the async iterator to the next `Awaitable` position.
 
-###Interface `Awaitable`
+### Interface `Awaitable`
 
 An instance of this interface is an awaitable object. Such objects are used in support of [asynchronous functions](15-functions.md#asynchronous-functions) and [await](10-expressions.md#await-operator). This interface is defined, as follows:
 
@@ -231,7 +231,7 @@ interface Awaitable<T> {
 
 The interface members are unspecified.
 
-###Interface `Container`
+### Interface `Container`
 
 This interface is a marker for the predefined types `Vector`, `ImmVector`, `Map`, `ImmMap`, `Set`, `ImmSet`, and `Pair` and all array types. This interface is defined, as follows:
 
@@ -242,7 +242,7 @@ interface Container<Tv> extends Traversable<Tv> {
 
 This interface has no members.
 
-###Interface `IMemoizeParam`
+### Interface `IMemoizeParam`
 
 Instances of classes that implement this interface can be passed to `serialize_memoize_param` and to functions having the [`__Memoize` attribute](21-attributes.md#Attribute-__Memoize). It is defined, as follows:
 
@@ -258,7 +258,7 @@ Name  |  Purpose
 ----  |  -------
 `getInstanceKey` | Serializes the object to a string that can be used as a dictionary key to differentiate instances of this class.
 
-###Interface `Iterator`
+### Interface `Iterator`
 
 This interface allows instances of an implementing class to be treated
 as a collection. This interface is defined, as follows:
@@ -281,7 +281,7 @@ Name | Purpose
 `rewind` |  This instance method resets the current position to the first element. From within a `foreach` statement, this method is called once, at the beginning.
 `valid` | This instance method checks if the current position is valid. It takes no arguments. It returns a bool value of `true` to indicate the current position is valid; `false`, otherwise. This method is called after each call to [`Iterator::rewind()`](http://docs.hhvm.com/manual/en/iterator.rewind.php) and [`Iterator::next()`](http://docs.hhvm.com/manual/en/iterator.next.php).
 
-###Interface `IteratorAggregate`
+### Interface `IteratorAggregate`
 
 This interface allows the creation of an external iterator. This
 interface is defined, as follows:
@@ -297,7 +297,7 @@ Name    |   Purpose
 ----    |   -------
 `getIterator` | This instance method retrieves an iterator, which implements `Iterator` or `Traversable`. It throws an `\Exception` on failure.
 
-###Interface `KeyedContainer`
+### Interface `KeyedContainer`
 
 This interface is a marker for the predefined types `Vector`, `ImmVector`, `Map`, `ImmMap`, and `Pair` and all array types. This interface is defined, as follows:
 
@@ -309,7 +309,7 @@ interface KeyedContainer<Tk, Tv> extends Container<Tv>,
 
 This interface has no members.
 
-###Interface `KeyedTraversable`
+### Interface `KeyedTraversable`
 
 This interface detects if a class is traversable using `foreach`. This interface is defined, as follows:
 
@@ -322,7 +322,7 @@ This interface has no members.
 
 This interface has no members.
 
-###Interface  `Serializable`
+### Interface  `Serializable`
 
 This interface provides support for custom serialization. It is defined,
 as follows:
@@ -341,7 +341,7 @@ Name |	Purpose
 `serialize` | This instance method returns a string representation of the current instance. On failure, it returns `null`.
 `unserialize` | This instance method constructs an object from its string form designated by `$serialized`.
 
-###Interface `Stringish`
+### Interface `Stringish`
 
 This interface requires an implementing class to provide a conversion to string representation. It is defined, as follows:
 
@@ -353,7 +353,7 @@ interface Stringish {
 
 The interface members are defined below:
 
-###Interface `Traversable`
+### Interface `Traversable`
 
 This interface is intended as the base interface for all traversable
 classes. This interface is defined, as follows:

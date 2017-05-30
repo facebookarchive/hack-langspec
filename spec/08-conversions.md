@@ -1,6 +1,6 @@
-#Conversions
+# Conversions
 
-##General
+## General
 
 Some operators implicitly convert automatically the values of operands
 from one type to another. Explicit conversion is performed using the
@@ -16,7 +16,7 @@ When an expression of type `arraykey` is converted, if that expression is
 currently an `int`, then `int` conversion rules apply; otherwise, `string` 
 conversion rules apply.
 
-##Converting to Boolean Type
+## Converting to Boolean Type
 
 No non-`bool` type can be converted implicitly to `bool`. All other conversions 
 must be explicit.
@@ -41,7 +41,7 @@ If the source is a resource, the result value is `false`.
 The library function [`boolval`](http://www.php.net/boolval) allows values to be converted to
 `bool`.
 
-##Converting to Integer Type
+## Converting to Integer Type
 
 No non-`int` type can be converted implicitly to `int`. All other conversions must be explicit.
 
@@ -74,7 +74,7 @@ If the source is a resource, the result is the resource's unique ID.
 The library function [`intval`](http://docs.hhvm.com/manual/en/function.intval.php) allows values
 to be converted to `int`.
 
-##Converting to Floating-Point Type
+## Converting to Floating-Point Type
 
 No non-`float` type can be converted implicitly to `float`. All other 
 conversions must be explicit.
@@ -101,14 +101,14 @@ If the source is a resource, the result is the resource's unique ID.
 The library function [`floatval`](http://www.php.net/floatval) allows values to be converted to
 float.
 
-##Converting to Number Type
+## Converting to Number Type
 
 The only implicit conversions to type `num` are from the types `int` and
 `float`. There is no change in representation during such conversions. There are no explicit conversions.
 
 The result type is `num`.
 
-##Converting to String Type
+## Converting to String Type
 
 Except for the [`classname` type](05-types.md#the-classname-type), no non-`string` type can be converted implicitly to `string`. All other conversions must be explicit.
 
@@ -135,7 +135,7 @@ If the source type is the [`classname` type](05-types.md#the-classname-type), th
 The library function [`strval`](http://www.php.net/strval) allows values to be converted to
 `string`.
 
-##Converting to Array Key Type
+## Converting to Array Key Type
 
 The only implicit conversions to type `arraykey` are from the types `int` 
 and `string`. There is no change in representation during such conversions. 
@@ -143,16 +143,16 @@ There are no explicit conversions.
 
 The result type is `arraykey`.
 
-##Converting to Array Type
+## Converting to Array Type
 
 For arrays of different types, no implicit conversions exist. There are no 
 explicit conversions.
 
-##Converting to Object Type
+## Converting to Object Type
 
 An object type can be converted implicitly to any object type from which the first object type is derived directly or indirectly. There are no other implicit or explicit conversions.
 
-##Converting to Interface Type
+## Converting to Interface Type
 
 An object type can be converted implicitly to any interface type that object 
 type implements directly or indirectly.
@@ -162,13 +162,13 @@ the first interface type is derived directly or indirectly.
 
 There are no other implicit or explicit conversions.
 
-##Converting to Resource Type
+## Converting to Resource Type
 
 The [predefined resource-like constants](05-types.md#resource-types)) `STDIN`, `STDOUT`, and 
 `STDERR`, can be converted implicitly to resource. No other non-resource type 
 can be so converted. No explicit conversions exist.
 
-##Converting to Mixed Type
+## Converting to Mixed Type
 
 Any type can be converted implicitly to [`mixed`](05-types.md#nullable-types). No explicit conversions
 exist.

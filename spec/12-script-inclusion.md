@@ -1,6 +1,6 @@
-#Script Inclusion Operators
+# Script Inclusion Operators
 
-##General
+## General
 
 **Syntax**
 
@@ -43,7 +43,7 @@ configuration directive
 [`include_path`](http://docs.hhvm.com/manual/en/ini.core.php#ini.include-path)
 to resolve the include file's location.
 
-##The `require` Directive
+## The `require` Directive
 
 **Syntax**
 
@@ -79,7 +79,7 @@ require 'Point.php';
 require ('Circle.php');
 ```
 
-##The `require_once` Directive
+## The `require_once` Directive
 
 **Syntax**
 
