@@ -734,8 +734,8 @@ class C2 {
 **Syntax**
 <pre>
 <i>alias-declaration:</i>
-  <i>attribute-specification<sub>opt</sub>  type  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  =  <i>type-specifier</i>  ;
-  <i>attribute-specification<sub>opt</sub>  newtype  <i>name</i>  <i>generic-type-parameter-list</i><sub>opt</sub>  <i>type-constraint<sub>opt</sub></i>  =  <i>type-specifier</i>  ;
+  <i>attribute-specification<sub>opt</sub></i>  type  <i>name  generic-type-parameter-list<sub>opt</sub></i>  =  <i>type-specifier</i>  ;
+  <i>attribute-specification<sub>opt</sub></i>  newtype  <i>name  generic-type-parameter-list<sub>opt</sub>  type-constraint<sub>opt</sub></i>  =  <i>type-specifier</i>  ;
 </pre>
 
 **Defined elsewhere**
