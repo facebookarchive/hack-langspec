@@ -434,7 +434,6 @@ class Point {
 
 <pre>
   <i>method-declaration:</i>
-p
   <i>attribute-specification<sub>opt</sub></i> <i>method-modifiers</i>  <i>function-definition-no-attribute</i>
   <i>attribute-specification<sub>opt</sub></i> <i>method-modifiers</i>  <i>function-definition-header</i>  ;
 
