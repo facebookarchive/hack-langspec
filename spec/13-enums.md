@@ -97,7 +97,7 @@ $bf = BitFlags::F2;
 $x = addThree($bf);
 ```
 
-It makes little sense to add a bit flag into an integer representing volumentric data, and doing this is probably a bug. Careful consideration should be taken before an enumeration as its most base type (i.e., `int` or `string`).
+This makes no sense -- what does it mean to "add three" to a bit flag? BitFlags represent volumetric data, and doing this is almost certainly a bug. Careful consideration should be taken before an enumeration as its most base type (i.e., `int` or `string`).
 
 ```Hack
 enum Permission: string {
