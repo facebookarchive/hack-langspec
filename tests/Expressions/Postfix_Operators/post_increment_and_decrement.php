@@ -17,7 +17,7 @@ function main(): void {
 
   echo "\n=== int 0x80000000 ===\n";
 
-  $v = 0x8000000000000000; var_dump($v++); var_dump($v--);
+  $v = 0x8000000000000000; var_dump($v--); var_dump($v++);
 
   echo "\n=== float 12.345 ===\n";
 
