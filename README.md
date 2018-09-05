@@ -1,3 +1,5 @@
+**deprecated**
+
 # Hack Language Specification
 
 This repo contains the Hack Language Specification. The easiest way to navigate the specification is
