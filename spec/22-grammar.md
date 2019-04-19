@@ -523,10 +523,16 @@ octal-digit
     <i>pair-type</i>  {  <i>cl-element-value</i>  ,  <i>cl-element-value</i>  }
 
   <i>non-key-collection-class-type:</i>
-    <i>qualified-name</i>
+    <i>qualified-name non-key-collection-class-type-hint<sub>opt</sub></i>
 
   <i>key-collection-class-type:</i>
-    <i>qualified-name</i>
+    <i>qualified-name key-collection-class-type-hint<sub>opt</sub></i>
+
+  <i>non-key-collection-class-type-hint:</i>
+    <i>&lt; type-specifier &rt;</i>
+  
+  <i>key-collection-class-type-hint:</i>
+    <i>&lt; type-specifier , type-specifier &rt;</i>
 
   <i>pair-type:</i>
     <i>qualified-name</i>
