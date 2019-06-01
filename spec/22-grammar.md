@@ -252,13 +252,16 @@ octal-digit
     \X  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
 
   <i>heredoc-string-literal::</i>
-    &lt;&lt;&lt; <i>hd-start-identifier   new-line   hd-char-sequence<sub>opt</sub>  new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
+    &lt;&lt;&lt; <i>hd-start-identifier   new-line   hd-body<sub>opt</sub>   hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
 
   <i>hd-start-identifier::</i>
     <i>name</i>
 
   <i>hd-end-identifier::</i>
     <i>name</i>
+
+  <i>hd-body::</i>
+    <i>hd-char-sequence</i><sub>opt</sub>   new-line
 
   <i>hd-char-sequence::</i>
     <i>hd-char</i>
@@ -278,9 +281,8 @@ octal-digit
   <i>hd-simple-escape-sequence:: one of</i>
     \\   \$   \e   \f   \n   \r   \t   \v
 
-
   <i>nowdoc-string-literal::</i>
-    &lt;&lt;&lt; '  <i>hd-start-identifier</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>     
+    &lt;&lt;&lt; '  <i>hd-start-identifier</i>  '  <i>new-line   hd-body<sub>opt</sub>   hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>     
 </pre>
 
 #### The Null Literal
@@ -582,7 +584,7 @@ octal-digit
     <i>anonymous-function-parameter-declaration-list</i>
     <i>anonymous-function-parameter-declaration-list</i>  ,
     <i>anonymous-function-parameter-declaration-list</i>  ,  ...
-  
+
   <i>anonymous-function-parameter-declaration-list:</i>
     <i>anonymous-function-parameter-declaration</i>
     <i>anonymous-function-parameter-declaration-list</i>  ,  <i>anonymous-function-parameter-declaration</i>
@@ -738,8 +740,15 @@ octal-digit
   <i>cast-expression:</i>
     (  <i>cast-type</i>  ) <i>unary-expression</i>
 
-  <i>cast-type: one of</i>
-    bool  int  float  string
+  <i>cast-type:</i>
+    array
+    bool
+    double
+    float
+    int
+    object
+    string
+    <i>name</i>
 
   <i>await-expression:</i>
     await  <i>expression</i>
@@ -882,9 +891,6 @@ octal-digit
 
   <i>simple-assignment-expression:</i>
     <i>unary-expression</i>  =  <i>assignment-expression</i>
-
-  <i>byref-assignment-expression:</i>
-    <i>unary-expression</i>  =  &  <i>assignment-expression</i>
 
   <i>compound-assignment-expression:</i>
     <i>unary-expression   compound-assignment-operator   assignment-expression</i>
@@ -1092,7 +1098,7 @@ octal-digit
 
 <pre>
   <i>enum-declaration:</i>
-  enum  <i>name</i>  <i>enum-base</i>  <i>type-constraint<sub>opt</sub></i>  {  <i>enumerator-list<sub>opt</sub></i>  }
+    <i>attribute-specification</i><sub>opt</sub>  enum  <i>name</i>  <i>enum-base</i>  <i>type-constraint<sub>opt</sub></i>  {  <i>enumerator-list<sub>opt</sub></i>  }
 
   <i>enum-base:</i>
     :  int
@@ -1280,7 +1286,7 @@ octal-digit
     <i>attribute-specification<sub>opt</sub></i>  <i>visibility-modifier</i>  function  __destruct  ( )  <i>void-return<sub>opt</sub></i>  <i>compound-statement</i>
 
   <i>void-return</i>:
-    : void 
+    : void
 
   <i>type-constant-declaration:</i>
     <i>abstract-type-constant-declaration</i>

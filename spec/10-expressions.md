@@ -848,7 +848,7 @@ The *class-type-designator* must not designate an [abstract class](16-classes.md
 
 The *class-type-designator* must not be a [generic type parameter](14-generic-types-methods-and-functions.md#type-parameters).
 
-The *object-creation-expression* will invoke the constructor of the class designated by the *class-type-designator*. 
+The *object-creation-expression* will invoke the constructor of the class designated by the *class-type-designator*.
 
 *argument-expression-list* must contain an argument for each parameter in the
 [constructor's definition](15-functions.md#function-definitions) not having a default value, and each
@@ -1300,7 +1300,7 @@ $anon();  // call the anonymous function
 method of the class designated by *postfix-expression*.
 
 *variable-name* must name a variable which when evaluated produces a string
-containing an instance property or an instance method of the class 
+containing an instance property or an instance method of the class
 designated by *postfix-expression*.
 
 
@@ -1352,14 +1352,14 @@ $p1->move(3, 9);  // calls public instance method move by name
 *name* must designate an instance property or an instance method of the class designated by *postﬁx-expression*.
 
 *variable-name* must name a variable which when evaluated produces a string
-containing an instance property or an instance method of the class 
+containing an instance property or an instance method of the class
 designated by *postfix-expression*.
 
 **Semantics**
 
-If *postﬁx-expression* is `null`, no property or method is selected and the 
-resulting value is `null`. Otherwise, the behavior is like that of the 
-[member-selection operator `->`](10-expressions.md#member-selection-operator), 
+If *postﬁx-expression* is `null`, no property or method is selected and the
+resulting value is `null`. Otherwise, the behavior is like that of the
+[member-selection operator `->`](10-expressions.md#member-selection-operator),
 except that the resulting value is not an lvalue.
 
 ### Postfix Increment and Decrement Operators
@@ -1730,13 +1730,40 @@ error message displayed.
   <i>cast-expression:</i>
     (  <i>cast-type</i>  ) <i>unary-expression</i>
 
-  <i>cast-type: one of</i>
-    bool  int  float  string
+  <i>cast-type:</i>
+    array
+    bool
+    double
+    float
+    int
+    object
+    string
+    <i>name</i>
 </pre>
 
 **Defined elsewhere**
 
+* [*name*](09-lexical-structure.md#names)
 * [*unary-expression*](10-expressions.md#general-4)
+
+**Constraints**
+
+The grammar for the <i>cast-expression</i> introduces certain syntactic
+ambiguities. For example, the expression `(x)-y` could be interpreted as a
+cast of `-y` to type `x`, or as the arithmetical computation of `x-y`.
+
+This ambiguity is resolved as follows:
+
+* If the token inside the parentheses is `array`, `bool`, `double`,
+`float`, `int`, `object` or `string` then the expression is a
+*cast-expression*.
+* Otherwise, if the token following the right parenthesis is `as` or 
+`instanceof` then `(` *name* `)` is a parenthesized expression, not a cast operator.
+* Otherwise, if the token following the right parenthesis is is 
+`$$`, `@`, `~`, `!`, `(`, `+`, `-`, `++`, `--`, or any *name*, *qualified-name*, 
+or *variable-name*, or any numeric, string, Boolean or null literal, or any keyword 
+then the expression is a *cast-expression*.
+* Otherwise, `(` *name* `)` is a parenthesized expression, not a cast operator.
 
 **Semantics**
 

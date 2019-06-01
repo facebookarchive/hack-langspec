@@ -719,13 +719,16 @@ echo "\$myC->p1 = >$myC->p1<\n";  // → $myC->p1 = >2<
 
 <pre>
   <i>heredoc-string-literal::</i>
-    &lt;&lt;&lt;  <i>hd-start-identifier   new-line   hd-char-sequence<sub>opt</sub>  new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
+    &lt;&lt;&lt;  <i>hd-start-identifier   new-line   hd-body<sub>opt</sub>   hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
 
   <i>hd-start-identifier::</i>
     <i>name</i>
 
   <i>hd-end-identifier::</i>
     <i>name</i>
+
+  <i>hd-body::</i>
+    <i>hd-char-sequence</i><sub>opt</sub>   new-line
 
   <i>hd-char-sequence::</i>
     <i>hd-char</i>
@@ -797,12 +800,12 @@ Some more text<
 
 <pre>
   <i>nowdoc-string-literal::</i>
-    &lt;&lt;&lt;  '  <i>hd-start-identifier</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
+    &lt;&lt;&lt;  '  <i>hd-start-identifier</i>  '  <i>new-line  hd-body<sub>opt</sub>   hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
 </pre>
 
 **Defined elsewhere**
 
-* [*hd-char-sequence*](09-lexical-structure.md#heredoc-string-literals)
+* [*hd-body*](09-lexical-structure.md#heredoc-string-literals)
 * [*hd-end-identifier*](09-lexical-structure.md#heredoc-string-literals)
 * [*hd-start-identifier*](09-lexical-structure.md#heredoc-string-literals)
 * [*new-line*](09-lexical-structure.md#comments)
