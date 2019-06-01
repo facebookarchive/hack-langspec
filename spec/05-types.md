@@ -603,7 +603,7 @@ A *closure* is an object that encapsulates a function with a given argument
 list and return type. The function can then be called through that object by
 using the [function-call operator](10-expressions.md#function-call-operator).
 
-Note: The library functions [`class_meth`](http://www.php.net/class_meth), [`fun1](http://www.php.net/fun), [`inst_meth`](http://www.php.net/inst_meth), and [`meth_caller`](http://www.php.net/meth_caller) allow a string constant containing the name of
+Note: The library functions [`class_meth`](http://www.php.net/class_meth), [`fun1`](http://www.php.net/fun), [`inst_meth`](http://www.php.net/inst_meth), and [`meth_caller`](http://www.php.net/meth_caller) allow a string constant containing the name of
 a function to be turned into a closure.
 
 **Examples**
