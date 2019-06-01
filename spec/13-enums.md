@@ -51,12 +51,6 @@ A *constant-expression* can refer to the *name*s of other *enumeration-constants
 **Examples**
 
 ```Hack
-enum BitFlags: int as int {
-  F1 = 1;
-  F2 = BitFlags::F1 << 1;
-  F3 = BitFlags::F2 << 1;
-}
-// -----------------------------------------
 enum ControlStatus: int {
   Stopped = 0;
   Stopping = 1;
@@ -81,7 +75,29 @@ function processStatus(ControlStatus $cs): void {
 }
 ```
 
-This example defines `ControlStatus` to be an enumerated type with an underlying type of `int`. The enumerated type has the four named enumeration constants `Stopped`, `Stopping`, `Starting`, and `Started`. Each enumeration constant is initialized with the integer constant value, as shown. When called, the function `processStatus` is passed an enum having one of the four possible enumeration constant values.
+This example defines `ControlStatus` to be an enumerated type with an underlying type of `int`. It is of type `ControlStatus`. The enumerated type has the four named enumeration constants `Stopped`, `Stopping`, `Starting`, and `Started`. Each enumeration constant is initialized with the integer constant value, as shown. When called, the function `processStatus` is passed an enum having one of the four possible enumeration constant values.
+
+
+```Hack
+enum BitFlags: int as int {
+  F1 = 1;
+  F2 = BitFlags::F1 << 1;
+  F3 = BitFlags::F2 << 1;
+}
+```
+
+This example defines `BitFlags` to be an enumerated type with an underlying type of `int`, which is itself of type `int` (not of type `BitFlags`. As such, it is possible to use `BitFlags` anywhere an `int` is required, for example:
+
+```Hack
+function addThree(int $input): int {
+  return $input + 3;
+}
+$bf = BitFlags::F2;
+// lots of code has occluded the original definition of $bf
+$x = addThree($bf);
+```
+
+This makes no sense -- what does it mean to "add three" to a bit flag? BitFlags represent volumetric data, and doing this is almost certainly a bug. Careful consideration should be taken before an enumeration as its most base type (i.e., `int` or `string`).
 
 ```Hack
 enum Permission: string {
